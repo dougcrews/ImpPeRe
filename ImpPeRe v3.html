@@ -1,267 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Imperial Penal Report</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="ImpPeRe.js"></script>
-  <link rel="stylesheet" href="ImpPeRe.css">
+	<meta charset="UTF-8">
+	<title>Imperial Penal Report</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="ImpPeRe.js"></script>
+	<link rel="stylesheet" href="ImpPeRe.css">
 </head>
+
 <body>
 
-<h2>Imperial Penal Report</h2>
+	<h2>Imperial Penal Report</h2>
 
-  <!-- Form (always visible) -->
-  <div id="reportForm">
+	<!-- Form (always visible) -->
+	<div id="reportForm">
 		<table class="form-group widthFullscreen" border="2">
-		<tr>
-			<td>
-			 <div class="form-group">
-				<label for="locationDropdown">Location:</label>
-				<select id="locationDropdown">
-				  <option value="">-- Current Location --</option>
-				</select>
-			  <div id="locationDetails" class="section widthHalf">
-				  <section id="location-general-info">
-					<h2>General Information</h2>
-					<p><strong>Region:</strong> <span id="currentRegion">unknown</span></p>
-					<p><strong>Sector:</strong> <span id="currentSector">unknown</span></p>
-					<p><strong>System:</strong> <span id="currentSystem">unknown</span></p>
-					<p><strong>Capital City:</strong> <span id="currentCapital">unknown</span></p>
-					<p><strong>Map:</strong> <span id="currentMap">unknown</span></p>
-					<h2>Atmosphere & Terrain</h2>
-					<p><strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span></p>
-					<p><strong>Terrain:</strong> <span id="currentTerrain">unknown</span></p>
-					<p><strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span></p>
-					<p><strong>Climate:</strong> <span id="currentClimate">unknown</span></p>
-					<p><strong>Gravity:</strong> <span id="currentGravity">unknown</span></p>
-					<p><strong>URL Link:</strong> <a id="currentURL" href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends" target="_blank">unknown</a></p>
-					<h2>Current Conditions</h2>
-					<p><strong>Climate:</strong> Arid</p>
-					<p><strong>Weather:</strong> Dusty, clear</p>
-					<p><strong>Terrain:</strong> Desert</p>
-				  </section>
-			  </div>
-			 </div>
-			</td>
-			<td>
-			 <div class="form-group">
-				<label for="destinationDropdown">Destination:</label>
-				<select id="destinationDropdown">
-				  <option value="">-- Select Destination --</option>
-				</select>
-			  <div id="destinationDetails" class="section widthHalf">
-				  <section id="destination-general-info">
-					<h2>General Information</h2>
-					<p><strong>Region:</strong> <span id="destRegion">unknown</span></p>
-					<p><strong>Sector:</strong> <span id="destSector">unknown</span></p>
-					<p><strong>System:</strong> <span id="destSystem">unknown</span></p>
-					<p><strong>Capital City:</strong> <span id="destCapital">unknown</span></p>
-					<p><strong>Map:</strong> <span id="destMap">unknown</span></p>
-					<h2>Atmosphere & Terrain</h2>
-					<p><strong>Atmosphere:</strong> <span id="destAtmosphere">unknown</span></p>
-					<p><strong>Terrain:</strong> <span id="destTerrain">unknown</span></p>
-					<p><strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span></p>
-					<p><strong>Climate:</strong> <span id="destClimate">unknown</span></p>
-					<p><strong>Gravity:</strong> <span id="destGravity">unknown</span></p>
-					<p><strong>URL Link:</strong> <a id="destURL" href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends" target="_blank">unknown</a></p>
-					<h2>Current Conditions</h2>
-					<p><strong>Climate:</strong> Arid</p>
-					<p><strong>Weather:</strong> Dusty, clear</p>
-					<p><strong>Terrain:</strong> Desert</p>
-				  </section>
-			  </div>
-			 </div>
-			</td>
-		</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<label for="locationDropdown">Location:</label>
+						<select id="locationDropdown">
+							<option value="">-- Current Location --</option>
+						</select>
+						<div id="locationDetails" class="section widthHalf">
+							<section id="location-general-info">
+								<h2>General Information</h2>
+								<p><strong>Region:</strong> <span id="currentRegion">unknown</span></p>
+								<p><strong>Sector:</strong> <span id="currentSector">unknown</span></p>
+								<p><strong>System:</strong> <span id="currentSystem">unknown</span></p>
+								<p><strong>Capital City:</strong> <span id="currentCapital">unknown</span></p>
+								<p><strong>Map:</strong> <span id="currentMap">unknown</span></p>
+								<h2>Atmosphere & Terrain</h2>
+								<p><strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span></p>
+								<p><strong>Terrain:</strong> <span id="currentTerrain">unknown</span></p>
+								<p><strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span></p>
+								<p><strong>Climate:</strong> <span id="currentClimate">unknown</span></p>
+								<p><strong>Gravity:</strong> <span id="currentGravity">unknown</span></p>
+								<p><strong>URL Link:</strong> <a id="currentURL"
+										href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+										target="_blank">unknown</a></p>
+								<h2>Current Conditions</h2>
+								<p><strong>Climate:</strong> Arid</p>
+								<p><strong>Weather:</strong> Dusty, clear</p>
+								<p><strong>Terrain:</strong> Desert</p>
+							</section>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<label for="destinationDropdown">Destination:</label>
+						<select id="destinationDropdown">
+							<option value="">-- Select Destination --</option>
+						</select>
+						<div id="destinationDetails" class="section widthHalf">
+							<section id="destination-general-info">
+								<h2>General Information</h2>
+								<p><strong>Region:</strong> <span id="destRegion">unknown</span></p>
+								<p><strong>Sector:</strong> <span id="destSector">unknown</span></p>
+								<p><strong>System:</strong> <span id="destSystem">unknown</span></p>
+								<p><strong>Capital City:</strong> <span id="destCapital">unknown</span></p>
+								<p><strong>Map:</strong> <span id="destMap">unknown</span></p>
+								<h2>Atmosphere & Terrain</h2>
+								<p><strong>Atmosphere:</strong> <span id="destAtmosphere">unknown</span></p>
+								<p><strong>Terrain:</strong> <span id="destTerrain">unknown</span></p>
+								<p><strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span></p>
+								<p><strong>Climate:</strong> <span id="destClimate">unknown</span></p>
+								<p><strong>Gravity:</strong> <span id="destGravity">unknown</span></p>
+								<p><strong>URL Link:</strong> <a id="destURL"
+										href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+										target="_blank">unknown</a></p>
+								<h2>Current Conditions</h2>
+								<p><strong>Climate:</strong> Arid</p>
+								<p><strong>Weather:</strong> Dusty, clear</p>
+								<p><strong>Terrain:</strong> Desert</p>
+							</section>
+						</div>
+					</div>
+				</td>
+			</tr>
 		</table>
-  </div>
+	</div>
 
 
-<div class="container widthFull">
+	<div class="container widthFull">
 
 
-  <!-- Section 1 (Options) -->
-  <button class="toggleBtn" data-target="#Options">Options</button>
-  <div id="Options" class="section widthFull">
-	  <section id="options">
-		<h2>Options</h2>
-		<div class="form-group">
-		  <label>
-			<input type="checkbox" id="politicalStrife">Political Strife</input>
-		  </label>
+		<!-- Section 1 (Options) -->
+		<button class="toggleBtn" data-target="#Options">Options</button>
+		<div id="Options" class="section widthFull">
+			<section id="options">
+				<h2>Options</h2>
+				<div class="form-group">
+					<label>
+						<input type="checkbox" id="politicalStrife">Political Strife</input>
+					</label>
+				</div>
+
+				<p><strong>Political Strife:</strong> Present</p>
+				<p><strong>System Familiarity:</strong> High</p>
+				<div class="form-group">
+					<label for="silhouette">Silhouette:</label>
+					<input type="text" id="silhouette" placeholder="Enter silhouette...">
+				</div>
+				<p><strong>Declared Cargo:</strong> 0</p>
+			</section>
 		</div>
 
-		<p><strong>Political Strife:</strong> Present</p>
-		<p><strong>System Familiarity:</strong> High</p>
-		<div class="form-group">
-		  <label for="silhouette">Silhouette:</label>
-		  <input type="text" id="silhouette" placeholder="Enter silhouette...">
+		<!-- Section 2 (Imperial Presence) -->
+		<button class="toggleBtn" data-target="#ImperialPresence">Imperial Presence</button>
+		<div id="ImperialPresence" class="section">
+			<h3>Imperial Presence</h3>
+			<section id="imperial-presence">
+				<h2>Imperial Presence</h2>
+				<p><strong>Attention Message:</strong> You have arrived safely in the Geonosis system.</p>
+				<p><strong>Starports:</strong></p>
+				<ul>
+					<li><strong>Landing Fee:</strong> <span id="textFeePortLanding">40 credits</span></li>
+					<li><strong>Berthing Fee:</strong> 4 credits per day</li>
+					<li><strong>Customs Fee:</strong> Waived</li>
+					<li><strong>Visitation Fee:</strong> Waived</li>
+					<li><strong>Smuggling Penalty:</strong> No cargo declared</li>
+					<li><strong>Departure Wait:</strong> 0 hours</li>
+				</ul>
+				<p><strong>Weapon Permits:</strong></p>
+				<ul>
+					<li><strong>Small Arms:</strong> Encouraged</li>
+					<li><strong>Rifles, Large Melee:</strong> Encouraged</li>
+					<li><strong>Heavy Weapons:</strong> Encouraged</li>
+					<li><strong>Concealed Weapons:</strong> Rarity 3, 30 credits</li>
+					<li><strong>Restricted/Military:</strong> Rarity 1, 10 credits</li>
+				</ul>
+				<p><strong>Violations:</strong> Confiscation + 200% fine</p>
+			</section>
 		</div>
-		<p><strong>Declared Cargo:</strong> 0</p>
-	  </section>
-  </div>
-
-  <!-- Section 2 (Imperial Presence) -->
-  <button class="toggleBtn" data-target="#ImperialPresence">Imperial Presence</button>
-  <div id="ImperialPresence" class="section">
-    <h3>Imperial Presence</h3>
-  <section id="imperial-presence">
-    <h2>Imperial Presence</h2>
-    <p><strong>Attention Message:</strong> You have arrived safely in the Geonosis system.</p>
-    <p><strong>Starports:</strong></p>
-    <ul>
-      <li><strong>Landing Fee:</strong> 40 credits</li>
-      <li><strong>Berthing Fee:</strong> 4 credits per day</li>
-      <li><strong>Customs Fee:</strong> Waived</li>
-      <li><strong>Visitation Fee:</strong> Waived</li>
-      <li><strong>Smuggling Penalty:</strong> No cargo declared</li>
-      <li><strong>Departure Wait:</strong> 0 hours</li>
-    </ul>
-    <p><strong>Weapon Permits:</strong></p>
-    <ul>
-      <li><strong>Small Arms:</strong> Encouraged</li>
-      <li><strong>Rifles, Large Melee:</strong> Encouraged</li>
-      <li><strong>Heavy Weapons:</strong> Encouraged</li>
-      <li><strong>Concealed Weapons:</strong> Rarity 3, 30 credits</li>
-      <li><strong>Restricted/Military:</strong> Rarity 1, 10 credits</li>
-    </ul>
-    <p><strong>Violations:</strong> Confiscation + 200% fine</p>
-  </section>
-  </div>
 
 
 
-</div>
+	</div>
 
-  <!-- Section 3 (Law And Order) -->
-  <button class="toggleBtn" data-target="#LawAndOrder">Law And Order</button>
-  <div id="LawAndOrder" class="section">
-	  <section id="law-order">
-		<h2>Law and Order</h2>
-		<p><strong>Attention Message:</strong> Sensors indicate a possible hideout in this system.</p>
-		<p><strong>Contraband:</strong></p>
-		<ul>
-		  <li><strong>Spice:</strong> No restrictions</li>
-		  <li><strong>Recreational Drugs:</strong> No restrictions</li>
-		  <li><strong>Regulated Ores:</strong> No restrictions</li>
-		  <li><strong>Trespassing:</strong> No restrictions</li>
-		  <li><strong>Poison:</strong> No restrictions</li>
-		  <li><strong>Military Comms:</strong> Tolerated</li>
-		  <li><strong>Slicing:</strong> No restrictions</li>
-		</ul>
-		<p><strong>Criticism of the Empire:</strong> Tolerated</p>
-		<p><strong>Minor Theft:</strong> No restrictions</p>
-		<p><strong>Bribery:</strong> Tolerated</p>
-		<p><strong>Local Customs:</strong></p>
-		<ul>
-		  <li><strong>Slaves:</strong> No restrictions</li>
-		  <li><strong>Droids, Restrained:</strong> No restrictions</li>
-		  <li><strong>Droids, Unrestrained:</strong> Rarity 1, 10 credits</li>
-		  <li><strong>Cybernetics Installed:</strong> No restrictions</li>
-		</ul>
-	  </section>
-  </div>
+	<!-- Section 3 (Law And Order) -->
+	<button class="toggleBtn" data-target="#LawAndOrder">Law And Order</button>
+	<div id="LawAndOrder" class="section">
+		<section id="law-order">
+			<h2>Law and Order</h2>
+			<p><strong>Attention Message:</strong> Sensors indicate a possible hideout in this system.</p>
+			<p><strong>Contraband:</strong></p>
+			<ul>
+				<li><strong>Spice:</strong> No restrictions</li>
+				<li><strong>Recreational Drugs:</strong> No restrictions</li>
+				<li><strong>Regulated Ores:</strong> No restrictions</li>
+				<li><strong>Trespassing:</strong> No restrictions</li>
+				<li><strong>Poison:</strong> No restrictions</li>
+				<li><strong>Military Comms:</strong> Tolerated</li>
+				<li><strong>Slicing:</strong> No restrictions</li>
+			</ul>
+			<p><strong>Criticism of the Empire:</strong> Tolerated</p>
+			<p><strong>Minor Theft:</strong> No restrictions</p>
+			<p><strong>Bribery:</strong> Tolerated</p>
+			<p><strong>Local Customs:</strong></p>
+			<ul>
+				<li><strong>Slaves:</strong> No restrictions</li>
+				<li><strong>Droids, Restrained:</strong> No restrictions</li>
+				<li><strong>Droids, Unrestrained:</strong> Rarity 1, 10 credits</li>
+				<li><strong>Cybernetics Installed:</strong> No restrictions</li>
+			</ul>
+		</section>
+	</div>
 
-  <!-- Section 4 (Flora And Fauna) -->
-  <button class="toggleBtn" data-target="#FloraAndFauna">Flora And Fauna</button>
-  <div id="FloraAndFauna" class="section">
-	  <section id="flora-fauna">
-		<h2>Flora and Fauna</h2>
-		<p><strong>Pets, Livestock, Mounts:</strong></p>
-		<ul>
-		  <li><strong>Silhouette 0:</strong> Native Species: No restrictions</li>
-		  <li><strong>Silhouette 1-2:</strong> Native Species: No restrictions</li>
-		  <li><strong>Silhouette 3+:</strong> Native Species: No restrictions</li>
-		  <li><strong>Silhouette 0:</strong> Non-Native Species: No restrictions</li>
-		  <li><strong>Silhouette 1-2:</strong> Non-Native Species: Tolerated</li>
-		  <li><strong>Silhouette 3:</strong> Non-Native Species: Misdemeanor</li>
-		  <li><strong>Dangerous (any size):</strong> Felony</li>
-		</ul>
-		<p><strong>Speeders:</strong> Tolerated</p>
-		<p><strong>Riding Beasts:</strong> No restrictions</p>
-	  </section>
-  </div>
+	<!-- Section 4 (Flora And Fauna) -->
+	<button class="toggleBtn" data-target="#FloraAndFauna">Flora And Fauna</button>
+	<div id="FloraAndFauna" class="section">
+		<section id="flora-fauna">
+			<h2>Flora and Fauna</h2>
+			<p><strong>Pets, Livestock, Mounts:</strong></p>
+			<ul>
+				<li><strong>Silhouette 0:</strong> Native Species: No restrictions</li>
+				<li><strong>Silhouette 1-2:</strong> Native Species: No restrictions</li>
+				<li><strong>Silhouette 3+:</strong> Native Species: No restrictions</li>
+				<li><strong>Silhouette 0:</strong> Non-Native Species: No restrictions</li>
+				<li><strong>Silhouette 1-2:</strong> Non-Native Species: Tolerated</li>
+				<li><strong>Silhouette 3:</strong> Non-Native Species: Misdemeanor</li>
+				<li><strong>Dangerous (any size):</strong> Felony</li>
+			</ul>
+			<p><strong>Speeders:</strong> Tolerated</p>
+			<p><strong>Riding Beasts:</strong> No restrictions</p>
+		</section>
+	</div>
 
-  <script>
-    $(document).ready(function() {
-		// minimize collapsible sections
-		$("#locationDetails").slideUp();
-		$("#destinationDetails").slideUp();
+	<script>
+		// Converts a number to an integer, max 5, min 0.
+		function sanitizeValue(val) {
+			const retVal = Math.min(Math.max(Math.round(val), 0), 5); // integer, 0 to 5 inclusive
+			return retVal;
+		}
+
+		// Converts a number to display value: "XXcr" or "(waived)"
+		function creditsOrWaived(val) {
+			const retVal = "";
+			if (val === 0) {
+				retVal += val + "cr";
+			}
+			else {
+				retVal += "(waived)";
+			}
+			return retVal;
+		}
+
+		$(document).ready(function () {
+			// minimize collapsible sections
+			$("#locationDetails").slideUp();
+			$("#destinationDetails").slideUp();
 
 
-      // Populate location dropdown
-      const $locationDropdown = $("#locationDropdown");
-      $.each(locations, function(index, location) {
-//      	if (location.Name.toLowerCase().includes("a"))
-			$locationDropdown.append(
-			  $("<option>", { value: location.Name, text: location.Name })
-			);
-      });
+			// Populate location dropdown
+			const $locationDropdown = $("#locationDropdown");
+			$.each(locations, function (index, location) {
+				//      	if (location.Name.toLowerCase().includes("a"))
+				$locationDropdown.append(
+					$("<option>", { value: location.Name, text: location.Name })
+				);
+			});
 
-      // Populate destination dropdown
-      const $destinationDropdown = $("#destinationDropdown");
-      $.each(locations, function(index, location) {
-			$destinationDropdown.append(
-			  $("<option>", { value: location.Name, text: location.Name })
-			);
-      });
+			// Populate destination dropdown
+			const $destinationDropdown = $("#destinationDropdown");
+			$.each(locations, function (index, location) {
+				$destinationDropdown.append(
+					$("<option>", { value: location.Name, text: location.Name })
+				);
+			});
 
-      // Toggle button functionality
-      $(".toggleBtn").click(function() {
-        const target = $(this).data("target");
-        $(target).slideToggle();
-      });
+			// Toggle button functionality
+			$(".toggleBtn").click(function () {
+				const target = $(this).data("target");
+				$(target).slideToggle();
+			});
 
-      // Location dropdown events
-      $("#locationDropdown").on("change", function() {
-		const currentLocation = $("#locationDropdown").val();
+			// Location dropdown events
+			$("#locationDropdown").on("change", function () {
+				const currentLocation = $("#locationDropdown").val();
 
-		const currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+				const currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 
-        document.getElementById("currentRegion").innerText = currentLoc.Region;
-        document.getElementById("currentSector").innerText = currentLoc.Sector;
-        document.getElementById("currentSystem").innerText = currentLoc.System;
-        document.getElementById("currentCapital").innerText = currentLoc.CapitalCity;
-        document.getElementById("currentMap").innerText = currentLoc.Map;
-        document.getElementById("currentAtmosphere").innerText = currentLoc.Atmosphere;
-        document.getElementById("currentTerrain").innerText = currentLoc.Terrain;
-        document.getElementById("currentInhabitants").innerText = currentLoc.Inhabitants;
-        document.getElementById("currentClimate").innerText = currentLoc.Climate;
-        document.getElementById("currentGravity").innerText = currentLoc.Gravity;
-        document.getElementById("currentURL").setAttribute('title', currentLoc.Name);
-        document.getElementById("currentURL").setAttribute('href', currentLoc.URL);
+				// Options calculations & variables
+				const shipSilhouette = 4;
+				const shipCargoDeclared = 0;
 
-        // Auto-expand Current Location section
-        $("#locationDetails").slideDown();
+				// Empire Presence calculations
+				// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
+				const feePortLanding = sanitizeValue(currentLoc.ImperialPresence);
+				const textFeePortLanding = creditsOrWaived(feePortLanding);
+				const feePortBerthing = Math.round(feePortLanding * 0.1);
+				const textFeePortBerthing = creditsOrWaived(feePortBerthing);
+				const feeFuelCell = feePortBerthing; // @FIX see the URL above
+				const feePortPower = feePortBerthing; // @FIX see the URL above
+				const feeConsumables = feePortBerthing; // @FIX see the URL above
+				const feePortMaintenance = feePortBerthing; // @FIX see the URL above
+				const feeCustoms = Math.round(shipCargoDeclared * 0.01); // "waived" if zero
+				const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
+				const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
+				const waitDeparture = Math.round(feeCustoms * 0.1); // convert to days or hours as appropriate
 
-      });
+				const permitWeaponSmall = 0 - currentLoc.ImperialPresence + currentLoc.WeaponSmall;
 
-      // Destination dropdown events
-      $("#destinationDropdown").on("change", function() {
-		const currentDestination = $("#destinationDropdown").val();
+				// update screen elements
+				document.getElementById("textFeePortLanding").innerText = textFeePortLanding;
+				document.getElementById("textFeePortBerthing").innerText = textFeeBerthLanding;
 
-		const destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+				// Law & Order calculations
 
-        document.getElementById("destRegion").innerText = destLoc.Region;
-        document.getElementById("destSector").innerText = destLoc.Sector;
-        document.getElementById("destSystem").innerText = destLoc.System;
-        document.getElementById("destCapital").innerText = destLoc.CapitalCity;
-        document.getElementById("destMap").innerText = destLoc.Map;
-        document.getElementById("destAtmosphere").innerText = destLoc.Atmosphere;
-        document.getElementById("destTerrain").innerText = destLoc.Terrain;
-        document.getElementById("destInhabitants").innerText = destLoc.Inhabitants;
-        document.getElementById("destClimate").innerText = destLoc.Climate;
-        document.getElementById("destGravity").innerText = destLoc.Gravity;
-        document.getElementById("destURL").setAttribute('title', destLoc.Name);
-        document.getElementById("destURL").setAttribute('href', destLoc.URL);
+				// Flora & Fauna calculations
 
-        // Auto-expand Details section
-        $("#destinationDetails").slideDown();
-      });
+				// update screen elements
+				document.getElementById("currentRegion").innerText = currentLoc.Region;
+				document.getElementById("currentSector").innerText = currentLoc.Sector;
+				document.getElementById("currentSystem").innerText = currentLoc.System;
+				document.getElementById("currentCapital").innerText = currentLoc.CapitalCity;
+				document.getElementById("currentMap").innerText = currentLoc.Map;
+				document.getElementById("currentAtmosphere").innerText = currentLoc.Atmosphere;
+				document.getElementById("currentTerrain").innerText = currentLoc.Terrain;
+				document.getElementById("currentInhabitants").innerText = currentLoc.Inhabitants;
+				document.getElementById("currentClimate").innerText = currentLoc.Climate;
+				document.getElementById("currentGravity").innerText = currentLoc.Gravity;
+				document.getElementById("currentURL").setAttribute('title', currentLoc.Name);
+				document.getElementById("currentURL").setAttribute('href', currentLoc.URL);
 
-    });
-  </script>
+
+
+				// Auto-expand Current Location section
+				$("#locationDetails").slideDown();
+			});
+
+			// Destination dropdown events
+			$("#destinationDropdown").on("change", function () {
+				const currentDestination = $("#destinationDropdown").val();
+
+				const destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+
+				document.getElementById("destRegion").innerText = destLoc.Region;
+				document.getElementById("destSector").innerText = destLoc.Sector;
+				document.getElementById("destSystem").innerText = destLoc.System;
+				document.getElementById("destCapital").innerText = destLoc.CapitalCity;
+				document.getElementById("destMap").innerText = destLoc.Map;
+				document.getElementById("destAtmosphere").innerText = destLoc.Atmosphere;
+				document.getElementById("destTerrain").innerText = destLoc.Terrain;
+				document.getElementById("destInhabitants").innerText = destLoc.Inhabitants;
+				document.getElementById("destClimate").innerText = destLoc.Climate;
+				document.getElementById("destGravity").innerText = destLoc.Gravity;
+				document.getElementById("destURL").setAttribute('title', destLoc.Name);
+				document.getElementById("destURL").setAttribute('href', destLoc.URL);
+
+				// Auto-expand Details section
+				$("#destinationDetails").slideDown();
+			});
+
+		});
+	</script>
 
 </body>
+
 </html>
