@@ -255,40 +255,33 @@
 			return retVal;
 		}
 
-		// Converts a number to display value: "Rarity X" or ""
-		function rarity(json)
+		function rarityModFor(json)
 		{
-			retVal = ????????????????????????????????????????????????????;
-			saneRarity = sanitizeRarity(0 - val);
-			if (saneRarity>0 && saneRarity<10)
-			{
-				retVal += "Rarity " + saneRarity;
-			}
-			if (saneRarity>6)
-			{
-				retVal += "(R)";
-			}
-			return retVal + " ";
+			baseRarity = json.Rarity;
+			region = json.Region;
+			regionRarity = regions.find(item => item.Name === json.Region).Rarity;
+			return baseRarity + regionRarity;
 		}
 
 		// Converts a number to display value: "Rarity X" or ""
 		function rarityText(val)
 		{
 			retVal = "";
-			saneRarity = sanitizeRarity(0 - val);
-			if (saneRarity>0 && saneRarity<10)
+			saneRarity = sanitizeRarity(val);
+			if (saneRarity>0)
 			{
 				retVal += "Rarity " + saneRarity;
+			  if (saneRarity>6)
+			  {
+				  retVal += "(R) ";
+			  }
+			  retVal += ", ";
 			}
-			if (saneRarity>6)
-			{
-				retVal += "(R)";
-			}
-			return retVal + " ";
+			return retVal;
 		}
 
 		// Converts a number to display value for weapon/armor permits
-		function permitText(val, cost)
+		function permitText(val, cost, rarity)
 		{
 			retVal = "";
 			const saneVal = sanitizeMinus5to5(val);
@@ -300,9 +293,9 @@
 				case -2: retVal += "Infraction"; break;
 				case -1: retVal += "frowned on"; break;
 				case 0: retVal += "(waived)"; break;
-				case 1: retVal += "Permit (" + rarityText(val) + cost + "cr)"; break;
-				case 2: retVal += "Permit (" + rarityText(val) + cost + "cr)"; break;
-				case 3: retVal += "Permit (" + rarityText(val) + cost + "cr)"; break;
+				case 1: retVal += "Permit (" + rarityText(val + rarity) + cost + "cr)"; break;
+				case 2: retVal += "Permit (" + rarityText(val + rarity) + cost + "cr)"; break;
+				case 3: retVal += "Permit (" + rarityText(val + rarity) + cost + "cr)"; break;
 				case 4: retVal += "encouraged"; break;
 				case 5: retVal += "recommended"; break;
 				default: retVal += "ERROR: invalid val in permitText()";
@@ -441,35 +434,38 @@ $("#locationDetails").slideDown();
 				$('#textFeePortMaintenance').text(textFeePortMaintenance);
 
 				const currentRegion = regions.find(region => region.Name === currentLoc.Region);
-
+        const rarityMod = rarityModFor(currentLoc);
+        
 				const permitWeaponSmall = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
 					currentLoc.WeaponSmall + currentRegion.WeaponSmall;
 				const permitWeaponSmallCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
 					Math.max(currentRegion.ImperialPresence, 1)) * 10;
-				const textPermitWeaponSmall = permitText(permitWeaponSmall, permitWeaponSmallCost);
+				const textPermitWeaponSmall = permitText(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
 
 				const permitWeaponRifle = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
 					currentLoc.WeaponRifle + currentRegion.WeaponRifle;
 				const permitWeaponRifleCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
 					Math.max(currentRegion.ImperialPresence, 1)) * 10;
-				const textPermitWeaponRifle = permitText(permitWeaponRifle, permitWeaponRifle *
-					Math.max(currentLoc.Starport, 1));
+				const textPermitWeaponRifle = permitText(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
+
 				const permitWeaponHeavy = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
 					currentLoc.WeaponHeavy + currentRegion.WeaponHeavy;
-				const textPermitWeaponHeavy = permitText(permitWeaponHeavy, permitWeaponHeavy *
-					Math.max(currentLoc.Starport, 1));
-				const permitWeaponConcealed = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
-					currentLoc.WeaponHeavy + currentRegion.WeaponHeavy;
-				const textPermitWeaponConcealed = permitText(permitWeaponConcealed, permitWeaponConcealed *
-					Math.max(currentLoc.Starport, 1));
+				const permitWeaponHeavyCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
+					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const textPermitWeaponHeavy = permitText(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
+
 				const permitArmorLight = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
 					currentLoc.ArmorLight + currentRegion.ArmorLight;
-				const textPermitArmorLight = permitText(permitArmorLight, permitArmorLight *
-					Math.max(currentLoc.Starport, 1));
+				const permitArmorLightCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
+					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const textPermitArmorLight = permitText(permitArmorLight, permitArmorLightCost, rarityMod);
+
 				const permitArmorPower = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
-					currentLoc.ArmorPower + currentRegion.ArmorPower - 2;
-				const textPermitArmorPower = permitText(permitArmorPower, permitArmorPower *
-					Math.max(currentLoc.Starport, 1));
+					currentLoc.ArmorPower + currentRegion.ArmorPower;
+				const permitArmorPowerCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
+					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const textPermitArmorPower = permitText(permitArmorPower, permitArmorPowerCost, rarityMod);
+
 
 				// Empire Presence update screen elements
 				$('#textPermitWeaponSmall').text(textPermitWeaponSmall);
