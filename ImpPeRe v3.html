@@ -30,6 +30,7 @@
 								<p><strong>Sector:</strong> <span id="currentSector">unknown</span></p>
 								<p><strong>System:</strong> <span id="currentSystem">unknown</span></p>
 								<p><strong>Capital City:</strong> <span id="currentCapital">unknown</span></p>
+								<p><strong>Starport:</strong> <span id="currentStarport">unknown</span></p>
 								<p><strong>Map:</strong> <span id="currentMap">unknown</span></p>
 								<h2>Atmosphere & Terrain</h2>
 								<p><strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span></p>
@@ -48,6 +49,7 @@
 						</div>
 					</div>
 				</td>
+<!--
 				<td>
 					<div class="form-group">
 						<label for="destinationDropdown">Destination:</label>
@@ -79,6 +81,7 @@
 						</div>
 					</div>
 				</td>
+-->
 			</tr>
 		</table>
 	</div>
@@ -86,9 +89,13 @@
 
 	<div class="container widthFull">
 
+		<button class="toggleBtn" data-target="#Options">Options</button>
+		<button class="toggleBtn" data-target="#ImperialPresence">Imperial Presence</button>
+		<button class="toggleBtn" data-target="#LawAndOrder">Law And Order</button>
+		<button class="toggleBtn" data-target="#FloraAndFauna">Flora And Fauna</button>
 
 		<!-- Section 1 (Options) -->
-		<button class="toggleBtn" data-target="#Options">Options</button>
+<!--
 		<div id="Options" class="section widthFull">
 			<section id="options">
 				<h2>Options</h2>
@@ -107,9 +114,9 @@
 				<p><strong>Declared Cargo:</strong> 0</p>
 			</section>
 		</div>
+-->
 
 		<!-- Section 2 (Imperial Presence) -->
-		<button class="toggleBtn" data-target="#ImperialPresence">Imperial Presence</button>
 		<div id="ImperialPresence" class="section">
 			<h3>Imperial Presence</h3>
 			<section id="imperial-presence">
@@ -117,31 +124,34 @@
 				<p><strong>Attention Message:</strong> You have arrived safely in the Geonosis system.</p>
 				<p><strong>Starports:</strong></p>
 				<ul>
-					<li><strong>Landing Fee:</strong> <span id="textFeePortLanding">40 credits</span></li>
-					<li><strong>Berthing Fee:</strong> 4 credits per day</li>
-					<li><strong>Customs Fee:</strong> Waived</li>
-					<li><strong>Visitation Fee:</strong> Waived</li>
-					<li><strong>Smuggling Penalty:</strong> No cargo declared</li>
-					<li><strong>Departure Wait:</strong> 0 hours</li>
+					<li><strong>Landing Fee:</strong> <span id="textFeePortLanding">100cr</span></li>
+					<li><strong>Berthing Fee (per day):</strong> <span id="textFeePortBerthing">10cr</span></li>
+					<li><strong>Customs Fee:</strong> <span id="textFeeCustoms">1cr</span></li>
+					<li><strong>Visitation Fee:</strong> <span id="textFeeVisitation">1cr</span></li>
+					<li><strong>Smuggling Penalty:</strong> <span id="textFeeSmuggling">1cr</span></li>
+					<li><strong>Departure Wait:</strong> <span id="textWaitDeparture">1cr</span></li>
+					<li><strong>Fuel Cells (each):</strong> <span id="textFeeFuelCell">1cr</span></li>
+					<li><strong>Power (per day):</strong> <span id="textFeePortPower">1cr</span></li>
+					<li><strong>Consumables (per day):</strong> <span id="textFeeConsumables">1cr</span></li>
+					<li><strong>Maintenance (per day):</strong> <span id="textFeePortMaintenance">1cr</span></li>
 				</ul>
 				<p><strong>Weapon Permits:</strong></p>
 				<ul>
-					<li><strong>Small Arms:</strong> Encouraged</li>
-					<li><strong>Rifles, Large Melee:</strong> Encouraged</li>
-					<li><strong>Heavy Weapons:</strong> Encouraged</li>
-					<li><strong>Concealed Weapons:</strong> Rarity 3, 30 credits</li>
-					<li><strong>Restricted/Military:</strong> Rarity 1, 10 credits</li>
+					<li><strong>Small Arms:</strong> <span id="textPermitWeaponSmall">1cr</span></li>
+					<li><strong>Rifles, Large Melee:</strong> <span id="textPermitWeaponRifle">1cr</span></li>
+					<li><strong>Heavy Weapons:</strong> <span id="textPermitWeaponHeavy">1cr</span></li>
+					<li><strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed">1cr</span></li>
+					<li><strong>Light Armor:</strong> <span id="textPermitArmorLight">1cr</span></li>
+					<li><strong>Restricted/Military:</strong> <span id="textPermitArmorPower">1cr</span></li>
+					<li><strong>Violations: Confiscation + 200% fine</strong></p></li>
 				</ul>
-				<p><strong>Violations:</strong> Confiscation + 200% fine</p>
+				<p>
 			</section>
 		</div>
-
-
-
 	</div>
 
 	<!-- Section 3 (Law And Order) -->
-	<button class="toggleBtn" data-target="#LawAndOrder">Law And Order</button>
+<!--
 	<div id="LawAndOrder" class="section">
 		<section id="law-order">
 			<h2>Law and Order</h2>
@@ -168,9 +178,10 @@
 			</ul>
 		</section>
 	</div>
+-->
 
 	<!-- Section 4 (Flora And Fauna) -->
-	<button class="toggleBtn" data-target="#FloraAndFauna">Flora And Fauna</button>
+<!--
 	<div id="FloraAndFauna" class="section">
 		<section id="flora-fauna">
 			<h2>Flora and Fauna</h2>
@@ -188,24 +199,151 @@
 			<p><strong>Riding Beasts:</strong> No restrictions</p>
 		</section>
 	</div>
+-->
 
 	<script>
+		// Auto-compact sections
+//		$("#options").slideUp();
+//		$("#ImperialPresence").slideUp();
+//		$("#LawAndOrder").slideUp();
+//		$("#FloraAndFauna").slideUp();
+
+		// Converts a value to 0 if unable to parse as a number @DEPRECATED
+		function orZero(val)
+		{
+			const retVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
+			return retVal;
+		}
+
 		// Converts a number to an integer, max 5, min 0.
-		function sanitizeValue(val) {
-			const retVal = Math.min(Math.max(Math.round(val), 0), 5); // integer, 0 to 5 inclusive
+		function sanitize0to5(val)
+		{
+			const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
+			const retVal = Math.min(Math.max(saneVal, 0), 5); // integer, 0 to 5 inclusive
+			return retVal;
+		}
+
+		// Converts a number to an integer, max 5, min -5.
+		function sanitizeMinus5to5(val)
+		{
+			const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
+			const retVal = Math.min(Math.max(saneVal, -5), 5); // integer, -5 to 5 inclusive
+			return retVal;
+		}
+
+		// Converts a number to an integer, max 9, min 0.
+		// (Rarity goes higher as value goes lower)
+		function sanitizeRarity(val)
+		{
+			const saneVal = (Number.isInteger(Math.round(-val)) ? Math.round(val) : 0);
+			const retVal = Math.min(Math.max(saneVal, 0), 9); // integer, 0 to 9 inclusive
 			return retVal;
 		}
 
 		// Converts a number to display value: "XXcr" or "(waived)"
-		function creditsOrWaived(val) {
-			const retVal = "";
-			if (val === 0) {
-				retVal += val + "cr";
+		function creditsOrWaived(val)
+		{
+			const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
+			if (saneVal === 0)
+			{
+				return "(waived)";
 			}
-			else {
-				retVal += "(waived)";
+			else
+			{
+				return saneVal + "cr";
 			}
 			return retVal;
+		}
+
+		// Converts a number to display value: "Rarity X" or ""
+		function rarity(json)
+		{
+			retVal = ????????????????????????????????????????????????????;
+			saneRarity = sanitizeRarity(0 - val);
+			if (saneRarity>0 && saneRarity<10)
+			{
+				retVal += "Rarity " + saneRarity;
+			}
+			if (saneRarity>6)
+			{
+				retVal += "(R)";
+			}
+			return retVal + " ";
+		}
+
+		// Converts a number to display value: "Rarity X" or ""
+		function rarityText(val)
+		{
+			retVal = "";
+			saneRarity = sanitizeRarity(0 - val);
+			if (saneRarity>0 && saneRarity<10)
+			{
+				retVal += "Rarity " + saneRarity;
+			}
+			if (saneRarity>6)
+			{
+				retVal += "(R)";
+			}
+			return retVal + " ";
+		}
+
+		// Converts a number to display value for weapon/armor permits
+		function permitText(val, cost)
+		{
+			retVal = "";
+			const saneVal = sanitizeMinus5to5(val);
+			switch(saneVal)
+			{
+				case -5: retVal += "Treason"; break;
+				case -4: retVal += "Felony"; break;
+				case -3: retVal += "Misdemeanor"; break;
+				case -2: retVal += "Infraction"; break;
+				case -1: retVal += "frowned on"; break;
+				case 0: retVal += "(waived)"; break;
+				case 1: retVal += "Permit (" + rarityText(val) + cost + "cr)"; break;
+				case 2: retVal += "Permit (" + rarityText(val) + cost + "cr)"; break;
+				case 3: retVal += "Permit (" + rarityText(val) + cost + "cr)"; break;
+				case 4: retVal += "encouraged"; break;
+				case 5: retVal += "recommended"; break;
+				default: retVal += "ERROR: invalid val in permitText()";
+			}
+
+			return retVal;
+		}
+
+		// Converts a number to display value for various local crimes
+		function illegalityOf(val)
+		{
+			const saneVal = sanitizeMinus5to5(val);
+			switch(sanitizeMinus5to5(saneVal))
+			{
+				case -5: return "Treason";
+				case -4: return "Felony";
+				case -3: return "Misdemeanor";
+				case -2: return "Infraction";
+				case -1: return "frowned upon";
+				case 0: return "tolerated";
+				case 1: return "allowed";
+				case 2: return "encouraged";
+				case 3: return "recommended";
+				case 4: return "highly recommended";
+				case 5: return "required";
+			}
+		}
+
+		// converts a number to a starport description
+		// "Operational Costs" fan supplement grades them 1 (best) to 5 (worst)
+		function starportText(val) {
+			switch(sanitize0to5(val))
+			{
+				case 0: return "(no starport listed)";
+				case 1: return "Imperial Class";
+				case 2: return "Stellar Class";
+				case 3: return "Standard Class";
+				case 4: return "Limited Services";
+				case 5: return "Landing Field";
+			}
+			return "ERROR: unknown"; // fallthrough default
 		}
 
 		$(document).ready(function () {
@@ -217,7 +355,6 @@
 			// Populate location dropdown
 			const $locationDropdown = $("#locationDropdown");
 			$.each(locations, function (index, location) {
-				//      	if (location.Name.toLowerCase().includes("a"))
 				$locationDropdown.append(
 					$("<option>", { value: location.Name, text: location.Name })
 				);
@@ -239,6 +376,9 @@
 
 			// Location dropdown events
 			$("#locationDropdown").on("change", function () {
+// Auto-expand Current Location section
+$("#locationDetails").slideDown();
+
 				const currentLocation = $("#locationDropdown").val();
 
 				const currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
@@ -247,44 +387,101 @@
 				const shipSilhouette = 4;
 				const shipCargoDeclared = 0;
 
+				// Current Location update screen elements
+				$('#currentRegion').text(currentLoc.Region);
+				$('#currentSector').text(currentLoc.Sector);
+				$('#currentSystem').text(currentLoc.System);
+				$('#currentCapital').text(currentLoc.CapitalCity);
+				$('#currentMap').text(currentLoc.Map);
+				$('#currentAtmosphere').text(currentLoc.Atmosphere);
+				$('#currentTerrain').text(currentLoc.Terrain);
+				$('#currentInhabitants').text(currentLoc.Inhabitants);
+				$('#currentClimate').text(currentLoc.Climate);
+				$('#currentGravity').text(currentLoc.Gravity);
+				$('#currentStarport').text(starportText(currentLoc.starport));
+				$('#currentURL').attr('title', currentLoc.Name);
+				$('#currentURL').attr('href', currentLoc.URL);
+
 				// Empire Presence calculations
 				// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
-				const feePortLanding = sanitizeValue(currentLoc.ImperialPresence);
+				const feePortLanding = sanitize0to5(currentLoc.ImperialPresence);
 				const textFeePortLanding = creditsOrWaived(feePortLanding);
 				const feePortBerthing = Math.round(feePortLanding * 0.1);
 				const textFeePortBerthing = creditsOrWaived(feePortBerthing);
 				const feeFuelCell = feePortBerthing; // @FIX see the URL above
+				const textFeeFuelCell = creditsOrWaived(Math.max(feeFuelCell, 10));
 				const feePortPower = feePortBerthing; // @FIX see the URL above
+				const textFeePortPower = creditsOrWaived(Math.max(feePortPower, 10));
 				const feeConsumables = feePortBerthing; // @FIX see the URL above
+				const textFeeConsumables = creditsOrWaived(Math.max(feeConsumables, 10));
 				const feePortMaintenance = feePortBerthing; // @FIX see the URL above
+				const textFeePortMaintenance = creditsOrWaived(Math.max(feePortMaintenance, 10));
 				const feeCustoms = Math.round(shipCargoDeclared * 0.01); // "waived" if zero
+				const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
 				const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
+				const textFeeVisitation = creditsOrWaived(Math.max(feeVisitation, 10));
 				const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
-				const waitDeparture = Math.round(feeCustoms * 0.1); // convert to days or hours as appropriate
+				const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
+				const waitDeparture = Math.round(feePortLanding); // in hours
+				const textWaitDeparture = (waitDeparture>24
+					? (waitDeparture/24).toFixed(1) + " days"
+					: waitDeparture.toFixed(0) + " hours"
+					);
 
-				const permitWeaponSmall = 0 - currentLoc.ImperialPresence + currentLoc.WeaponSmall;
+				// Empire Presence update screen elements
+				$('#textFeePortLanding').text(textFeePortLanding);
+				$('#textFeePortBerthing').text(textFeePortBerthing);
+				$('#textFeeCustoms').text(textFeeCustoms);
+				$('#textFeeVisitation').text(textFeeVisitation);
+				$('#textFeeSmuggling').text(textFeeSmuggling);
+				$('#textWaitDeparture').text(textWaitDeparture);
+				$('#textFeeFuelCell').text(textFeeFuelCell);
+				$('#textFeePortPower').text(textFeePortPower);
+				$('#textFeeConsumables').text(textFeeConsumables);
+				$('#textFeePortMaintenance').text(textFeePortMaintenance);
 
-				// update screen elements
-				document.getElementById("textFeePortLanding").innerText = textFeePortLanding;
-				document.getElementById("textFeePortBerthing").innerText = textFeeBerthLanding;
+				const currentRegion = regions.find(region => region.Name === currentLoc.Region);
+
+				const permitWeaponSmall = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
+					currentLoc.WeaponSmall + currentRegion.WeaponSmall;
+				const permitWeaponSmallCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
+					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const textPermitWeaponSmall = permitText(permitWeaponSmall, permitWeaponSmallCost);
+
+				const permitWeaponRifle = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
+					currentLoc.WeaponRifle + currentRegion.WeaponRifle;
+				const permitWeaponRifleCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
+					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const textPermitWeaponRifle = permitText(permitWeaponRifle, permitWeaponRifle *
+					Math.max(currentLoc.Starport, 1));
+				const permitWeaponHeavy = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
+					currentLoc.WeaponHeavy + currentRegion.WeaponHeavy;
+				const textPermitWeaponHeavy = permitText(permitWeaponHeavy, permitWeaponHeavy *
+					Math.max(currentLoc.Starport, 1));
+				const permitWeaponConcealed = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
+					currentLoc.WeaponHeavy + currentRegion.WeaponHeavy;
+				const textPermitWeaponConcealed = permitText(permitWeaponConcealed, permitWeaponConcealed *
+					Math.max(currentLoc.Starport, 1));
+				const permitArmorLight = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
+					currentLoc.ArmorLight + currentRegion.ArmorLight;
+				const textPermitArmorLight = permitText(permitArmorLight, permitArmorLight *
+					Math.max(currentLoc.Starport, 1));
+				const permitArmorPower = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
+					currentLoc.ArmorPower + currentRegion.ArmorPower - 2;
+				const textPermitArmorPower = permitText(permitArmorPower, permitArmorPower *
+					Math.max(currentLoc.Starport, 1));
+
+				// Empire Presence update screen elements
+				$('#textPermitWeaponSmall').text(textPermitWeaponSmall);
+				$('#textPermitWeaponRifle').text(textPermitWeaponRifle);
+				$('#textPermitWeaponHeavy').text(textPermitWeaponHeavy);
+				$('#textPermitWeaponConcealed').text(textPermitWeaponConcealed);
+				$('#textPermitArmorLight').text(textPermitArmorLight);
+				$('#textPermitArmorPower').text(textPermitArmorPower);
 
 				// Law & Order calculations
 
 				// Flora & Fauna calculations
-
-				// update screen elements
-				document.getElementById("currentRegion").innerText = currentLoc.Region;
-				document.getElementById("currentSector").innerText = currentLoc.Sector;
-				document.getElementById("currentSystem").innerText = currentLoc.System;
-				document.getElementById("currentCapital").innerText = currentLoc.CapitalCity;
-				document.getElementById("currentMap").innerText = currentLoc.Map;
-				document.getElementById("currentAtmosphere").innerText = currentLoc.Atmosphere;
-				document.getElementById("currentTerrain").innerText = currentLoc.Terrain;
-				document.getElementById("currentInhabitants").innerText = currentLoc.Inhabitants;
-				document.getElementById("currentClimate").innerText = currentLoc.Climate;
-				document.getElementById("currentGravity").innerText = currentLoc.Gravity;
-				document.getElementById("currentURL").setAttribute('title', currentLoc.Name);
-				document.getElementById("currentURL").setAttribute('href', currentLoc.URL);
 
 
 
@@ -298,18 +495,18 @@
 
 				const destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 
-				document.getElementById("destRegion").innerText = destLoc.Region;
-				document.getElementById("destSector").innerText = destLoc.Sector;
-				document.getElementById("destSystem").innerText = destLoc.System;
-				document.getElementById("destCapital").innerText = destLoc.CapitalCity;
-				document.getElementById("destMap").innerText = destLoc.Map;
-				document.getElementById("destAtmosphere").innerText = destLoc.Atmosphere;
-				document.getElementById("destTerrain").innerText = destLoc.Terrain;
-				document.getElementById("destInhabitants").innerText = destLoc.Inhabitants;
-				document.getElementById("destClimate").innerText = destLoc.Climate;
-				document.getElementById("destGravity").innerText = destLoc.Gravity;
-				document.getElementById("destURL").setAttribute('title', destLoc.Name);
-				document.getElementById("destURL").setAttribute('href', destLoc.URL);
+				$('#destRegion').text(destLoc.Region);
+				$('#destSector').text(destLoc.Sector);
+				$('#destSystem').text(destLoc.System);
+				$('#destCapital').text(destLoc.CapitalCity);
+				$('#destMap').text(destLoc.Map);
+				$('#destAtmosphere').text(destLoc.Atmosphere);
+				$('#destTerrain').text(destLoc.Terrain);
+				$('#destInhabitants').text(destLoc.Inhabitants);
+				$('#destClimate').text(destLoc.Climate);
+				$('#destGravity').text(destLoc.Gravity);
+				$('#destURL').attr('title', destLoc.Name);
+				$('#destURL').attr('href', destLoc.URL);
 
 				// Auto-expand Details section
 				$("#destinationDetails").slideDown();
