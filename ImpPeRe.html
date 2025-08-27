@@ -285,6 +285,7 @@
 		{
 			retVal = "";
 			const saneVal = sanitizeMinus5to5(val);
+			const saneRar = 6 - val - rarity;
 			switch(saneVal)
 			{
 				case -5: retVal += "Treason"; break;
@@ -293,10 +294,10 @@
 				case -2: retVal += "Infraction"; break;
 				case -1: retVal += "frowned on"; break;
 				case 0: retVal += "(waived)"; break;
-				case 1: retVal += "Permit (" + rarityText(val + rarity) + cost + "cr)"; break;
-				case 2: retVal += "Permit (" + rarityText(val + rarity) + cost + "cr)"; break;
-				case 3: retVal += "Permit (" + rarityText(val + rarity) + cost + "cr)"; break;
-				case 4: retVal += "encouraged"; break;
+				case 1: retVal += "Permit (" + rarityText(saneRar) + cost + "cr)"; break;
+				case 2: retVal += "Permit (" + rarityText(saneRar) + cost + "cr)"; break;
+				case 3: retVal += "Permit (" + rarityText(saneRar) + cost + "cr)"; break;
+				case 4: retVal += "no restrictions"; break;
 				case 5: retVal += "recommended"; break;
 				default: retVal += "ERROR: invalid val in permitText()";
 			}
@@ -434,38 +435,58 @@ $("#locationDetails").slideDown();
 				$('#textFeePortMaintenance').text(textFeePortMaintenance);
 
 				const currentRegion = regions.find(region => region.Name === currentLoc.Region);
-        const rarityMod = rarityModFor(currentLoc);
-        
-				const permitWeaponSmall = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
-					currentLoc.WeaponSmall + currentRegion.WeaponSmall;
-				const permitWeaponSmallCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
-					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const rarityMod = rarityModFor(currentLoc);
+
+/*
+Core Worlds (Imp=5+5, W=-1/-2/-3/-4/-2/-3, R=-1)
+-5	-2	Small Arms: Treason
+-6	-3	Rifles, Large Melee: Treason
+-7	-4	Heavy Weapons: Treason
+-8	-5	Concealed Weapons: Treason
+-6	-3	Light Armor: Treason
+-7	-4	Restricted/Military: Treason
+
+Mid Rim (Imp=2, W=3/2/1/0/2/1, R=+1)
+0	3	Small Arms: Permit (Rarity 8(R) , 30cr)
+-1	2	Rifles, Large Melee: (waived)
+-2	1	Heavy Weapons: frowned on
+-3	0	Concealed Weapons: Infraction
+-1	2	Light Armor: (waived)
+-2	1	Restricted/Military: frowned on
+
+Outer Rim (Imp=1, W=4/3/2/1/3/2, R=+2) -Imp +W -R
+1	4	Small Arms: Permit (Rarity 1, 10cr)
+0	3	Rifles, Large Melee: Permit (Rarity 2, 20cr)
+-1	2	Heavy Weapons: Permit (Rarity 3, 30cr)
+-2	1	Concealed Weapons: (waived)
+0	3	Light Armor: Permit (Rarity 2, 20cr)
+-1	2	Restricted/Military: Permit (Rarity 3, 30cr)
+*/
+				const basePermit = 4 - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
+
+				const permitWeaponSmall = basePermit +	currentLoc.WeaponSmall + currentRegion.WeaponSmall;
+				const permitWeaponSmallCost = Math.max(currentLoc.Starport, 1) * (4 - permitWeaponSmall) * 10;
 				const textPermitWeaponSmall = permitText(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
 
-				const permitWeaponRifle = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
-					currentLoc.WeaponRifle + currentRegion.WeaponRifle;
-				const permitWeaponRifleCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
-					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const permitWeaponRifle = basePermit +	currentLoc.WeaponRifle + currentRegion.WeaponRifle;
+				const permitWeaponRifleCost = Math.max(currentLoc.Starport, 1) * (4 - permitWeaponRifle) * 10;
 				const textPermitWeaponRifle = permitText(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
 
-				const permitWeaponHeavy = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
-					currentLoc.WeaponHeavy + currentRegion.WeaponHeavy;
-				const permitWeaponHeavyCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
-					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const permitWeaponHeavy = basePermit + currentLoc.WeaponHeavy + currentRegion.WeaponHeavy;
+				const permitWeaponHeavyCost = Math.max(currentLoc.Starport, 1) * (4 - permitWeaponHeavy) * 10;
 				const textPermitWeaponHeavy = permitText(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
 
-				const permitArmorLight = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
-					currentLoc.ArmorLight + currentRegion.ArmorLight;
-				const permitArmorLightCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
-					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const permitArmorLight = basePermit + currentLoc.ArmorLight + currentRegion.ArmorLight;
+				const permitArmorLightCost = Math.max(currentLoc.Starport, 1) * (4 - permitArmorLight) * 10;
 				const textPermitArmorLight = permitText(permitArmorLight, permitArmorLightCost, rarityMod);
 
-				const permitArmorPower = 0 - currentLoc.ImperialPresence - currentRegion.ImperialPresence +
-					currentLoc.ArmorPower + currentRegion.ArmorPower;
-				const permitArmorPowerCost = (Math.max(currentLoc.Starport, 1) + Math.max(currentLoc.ImperialPresence, 1) +
-					Math.max(currentRegion.ImperialPresence, 1)) * 10;
+				const permitArmorPower = basePermit + currentLoc.ArmorPower + currentRegion.ArmorPower;
+				const permitArmorPowerCost = Math.max(currentLoc.Starport, 1) * (4 - permitArmorPower) * 10;
 				const textPermitArmorPower = permitText(permitArmorPower, permitArmorPowerCost, rarityMod);
 
+				const permitWeaponConcealed = permitWeaponSmall - 3;
+				const permitWeaponConcealedCost = Math.max(currentLoc.Starport, 1) * (4 - permitWeaponConcealed) * 10;
+				const textPermitWeaponConcealed = permitText(permitWeaponConcealed, permitWeaponConcealedCost, rarityMod);
 
 				// Empire Presence update screen elements
 				$('#textPermitWeaponSmall').text(textPermitWeaponSmall);
