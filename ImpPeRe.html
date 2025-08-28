@@ -143,61 +143,11 @@
 			</td>
 			<td style="vertical-align: top; display: block;">
 				<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Local Conditions</h4>
-				<ul>
-					<li>ATTENTION, NAVIGATOR: You have arrived safely in the planetary system.</li>
-					<li>Local Weather and Terrain: hot, desert</li>
-					<li></li>
-					<li>ATTENTION, CAPTAIN: Imperial Starbase or Carrier nearby.</li>
-					<li>ATTENTION, CAPTAIN:  Imperial Customs is active in the area.</li>
-					<li>ATTENTION, CAPTAIN:  Fugitives being sought by Imperial Procurator and/or IOCI forces in the area.</li>
-					<li>ATTENTION, CAPTAIN:  Imperial Revenue is active in the area. You may be searched for contraband.</li>
-					<li>ATTENTION, CAPTAIN:  Bureau of Ships & Services (BoSS) has a checkpoint nearby. You may be asked for your BoSS Datapad.</li>
-					<li>A DISTURBANCE IN THE FORCE: All PCs gain 1 Force Die while in the system, but ONLY DARK SIDE pips may be used for successes.</li>
-					<li>I KNOW A GUY: +b to Stealth check(s).</li>
-					<li>I KNOW A GUY: +b to Streetwise check(s).</li>
-					<li>I KNOW A GUY: +b to Computers check(s).</li>
-					<li>I KNOW A GUY: +b to Education check(s).</li>
-					<li>I KNOW A GUY: +b to Education check(s).</li>
-					<li>I KNOW A GUY: +b to Streetwise check(s).</li>
-					<li>I KNOW A GUY: +b to Core Worlds check(s).</li>
-					<li>I KNOW A GUY: +b to Core Worlds check(s).</li>
-					<li>I KNOW A GUY: +b to Underworld check(s).</li>
-					<li>I KNOW A GUY: +b to Computers check(s).</li>
-					<li>I KNOW A GUY: +b to Core Worlds check(s).</li>
-					<li>I KNOW A GUY: +b to Underworld check(s).</li>
-					<li>I KNOW A GUY: +b to Computers check(s).</li>
-					<li>ATTENTION, CAPTAIN: Sensors indicate a possible hideout in this system (+s to be detected).</li>
-					<li>SURPLUS: -1 Rarity on weapons.</li>
-					<li>SURPLUS: -1 Rarity on armor.</li>
-					<li>SURPLUS: -1 Rarity on ship components.</li>
-					<li>SURPLUS: -1 Rarity on cybernetics.</li>
-					<li>LOCAL COLOR: Maintenance crew at work in the area.</li>
-					<li>LOCAL COLOR: Spaceport fees halved/doubled.</li>
-					<li>RUSH HOUR: Vehicle/Foot traffic higher than normal.</li>
-					<li>LOCAL COLOR: Law enforcement has locked down an important location.</li>
-					<li>FAVORABLE CONTACTS: +b to Charm check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Coercion check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Computers check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Deception check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Mechanics check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Medicine check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Negotiation check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Streetwise check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Survival check(s).</li>
-					<li>FAVORABLE CONTACTS: +b to Vigilance check(s).</li>
-					<li>ATTENTION, CAPTAIN: Potential megafauna in the area.</li>
-					<li>NEW SHERIFF: Local leadership takes an interest in you.</li>
-					<li>SEE 'EM COMING: +b to Piloting vs. megafauna.</li>
-					<li>LOOT ALERT: Sensors indicate a debris field nearby.</li>
-					<li>LOOT ALERT: Sensors indicate a derelict spaceship nearby.</li>
-					<li>LOCAL EXPERT: +b to Xenology regarding local flora and fauna.</li>
-					<li>SURPLUS: -1 Rarity on weapons.</li>
-					<li>SURPLUS: -1 Rarity on armor.</li>
-					<li>SURPLUS: -1 Rarity on survival gear.</li>
-					<li>FESTIVAL!: A local event draws crowds.</li>
-					<li>POLITICAL STRIFE: Tensions are running high.</li>
-					<li>LOCAL WEATHER: Sensors indicate a storm on the horizon.</li>
+				<ul id="localEvents">
+					<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>
+					<li id="localWeather">Local Weather and Terrain: unknown</li>
 				</ul>
+				<p align="center">[Each PC, and the GM, may select up to 1 event to make it <em>real</em> or <em>rumor</em>; <em>*</em> indicates for one transaction only, but a Destiny Point may be used to create a permanent NPC.]</p>
 			</td>
 		</tr>
 	</table>
@@ -435,11 +385,6 @@
 
 
 	<script>
-		// Auto-compact sections
-//		$("#options").slideUp();
-//		$("#ImperialPresence").slideUp();
-//		$("#LawAndOrder").slideUp();
-//		$("#FloraAndFauna").slideUp();
 
 		// Converts a number to an integer, max 5, min 0.
 		function sanitize0to5(val)
@@ -566,6 +511,43 @@
 			return "ERROR: unknown"; // fallthrough default
 		}
 
+		// Arrival event
+		function populateArrivalEvent(hiddenRounds) {
+			arrivalEvent = "ATTENTION, NAVIGATOR: ";
+			if (hiddenRounds > 0)
+			{
+				arrivalEvent += "You are hidden for " + hiddenRounds + " round(s) from detection attempts.";
+			}
+			else
+			{
+				arrivalEvent += "You have arrived safely.";
+			}
+			$("#arrivalEvent").text(arrivalEvent);
+
+			const localWeather = "sunny and mild (how boring)"; // @FIX
+			const localTerrain = "some starport"; // @FIX
+			$("#localWeather").text("Local Weather and Terrain: " + localWeather + ", " + localTerrain);
+		}
+
+		// Imperial Presence events
+		function populateImperialEvents(eventCount)
+		{
+			for (ii = 0; ii < eventCount; ii++)
+			{
+				$("#localEvents").append(arrivalEvents[ii]);
+			}
+		}
+
+		// Local events
+		function populateLocalEvents(eventCount)
+		{
+			for (ii = 0; ii < eventCount; ii++)
+			{
+				const newEvent = localEvents[Math.floor(Math.random() * localEvents.length)];
+				$("#localEvents").append(newEvent);
+			}
+		}
+
 		$(document).ready(function () {
 			// minimize collapsible sections
 			$("#locationDetails").slideUp();
@@ -596,9 +578,34 @@
 
 			// Location dropdown events
 			$("#locationDropdown").on("change", function () {
-				$("#locationDetails").slideDown();
+				$("#locationDetails").slideDown(); // display current location details
 				const currentLocation = $("#locationDropdown").val();
 				const currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+				const currentRegion = regions.find(region => region.Name === currentLoc.Region);
+				const rarityMod = rarityModFor(currentLoc);
+				const hiddenRounds = Math.round(Math.random() * 2); // @FIX
+
+				// Reset local events
+				$("#localEvents").empty();
+				$("#localEvents").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
+				$("#localEvents").append('<li id="localWeather">Local Weather and Terrain: unknown</li>');
+
+				// Arrival event
+				populateArrivalEvent(hiddenRounds);
+
+				// Imperial Presence events
+				populateImperialEvents(currentLoc.ImperialPresence);
+
+				// Local events
+				populateLocalEvents(currentLoc.ImperialPresence);
+				populateLocalEvents(currentRegion.ImperialPresence);
+
+				// Old West events
+				populateLocalEvents(currentLoc.OldWestiness);
+				populateLocalEvents(currentRegion.OldWestiness);
+
+				// Flora & Fauna events
+				populateLocalEvents(currentLoc.Megafauna);
 
 				// Options calculations & variables
 				const shipSilhouette = 4;
@@ -657,8 +664,6 @@
 				$('#textFeeConsumables').text(textFeeConsumables);
 				$('#textFeePortMaintenance').text(textFeePortMaintenance);
 
-				const currentRegion = regions.find(region => region.Name === currentLoc.Region);
-				const rarityMod = rarityModFor(currentLoc);
 
 /*
 Core Worlds (Imp=5+5, W=-1/-2/-3/-4/-2/-3, R=-1)
