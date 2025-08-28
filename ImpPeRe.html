@@ -13,187 +13,426 @@
 
 	<h2>Imperial Penal Report</h2>
 
-	<!-- Form (always visible) -->
-	<div id="reportForm">
-		<table class="form-group widthFullscreen" border="2">
-			<tr>
-				<td>
-					<div class="form-group">
-						<label for="locationDropdown">Location:</label>
+	<table border="2" width="100%">
+		<tr>
+			<td style="vertical-align:top;">
+				<div class="form-group">
+					<label for="locationDropdown">Location:
 						<select id="locationDropdown">
 							<option value="">-- Current Location --</option>
 						</select>
-						<div id="locationDetails" class="section widthHalf">
-							<section id="location-general-info">
-								<h2>General Information</h2>
-								<p><strong>Region:</strong> <span id="currentRegion">unknown</span></p>
-								<p><strong>Sector:</strong> <span id="currentSector">unknown</span></p>
-								<p><strong>System:</strong> <span id="currentSystem">unknown</span></p>
-								<p><strong>Capital City:</strong> <span id="currentCapital">unknown</span></p>
-								<p><strong>Starport:</strong> <span id="currentStarport">unknown</span></p>
-								<p><strong>Map:</strong> <span id="currentMap">unknown</span></p>
-								<h2>Atmosphere & Terrain</h2>
-								<p><strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span></p>
-								<p><strong>Terrain:</strong> <span id="currentTerrain">unknown</span></p>
-								<p><strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span></p>
-								<p><strong>Climate:</strong> <span id="currentClimate">unknown</span></p>
-								<p><strong>Gravity:</strong> <span id="currentGravity">unknown</span></p>
-								<p><strong>URL Link:</strong> <a id="currentURL"
-										href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
-										target="_blank">unknown</a></p>
-								<h2>Current Conditions</h2>
-								<p><strong>Climate:</strong> Arid</p>
-								<p><strong>Weather:</strong> Dusty, clear</p>
-								<p><strong>Terrain:</strong> Desert</p>
-							</section>
-						</div>
-					</div>
-				</td>
-<!--
-				<td>
-					<div class="form-group">
-						<label for="destinationDropdown">Destination:</label>
+					</label>
+				</div>
+				<div id="locationDetails" class="section widthHalf">
+					<h3>General Information</h3>
+					<p>
+						<strong>Region:</strong> <span id="currentRegion">unknown</span>
+						<strong>Sector:</strong> <span id="currentSector">unknown</span>
+						<strong>System:</strong> <span id="currentSystem">unknown</span>
+						<strong>Capital City:</strong> <span id="currentCapital">unknown</span>
+						<strong>Starport:</strong> <span id="currentStarport">unknown</span>
+						<strong>Map:</strong> <span id="currentMap">unknown</span>
+					</p>
+					<h3>Atmosphere & Terrain</h3>
+					<p>
+						<strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span>
+						<strong>Terrain:</strong> <span id="currentTerrain">unknown</span>
+						<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
+						<strong>Climate:</strong> <span id="currentClimate">unknown</span>
+						<strong>Gravity:</strong> <span id="currentGravity">unknown</span>
+						<strong>URL Link:</strong> <a id="currentURL"
+							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+							target="_blank">unknown</a>
+					</p>
+					<h3>Current Conditions</h3>
+					<p>
+						<strong>Climate:</strong> unknown
+						<strong>Weather:</strong> unknown
+						<strong>Terrain:</strong> unknown
+					</p>
+				</div>
+			</td>
+			<td style="vertical-align:top;">
+				<div class="form-group">
+					<label for="destinationDropdown">Destination:
 						<select id="destinationDropdown">
 							<option value="">-- Select Destination --</option>
 						</select>
-						<div id="destinationDetails" class="section widthHalf">
-							<section id="destination-general-info">
-								<h2>General Information</h2>
-								<p><strong>Region:</strong> <span id="destRegion">unknown</span></p>
-								<p><strong>Sector:</strong> <span id="destSector">unknown</span></p>
-								<p><strong>System:</strong> <span id="destSystem">unknown</span></p>
-								<p><strong>Capital City:</strong> <span id="destCapital">unknown</span></p>
-								<p><strong>Map:</strong> <span id="destMap">unknown</span></p>
-								<h2>Atmosphere & Terrain</h2>
-								<p><strong>Atmosphere:</strong> <span id="destAtmosphere">unknown</span></p>
-								<p><strong>Terrain:</strong> <span id="destTerrain">unknown</span></p>
-								<p><strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span></p>
-								<p><strong>Climate:</strong> <span id="destClimate">unknown</span></p>
-								<p><strong>Gravity:</strong> <span id="destGravity">unknown</span></p>
-								<p><strong>URL Link:</strong> <a id="destURL"
-										href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
-										target="_blank">unknown</a></p>
-								<h2>Current Conditions</h2>
-								<p><strong>Climate:</strong> Arid</p>
-								<p><strong>Weather:</strong> Dusty, clear</p>
-								<p><strong>Terrain:</strong> Desert</p>
-							</section>
-						</div>
-					</div>
-				</td>
--->
-			</tr>
-		</table>
-	</div>
-
-
-	<div class="container widthFull">
-
-		<button class="toggleBtn" data-target="#Options">Options</button>
-		<button class="toggleBtn" data-target="#ImperialPresence">Imperial Presence</button>
-		<button class="toggleBtn" data-target="#LawAndOrder">Law And Order</button>
-		<button class="toggleBtn" data-target="#FloraAndFauna">Flora And Fauna</button>
-
-		<!-- Section 1 (Options) -->
-		<div id="Options" class="section widthFull">
-			<section id="options">
-				<h2>Options</h2>
-				<div class="form-group">
-					<label>
-						<input type="checkbox" id="politicalStrife">Political Strife</input>
 					</label>
+					<div id="destinationDetails" class="section widthHalf">
+					<h3>General Information</h3>
+					<p>
+						<strong>Region:</strong> <span id="destRegion">unknown</span>
+						<strong>Sector:</strong> <span id="destSector">unknown</span>
+						<strong>System:</strong> <span id="destSystem">unknown</span>
+						<strong>Capital City:</strong> <span id="destCapital">unknown</span>
+						<strong>Starport:</strong> <span id="destStarport">unknown</span>
+						<strong>Map:</strong> <span id="destMap">unknown</span>
+					</p>
+					<h3>Atmosphere & Terrain</h3>
+					<p>
+						<strong>Atmosphere:</strong> <span id="destAtmosphere">unknown</span>
+						<strong>Terrain:</strong> <span id="destTerrain">unknown</span>
+						<strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span>
+						<strong>Climate:</strong> <span id="destClimate">unknown</span>
+						<strong>Gravity:</strong> <span id="destGravity">unknown</span>
+						<strong>URL Link:</strong> <a id="destURL"
+							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+							target="_blank">unknown</a>
+					</p>
 				</div>
+			</td>
+		</tr>
+	</table>
 
-				<p><strong>Political Strife:</strong> Present</p>
-				<p><strong>System Familiarity:</strong> High</p>
+	<table border="2" width="100%">
+		<tr><!-- Imperial Presence -->
+			<td style="vertical-align:middle;">
+				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
+					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Starports</h4>
+					<strong>Landing Fee:</strong> <span id="textFeePortLanding"></span><br/>
+					<strong>Berthing Fee (per day):</strong> <span id="textFeePortBerthing"></span><br/>
+					<strong>Customs Fee:</strong> <span id="textFeeCustoms"></span><br/>
+					<strong>Visitation Fee:</strong> <span id="textFeeVisitation"></span><br/>
+					<strong>Smuggling Penalty:</strong> <span id="textFeeSmuggling"></span><br/>
+					<strong>Departure Wait:</strong> <span id="textWaitDeparture"></span><br/>
+					<strong>Fuel Cells (each):</strong> <span id="textFeeFuelCell"></span><br/>
+					<strong>Power (per day):</strong> <span id="textFeePortPower"></span><br/>
+					<strong>Consumables (per day):</strong> <span id="textFeeConsumables"></span><br/>
+					<strong>Maintenance (per day):</strong> <span id="textFeePortMaintenance"></span><br/>
+				</div>
+				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
+					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Weapon Permits</h4>
+					<strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span><br/>
+					<strong>Rifles, Large Melee:</strong> <span id="textPermitWeaponRifle"></span><br/>
+					<strong>Heavy Weapons:</strong> <span id="textPermitWeaponHeavy"></span><br/>
+					<strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed"></span><br/>
+					<strong>Light Armor:</strong> <span id="textPermitArmorLight"></span><br/>
+					<strong>Restricted/Military:</strong> <span id="textPermitArmorPower"></span><br/>
+				</div>
+				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
+					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Contraband</h4>
+					<strong>Spice:</strong> <span id="textLawSpice"></span><br/>
+					<strong>Trespassing:</strong> <span id="textLawTrespassing"></span><br/>
+					<strong>Poison:</strong> <span id="textLawPoison"></span><br/>
+					<strong>Military Gear:</strong> <span id="textLawMilitary"></span><br/>
+					<strong>Slicing:</strong> <span id="textLawSlicing"></span><br/>
+					<strong>Criticism of the Empire:</strong> <span id="textLawCriticism"></span><br/>
+					<strong>Minor Theft:</strong> <span id="textLawTheft"></span><br/>
+					<strong>Bribery:</strong> <span id="textLawBribery"></span><br/>
+				</div>
+				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
+					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Local Customs</h4>
+					<strong>Speeders:</strong> <span id="textSpeeders"></span><br/>
+					<strong>Riding Beasts:</strong> <span id="textRidingBeasts"></span><br/>
+					<strong>Slaves:</strong> <span id="textLawSlavery"></span><br/>
+					<strong>Droids, Restrained:</strong> <span id="textLawDroidsRestrained"></span><br/>
+					<strong>Droids, Unrestrained:</strong> <span id="textLawDroidsFree"></span><br/>
+					<strong>Cybernetics Installed:</strong> <span id="textLawCybernetics"></span><br/>
+				</div>
+				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
+					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Pets, Livestock, Mounts</h4>
+					<strong>Silhouette 0:</strong> Native Species: <span id="textPetsNative0"></span><br/>
+					<strong>Silhouette 1-2:</strong> Native Species: <span id="textPetsNative12"></span><br/>
+					<strong>Silhouette 3+:</strong> Native Species: <span id="textPetsNative3"></span><br/>
+					<strong>Silhouette 0:</strong> Non-Native Species: <span id="textPetsForeign0"></span><br/>
+					<strong>Silhouette 1-2:</strong> Non-Native Species: <span id="textPetsForeign12"></span><br/>
+					<strong>Silhouette 3:</strong> Non-Native Species: <span id="textPetsForeign3"></span><br/>
+					<strong>Dangerous (any size):</strong> <span id="textPetsDangerous"></span><br/>
+				</div>
+			</td>
+			<td style="vertical-align: top; display: block;">
+				<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Local Conditions</h4>
+				<ul>
+					<li>ATTENTION, NAVIGATOR: You have arrived safely in the planetary system.</li>
+					<li>Local Weather and Terrain: hot, desert</li>
+					<li></li>
+					<li>ATTENTION, CAPTAIN: Imperial Starbase or Carrier nearby.</li>
+					<li>ATTENTION, CAPTAIN:  Imperial Customs is active in the area.</li>
+					<li>ATTENTION, CAPTAIN:  Fugitives being sought by Imperial Procurator and/or IOCI forces in the area.</li>
+					<li>ATTENTION, CAPTAIN:  Imperial Revenue is active in the area. You may be searched for contraband.</li>
+					<li>ATTENTION, CAPTAIN:  Bureau of Ships & Services (BoSS) has a checkpoint nearby. You may be asked for your BoSS Datapad.</li>
+					<li>A DISTURBANCE IN THE FORCE: All PCs gain 1 Force Die while in the system, but ONLY DARK SIDE pips may be used for successes.</li>
+					<li>I KNOW A GUY: +b to Stealth check(s).</li>
+					<li>I KNOW A GUY: +b to Streetwise check(s).</li>
+					<li>I KNOW A GUY: +b to Computers check(s).</li>
+					<li>I KNOW A GUY: +b to Education check(s).</li>
+					<li>I KNOW A GUY: +b to Education check(s).</li>
+					<li>I KNOW A GUY: +b to Streetwise check(s).</li>
+					<li>I KNOW A GUY: +b to Core Worlds check(s).</li>
+					<li>I KNOW A GUY: +b to Core Worlds check(s).</li>
+					<li>I KNOW A GUY: +b to Underworld check(s).</li>
+					<li>I KNOW A GUY: +b to Computers check(s).</li>
+					<li>I KNOW A GUY: +b to Core Worlds check(s).</li>
+					<li>I KNOW A GUY: +b to Underworld check(s).</li>
+					<li>I KNOW A GUY: +b to Computers check(s).</li>
+					<li>ATTENTION, CAPTAIN: Sensors indicate a possible hideout in this system (+s to be detected).</li>
+					<li>SURPLUS: -1 Rarity on weapons.</li>
+					<li>SURPLUS: -1 Rarity on armor.</li>
+					<li>SURPLUS: -1 Rarity on ship components.</li>
+					<li>SURPLUS: -1 Rarity on cybernetics.</li>
+					<li>LOCAL COLOR: Maintenance crew at work in the area.</li>
+					<li>LOCAL COLOR: Spaceport fees halved/doubled.</li>
+					<li>RUSH HOUR: Vehicle/Foot traffic higher than normal.</li>
+					<li>LOCAL COLOR: Law enforcement has locked down an important location.</li>
+					<li>FAVORABLE CONTACTS: +b to Charm check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Coercion check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Computers check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Deception check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Mechanics check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Medicine check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Negotiation check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Streetwise check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Survival check(s).</li>
+					<li>FAVORABLE CONTACTS: +b to Vigilance check(s).</li>
+					<li>ATTENTION, CAPTAIN: Potential megafauna in the area.</li>
+					<li>NEW SHERIFF: Local leadership takes an interest in you.</li>
+					<li>SEE 'EM COMING: +b to Piloting vs. megafauna.</li>
+					<li>LOOT ALERT: Sensors indicate a debris field nearby.</li>
+					<li>LOOT ALERT: Sensors indicate a derelict spaceship nearby.</li>
+					<li>LOCAL EXPERT: +b to Xenology regarding local flora and fauna.</li>
+					<li>SURPLUS: -1 Rarity on weapons.</li>
+					<li>SURPLUS: -1 Rarity on armor.</li>
+					<li>SURPLUS: -1 Rarity on survival gear.</li>
+					<li>FESTIVAL!: A local event draws crowds.</li>
+					<li>POLITICAL STRIFE: Tensions are running high.</li>
+					<li>LOCAL WEATHER: Sensors indicate a storm on the horizon.</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+	<table class="form-group widthFullscreen" border="2">
+		<tr>
+			<td>
+				<button class="toggleBtn" data-target="#Options">Options</button>
+				<button class="toggleBtn" data-target="#ImperialPresence">Imperial Presence</button>
+				<button class="toggleBtn" data-target="#LawAndOrder">Law And Order</button>
+				<button class="toggleBtn" data-target="#FloraAndFauna">Flora And Fauna</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<div class="form-group">
-					<label for="silhouette">Silhouette:</label>
-					<input type="text" id="silhouette" placeholder="Enter silhouette...">
+					<label for="locationDropdown">Location:
+						<select id="locationDropdown">
+							<option value="">-- Current Location --</option>
+						</select>
+					</label>
+					<div id="locationDetails" class="section widthHalf">
+						<section id="location-general-info">
+							<h3>General Information</h3>
+							<p>
+								<strong>Region:</strong> <span id="currentRegion">unknown</span>
+								<strong>Sector:</strong> <span id="currentSector">unknown</span>
+								<strong>System:</strong> <span id="currentSystem">unknown</span>
+								<strong>Capital City:</strong> <span id="currentCapital">unknown</span>
+								<strong>Starport:</strong> <span id="currentStarport">unknown</span>
+								<strong>Map:</strong> <span id="currentMap">unknown</span>
+							</p>
+							<h3>Atmosphere & Terrain</h3>
+							<p>
+								<strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span>
+								<strong>Terrain:</strong> <span id="currentTerrain">unknown</span>
+								<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
+								<strong>Climate:</strong> <span id="currentClimate">unknown</span>
+								<strong>Gravity:</strong> <span id="currentGravity">unknown</span>
+								<strong>URL Link:</strong> <a id="currentURL"
+									href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+									target="_blank">unknown</a>
+							</p>
+							<h3>Current Conditions</h3>
+							<p>
+								<strong>Climate:</strong> unknown
+								<strong>Weather:</strong> unknown
+								<strong>Terrain:</strong> unknown
+							</p>
+						</section>
+					</div>
 				</div>
-				<p><strong>Declared Cargo:</strong> 0</p>
-			</section>
-		</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<label for="destinationDropdown">Destination:
+						<select id="destinationDropdown">
+							<option value="">-- Select Destination --</option>
+						</select>
+					</label>
+					<div id="destinationDetails" class="section widthHalf">
+						<section id="destination-general-info">
+							<h2>General Information</h2>
+							<p><strong>Region:</strong> <span id="destRegion">unknown</span></p>
+							<p><strong>Sector:</strong> <span id="destSector">unknown</span></p>
+							<p><strong>System:</strong> <span id="destSystem">unknown</span></p>
+							<p><strong>Capital City:</strong> <span id="destCapital">unknown</span></p>
+							<p><strong>Map:</strong> <span id="destMap">unknown</span></p>
+							<h2>Atmosphere & Terrain</h2>
+							<p><strong>Atmosphere:</strong> <span id="destAtmosphere">unknown</span></p>
+							<p><strong>Terrain:</strong> <span id="destTerrain">unknown</span></p>
+							<p><strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span></p>
+							<p><strong>Climate:</strong> <span id="destClimate">unknown</span></p>
+							<p><strong>Gravity:</strong> <span id="destGravity">unknown</span></p>
+							<p><strong>URL Link:</strong> <a id="destURL"
+									href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+									target="_blank">unknown</a></p>
+							<h2>Current Conditions</h2>
+							<p><strong>Climate:</strong> Arid</p>
+							<p><strong>Weather:</strong> Dusty, clear</p>
+							<p><strong>Terrain:</strong> Desert</p>
+						</section>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="container widthFull">
+					<div id="ImperialPresence" class="section">
+						<h3>Imperial Presence</h3>
+						<section id="imperial-presence">
+							<h2>Imperial Presence</h2>
+							<p><strong>Attention Message:</strong> You have arrived safely in the Geonosis system.</p>
+							<p><strong>Starports:</strong></p>
+							<ul>
+								<li><strong>Landing Fee:</strong> <span id="textFeePortLanding"></span></li>
+								<li><strong>Berthing Fee (per day):</strong> <span id="textFeePortBerthing"></span></li>
+								<li><strong>Customs Fee:</strong> <span id="textFeeCustoms"></span></li>
+								<li><strong>Visitation Fee:</strong> <span id="textFeeVisitation"></span></li>
+								<li><strong>Smuggling Penalty:</strong> <span id="textFeeSmuggling"></span></li>
+								<li><strong>Departure Wait:</strong> <span id="textWaitDeparture"></span></li>
+								<li><strong>Fuel Cells (each):</strong> <span id="textFeeFuelCell"></span></li>
+								<li><strong>Power (per day):</strong> <span id="textFeePortPower"></span></li>
+								<li><strong>Consumables (per day):</strong> <span id="textFeeConsumables"></span></li>
+								<li><strong>Maintenance (per day):</strong> <span id="textFeePortMaintenance"></span></li>
+							</ul>
+							<p><strong>Weapon Permits:</strong></p>
+							<ul>
+								<li><strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span></li>
+								<li><strong>Rifles, Large Melee:</strong> <span id="textPermitWeaponRifle"></span></li>
+								<li><strong>Heavy Weapons:</strong> <span id="textPermitWeaponHeavy"></span></li>
+								<li><strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed"></span></li>
+								<li><strong>Light Armor:</strong> <span id="textPermitArmorLight"></span></li>
+								<li><strong>Restricted/Military:</strong> <span id="textPermitArmorPower"></span></li>
+							</ul>
+							<strong>Violations: Confiscation + 200% fine</strong></p>
+							<p>
+						</section>
+					</div>
+				</div>
+			</td>
+		</tr>
+		</tr>
+		<tr>
+			<td>
+				<div id="LawAndOrder" class="section">
+					<section id="law-order">
+						<h2>Law and Order</h2>
+						<p><strong>Attention Message:</strong> Sensors indicate a possible hideout in this system.</p>
+						<p><strong>Contraband:</strong></p>
+						<ul>
+							<li><strong>Spice:</strong> <span id="textLawSpice"></span></li>
+							<li><strong>Recreational Drugs:</strong> <span id="textLawDrugs"></span></li>
+							<li><strong>Regulated Ores:</strong> <span id="textLawOres"></span></li>
+							<li><strong>Trespassing:</strong> <span id="textLawTrespassing"></span></li>
+							<li><strong>Poison:</strong> <span id="textLawPoison"></span></li>
+							<li><strong>Military Comms:</strong> <span id="textLawMilitary"></span></li>
+							<li><strong>Slicing:</strong> <span id="textLawSlicing"></span></li>
+						</ul>
+						<p><strong>Criticism of the Empire:</strong> <span id="textLawCriticism"></span></p>
+						<p><strong>Minor Theft:</strong> <span id="textLawTheft"></span></p>
+						<p><strong>Bribery:</strong> <span id="textLawBribery"></span></p>
+						<p><strong>Local Customs:</strong></p>
+						<ul>
+							<li><strong>Slaves:</strong> <span id="textLawSlavery"></span></li>
+							<li><strong>Droids, Restrained:</strong> <span id="textLawDroidsRestrained"></span></li>
+							<li><strong>Droids, Unrestrained:</strong> <span id="textLawDroidsFree"></span></li>
+							<li><strong>Cybernetics Installed:</strong> <span id="textLawCybernetics"></span></li>
+						</ul>
+					</section>
+				</div>
+			</td>
+		</tr>
+		</tr>
+		<tr>
+			<td>
+				<div id="FloraAndFauna" class="section">
+					<section id="flora-fauna">
+						<h2>Flora and Fauna</h2>
+						<p><strong>Pets, Livestock, Mounts:</strong></p>
+						<ul>
+							<li><strong>Silhouette 0:</strong> Native Species: <span id="textPetsNative0"></span></li>
+							<li><strong>Silhouette 1-2:</strong> Native Species: <span id="textPetsNative12"></span></li>
+							<li><strong>Silhouette 3+:</strong> Native Species: <span id="textPetsNative3"></span></li>
+							<li><strong>Silhouette 0:</strong> Non-Native Species: <span id="textPetsForeign0"></span></li>
+							<li><strong>Silhouette 1-2:</strong> Non-Native Species: <span id="textPetsForeign12"></span></li>
+							<li><strong>Silhouette 3:</strong> Non-Native Species: <span id="textPetsForeign3"></span></li>
+							<li><strong>Dangerous (any size):</strong> <span id="textPetsDangerous"></span></li>
+						</ul>
+						<p><strong>Speeders:</strong> <span id="textSpeeders"></span></p>
+						<p><strong>Riding Beasts:</strong> <span id="textRidingBeasts"></span></p>
+					</section>
+				</div>
+			</td>
+		</tr>
+	</table>
+-->
 
-		<!-- Section 2 (Imperial Presence) -->
-		<div id="ImperialPresence" class="section">
-			<h3>Imperial Presence</h3>
-			<section id="imperial-presence">
-				<h2>Imperial Presence</h2>
-				<p><strong>Attention Message:</strong> You have arrived safely in the Geonosis system.</p>
-				<p><strong>Starports:</strong></p>
-				<ul>
-					<li><strong>Landing Fee:</strong> <span id="textFeePortLanding"></span></li>
-					<li><strong>Berthing Fee (per day):</strong> <span id="textFeePortBerthing"></span></li>
-					<li><strong>Customs Fee:</strong> <span id="textFeeCustoms"></span></li>
-					<li><strong>Visitation Fee:</strong> <span id="textFeeVisitation"></span></li>
-					<li><strong>Smuggling Penalty:</strong> <span id="textFeeSmuggling"></span></li>
-					<li><strong>Departure Wait:</strong> <span id="textWaitDeparture"></span></li>
-					<li><strong>Fuel Cells (each):</strong> <span id="textFeeFuelCell"></span></li>
-					<li><strong>Power (per day):</strong> <span id="textFeePortPower"></span></li>
-					<li><strong>Consumables (per day):</strong> <span id="textFeeConsumables"></span></li>
-					<li><strong>Maintenance (per day):</strong> <span id="textFeePortMaintenance"></span></li>
-				</ul>
-				<p><strong>Weapon Permits:</strong></p>
-				<ul>
-					<li><strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span></li>
-					<li><strong>Rifles, Large Melee:</strong> <span id="textPermitWeaponRifle"></span></li>
-					<li><strong>Heavy Weapons:</strong> <span id="textPermitWeaponHeavy"></span></li>
-					<li><strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed"></span></li>
-					<li><strong>Light Armor:</strong> <span id="textPermitArmorLight"></span></li>
-					<li><strong>Restricted/Military:</strong> <span id="textPermitArmorPower"></span></li>
-				</ul>
-				<strong>Violations: Confiscation + 200% fine</strong></p>
-				<p>
-			</section>
-		</div>
-	</div>
 
-	<!-- Section 3 (Law And Order) -->
-	<div id="LawAndOrder" class="section">
-		<section id="law-order">
-			<h2>Law and Order</h2>
-			<p><strong>Attention Message:</strong> Sensors indicate a possible hideout in this system.</p>
-			<p><strong>Contraband:</strong></p>
-			<ul>
-				<li><strong>Spice:</strong> <span id="textLawSpice"></span></li>
-				<li><strong>Recreational Drugs:</strong> <span id="textLawDrugs"></span></li>
-				<li><strong>Regulated Ores:</strong> <span id="textLawOres"></span></li>
-				<li><strong>Trespassing:</strong> <span id="textLawTrespassing"></span></li>
-				<li><strong>Poison:</strong> <span id="textLawPoison"></span></li>
-				<li><strong>Military Comms:</strong> <span id="textLawMilitary"></span></li>
-				<li><strong>Slicing:</strong> <span id="textLawSlicing"></span></li>
-			</ul>
-			<p><strong>Criticism of the Empire:</strong> <span id="textLawCriticism"></span></p>
-			<p><strong>Minor Theft:</strong> <span id="textLawTheft"></span></p>
-			<p><strong>Bribery:</strong> <span id="textLawBribery"></span></p>
-			<p><strong>Local Customs:</strong></p>
-			<ul>
-				<li><strong>Slaves:</strong> <span id="textLawSlavery"></span></li>
-				<li><strong>Droids, Restrained:</strong> <span id="textLawDroidsRestrained"></span></li>
-				<li><strong>Droids, Unrestrained:</strong> <span id="textLawDroidsFree"></span></li>
-				<li><strong>Cybernetics Installed:</strong> <span id="textLawCybernetics"></span></li>
-			</ul>
-		</section>
-	</div>
 
-	<!-- Section 4 (Flora And Fauna) -->
-	<div id="FloraAndFauna" class="section">
-		<section id="flora-fauna">
-			<h2>Flora and Fauna</h2>
-			<p><strong>Pets, Livestock, Mounts:</strong></p>
-			<ul>
-				<li><strong>Silhouette 0:</strong> Native Species: <span id="textPetsNative0"></span></li>
-				<li><strong>Silhouette 1-2:</strong> Native Species: <span id="textPetsNative12"></span></li>
-				<li><strong>Silhouette 3+:</strong> Native Species: <span id="textPetsNative3"></span></li>
-				<li><strong>Silhouette 0:</strong> Non-Native Species: <span id="textPetsForeign0"></span></li>
-				<li><strong>Silhouette 1-2:</strong> Non-Native Species: <span id="textPetsForeign12"></span></li>
-				<li><strong>Silhouette 3:</strong> Non-Native Species: <span id="textPetsForeign3"></span></li>
-				<li><strong>Dangerous (any size):</strong> <span id="textPetsDangerous"></span></li>
-			</ul>
-			<p><strong>Speeders:</strong> <span id="textSpeeders"></span></p>
-			<p><strong>Riding Beasts:</strong> <span id="textRidingBeasts"></span></p>
-		</section>
-	</div>
 
 	<script>
 		// Auto-compact sections
@@ -357,9 +596,8 @@
 
 			// Location dropdown events
 			$("#locationDropdown").on("change", function () {
-
+				$("#locationDetails").slideDown();
 				const currentLocation = $("#locationDropdown").val();
-
 				const currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 
 				// Options calculations & variables
@@ -585,15 +823,12 @@ Outer Rim (Imp=1, W=4/3/2/1/3/2, R=+2) -Imp +W -R
 
 				$('#textSpeeders').text(textSpeeders);
 				$('#textRidingBeasts').text(textRidingBeasts);
-
-				// Auto-expand Current Location section
-				$("#locationDetails").slideDown();
 			});
 
 			// Destination dropdown events
 			$("#destinationDropdown").on("change", function () {
+				$("#destinationDetails").slideDown();
 				const currentDestination = $("#destinationDropdown").val();
-
 				const destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 
 				$('#destRegion').text(destLoc.Region);
