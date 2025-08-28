@@ -95,7 +95,6 @@
 		<button class="toggleBtn" data-target="#FloraAndFauna">Flora And Fauna</button>
 
 		<!-- Section 1 (Options) -->
-<!--
 		<div id="Options" class="section widthFull">
 			<section id="options">
 				<h2>Options</h2>
@@ -114,7 +113,6 @@
 				<p><strong>Declared Cargo:</strong> 0</p>
 			</section>
 		</div>
--->
 
 		<!-- Section 2 (Imperial Presence) -->
 		<div id="ImperialPresence" class="section">
@@ -179,7 +177,6 @@
 	</div>
 
 	<!-- Section 4 (Flora And Fauna) -->
-<!--
 	<div id="FloraAndFauna" class="section">
 		<section id="flora-fauna">
 			<h2>Flora and Fauna</h2>
@@ -189,15 +186,14 @@
 				<li><strong>Silhouette 1-2:</strong> Native Species: <span id="textPetsNative12"></span></li>
 				<li><strong>Silhouette 3+:</strong> Native Species: <span id="textPetsNative3"></span></li>
 				<li><strong>Silhouette 0:</strong> Non-Native Species: <span id="textPetsForeign0"></span></li>
-				<li><strong>Silhouette 1-2:</strong> Non-Native Species: <span id="textPetsForeign0"></span></li>
-				<li><strong>Silhouette 3:</strong> Non-Native Species: <span id="textPetsForeign0"></span></li>
-				<li><strong>Dangerous (any size):</strong> <span id="textPetsForeign0"></span></li>
+				<li><strong>Silhouette 1-2:</strong> Non-Native Species: <span id="textPetsForeign12"></span></li>
+				<li><strong>Silhouette 3:</strong> Non-Native Species: <span id="textPetsForeign3"></span></li>
+				<li><strong>Dangerous (any size):</strong> <span id="textPetsDangerous"></span></li>
 			</ul>
 			<p><strong>Speeders:</strong> <span id="textSpeeders"></span></p>
 			<p><strong>Riding Beasts:</strong> <span id="textRidingBeasts"></span></p>
 		</section>
 	</div>
--->
 
 	<script>
 		// Auto-compact sections
@@ -205,13 +201,6 @@
 //		$("#ImperialPresence").slideUp();
 //		$("#LawAndOrder").slideUp();
 //		$("#FloraAndFauna").slideUp();
-
-		// Converts a value to 0 if unable to parse as a number @DEPRECATED
-		function orZero(val)
-		{
-			const retVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
-			return retVal;
-		}
 
 		// Converts a number to an integer, max 5, min 0.
 		function sanitize0to5(val)
@@ -261,7 +250,7 @@
 			return baseRarity + regionRarity;
 		}
 
-		// Converts a number to display value: "Rarity X" or ""
+		// Converts a number to display value: "Rarity X(R)" or ""
 		function rarityText(val)
 		{
 			retVal = "";
@@ -286,7 +275,7 @@
 			const saneRar = 6 - val - rarity;
 			switch(saneVal)
 			{
-				case -5: retVal += "Treason"; break;
+				case -5: retVal += "Major Felony"; break;
 				case -4: retVal += "Felony"; break;
 				case -3: retVal += "Misdemeanor"; break;
 				case -2: retVal += "Infraction"; break;
@@ -309,7 +298,7 @@
 			const saneVal = sanitizeMinus5to5(val);
 			switch(sanitizeMinus5to5(saneVal))
 			{
-				case -5: return "Treason";
+				case -5: return "Major Felony";
 				case -4: return "Felony";
 				case -3: return "Misdemeanor";
 				case -2: return "Infraction";
@@ -368,8 +357,6 @@
 
 			// Location dropdown events
 			$("#locationDropdown").on("change", function () {
-// Auto-expand Current Location section
-$("#locationDetails").slideDown();
 
 				const currentLocation = $("#locationDropdown").val();
 
@@ -556,8 +543,48 @@ Outer Rim (Imp=1, W=4/3/2/1/3/2, R=+2) -Imp +W -R
 				$('#textLawCybernetics').text(textLawCybernetics);
 
 				// Flora & Fauna calculations
+				const basePets = 0; // - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
 
+				const petsNative0 = basePets + currentLoc.Megafauna + currentRegion.Megafauna;
+				const textPetsNative0 = legalityOf(petsNative0);
 
+				const petsNative12 = petsNative0 - 1;
+				const textPetsNative12 = legalityOf(petsNative12);
+
+				const petsNative3 = petsNative12 - 1;
+				const textPetsNative3 = legalityOf(petsNative3);
+
+				const petsForeign0 = petsNative3 - 1;
+				const textPetsForeign0 = legalityOf(petsForeign0);
+
+				const petsForeign12 = petsForeign0 - 1;
+				const textPetsForeign12 = legalityOf(petsForeign12);
+
+				const petsForeign3 = petsForeign12 - 1;
+				const textPetsForeign3 = legalityOf(petsForeign3);
+
+				const petsDangerous = -5;
+				const textPetsDangerous = legalityOf(petsDangerous);
+
+				// Law & Order update screen elements
+				$('#textPetsNative0').text(textPetsNative0);
+				$('#textPetsNative12').text(textPetsNative12);
+				$('#textPetsNative3').text(textPetsNative3);
+				$('#textPetsForeign0').text(textPetsForeign0);
+				$('#textPetsForeign12').text(textPetsForeign12);
+				$('#textPetsForeign3').text(textPetsForeign3);
+				$('#textPetsDangerous').text(textPetsDangerous);
+
+				const speeders = basePets - currentLoc.Megafauna - currentRegion.Megafauna +
+					currentLoc.Vehicles + currentRegion.Vehicles;
+				const textSpeeders = legalityOf(speeders);
+
+				const ridingBeasts = basePets + currentLoc.Megafauna + currentRegion.Megafauna +
+					currentLoc.RidingBeasts + currentRegion.RidingBeasts;
+				const textRidingBeasts = legalityOf(ridingBeasts);
+
+				$('#textSpeeders').text(textSpeeders);
+				$('#textRidingBeasts').text(textRidingBeasts);
 
 				// Auto-expand Current Location section
 				$("#locationDetails").slideDown();
@@ -581,9 +608,6 @@ Outer Rim (Imp=1, W=4/3/2/1/3/2, R=+2) -Imp +W -R
 				$('#destGravity').text(destLoc.Gravity);
 				$('#destURL').attr('title', destLoc.Name);
 				$('#destURL').attr('href', destLoc.URL);
-
-				// Auto-expand Details section
-				$("#destinationDetails").slideDown();
 			});
 
 		});
