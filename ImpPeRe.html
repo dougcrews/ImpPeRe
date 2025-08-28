@@ -307,11 +307,20 @@
 		}
 
 		// Local events
-		function populateLocalEvents(eventCount)
+		function populateEmpireEvents(eventCount)
 		{
 			for (ii = 0; ii < eventCount; ii++)
 			{
-				const newEvent = localEvents[Math.floor(Math.random() * localEvents.length)];
+				const newEvent = localEmpireEvents[Math.floor(Math.random() * localEmpireEvents.length)];
+				$("#localEvents").append(newEvent);
+			}
+		}
+
+		function populateOldWestEvents(eventCount)
+		{
+			for (ii = 0; ii < eventCount; ii++)
+			{
+				const newEvent = localOldWestEvents[Math.floor(Math.random() * localOldWestEvents.length)];
 				$("#localEvents").append(newEvent);
 			}
 		}
@@ -349,7 +358,7 @@
 				$("#locationDetails").slideDown(); // display current location details
 				const currentLocation = $("#locationDropdown").val();
 				const currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
-				const currentRegion = regions.find(region => region.Name === currentLoc.Region);
+				const currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 				const rarityMod = rarityModFor(currentLoc);
 				const hiddenRounds = Math.round(Math.random() * 2); // @FIX
 
@@ -365,15 +374,15 @@
 				populateImperialEvents(currentLoc.ImperialPresence);
 
 				// Local events
-				populateLocalEvents(currentLoc.ImperialPresence);
-				populateLocalEvents(currentRegion.ImperialPresence);
+				populateEmpireEvents(currentLoc.ImperialPresence);
+				populateEmpireEvents(currentRegion.ImperialPresence);
 
 				// Old West events
-				populateLocalEvents(currentLoc.OldWestiness);
-				populateLocalEvents(currentRegion.OldWestiness);
+				populateOldWestEvents(currentLoc.OldWestiness);
+				populateOldWestEvents(currentRegion.OldWestiness);
 
 				// Flora & Fauna events
-				populateLocalEvents(currentLoc.Megafauna);
+				populateOldWestEvents(currentLoc.Megafauna);
 
 				// Options calculations & variables
 				const shipSilhouette = 4;
@@ -396,7 +405,7 @@
 
 				// Empire Presence calculations
 				// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
-				const feePortLanding = sanitize0to5(currentLoc.ImperialPresence);
+				const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) * 10;
 				const textFeePortLanding = creditsOrWaived(feePortLanding);
 				const feePortBerthing = Math.round(feePortLanding * 0.1);
 				const textFeePortBerthing = creditsOrWaived(feePortBerthing);
