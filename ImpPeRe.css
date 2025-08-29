@@ -2,7 +2,7 @@ body {
 	font-family: Arial, sans-serif;
 	margin: 20px;
 	background-color: #2c2c2c; /* dark grey */
-	color: #ffffff; /* white text */
+	color: #ffff00; /* yellow text */
 }
 a {
 	color: green;
@@ -66,4 +66,12 @@ pre {
 }
 .alignLeft {
 	text-align: left;
+}
+.localCustomsBox {
+	vertical-align:top;
+	display:block;
+	margin:10px;
+	padding:10px;
+	border:5px solid grey;
+	background-color:black;
 }

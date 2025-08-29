@@ -24,9 +24,14 @@
 					</label>
 				</div>
 				<div id="locationDetails" class="section widthHalf">
-					<h3>General Information</h3>
+					<h3>General Information for <a id="currentURL"
+							href="https://starwars.fandom.com/wiki/Planet/Legends"
+							target="_blank">unknown</a>
+					</h3>
 					<p>
-						<strong>Region:</strong> <span id="currentRegion">unknown</span>
+						<strong>Region:</strong> <a id="currentRegionURL"
+							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+							target="_blank"><span id="currentRegion">unknown</span></a>
 						<strong>Sector:</strong> <span id="currentSector">unknown</span>
 						<strong>System:</strong> <span id="currentSystem">unknown</span>
 						<strong>Capital City:</strong> <span id="currentCapital">unknown</span>
@@ -40,9 +45,6 @@
 						<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
 						<strong>Climate:</strong> <span id="currentClimate">unknown</span>
 						<strong>Gravity:</strong> <span id="currentGravity">unknown</span>
-						<strong>URL Link:</strong> <a id="currentURL"
-							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
-							target="_blank">unknown</a>
 					</p>
 					<h3>Current Conditions</h3>
 					<p>
@@ -60,9 +62,14 @@
 						</select>
 					</label>
 					<div id="destinationDetails" class="section widthHalf">
-					<h3>General Information</h3>
+					<h3>General Information for <a id="destURL"
+							href="https://starwars.fandom.com/wiki/Planet/Legends"
+							target="_blank">unknown</a>
+					</h3>
 					<p>
-						<strong>Region:</strong> <span id="destRegion">unknown</span>
+						<strong>Region:</strong> <a id="destRegionURL"
+							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+							target="_blank"><span id="destRegion">unknown</span></a>
 						<strong>Sector:</strong> <span id="destSector">unknown</span>
 						<strong>System:</strong> <span id="destSystem">unknown</span>
 						<strong>Capital City:</strong> <span id="destCapital">unknown</span>
@@ -76,15 +83,25 @@
 						<strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span>
 						<strong>Climate:</strong> <span id="destClimate">unknown</span>
 						<strong>Gravity:</strong> <span id="destGravity">unknown</span>
-						<strong>URL Link:</strong> <a id="destURL"
-							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
-							target="_blank">unknown</a>
 					</p>
 					<h3>Hyperspace Travel</h3>
-					<p>
-						<strong>Estimated Travel Time (no hyperroutes):<strong> <span id="baseHyperspaceTime">calculating...</span>
-					</p>
+					<strong>Estimated Travel Time</strong> (no hyperroutes, Class <span id="ettHyperdriveClass">?</span>): <span id="estHyperspaceTime">calculating...</span><br/>
+					<strong>Best Travel Time</strong> (hyperroutes, Class <span id="bttHyperdriveClass">?</span>): <span id="bestHyperspaceTime">calculating...</span><br/>
+					Reference Travel Time (no hyperroutes, Class 1): <span id="baseHyperspaceTime">calculating...</span><br/>
 				</div>
+			</td>
+		</tr>
+	</table>
+
+	<table border="2" width="100%">
+		<tr><!-- Ship, Crew, and Conditions options -->
+			<td>
+				<p>
+					<h4>Ship Manifest</h4>
+					<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" placeholder="0"></input>cr</label>
+					<label for="silh">Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" placeholder="4"></input></label>
+					<label for="hyperdrive">Hyperdrive: <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" placeholder="1"></input></label>
+				</p>
 			</td>
 		</tr>
 	</table>
@@ -92,7 +109,7 @@
 	<table border="2" width="100%">
 		<tr><!-- Imperial Presence -->
 			<td style="vertical-align:middle;">
-				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
+				<div class="localCustomsBox">
 					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Starports</h4>
 					<strong>Landing Fee:</strong> <span id="textFeePortLanding"></span><br/>
 					<strong>Berthing Fee (per day):</strong> <span id="textFeePortBerthing"></span><br/>
@@ -105,7 +122,7 @@
 					<strong>Consumables (per day):</strong> <span id="textFeeConsumables"></span><br/>
 					<strong>Maintenance (per day):</strong> <span id="textFeePortMaintenance"></span><br/>
 				</div>
-				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
+				<div class="localCustomsBox">
 					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Weapon Permits</h4>
 					<strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed"></span><br/>
 					<strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span><br/>
@@ -114,7 +131,7 @@
 					<strong>Light Armor:</strong> <span id="textPermitArmorLight"></span><br/>
 					<strong>Restricted/Military:</strong> <span id="textPermitArmorPower"></span><br/>
 				</div>
-				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
+				<div class="localCustomsBox">
 					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Contraband</h4>
 					<strong>Spice:</strong> <span id="textLawSpice"></span><br/>
 					<strong>Trespassing:</strong> <span id="textLawTrespassing"></span><br/>
@@ -131,7 +148,7 @@
 					<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>
 					<li id="localWeather">Local Weather and Terrain: unknown</li>
 				</ul>
-				<p align="center">[Each PC, and the GM, may select up to 1 event to make it <em>real</em> or <em>rumor</em>; <em>*</em> indicates for one transaction only, but a Destiny Point may be used to create a permanent NPC.]</p>
+				<p align="center">[Each PC, and the GM, may select up to 1 event to make it <em>real</em> or <em>rumor</em>, and <em>*</em> indicates for one transaction only, but a Destiny Point may be used to create a permanent NPC.]</p>
 			</td>
 		</tr>
 	</table>
@@ -228,8 +245,9 @@
 				populateOldWestEvents(currentLoc.Megafauna);
 
 				// Options calculations & variables
-				const shipSilhouette = 4;
-				const shipCargoDeclared = 0;
+				const shipSilh = $('#silh').val();
+				const shipCargoDeclared = $('#cargo').val();
+				const shipHyperdrive = $('#hyperdrive').val();
 
 				// Current Location update screen elements
 				$('#currentRegion').text(currentLoc.Region);
@@ -246,6 +264,9 @@
 				$('#currentURL').attr('title', currentLoc.Name);
 				$('#currentURL').attr('href', currentLoc.URL);
 				$('#currentURL').text(currentLoc.Name);
+				$('#currentRegionURL').attr('title', currentRegion.Name);
+				$('#currentRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + currentRegion.Name.replace(' ', '_') + '/Legends');
+				$('#currentRegionURL').text(currentRegion.Name);
 
 				// Empire Presence calculations
 				// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
@@ -359,6 +380,7 @@
 				$("#destinationDetails").slideDown();
 				const currentDestination = $("#destinationDropdown").val();
 				destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+				const destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 
 				$('#destRegion').text(destLoc.Region);
 				$('#destSector').text(destLoc.Sector);
@@ -373,9 +395,17 @@
 				$('#destURL').attr('title', destLoc.Name);
 				$('#destURL').attr('href', destLoc.URL);
 				$('#destURL').text(destLoc.Name);
+				$('#destRegionURL').attr('title', destRegion.Name);
+				$('#destRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + destRegion.Name.replace(' ', '_') + '/Legends');
+				$('#destRegionURL').text(destRegion.Name);
 
-				const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
+				const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map) / 4; // try to match Fly Casual pg78
+				const shipHyperdrive = $('#hyperdrive').val();
+				$('#ettHyperdriveClass').text(shipHyperdrive);
+				$('#bttHyperdriveClass').text(shipHyperdrive);
 				$('#baseHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime));
+				$('#estHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive));
+				$('#bestHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * 2/3));
 			});
 
 		});
