@@ -1,3 +1,172 @@
+// Converts a number to an integer, max 5, min 0.
+function sanitize0to5(val)
+{
+	const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
+	const retVal = Math.min(Math.max(saneVal, 0), 5); // integer, 0 to 5 inclusive
+	return retVal;
+}
+
+// Converts a number to an integer, max 5, min -5.
+function sanitizeMinus5to5(val)
+{
+	const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
+	const retVal = Math.min(Math.max(saneVal, -5), 5); // integer, -5 to 5 inclusive
+	return retVal;
+}
+
+// Converts a number to an integer, max 9, min 0.
+// (Rarity goes higher as value goes lower)
+function sanitizeRarity(val)
+{
+	const saneVal = (Number.isInteger(Math.round(-val)) ? Math.round(val) : 0);
+	const retVal = Math.min(Math.max(saneVal, 0), 9); // integer, 0 to 9 inclusive
+	return retVal;
+}
+
+// Converts a number to display value: "XXcr" or "(waived)"
+function creditsOrWaived(val)
+{
+	const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
+	if (saneVal === 0)
+	{
+		return "(waived)";
+	}
+	else
+	{
+		return saneVal + "cr";
+	}
+	return retVal;
+}
+
+function rarityModFor(json)
+{
+	baseRarity = json.Rarity;
+	region = json.Region;
+	regionRarity = regions.find(item => item.Name === json.Region).Rarity;
+	return baseRarity + regionRarity;
+}
+
+// Converts a number to display value: "Rarity X(R)" or ""
+function rarityText(val)
+{
+	retVal = "";
+	saneRarity = sanitizeRarity(val);
+	if (saneRarity>0)
+	{
+		retVal += "Rarity " + saneRarity;
+	  if (saneRarity>6)
+	  {
+		  retVal += "(R) ";
+	  }
+	  retVal += ", ";
+	}
+	return retVal;
+}
+
+// Converts a number to display value for weapon/armor permits
+function permitText(val, cost)
+{
+	const rarity = 1 - sanitizeMinus5to5(val);
+	switch(sanitizeMinus5to5(val))
+	{
+		case -5: return "Felony (Permit " + rarityText(rarity + 2) + cost + "cr)"; break;
+		case -4: return "Felony (Permit " + rarityText(rarity) + cost + "cr)"; break;
+		case -3: return "Misdemeanor (Permit " + rarityText(rarity) + cost + "cr)"; break;
+		case -2: return "Infraction (Permit " + rarityText(rarity) + cost + "cr)"; break;
+		case -1: return "frowned on (Permit " + rarityText(rarity) + cost + "cr)"; break;
+		case 0: return "tolerated"; break;
+		case 1: return "no restrictions"; break;
+		case 2: return "common"; break;
+		case 3: return "recommended"; break;
+		case 4: return "recommended"; break;
+		case 5: return "recommended"; break;
+		default: return "ERROR: return invalid val in permitText()";
+	}
+
+	return "ERROR in permitText()";
+}
+
+// Converts a number to display value for various local crimes
+function legalityOf(val)
+{
+	const saneVal = sanitizeMinus5to5(val);
+	switch(sanitizeMinus5to5(saneVal))
+	{
+		case -5: return "Felony";
+		case -4: return "Felony";
+		case -3: return "Misdemeanor";
+		case -2: return "Infraction";
+		case -1: return "frowned upon";
+		case 0: return "tolerated";
+		case 1: return "allowed";
+		case 2: return "encouraged";
+		case 3: return "encouraged";
+		case 4: return "encouraged";
+		case 5: return "encouraged";
+	}
+}
+
+// converts a number to a starport description
+// "Operational Costs" fan supplement grades them 1 (best) to 5 (worst)
+function starportText(val) {
+	switch(sanitize0to5(val))
+	{
+		case 0: return "(no starport listed)";
+		case 1: return "Imperial Class";
+		case 2: return "Stellar Class";
+		case 3: return "Standard Class";
+		case 4: return "Limited Services";
+		case 5: return "Landing Field";
+	}
+	return "ERROR: unknown"; // fallthrough default
+}
+
+// Arrival event
+function populateArrivalEvent(hiddenRounds) {
+	arrivalEvent = "ATTENTION, NAVIGATOR: ";
+	if (hiddenRounds > 0)
+	{
+		arrivalEvent += "You are hidden for " + hiddenRounds + " round(s) from detection attempts.";
+	}
+	else
+	{
+		arrivalEvent += "You have arrived safely.";
+	}
+	$("#arrivalEvent").text(arrivalEvent);
+
+	const localWeather = "sunny and mild (how boring)"; // @FIX
+	const localTerrain = "some starport"; // @FIX
+	$("#localWeather").text("Local Weather and Terrain: " + localWeather + ", " + localTerrain);
+}
+
+// Imperial Presence events
+function populateImperialEvents(eventCount)
+{
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		$("#localEvents").append(arrivalEvents[ii]);
+	}
+}
+
+// Local events
+function populateEmpireEvents(eventCount)
+{
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		const newEvent = localEmpireEvents[Math.floor(Math.random() * localEmpireEvents.length)];
+		$("#localEvents").append(newEvent);
+	}
+}
+
+function populateOldWestEvents(eventCount)
+{
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		const newEvent = localOldWestEvents[Math.floor(Math.random() * localOldWestEvents.length)];
+		$("#localEvents").append(newEvent);
+	}
+}
+
 // JSON list of locations
 const locations = [
 {

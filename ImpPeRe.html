@@ -80,6 +80,10 @@
 							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
 							target="_blank">unknown</a>
 					</p>
+					<h3>Hyperspace Travel</h3>
+					<p>
+						<strong>Estimated Travel Time (no hyperroutes):<strong> <span id="baseHyperspaceTime">calculating...</span>
+					</p>
 				</div>
 			</td>
 		</tr>
@@ -133,174 +137,32 @@
 	</table>
 
 	<script>
-
-		// Converts a number to an integer, max 5, min 0.
-		function sanitize0to5(val)
+		// https://oakthorne.net/wiki/index.php/SW_Hyperspace_Travel_Times
+		function hyperspaceTravelTime(startMap, endMap)
 		{
-			const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
-			const retVal = Math.min(Math.max(saneVal, 0), 5); // integer, 0 to 5 inclusive
-			return retVal;
+			const startLetter = startMap[0].charCodeAt(0); // no need to zero, we only care about the difference
+			const startNumber = startMap.substring(2);
+			const endLetter = endMap[0].charCodeAt(0); // no need to zero, we only care about the difference
+			const endNumber = endMap.substring(2);
+
+			// Assume straight line, ignoring hyperspace routes
+			const distance = Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2));
+			if (distance < 1) return 24;
+			if (distance < 3) return Math.floor(distance * 42);
+			if (distance < 6) return Math.floor(distance * 48);
+			if (distance < 9) return Math.floor(distance * 56);
+			return Math.floor(distance * 56);
 		}
 
-		// Converts a number to an integer, max 5, min -5.
-		function sanitizeMinus5to5(val)
-		{
-			const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
-			const retVal = Math.min(Math.max(saneVal, -5), 5); // integer, -5 to 5 inclusive
-			return retVal;
-		}
-
-		// Converts a number to an integer, max 9, min 0.
-		// (Rarity goes higher as value goes lower)
-		function sanitizeRarity(val)
-		{
-			const saneVal = (Number.isInteger(Math.round(-val)) ? Math.round(val) : 0);
-			const retVal = Math.min(Math.max(saneVal, 0), 9); // integer, 0 to 9 inclusive
-			return retVal;
-		}
-
-		// Converts a number to display value: "XXcr" or "(waived)"
-		function creditsOrWaived(val)
-		{
-			const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
-			if (saneVal === 0)
-			{
-				return "(waived)";
-			}
-			else
-			{
-				return saneVal + "cr";
-			}
-			return retVal;
-		}
-
-		function rarityModFor(json)
-		{
-			baseRarity = json.Rarity;
-			region = json.Region;
-			regionRarity = regions.find(item => item.Name === json.Region).Rarity;
-			return baseRarity + regionRarity;
-		}
-
-		// Converts a number to display value: "Rarity X(R)" or ""
-		function rarityText(val)
+		function hoursToTravelTimeDesc(hours) // 178 = 1 week, 0 days, 10 hours
 		{
 			retVal = "";
-			saneRarity = sanitizeRarity(val);
-			if (saneRarity>0)
-			{
-				retVal += "Rarity " + saneRarity;
-			  if (saneRarity>6)
-			  {
-				  retVal += "(R) ";
-			  }
-			  retVal += ", ";
-			}
+			const weeks = Math.floor(hours / (24*7)); //
+			const days = Math.floor((hours - (weeks*24*7)) / 24);
+			const hoursLeft = Math.floor(hours - (weeks*24*7) - (days*24));
+			if (weeks > 0) retVal += weeks + " week" + (weeks === 1 ? "" : "s") + ", ";
+			retVal += days + " day" + (days === 1 ? "" : "s") + ", " + hoursLeft + " hour" + (hoursLeft === 1 ? "" : "s");
 			return retVal;
-		}
-
-		// Converts a number to display value for weapon/armor permits
-		function permitText(val, cost)
-		{
-			const rarity = 1 - sanitizeMinus5to5(val);
-			switch(sanitizeMinus5to5(val))
-			{
-				case -5: return "Felony (Permit " + rarityText(rarity + 2) + cost + "cr)"; break;
-				case -4: return "Felony (Permit " + rarityText(rarity) + cost + "cr)"; break;
-				case -3: return "Misdemeanor (Permit " + rarityText(rarity) + cost + "cr)"; break;
-				case -2: return "Infraction (Permit " + rarityText(rarity) + cost + "cr)"; break;
-				case -1: return "frowned on (Permit " + rarityText(rarity) + cost + "cr)"; break;
-				case 0: return "tolerated"; break;
-				case 1: return "no restrictions"; break;
-				case 2: return "common"; break;
-				case 3: return "recommended"; break;
-				case 4: return "recommended"; break;
-				case 5: return "recommended"; break;
-				default: return "ERROR: return invalid val in permitText()";
-			}
-
-			return "ERROR in permitText()";
-		}
-
-		// Converts a number to display value for various local crimes
-		function legalityOf(val)
-		{
-			const saneVal = sanitizeMinus5to5(val);
-			switch(sanitizeMinus5to5(saneVal))
-			{
-				case -5: return "Felony";
-				case -4: return "Felony";
-				case -3: return "Misdemeanor";
-				case -2: return "Infraction";
-				case -1: return "frowned upon";
-				case 0: return "tolerated";
-				case 1: return "allowed";
-				case 2: return "encouraged";
-				case 3: return "encouraged";
-				case 4: return "encouraged";
-				case 5: return "encouraged";
-			}
-		}
-
-		// converts a number to a starport description
-		// "Operational Costs" fan supplement grades them 1 (best) to 5 (worst)
-		function starportText(val) {
-			switch(sanitize0to5(val))
-			{
-				case 0: return "(no starport listed)";
-				case 1: return "Imperial Class";
-				case 2: return "Stellar Class";
-				case 3: return "Standard Class";
-				case 4: return "Limited Services";
-				case 5: return "Landing Field";
-			}
-			return "ERROR: unknown"; // fallthrough default
-		}
-
-		// Arrival event
-		function populateArrivalEvent(hiddenRounds) {
-			arrivalEvent = "ATTENTION, NAVIGATOR: ";
-			if (hiddenRounds > 0)
-			{
-				arrivalEvent += "You are hidden for " + hiddenRounds + " round(s) from detection attempts.";
-			}
-			else
-			{
-				arrivalEvent += "You have arrived safely.";
-			}
-			$("#arrivalEvent").text(arrivalEvent);
-
-			const localWeather = "sunny and mild (how boring)"; // @FIX
-			const localTerrain = "some starport"; // @FIX
-			$("#localWeather").text("Local Weather and Terrain: " + localWeather + ", " + localTerrain);
-		}
-
-		// Imperial Presence events
-		function populateImperialEvents(eventCount)
-		{
-			for (ii = 0; ii < eventCount; ii++)
-			{
-				$("#localEvents").append(arrivalEvents[ii]);
-			}
-		}
-
-		// Local events
-		function populateEmpireEvents(eventCount)
-		{
-			for (ii = 0; ii < eventCount; ii++)
-			{
-				const newEvent = localEmpireEvents[Math.floor(Math.random() * localEmpireEvents.length)];
-				$("#localEvents").append(newEvent);
-			}
-		}
-
-		function populateOldWestEvents(eventCount)
-		{
-			for (ii = 0; ii < eventCount; ii++)
-			{
-				const newEvent = localOldWestEvents[Math.floor(Math.random() * localOldWestEvents.length)];
-				$("#localEvents").append(newEvent);
-			}
 		}
 
 		$(document).ready(function () {
@@ -331,11 +193,14 @@
 				$(target).slideToggle();
 			});
 
+			currentLoc = {};
+			destLoc = {};
+
 			// Location dropdown events
 			$("#locationDropdown").on("change", function () {
 				$("#locationDetails").slideDown(); // display current location details
 				const currentLocation = $("#locationDropdown").val();
-				const currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+				currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 				const currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 				const rarityMod = rarityModFor(currentLoc);
 				const hiddenRounds = Math.round(Math.random() * 2); // @FIX
@@ -493,7 +358,7 @@
 			$("#destinationDropdown").on("change", function () {
 				$("#destinationDetails").slideDown();
 				const currentDestination = $("#destinationDropdown").val();
-				const destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+				destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 
 				$('#destRegion').text(destLoc.Region);
 				$('#destSector').text(destLoc.Sector);
@@ -507,6 +372,10 @@
 				$('#destGravity').text(destLoc.Gravity);
 				$('#destURL').attr('title', destLoc.Name);
 				$('#destURL').attr('href', destLoc.URL);
+				$('#destURL').text(destLoc.Name);
+
+				const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
+				$('#baseHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime));
 			});
 
 		});
