@@ -15,7 +15,7 @@
 
 	<table border="2" width="100%">
 		<tr>
-			<td style="vertical-align:top;">
+			<td class="alignTop">
 				<div class="form-group">
 					<label for="locationDropdown">Location:
 						<select id="locationDropdown">
@@ -54,7 +54,7 @@
 					</p>
 				</div>
 			</td>
-			<td style="vertical-align:top;">
+			<td class="alignTop">
 				<div class="form-group">
 					<label for="destinationDropdown">Destination:
 						<select id="destinationDropdown">
@@ -98,9 +98,9 @@
 			<td>
 				<p>
 					<h4>Ship Manifest</h4>
-					<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" placeholder="0"></input>cr</label>
-					<label for="silh">Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" placeholder="4"></input></label>
-					<label for="hyperdrive">Hyperdrive: <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" placeholder="1"></input></label>
+					<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" defaultValue="0"></input>cr</label>
+					<label for="silh">Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"></input></label>
+					<label for="hyperdrive">Hyperdrive: <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" defaultValue="15"></input></label>
 				</p>
 			</td>
 		</tr>
@@ -108,14 +108,14 @@
 
 	<table border="2" width="100%">
 		<tr><!-- Imperial Presence -->
-			<td style="vertical-align:middle;">
+			<td class="alignMiddle">
 				<div class="localCustomsBox">
-					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Starports</h4>
+					<h4 class="localCustomsBoxHeader">Starports</h4>
 					<strong>Landing Fee:</strong> <span id="textFeePortLanding"></span><br/>
 					<strong>Berthing Fee (per day):</strong> <span id="textFeePortBerthing"></span><br/>
 					<strong>Customs Fee:</strong> <span id="textFeeCustoms"></span><br/>
 					<strong>Visitation Fee:</strong> <span id="textFeeVisitation"></span><br/>
-					<strong>Smuggling Penalty:</strong> <span id="textFeeSmuggling"></span><br/>
+					<strong>Smuggling Penalty:</strong> <span id="textFeeSmuggling">Confiscation + fine</span><br/>
 					<strong>Departure Wait:</strong> <span id="textWaitDeparture"></span><br/>
 					<strong>Fuel Cells (each):</strong> <span id="textFeeFuelCell"></span><br/>
 					<strong>Power (per day):</strong> <span id="textFeePortPower"></span><br/>
@@ -123,16 +123,17 @@
 					<strong>Maintenance (per day):</strong> <span id="textFeePortMaintenance"></span><br/>
 				</div>
 				<div class="localCustomsBox">
-					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Weapon Permits</h4>
+					<h4 class="localCustomsBoxHeader">Weapon Permits</h4>
 					<strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed"></span><br/>
 					<strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span><br/>
 					<strong>Rifles, Large Melee:</strong> <span id="textPermitWeaponRifle"></span><br/>
 					<strong>Heavy Weapons:</strong> <span id="textPermitWeaponHeavy"></span><br/>
 					<strong>Light Armor:</strong> <span id="textPermitArmorLight"></span><br/>
 					<strong>Restricted/Military:</strong> <span id="textPermitArmorPower"></span><br/>
+					<center><strong>Violations:</strong> Confiscation + fine<br/></center>
 				</div>
 				<div class="localCustomsBox">
-					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Contraband</h4>
+					<h4 class="localCustomsBoxHeader">Contraband</h4>
 					<strong>Spice:</strong> <span id="textLawSpice"></span><br/>
 					<strong>Trespassing:</strong> <span id="textLawTrespassing"></span><br/>
 					<strong>Military Gear:</strong> <span id="textLawMilitary"></span><br/>
@@ -142,13 +143,23 @@
 					<strong>Bribery:</strong> <span id="textLawBribery"></span><br/>
 				</div>
 			</td>
-			<td style="vertical-align: top; display: block;">
-				<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Local Conditions</h4>
-				<ul id="localEvents">
-					<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>
-					<li id="localWeather">Local Weather and Terrain: unknown</li>
+			<td class="localEvents">
+				<h4 class="localCustomsBoxHeader">Local Events</h4>
+				<ul id="localEvents"></ul><!-- populated dynamicall -->
+				<div class="localCustomsBox"><strong>Suggested Usage:</strong>
+				<ul>
+					<li>Select a Location to retrieve local events and customs from BoSS, regional governors, HoloNet, etc.</li>
+					<li>Each local event is a <i>possibility</i> to enhance the narrative. Nothing is required. Use what makes sense and prompts a better story.</li>
+					<li>Each PC may choose to select <em>up to one event</em> to <em>activate</em> or <em>negate</em> the event for the duration of their stay.</li>
+					<li>An event, once chosen, is unavailable for further actions.</li>
+					<li><span class="localEventFree">Free Events</span> may be activated or negate for the duration of stay <i>at no cost</i>, limited to one per player.</li>
+					<li><span class="localEventDestinyRequired">Destiny Required Events</span> always require a Destiny Point to activate or negate.</li>
+					<li><span class="localEventDestinyOptional">Destiny Optional Events</span> can apply for one transaction only at no cost, or a Destiny Point may be used to create a permanent NPC.</li>
+					<li>After the party has chosen, the GM may choose up to one <span class="localEventDestinyRequired">Destiny Required Event</span> to activate or negate, and as many <span class="localEventFree">Free Events</span> as creates a good story.</li>
+					<li>Each player (or GM) may only spend a maximum of one Destiny Point upon arrival in a system.</li>
+					<li>Upon departure, all events not made permanent via Destiny Points are reset.</li>
+					<li>Select a Destination to display details and estimated travel statistics to that system.</li>
 				</ul>
-				<p align="center">[Each PC, and the GM, may select up to 1 event to make it <em>real</em> or <em>rumor</em>, and <em>*</em> indicates for one transaction only, but a Destiny Point may be used to create a permanent NPC.]</p>
 			</td>
 		</tr>
 	</table>
@@ -187,6 +198,10 @@
 			$("#locationDetails").slideUp();
 			$("#destinationDetails").slideUp();
 
+			// Default input values
+			$('#cargo').val(0);
+			$('#silh').val(4);
+			$('#hyperdrive').val(15);
 
 			// Populate location dropdown
 			const $locationDropdown = $("#locationDropdown");
@@ -225,7 +240,7 @@
 				// Reset local events
 				$("#localEvents").empty();
 				$("#localEvents").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
-				$("#localEvents").append('<li id="localWeather">Local Weather and Terrain: unknown</li>');
+				$("#localEvents").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
 
 				// Arrival event
 				populateArrivalEvent(hiddenRounds);
@@ -286,8 +301,8 @@
 				const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
 				const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
 				const textFeeVisitation = creditsOrWaived(Math.max(feeVisitation, 10));
-				const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
-				const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
+//				const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
+//				const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
 				const waitDeparture = Math.round(feePortLanding); // in hours
 				const textWaitDeparture = (waitDeparture>24
 					? (waitDeparture/24).toFixed(1) + " days"
@@ -299,7 +314,7 @@
 				$('#textFeePortBerthing').text(textFeePortBerthing);
 				$('#textFeeCustoms').text(textFeeCustoms);
 				$('#textFeeVisitation').text(textFeeVisitation);
-				$('#textFeeSmuggling').text(textFeeSmuggling);
+//				$('#textFeeSmuggling').text(textFeeSmuggling);
 				$('#textWaitDeparture').text(textWaitDeparture);
 				$('#textFeeFuelCell').text(textFeeFuelCell);
 				$('#textFeePortPower').text(textFeePortPower);

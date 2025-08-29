@@ -67,11 +67,38 @@ pre {
 .alignLeft {
 	text-align: left;
 }
-.localCustomsBox {
+.alignTop {
 	vertical-align:top;
-	display:block;
-	margin:10px;
-	padding:10px;
-	border:5px solid grey;
-	background-color:black;
+}
+.alignMiddle {
+	vertical-align:middle;
+}
+.localEventFree {
+	font-weight: bold;
+	background-color: green;
+}
+.localEventDestinyOptional {
+	font-weight: bold;
+	background-color: orange;
+}
+.localEventDestinyRequired {
+	font-weight: bold;
+	background-color: red;
+}
+.localCustomsBox {
+	vertical-align: top;
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	border: 5px solid grey;
+	background-color: black;
+}
+.localCustomsBoxHeader {
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+.localEvents {
+	vertical-align: top;
+	display: block;
 }
