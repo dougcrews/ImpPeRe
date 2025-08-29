@@ -103,10 +103,10 @@
 				</div>
 				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
 					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Weapon Permits</h4>
+					<strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed"></span><br/>
 					<strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span><br/>
 					<strong>Rifles, Large Melee:</strong> <span id="textPermitWeaponRifle"></span><br/>
 					<strong>Heavy Weapons:</strong> <span id="textPermitWeaponHeavy"></span><br/>
-					<strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed"></span><br/>
 					<strong>Light Armor:</strong> <span id="textPermitArmorLight"></span><br/>
 					<strong>Restricted/Military:</strong> <span id="textPermitArmorPower"></span><br/>
 				</div>
@@ -114,31 +114,11 @@
 					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Contraband</h4>
 					<strong>Spice:</strong> <span id="textLawSpice"></span><br/>
 					<strong>Trespassing:</strong> <span id="textLawTrespassing"></span><br/>
-					<strong>Poison:</strong> <span id="textLawPoison"></span><br/>
 					<strong>Military Gear:</strong> <span id="textLawMilitary"></span><br/>
 					<strong>Slicing:</strong> <span id="textLawSlicing"></span><br/>
 					<strong>Criticism of the Empire:</strong> <span id="textLawCriticism"></span><br/>
 					<strong>Minor Theft:</strong> <span id="textLawTheft"></span><br/>
 					<strong>Bribery:</strong> <span id="textLawBribery"></span><br/>
-				</div>
-				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
-					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Local Customs</h4>
-					<strong>Speeders:</strong> <span id="textSpeeders"></span><br/>
-					<strong>Riding Beasts:</strong> <span id="textRidingBeasts"></span><br/>
-					<strong>Slaves:</strong> <span id="textLawSlavery"></span><br/>
-					<strong>Droids, Restrained:</strong> <span id="textLawDroidsRestrained"></span><br/>
-					<strong>Droids, Unrestrained:</strong> <span id="textLawDroidsFree"></span><br/>
-					<strong>Cybernetics Installed:</strong> <span id="textLawCybernetics"></span><br/>
-				</div>
-				<div style="vertical-align:top; display:block; margin:10px; padding:10px; border:5px solid grey; background-color:darkGrey;">
-					<h4 style="text-align:center; margin-top:0px; margin-bottom:5px">Pets, Livestock, Mounts</h4>
-					<strong>Silhouette 0:</strong> Native Species: <span id="textPetsNative0"></span><br/>
-					<strong>Silhouette 1-2:</strong> Native Species: <span id="textPetsNative12"></span><br/>
-					<strong>Silhouette 3+:</strong> Native Species: <span id="textPetsNative3"></span><br/>
-					<strong>Silhouette 0:</strong> Non-Native Species: <span id="textPetsForeign0"></span><br/>
-					<strong>Silhouette 1-2:</strong> Non-Native Species: <span id="textPetsForeign12"></span><br/>
-					<strong>Silhouette 3:</strong> Non-Native Species: <span id="textPetsForeign3"></span><br/>
-					<strong>Dangerous (any size):</strong> <span id="textPetsDangerous"></span><br/>
 				</div>
 			</td>
 			<td style="vertical-align: top; display: block;">
@@ -220,28 +200,26 @@
 		}
 
 		// Converts a number to display value for weapon/armor permits
-		function permitText(val, cost, rarity)
+		function permitText(val, cost)
 		{
-			retVal = "";
-			const saneVal = sanitizeMinus5to5(val);
-			const saneRar = 6 - val - rarity;
-			switch(saneVal)
+			const rarity = 1 - sanitizeMinus5to5(val);
+			switch(sanitizeMinus5to5(val))
 			{
-				case -5: retVal += "Major Felony"; break;
-				case -4: retVal += "Felony"; break;
-				case -3: retVal += "Misdemeanor"; break;
-				case -2: retVal += "Infraction"; break;
-				case -1: retVal += "frowned on"; break;
-				case 0: retVal += "(waived)"; break;
-				case 1: retVal += "Permit (" + rarityText(saneRar) + cost + "cr)"; break;
-				case 2: retVal += "Permit (" + rarityText(saneRar) + cost + "cr)"; break;
-				case 3: retVal += "Permit (" + rarityText(saneRar) + cost + "cr)"; break;
-				case 4: retVal += "no restrictions"; break;
-				case 5: retVal += "recommended"; break;
-				default: retVal += "ERROR: invalid val in permitText()";
+				case -5: return "Felony (Permit " + rarityText(rarity + 2) + cost + "cr)"; break;
+				case -4: return "Felony (Permit " + rarityText(rarity) + cost + "cr)"; break;
+				case -3: return "Misdemeanor (Permit " + rarityText(rarity) + cost + "cr)"; break;
+				case -2: return "Infraction (Permit " + rarityText(rarity) + cost + "cr)"; break;
+				case -1: return "frowned on (Permit " + rarityText(rarity) + cost + "cr)"; break;
+				case 0: return "tolerated"; break;
+				case 1: return "no restrictions"; break;
+				case 2: return "common"; break;
+				case 3: return "recommended"; break;
+				case 4: return "recommended"; break;
+				case 5: return "recommended"; break;
+				default: return "ERROR: return invalid val in permitText()";
 			}
 
-			return retVal;
+			return "ERROR in permitText()";
 		}
 
 		// Converts a number to display value for various local crimes
@@ -250,7 +228,7 @@
 			const saneVal = sanitizeMinus5to5(val);
 			switch(sanitizeMinus5to5(saneVal))
 			{
-				case -5: return "Major Felony";
+				case -5: return "Felony";
 				case -4: return "Felony";
 				case -3: return "Misdemeanor";
 				case -2: return "Infraction";
@@ -258,9 +236,9 @@
 				case 0: return "tolerated";
 				case 1: return "allowed";
 				case 2: return "encouraged";
-				case 3: return "recommended";
-				case 4: return "highly recommended";
-				case 5: return "required";
+				case 3: return "encouraged";
+				case 4: return "encouraged";
+				case 5: return "encouraged";
 			}
 		}
 
@@ -402,6 +380,7 @@
 				$('#currentStarport').text(starportText(currentLoc.starport));
 				$('#currentURL').attr('title', currentLoc.Name);
 				$('#currentURL').attr('href', currentLoc.URL);
+				$('#currentURL').text(currentLoc.Name);
 
 				// Empire Presence calculations
 				// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
@@ -441,63 +420,38 @@
 				$('#textFeeConsumables').text(textFeeConsumables);
 				$('#textFeePortMaintenance').text(textFeePortMaintenance);
 
+				// Weapon Permits calculations
+				const baseWeapon = currentRegion.OldWestiness;
 
-/*
-Core Worlds (Imp=5+5, W=-1/-2/-3/-4/-2/-3, R=-1)
--5	-2	Small Arms: Treason
--6	-3	Rifles, Large Melee: Treason
--7	-4	Heavy Weapons: Treason
--8	-5	Concealed Weapons: Treason
--6	-3	Light Armor: Treason
--7	-4	Restricted/Military: Treason
-
-Mid Rim (Imp=2, W=3/2/1/0/2/1, R=+1)
-0	3	Small Arms: Permit (Rarity 8(R) , 30cr)
--1	2	Rifles, Large Melee: (waived)
--2	1	Heavy Weapons: frowned on
--3	0	Concealed Weapons: Infraction
--1	2	Light Armor: (waived)
--2	1	Restricted/Military: frowned on
-
-Outer Rim (Imp=1, W=4/3/2/1/3/2, R=+2) -Imp +W -R
-1	4	Small Arms: Permit (Rarity 1, 10cr)
-0	3	Rifles, Large Melee: Permit (Rarity 2, 20cr)
--1	2	Heavy Weapons: Permit (Rarity 3, 30cr)
--2	1	Concealed Weapons: (waived)
-0	3	Light Armor: Permit (Rarity 2, 20cr)
--1	2	Restricted/Military: Permit (Rarity 3, 30cr)
-*/
-				const basePermit = 4 - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
-
-				const permitWeaponSmall = basePermit +	currentLoc.WeaponSmall + currentRegion.WeaponSmall;
-				const permitWeaponSmallCost = Math.max(currentLoc.Starport, 1) * (4 - permitWeaponSmall) * 10;
-				const textPermitWeaponSmall = permitText(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
-
-				const permitWeaponRifle = basePermit +	currentLoc.WeaponRifle + currentRegion.WeaponRifle;
-				const permitWeaponRifleCost = Math.max(currentLoc.Starport, 1) * (4 - permitWeaponRifle) * 10;
-				const textPermitWeaponRifle = permitText(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
-
-				const permitWeaponHeavy = basePermit + currentLoc.WeaponHeavy + currentRegion.WeaponHeavy;
-				const permitWeaponHeavyCost = Math.max(currentLoc.Starport, 1) * (4 - permitWeaponHeavy) * 10;
-				const textPermitWeaponHeavy = permitText(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
-
-				const permitArmorLight = basePermit + currentLoc.ArmorLight + currentRegion.ArmorLight;
-				const permitArmorLightCost = Math.max(currentLoc.Starport, 1) * (4 - permitArmorLight) * 10;
-				const textPermitArmorLight = permitText(permitArmorLight, permitArmorLightCost, rarityMod);
-
-				const permitArmorPower = basePermit + currentLoc.ArmorPower + currentRegion.ArmorPower;
-				const permitArmorPowerCost = Math.max(currentLoc.Starport, 1) * (4 - permitArmorPower) * 10;
-				const textPermitArmorPower = permitText(permitArmorPower, permitArmorPowerCost, rarityMod);
-
-				const permitWeaponConcealed = permitWeaponSmall - 3;
-				const permitWeaponConcealedCost = Math.max(currentLoc.Starport, 1) * (4 - permitWeaponConcealed) * 10;
+				const permitWeaponConcealed = baseWeapon;
+				const permitWeaponConcealedCost = (0 - permitWeaponConcealed) * 10;
 				const textPermitWeaponConcealed = permitText(permitWeaponConcealed, permitWeaponConcealedCost, rarityMod);
 
-				// Empire Presence update screen elements
+				const permitWeaponSmall = baseWeapon - 1;
+				const permitWeaponSmallCost = (0 - permitWeaponSmall) * 10;
+				const textPermitWeaponSmall = permitText(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
+
+				const permitWeaponRifle = baseWeapon -	2;
+				const permitWeaponRifleCost = (0 - permitWeaponRifle) * 10;
+				const textPermitWeaponRifle = permitText(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
+
+				const permitWeaponHeavy = baseWeapon - 3;
+				const permitWeaponHeavyCost = (0 - permitWeaponHeavy) * 10;
+				const textPermitWeaponHeavy = permitText(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
+
+				const permitArmorLight = baseWeapon -2;
+				const permitArmorLightCost = (0 - permitArmorLight) * 10;
+				const textPermitArmorLight = permitText(permitArmorLight, permitArmorLightCost, rarityMod);
+
+				const permitArmorPower = baseWeapon - 3;
+				const permitArmorPowerCost = (0 - permitArmorPower) * 10;
+				const textPermitArmorPower = permitText(permitArmorPower, permitArmorPowerCost, rarityMod);
+
+				// Weapon Permits update screen elements
+				$('#textPermitWeaponConcealed').text(textPermitWeaponConcealed);
 				$('#textPermitWeaponSmall').text(textPermitWeaponSmall);
 				$('#textPermitWeaponRifle').text(textPermitWeaponRifle);
 				$('#textPermitWeaponHeavy').text(textPermitWeaponHeavy);
-				$('#textPermitWeaponConcealed').text(textPermitWeaponConcealed);
 				$('#textPermitArmorLight').text(textPermitArmorLight);
 				$('#textPermitArmorPower').text(textPermitArmorPower);
 
@@ -507,17 +461,8 @@ Outer Rim (Imp=1, W=4/3/2/1/3/2, R=+2) -Imp +W -R
 				const lawSpice = baseLaw + currentLoc.Spice + currentRegion.Spice;
 				const textLawSpice = legalityOf(lawSpice);
 
-				const lawDrugs = baseLaw + currentLoc.Drugs + currentRegion.Drugs;
-				const textLawDrugs = legalityOf(lawDrugs);
-
-				const lawOres = baseLaw + currentLoc.Ores + currentRegion.Ores;
-				const textLawOres = legalityOf(lawOres);
-
 				const lawTrespassing = baseLaw + currentLoc.Trespassing + currentRegion.Trespassing;
 				const textLawTrespassing = legalityOf(lawTrespassing);
-
-				const lawPoison = baseLaw + currentLoc.Poison + currentRegion.Poison;
-				const textLawPoison = legalityOf(lawPoison);
 
 				const lawMilitary = baseLaw + currentLoc.Military + currentRegion.Military;
 				const textLawMilitary = legalityOf(lawMilitary);
@@ -534,77 +479,14 @@ Outer Rim (Imp=1, W=4/3/2/1/3/2, R=+2) -Imp +W -R
 				const lawBribery = baseLaw + currentLoc.Bribery + currentRegion.Bribery;
 				const textLawBribery = legalityOf(lawBribery);
 
-				const lawSlavery = baseLaw + currentLoc.Slavery + currentRegion.Slavery;
-				const textLawSlavery = legalityOf(lawSlavery);
-
-				const lawDroidsRestrained = baseLaw + currentLoc.DroidsRestrained + currentRegion.DroidsRestrained;
-				const textLawDroidsRestrained = legalityOf(lawDroidsRestrained);
-
-				const lawDroidsFree = baseLaw + currentLoc.DroidsFree + currentRegion.DroidsFree;
-				const textLawDroidsFree = legalityOf(lawDroidsFree);
-
-				const lawCybernetics = baseLaw + currentLoc.Cybernetics + currentRegion.Cybernetics;
-				const textLawCybernetics = legalityOf(lawCybernetics);
-
 				// Law & Order update screen elements
 				$('#textLawSpice').text(textLawSpice);
-				$('#textLawDrugs').text(textLawDrugs);
-				$('#textLawOres').text(textLawOres);
 				$('#textLawTrespassing').text(textLawTrespassing);
-				$('#textLawPoison').text(textLawPoison);
 				$('#textLawMilitary').text(textLawMilitary);
 				$('#textLawSlicing').text(textLawSlicing);
 				$('#textLawCriticism').text(textLawCriticism);
 				$('#textLawTheft').text(textLawTheft);
 				$('#textLawBribery').text(textLawBribery);
-				$('#textLawSlavery').text(textLawSlavery);
-				$('#textLawDroidsRestrained').text(textLawDroidsRestrained);
-				$('#textLawDroidsFree').text(textLawDroidsFree);
-				$('#textLawCybernetics').text(textLawCybernetics);
-
-				// Flora & Fauna calculations
-				const basePets = 0; // - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
-
-				const petsNative0 = basePets + currentLoc.Megafauna + currentRegion.Megafauna;
-				const textPetsNative0 = legalityOf(petsNative0);
-
-				const petsNative12 = petsNative0 - 1;
-				const textPetsNative12 = legalityOf(petsNative12);
-
-				const petsNative3 = petsNative12 - 1;
-				const textPetsNative3 = legalityOf(petsNative3);
-
-				const petsForeign0 = petsNative3 - 1;
-				const textPetsForeign0 = legalityOf(petsForeign0);
-
-				const petsForeign12 = petsForeign0 - 1;
-				const textPetsForeign12 = legalityOf(petsForeign12);
-
-				const petsForeign3 = petsForeign12 - 1;
-				const textPetsForeign3 = legalityOf(petsForeign3);
-
-				const petsDangerous = -5;
-				const textPetsDangerous = legalityOf(petsDangerous);
-
-				// Law & Order update screen elements
-				$('#textPetsNative0').text(textPetsNative0);
-				$('#textPetsNative12').text(textPetsNative12);
-				$('#textPetsNative3').text(textPetsNative3);
-				$('#textPetsForeign0').text(textPetsForeign0);
-				$('#textPetsForeign12').text(textPetsForeign12);
-				$('#textPetsForeign3').text(textPetsForeign3);
-				$('#textPetsDangerous').text(textPetsDangerous);
-
-				const speeders = basePets - currentLoc.Megafauna - currentRegion.Megafauna +
-					currentLoc.Vehicles + currentRegion.Vehicles;
-				const textSpeeders = legalityOf(speeders);
-
-				const ridingBeasts = basePets + currentLoc.Megafauna + currentRegion.Megafauna +
-					currentLoc.RidingBeasts + currentRegion.RidingBeasts;
-				const textRidingBeasts = legalityOf(ridingBeasts);
-
-				$('#textSpeeders').text(textSpeeders);
-				$('#textRidingBeasts').text(textRidingBeasts);
 			});
 
 			// Destination dropdown events
