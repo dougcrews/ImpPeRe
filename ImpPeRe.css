@@ -102,3 +102,7 @@ pre {
 	vertical-align: top;
 	display: block;
 }
+.matchedHyperlane {
+	color: green;
+	font-weight: bold;
+}

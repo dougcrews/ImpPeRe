@@ -36,7 +36,8 @@
 						<strong>System:</strong> <span id="currentSystem">unknown</span>
 						<strong>Capital City:</strong> <span id="currentCapital">unknown</span>
 						<strong>Starport:</strong> <span id="currentStarport">unknown</span>
-						<strong>Map:</strong> <span id="currentMap">unknown</span>
+						<strong>Map:</strong> <span id="currentMap">unknown</span><br/>
+						<strong>Hyperspace Lanes:</strong> <pre id="currentHyperspaceLanes">unknown</pre>
 					</p>
 					<h3>Atmosphere & Terrain</h3>
 					<p>
@@ -74,7 +75,8 @@
 						<strong>System:</strong> <span id="destSystem">unknown</span>
 						<strong>Capital City:</strong> <span id="destCapital">unknown</span>
 						<strong>Starport:</strong> <span id="destStarport">unknown</span>
-						<strong>Map:</strong> <span id="destMap">unknown</span>
+						<strong>Map:</strong> <span id="destMap">unknown</span><br/>
+						<strong>Hyperspace Lanes:</strong> <pre id="destHyperspaceLanes">unknown</pre>
 					</p>
 					<h3>Atmosphere & Terrain</h3>
 					<p>
@@ -85,9 +87,8 @@
 						<strong>Gravity:</strong> <span id="destGravity">unknown</span>
 					</p>
 					<h3>Hyperspace Travel</h3>
-					<strong>Estimated Travel Time</strong> (no hyperroutes, Class <span id="ettHyperdriveClass">?</span>): <span id="estHyperspaceTime">calculating...</span><br/>
-					<strong>Best Travel Time</strong> (hyperroutes, Class <span id="bttHyperdriveClass">?</span>): <span id="bestHyperspaceTime">calculating...</span><br/>
-					Reference Travel Time (no hyperroutes, Class 1): <span id="baseHyperspaceTime">calculating...</span><br/>
+					<strong>Estimated Travel Time</strong> (hyperroute factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>): <span id="estHyperspaceTime">calculating...</span><br/>
+					Reference (no hyperroutes, Class 1): <span id="baseHyperspaceTime">calculating...</span><br/>
 				</div>
 			</td>
 		</tr>
@@ -117,10 +118,6 @@
 					<strong>Visitation Fee:</strong> <span id="textFeeVisitation"></span><br/>
 					<strong>Smuggling Penalty:</strong> <span id="textFeeSmuggling">Confiscation + fine</span><br/>
 					<strong>Departure Wait:</strong> <span id="textWaitDeparture"></span><br/>
-					<strong>Fuel Cells (each):</strong> <span id="textFeeFuelCell"></span><br/>
-					<strong>Power (per day):</strong> <span id="textFeePortPower"></span><br/>
-					<strong>Consumables (per day):</strong> <span id="textFeeConsumables"></span><br/>
-					<strong>Maintenance (per day):</strong> <span id="textFeePortMaintenance"></span><br/>
 				</div>
 				<div class="localCustomsBox">
 					<h4 class="localCustomsBoxHeader">Weapon Permits</h4>
@@ -152,7 +149,7 @@
 					<li>Each local event is a <i>possibility</i> to enhance the narrative. Nothing is required. Use what makes sense and prompts a better story.</li>
 					<li>Each PC may choose to select <em>up to one event</em> to <em>activate</em> or <em>negate</em> the event for the duration of their stay.</li>
 					<li>An event, once chosen, is unavailable for further actions.</li>
-					<li><span class="localEventFree">Free Events</span> may be activated or negate for the duration of stay <i>at no cost</i>, limited to one per player.</li>
+					<li><span class="localEventFree">Free Events</span> may be activated or negated for the duration of stay <i>at no cost</i>, limited to one per player.</li>
 					<li><span class="localEventDestinyRequired">Destiny Required Events</span> always require a Destiny Point to activate or negate.</li>
 					<li><span class="localEventDestinyOptional">Destiny Optional Events</span> can apply for one transaction only at no cost, or a Destiny Point may be used to create a permanent NPC.</li>
 					<li>After the party has chosen, the GM may choose up to one <span class="localEventDestinyRequired">Destiny Required Event</span> to activate or negate, and as many <span class="localEventFree">Free Events</span> as creates a good story.</li>
@@ -165,21 +162,43 @@
 	</table>
 
 	<script>
+		// Hyperlane travel time multiplier
+		function hyperlaneFactor(startLoc, endLoc)
+		{
+			factor = 1.0;
+			Object.keys(hyperspaceRoutes).forEach(key => {
+				const planets = hyperspaceRoutes[key].Route.split(",");
+				if (planets.indexOf(currentLoc.Name) != -1)
+				{
+					routeFactor = hyperspaceRoutes[key].Route.split(",").length * 0.01;
+					factor *= routeFactor;
+				}
+			});
+			return factor;
+		}
+
 		// https://oakthorne.net/wiki/index.php/SW_Hyperspace_Travel_Times
 		function hyperspaceTravelTime(startMap, endMap)
 		{
-			const startLetter = startMap[0].charCodeAt(0); // no need to zero, we only care about the difference
-			const startNumber = startMap.substring(2);
-			const endLetter = endMap[0].charCodeAt(0); // no need to zero, we only care about the difference
-			const endNumber = endMap.substring(2);
+			if (startMap && endMap)
+			{
+				const startLetter = startMap[0].charCodeAt(0); // no need to zero, we only care about the difference
+				const startNumber = startMap.substring(2);
+				const endLetter = endMap[0].charCodeAt(0); // no need to zero, we only care about the difference
+				const endNumber = endMap.substring(2);
 
-			// Assume straight line, ignoring hyperspace routes
-			const distance = Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2));
-			if (distance < 1) return 24;
-			if (distance < 3) return Math.floor(distance * 42);
-			if (distance < 6) return Math.floor(distance * 48);
-			if (distance < 9) return Math.floor(distance * 56);
-			return Math.floor(distance * 56);
+				// Assume straight line, ignoring hyperspace routes
+				const distance = Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2));
+				if (distance < 1) return 24;
+				if (distance < 3) return Math.floor(distance * 42);
+				if (distance < 6) return Math.floor(distance * 48);
+				if (distance < 9) return Math.floor(distance * 56);
+				return Math.max(Math.floor(distance * 56), 24); // minimum 24 hours travel time per Fly Casual pg78
+			}
+			else
+			{
+				return Math.NaN;
+			}
 		}
 
 		function hoursToTravelTimeDesc(hours) // 178 = 1 week, 0 days, 10 hours
@@ -225,6 +244,71 @@
 				$(target).slideToggle();
 			});
 
+			function updateTravelEstimates()
+			{
+				totalFactor = 1.0;
+
+				// Find Hyperspace Lanes available for current location
+				currentRouteList = "";
+				if (currentLoc)
+				{
+					Object.keys(hyperspaceRoutes).forEach(key => {
+						const planets = hyperspaceRoutes[key].Route.split(",");
+						if (planets.indexOf(currentLoc.Name) != -1)
+						{
+							if (currentRouteList.length > 0) currentRouteList += "<br/>";
+							const thisRoute = hyperspaceRoutes[key];
+							const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
+							totalFactor *= factor;
+							currentRouteList += thisRoute.Name + " (factor " + factor + ")";
+						}
+					});
+				}
+
+				// Find Hyperspace Lanes available for destination
+				destRouteList = "";
+				if (destLoc)
+				{
+					Object.keys(hyperspaceRoutes).forEach(key => {
+						const planets = hyperspaceRoutes[key].Route.split(",");
+						if (planets.indexOf(destLoc.Name) != -1)
+						{
+							if (destRouteList.length > 0) destRouteList += "<br/>";
+							const thisRoute = hyperspaceRoutes[key];
+							const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
+							totalFactor *= factor;
+							destRouteList += thisRoute.Name + " (factor " + factor + ")";
+						}
+					});
+				};
+
+				if (currentRouteList.length > 0 && destRouteList.length > 0)
+				{
+					// Same hyperroute? Bonus!
+					currentRouteList.split("<br/>").forEach(currRoute => {
+						destRouteList.split("<br/>").forEach(destRoute => {
+							if (currRoute == destRoute)
+							{
+								currentRouteList = currentRouteList.replace(currRoute, '<span class="matchedHyperlane">' + currRoute + '</span>');
+								destRouteList = destRouteList.replace(destRoute, '<span class="matchedHyperlane">' + destRoute + '</span>');
+								totalFactor *= 0.5;
+							}
+						});
+					});
+				}
+
+				$('#currentHyperspaceLanes').html(currentRouteList);
+				$('#destHyperspaceLanes').html(destRouteList);
+
+				// Fly Casual pg78
+				const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
+				const shipHyperdrive = $('#hyperdrive').val();
+				$('#ettHyperdriveClass').text(shipHyperdrive);
+				$('#baseHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime));
+				$('#estHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
+				$('#hyperrouteFactor').text(totalFactor.toFixed(2));
+			}
+
 			currentLoc = {};
 			destLoc = {};
 
@@ -235,7 +319,9 @@
 				currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 				const currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 				const rarityMod = rarityModFor(currentLoc);
-				const hiddenRounds = Math.round(Math.random() * 2); // @FIX
+				const hiddenRounds = Math.round(Math.random() * 2); // this will be impacted by ship components like Holonet Pirate Array and similar
+
+				updateTravelEstimates();
 
 				// Reset local events
 				$("#localEvents").empty();
@@ -289,14 +375,6 @@
 				const textFeePortLanding = creditsOrWaived(feePortLanding);
 				const feePortBerthing = Math.round(feePortLanding * 0.1);
 				const textFeePortBerthing = creditsOrWaived(feePortBerthing);
-				const feeFuelCell = feePortBerthing; // @FIX see the URL above
-				const textFeeFuelCell = creditsOrWaived(Math.max(feeFuelCell, 10));
-				const feePortPower = feePortBerthing; // @FIX see the URL above
-				const textFeePortPower = creditsOrWaived(Math.max(feePortPower, 10));
-				const feeConsumables = feePortBerthing; // @FIX see the URL above
-				const textFeeConsumables = creditsOrWaived(Math.max(feeConsumables, 10));
-				const feePortMaintenance = feePortBerthing; // @FIX see the URL above
-				const textFeePortMaintenance = creditsOrWaived(Math.max(feePortMaintenance, 10));
 				const feeCustoms = Math.round(shipCargoDeclared * 0.01); // "waived" if zero
 				const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
 				const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
@@ -316,10 +394,6 @@
 				$('#textFeeVisitation').text(textFeeVisitation);
 //				$('#textFeeSmuggling').text(textFeeSmuggling);
 				$('#textWaitDeparture').text(textWaitDeparture);
-				$('#textFeeFuelCell').text(textFeeFuelCell);
-				$('#textFeePortPower').text(textFeePortPower);
-				$('#textFeeConsumables').text(textFeeConsumables);
-				$('#textFeePortMaintenance').text(textFeePortMaintenance);
 
 				// Weapon Permits calculations
 				const baseWeapon = currentRegion.OldWestiness;
@@ -388,6 +462,7 @@
 				$('#textLawCriticism').text(textLawCriticism);
 				$('#textLawTheft').text(textLawTheft);
 				$('#textLawBribery').text(textLawBribery);
+
 			});
 
 			// Destination dropdown events
@@ -396,6 +471,8 @@
 				const currentDestination = $("#destinationDropdown").val();
 				destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 				const destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+
+				updateTravelEstimates();
 
 				$('#destRegion').text(destLoc.Region);
 				$('#destSector').text(destLoc.Sector);
@@ -413,14 +490,6 @@
 				$('#destRegionURL').attr('title', destRegion.Name);
 				$('#destRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + destRegion.Name.replace(' ', '_') + '/Legends');
 				$('#destRegionURL').text(destRegion.Name);
-
-				const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map) / 4; // try to match Fly Casual pg78
-				const shipHyperdrive = $('#hyperdrive').val();
-				$('#ettHyperdriveClass').text(shipHyperdrive);
-				$('#bttHyperdriveClass').text(shipHyperdrive);
-				$('#baseHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime));
-				$('#estHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive));
-				$('#bestHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * 2/3));
 			});
 
 		});
