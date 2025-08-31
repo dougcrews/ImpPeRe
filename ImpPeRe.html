@@ -361,7 +361,7 @@
 				$('#currentInhabitants').text(currentLoc.Inhabitants);
 				$('#currentClimate').text(currentLoc.Climate);
 				$('#currentGravity').text(currentLoc.Gravity);
-				$('#currentStarport').text(starportText(currentLoc.starport));
+				$('#currentStarport').text(starportText(currentLoc.Starport));
 				$('#currentURL').attr('title', currentLoc.Name);
 				$('#currentURL').attr('href', currentLoc.URL);
 				$('#currentURL').text(currentLoc.Name);
@@ -485,6 +485,7 @@
 				$('#destInhabitants').text(destLoc.Inhabitants);
 				$('#destClimate').text(destLoc.Climate);
 				$('#destGravity').text(destLoc.Gravity);
+				$('#destStarport').text(starportText(destLoc.Starport));
 				$('#destURL').attr('title', destLoc.Name);
 				$('#destURL').attr('href', destLoc.URL);
 				$('#destURL').text(destLoc.Name);
