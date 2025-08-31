@@ -371,7 +371,8 @@
 
 				// Empire Presence calculations
 				// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
-				const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) * 10;
+				const silhCostFactor = shipSilh * (shipSilh > 4 ? 25 : 10); // Capital ships start at Silhouette 5 and have a large jump in capability/cost
+				const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) * silhCostFactor;
 				const textFeePortLanding = creditsOrWaived(feePortLanding);
 				const feePortBerthing = Math.round(feePortLanding * 0.1);
 				const textFeePortBerthing = creditsOrWaived(feePortBerthing);
