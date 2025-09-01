@@ -15,13 +15,16 @@
 
 <body id='body'>
 
-	<h2 id="mainHeader" class="fontStarWars" onclick="switchFontFamily()">imperial Penal Report</h2><!-- lowercase i needed for font -->
+	<h2 id="mainHeader" class="fontStarWars">Imperial Penal Report</h2>
+	<button onclick="switchFontBesh()" class="fontBesh">Aurebesh</button>
+	<button onclick="switchFontStarWars()" class="fontStarWars">Galactic Basic</button>
+	<button onclick="switchFontNormal()" class="fontNormal">En'glsh</button>
 
 	<table border="2" width="100%">
 		<tr>
 			<td class="alignTop nowrap">
 				<div class="form-group" style="float: left;">
-					<label for="locationDropdown" class="fontStarWars">Location:
+					<label for="locationDropdown" id="locationDropdownLabel" class="fontStarWars">Location:
 						<select id="locationDropdown">
 							<option value="">-- Current Location --</option>
 						</select>
@@ -33,7 +36,7 @@
 			</td>
 			<td class="alignTop nowrap">
 				<div class="form-group" style="float: left;">
-					<label for="destinationDropdown">Destination:
+					<label for="destinationDropdown" id="destinationDropdownLabel" class="fontBesh">Destination:
 						<select id="destinationDropdown">
 							<option value="">-- Select Destination --</option>
 						</select>
@@ -159,7 +162,9 @@
 							<h2 style="margin-right: 50px;">Ship Manifest</h2>
 						</li>
 						<li class="manifestItem">
-							<label for="silh" id="silhLabel">Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"><span id="silh5plus"></span></input></label>
+							<label for="silh" id="silhLabel">
+								Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"><span id="silh5plus"></span></input>
+							</label>
 						</li>
 						<li class="manifestItem">
 							<label for="hyperdrive">
@@ -209,25 +214,24 @@
 				</div>
 			</td>
 			<td class="localEvents">
-				<h4 class="localCustomsBoxHeader fontStarWars">Local Events</h4>
-				<ul id="localEvents"></ul><!-- populated dynamically -->
+				<h4 class="localCustomsBoxHeader fontStarWars">Local Events reported at <span id="localEventsLocation">your location</span></h4>
+				<ul id="localEvents" class="fontNormal"><center>(select a Location at top left)</center></ul><!-- populated dynamically -->
 				<div id="instructionsBox" class="instructionsBox fontStarWars"><strong>Suggested Usage:</strong>
 				<ul>
-					<li>Select a Location to retrieve local events and customs from BoSS, regional governors, HoloNet, etc.</li>
+					<li><em>Select a Location</em> (top left) to retrieve local events and customs from BoSS, regional governors, HoloNet, etc.</li>
 					<li>Each local event is a <i>possibility</i>, a <i>rumor</i>, to enhance the narrative. <b>Nothing is required.</b> Use what makes sense and prompts a better story.</li>
 					<li>During their stay in the system, each PC may, at any time, choose to select <em>up to one local event</em> to <em>activate</em> or <em>negate</em> the event for the duration of their stay.</li>
 					<li>A local event, once chosen, is unavailable for further actions.</li>
 					<li><span class="localEventFree">Free Events</span> may be activated or negated for the duration of stay <i>at no cost</i>, limited to one per player.</li>
 					<li><span class="localEventDestinyRequired">Destiny Required Events</span> always require a Destiny Point to activate or negate.</li>
 					<li><span class="localEventDestinyOptional">Destiny Optional Events</span> can apply for one transaction only at no cost, or a Destiny Point may be used to create a permanent NPC.</li>
-					<li><span class="localEventDestinyOptional">Destiny Optional Events</span> permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this spot and able to perform the chosen service at no future cost by any PC.</li>
-					<li>The GM may, at their discretion, not allow NPCs to be found in locations where it doesn't make sense.</li>
+					<li><span class="localEventDestinyOptional">Destiny Optional Event</span>-created permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this location and able to perform the chosen service at no future cost by any PC.</li>
+					<li>The GM may, at their discretion, not allow NPCs or events to be found in locations where it doesn't make sense.</li>
 					<li>Upon system arrival, and after the party has chosen whether to select any events initially, the GM may spend a Destiny Point on up to one <span class="localEventDestinyRequired">Destiny Required Event</span> to activate or negate, and as many <span class="localEventFree">Free Events</span> as creates a good story.</li>
 					<li>Expect Imperial presence to be higher near the Core, and weapons laws to be looser nearer or past the Outer Rim.</li>
 					<li>Capital Ships (silhouette 5+) pay substantially higher Starport costs.</li>
 					<li>Upon departure, all local events and NPCs not made permanent via Destiny Points are reset.</li>
-					<li>Select a Destination to display details and estimated travel statistics to that system. Hyperdrive class impacts this heavily, as does the number and quality of Hyperspace Lanes available at this location.</li>
-					<li>Click the "IMPERIAL PENAL REPORT" header at the top to switch among supported Galactic languages.</li>
+					<li><em>Select a Destination</em> (top right) to display details and estimated travel statistics to that system. Hyperdrive class impacts this heavily, as does the number and quality of Hyperspace Lanes available at this location.</li>
 				</ul>
 			</td>
 		</tr>
@@ -252,8 +256,7 @@
 		}
 
 		$(document).ready(function () {
-			// set initial font
-			$('#body').addClass('fontBesh');
+			switchFontBesh(); // set initial font
 
 			// minimize collapsible sections
 			$("#locationDetails").slideUp();
@@ -280,19 +283,15 @@
 				);
 			});
 
-			// Toggle button functionality
-			$(".mainHeader").click(function () {
-				$('#instructionsBox').removeClass("fontBesh fontStarWars");
-			});
-
 			// Location dropdown events
 			$("#locationDropdown").on("change", function () {
 				$("#locationDetails").slideDown(); // display current location details
-				$("#body").removeClass("fontBesh fontStarWars"); // reset font-family
+				switchFontNormal(); // reset font-family
 
 				const currentLocation = $("#locationDropdown").val();
 				currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 				currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+				$('#localEventsLocation').text(currentLocation);
 
 				updateCurrentDetails();
 
@@ -306,7 +305,7 @@
 			// Destination dropdown events
 			$("#destinationDropdown").on("change", function () {
 				$("#destinationDetails").slideDown();
-				$("#body").removeClass("fontBesh fontStarWars"); // reset font-family
+				switchFontNormal(); // reset font-family
 
 				currentDestination = $("#destinationDropdown").val();
 				destLoc = locations.find(item => item.Name === currentDestination); // JSON object
@@ -324,9 +323,6 @@
 
 			// On Change event for Hyperdrive Class
 			document.getElementById('hyperdrive').addEventListener("change", updateTravelEstimates);
-
-			// change the font family on first use
-//			document.getElementById('body').style.fontFamily = "StarWars";
 		});
 	</script>
 

@@ -144,7 +144,7 @@ function updateCurrentAtmosphere()
 {
 	$('#currentAtmosphere').text(currentLoc.Atmosphere);
 
-	$('#currentAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontBasic');
+	$('#currentAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontNormal');
 	if (currentLoc.Atmosphere === "Type IV")
 	{
 		$('#currentAtmosphereLabel').addClass('atmos4');
@@ -168,7 +168,7 @@ function updateDestAtmosphere()
 {
 	$('#destAtmosphere').text(destLoc.Atmosphere);
 
-	$('#destAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontBasic');;
+	$('#destAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontNormal');;
 	if (destLoc.Atmosphere === "Type IV")
 	{
 		$('#destAtmosphereLabel').addClass('atmos4');
@@ -492,7 +492,7 @@ function updateTravelEstimates()
 				const thisRoute = hyperspaceRoutes[key];
 				const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
 				totalFactor *= factor;
-				currentRouteList += thisRoute.Name + " (factor " + factor + ")";
+				currentRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
 			}
 		});
 	}
@@ -509,7 +509,7 @@ function updateTravelEstimates()
 				const thisRoute = hyperspaceRoutes[key];
 				const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
 				totalFactor *= factor;
-				destRouteList += thisRoute.Name + " (factor " + factor + ")";
+				destRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
 			}
 		});
 	};
@@ -544,28 +544,58 @@ function updateTravelEstimates()
 	}
 }
 
-function switchFontFamily()
+function cleanFonts()
 {
-	const currentFont = $('#body').css("font-family");
-	$('#body').removeClass('fontBesh fontStarWars fontBasic');
-	$('#instructionsBox').removeClass('fontBesh fontStarWars fontBasic');
+	$('#body').removeClass('fontBesh fontStarWars fontNormal');
+	$('#locationDropdownLabel').removeClass('fontBesh fontStarWars fontNormal');
+	$('#destinationDropdownLabel').removeClass('fontBesh fontStarWars fontNormal');
+	$('#instructionsBox').removeClass('fontBesh fontStarWars fontNormal');
+	$('#localCustomsBoxHeader').removeClass('fontBesh fontStarWars fontNormal');
+	$('.manifestItem').removeClass('fontBesh fontStarWars fontNormal');
+}
 
-	if (currentFont.indexOf("Droidobesh") != -1)
-	{
-		$('#body').addClass('fontStarWars');
-//		$('#instructionsBox').removeClass('fontBesh fontBasic');
-		$('#instructionsBox').addClass('fontStarWars');
-	}
-	else if (currentFont.indexOf("StarWars") != -1)
-	{
-		$('#body').addClass('fontBasic');
-//		$('#instructionsBox').removeClass('fontBesh fontStarWars');
-		$('#instructionsBox').addClass('fontBasic');
-	}
-	else
-	{
-		$('#body').addClass('fontBesh');
-//		$('#instructionsBox').removeClass('fontBesh fontBasic');
-		$('#instructionsBox').addClass('fontStarWars');
-	}
+// switch to Droidobesh (illegible) font
+function switchFontBesh()
+{
+	cleanFonts();
+	$('#body').addClass('fontBesh');
+	$('#locationDropdownLabel').addClass('fontStarWars');
+	$('#destinationDropdownLabel').addClass('fontBesh');
+	$('#instructionsBox').addClass('fontStarWars');
+	$('#localCustomsBoxHeader').addClass('fontStarWars');
+	$('.manifestItem').addClass('fontBesh');
+}
+
+// switch to StarWars (legible) font
+function switchFontStarWars()
+{
+	cleanFonts();
+	$('#body').addClass('fontStarWars');
+	$('#locationDropdownLabel').addClass('fontStarWars');
+	$('#destinationDropdownLabel').addClass('fontStarWars');
+	$('#instructionsBox').addClass('fontNormal');
+	$('#localCustomsBoxHeader').addClass('fontNormal');
+	$('.manifestItem').addClass('fontStarWars');
+}
+
+// switch to Droidobesh (illegible) font
+function switchFontNormal()
+{
+	cleanFonts();
+	$('#body').addClass('fontNormal');
+	$('#locationDropdownLabel').addClass('fontNormal');
+	$('#destinationDropdownLabel').addClass('fontNormal');
+	$('#instructionsBox').addClass('fontNormal');
+	$('#localCustomsBoxHeader').addClass('fontNormal');
+	$('.manifestItem').addClass('fontNormal');
+}
+
+function toGalactipediaURL(name)
+{
+	return "https://starwars.fandom.com/wiki/" + name.replace(" ", "_"); // sometimes with /Legends appended; might need more fine tuning
+}
+
+function toGalactipediaALink(name)
+{
+	return '<a href="' + toGalactipediaURL(name) + '" target="_blank">' + name + '</a>';
 }

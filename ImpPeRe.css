@@ -22,8 +22,8 @@ a {
 label {
 	display: block;
 	margin-bottom: 5px;
-	font-family: StarWars;
 	font-weight: bold;
+	font-size: bigger;
 }
 select, input[type="text"], textarea {
 	width: 300px;
@@ -38,13 +38,16 @@ textarea {
 	resize: vertical;
 }
 button {
-	padding: 8px 16px;
-	border: none;
+	background-color: #000000;
 	border-radius: 6px;
-	background-color: #007BFF;
+	border: none;
 	color: white;
 	cursor: pointer;
+	display: inline-block;
+	float: left;
 	margin-bottom: 10px;
+	padding: 8px 16px;
+	text-align: center;
 }
 button:hover {
 	background-color: #0056b3;
@@ -65,7 +68,7 @@ pre {
 	background-color: #3a3a3a; /* slightly lighter dark grey */
 	vertical-align: top;
 }
-.fontBasic {
+.fontNormal {
 	font-family: Century Gothic, sans-serif;
 }
 .fontStarWars {
