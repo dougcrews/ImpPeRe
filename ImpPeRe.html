@@ -16,9 +16,24 @@
 <body id='body'>
 
 	<h2 id="mainHeader" class="fontStarWars">Imperial Penal Report</h2>
-	<button onclick="switchFontBesh()" class="fontBesh">Aurebesh</button>
-	<button onclick="switchFontStarWars()" class="fontStarWars">Galactic Basic</button>
-	<button onclick="switchFontNormal()" class="fontNormal">En'glsh</button>
+	<button onclick="switchFontBesh()" class="fontBesh tooltip">
+		Aurebesh
+		<span class="tooltiptext">
+		Switch to Aurebesh font.
+		</span>
+	</button>
+	<button onclick="switchFontStarWars()" class="fontStarWars tooltip">
+		Galactic Basic
+		<span class="tooltiptext">
+		Switch to Star Wars font.
+		</span>
+	</button>
+	<button onclick="switchFontNormal()" class="fontNormal tooltip">
+		En'glsh
+		<span class="tooltiptext">
+		Switch to normal font.
+		</span>
+	</button>
 
 	<table border="2" width="100%">
 		<tr>
@@ -49,7 +64,10 @@
 		</tr>
 		<tr>
 			<td class="alignTop" style="colSpan: 2;">
-				<div id="locationDetails" class="section widthHalf">
+				<div id="locationDetails" class="section tooltip">
+					<span class="tooltiptext">
+					Known and reported details of your current location.
+					</span>
 					<ul>
 						<li class="locationDetailsItem">
 							<strong>Region:</strong> <a id="currentRegionURL"
@@ -102,7 +120,10 @@
 				</div>
 			</td>
 			<td class="alignTop">
-				<div id="destinationDetails" class="section widthHalf">
+				<div id="destinationDetails" class="section tooltip">
+					<span class="tooltiptext">
+					Known and reported details of your Destination.
+					</span>
 					<ul>
 						<li class="locationDetailsItem">
 							<strong>Region:</strong> <a id="destRegionURL"
@@ -156,25 +177,30 @@
 	<table border="2" width="100%">
 		<tr><!-- Ship, Crew, and Conditions options -->
 			<td>
-				<p class="nowrap">
-					<ul>
-						<li class="manifestItem">
-							<h2 style="margin-right: 50px;">Ship Manifest</h2>
-						</li>
-						<li class="manifestItem">
-							<label for="silh" id="silhLabel">
-								Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"><span id="silh5plus"></span></input>
-							</label>
-						</li>
-						<li class="manifestItem">
-							<label for="hyperdrive">
-								Hyperdrive: Class <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" defaultValue="15"></input>
-							</label>
-						<li class="manifestItem">
-							<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" defaultValue="0"></input>cr</label>
-						</li>
-						</li>
-					</ul>
+				<p>
+					<div class="nowrap tooltip">
+						<span class="tooltiptext">
+						CAPTAIN, you must declare your ship's status, logs, and cargo in order to retrieve Hyperspace Lane updates and BoSS certification.
+						</span>
+						<ul>
+							<li class="manifestItem">
+								<h2 style="margin-right: 50px;">Ship Manifest</h2>
+							</li>
+							<li class="manifestItem">
+								<label for="silh" id="silhLabel">
+									Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"><span id="silh5plus"></span></input>
+								</label>
+							</li>
+							<li class="manifestItem">
+								<label for="hyperdrive">
+									Hyperdrive: Class <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" defaultValue="15"></input>
+								</label>
+							<li class="manifestItem">
+								<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" defaultValue="0"></input>cr</label>
+							</li>
+							</li>
+						</ul>
+					</div>
 				</p>
 			</td>
 		</tr>
@@ -183,7 +209,10 @@
 	<table border="2" width="100%">
 		<tr><!-- Imperial Presence -->
 			<td class="alignMiddle">
-				<div class="localCustomsBox">
+				<div class="localCustomsBox tooltip">
+					<span class="tooltiptext">
+					Last reported starport fees for this location. Consult your Game Master.
+					</span>
 					<h4 class="localCustomsBoxHeader">Starports</h4>
 					<strong>Landing Fee:</strong> <span id="textFeePortLanding"></span><br/>
 					<strong>Berthing Fee (per day):</strong> <span id="textFeePortBerthing"></span><br/>
@@ -192,7 +221,10 @@
 					<strong>Smuggling Penalty:</strong> <span id="textFeeSmuggling">Confiscation + fine</span><br/>
 					<strong>Departure Wait:</strong> <span id="textWaitDeparture"></span><br/>
 				</div>
-				<div class="localCustomsBox">
+				<div class="localCustomsBox tooltip">
+					<span class="tooltiptext">
+					Last reported local restrictions on weapons and armor at this location. Consult your Game Master.
+					</span>
 					<h4 class="localCustomsBoxHeader">Weapon Permits</h4>
 					<strong>Concealed Weapons:</strong> <span id="textPermitWeaponConcealed"></span><br/>
 					<strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span><br/>
@@ -202,7 +234,10 @@
 					<strong>Restricted/Military:</strong> <span id="textPermitArmorPower"></span><br/>
 					<center><strong>Violations:</strong> Confiscation + fine<br/></center>
 				</div>
-				<div class="localCustomsBox">
+				<div class="localCustomsBox tooltip">
+					<span class="tooltiptext">
+					Last reported local laws for this location. Consult your Game Master.
+					</span>
 					<h4 class="localCustomsBoxHeader">Contraband</h4>
 					<strong>Spice:</strong> <span id="textLawSpice"></span><br/>
 					<strong>Trespassing:</strong> <span id="textLawTrespassing"></span><br/>
@@ -215,24 +250,38 @@
 			</td>
 			<td class="localEvents">
 				<h4 class="localCustomsBoxHeader fontStarWars">Local Events reported at <span id="localEventsLocation">your location</span></h4>
-				<ul id="localEvents" class="fontNormal"><center>(select a Location at top left)</center></ul><!-- populated dynamically -->
-				<div id="instructionsBox" class="instructionsBox fontStarWars"><strong>Suggested Usage:</strong>
-				<ul>
-					<li><em>Select a Location</em> (top left) to retrieve local events and customs from BoSS, regional governors, HoloNet, etc.</li>
-					<li>Each local event is a <i>possibility</i>, a <i>rumor</i>, to enhance the narrative. <b>Nothing is required.</b> Use what makes sense and prompts a better story.</li>
-					<li>During their stay in the system, each PC may, at any time, choose to select <em>up to one local event</em> to <em>activate</em> or <em>negate</em> the event for the duration of their stay.</li>
-					<li>A local event, once chosen, is unavailable for further actions.</li>
-					<li><span class="localEventFree">Free Events</span> may be activated or negated for the duration of stay <i>at no cost</i>, limited to one per player.</li>
-					<li><span class="localEventDestinyRequired">Destiny Required Events</span> always require a Destiny Point to activate or negate.</li>
-					<li><span class="localEventDestinyOptional">Destiny Optional Events</span> can apply for one transaction only at no cost, or a Destiny Point may be used to create a permanent NPC.</li>
-					<li><span class="localEventDestinyOptional">Destiny Optional Event</span>-created permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this location and able to perform the chosen service at no future cost by any PC.</li>
-					<li>The GM may, at their discretion, not allow NPCs or events to be found in locations where it doesn't make sense.</li>
-					<li>Upon system arrival, and after the party has chosen whether to select any events initially, the GM may spend a Destiny Point on up to one <span class="localEventDestinyRequired">Destiny Required Event</span> to activate or negate, and as many <span class="localEventFree">Free Events</span> as creates a good story.</li>
-					<li>Expect Imperial presence to be higher near the Core, and weapons laws to be looser nearer or past the Outer Rim.</li>
-					<li>Capital Ships (silhouette 5+) pay substantially higher Starport costs.</li>
-					<li>Upon departure, all local events and NPCs not made permanent via Destiny Points are reset.</li>
-					<li><em>Select a Destination</em> (top right) to display details and estimated travel statistics to that system. Hyperdrive class impacts this heavily, as does the number and quality of Hyperspace Lanes available at this location.</li>
-				</ul>
+				<div class="tooltip">
+					<span class="tooltiptext">
+					See the Suggested Usage below. These are all SUGGESTIONS to enhance the story. Nothing is required.
+					</span>
+					<ul id="localEvents" class="fontNormal">
+						<center>(select a Location at top left)</center>
+					</ul><!-- populated dynamically -->
+				</div>
+				<div id="instructionsBox" class="instructionsBox fontStarWars tooltip"><strong>Suggested Usage:</strong>
+					<span class="tooltiptext">
+					First step is to choose a Location (not Destination) from the dropdown at top left.<br/>
+					This populates the details for that location and some random local events which can be optionally chosen.<br/>
+					Next, choose a Destination at top right to show details for that location and estimated travel statistics.<br/>
+					If you can't read the font, there are buttons underneath the main header. If they don't work, you may have disabled JavaScript.<br/>
+					</span>
+					<ul>
+						<li><em>Select a Location</em> (top left) to retrieve local events and customs from BoSS, regional governors, HoloNet, etc.</li>
+						<li>Each local event is a <i>possibility</i>, a <i>rumor</i>, to enhance the narrative. <b>Nothing is required.</b> Use what makes sense and prompts a better story.</li>
+						<li>During their stay in the system, each PC may, at any time, choose to select <em>up to one local event</em> to <em>activate</em> or <em>negate</em> the event for the duration of their stay.</li>
+						<li>A local event, once chosen, is unavailable for further actions.</li>
+						<li><span class="localEventFree">Free Events</span> may be activated or negated for the duration of stay <i>at no cost</i>, limited to one per player.</li>
+						<li><span class="localEventDestinyRequired">Destiny Required Events</span> always require a Destiny Point to activate or negate.</li>
+						<li><span class="localEventDestinyOptional">Destiny Optional Events</span> can apply for one transaction only at no cost, or a Destiny Point may be used to create a permanent NPC.</li>
+						<li><span class="localEventDestinyOptional">Destiny Optional Event</span>-created permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this location and able to perform the chosen service at no future cost by any PC.</li>
+						<li>The GM may, at their discretion, not allow NPCs or events to be found in locations where it doesn't make sense.</li>
+						<li>Upon system arrival, and after the party has chosen whether to select any events initially, the GM may spend a Destiny Point on up to one <span class="localEventDestinyRequired">Destiny Required Event</span> to activate or negate, and as many <span class="localEventFree">Free Events</span> as creates a good story.</li>
+						<li>Expect Imperial presence to be higher near the Core, and weapons laws to be looser nearer or past the Outer Rim.</li>
+						<li>Capital Ships (silhouette 5+) pay substantially higher Starport costs.</li>
+						<li>Upon departure, all local events and NPCs not made permanent via Destiny Points are reset.</li>
+						<li><em>Select a Destination</em> (top right) to display details and estimated travel statistics to that system. Hyperdrive class impacts this heavily, as does the number and quality of Hyperspace Lanes available at this location.</li>
+					</ul>
+				</div>
 			</td>
 		</tr>
 	</table>

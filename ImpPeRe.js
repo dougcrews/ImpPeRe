@@ -521,8 +521,8 @@ function updateTravelEstimates()
 			destRouteList.split("<br/>").forEach(destRoute => {
 				if (currRoute == destRoute)
 				{
-					currentRouteList = currentRouteList.replace(currRoute, '<span class="matchedHyperlane">' + currRoute + '</span>');
-					destRouteList = destRouteList.replace(destRoute, '<span class="matchedHyperlane">' + destRoute + '</span>');
+					currentRouteList = currentRouteList.replace(currRoute, '<span class="matchedHyperlane">' + currRoute + '&nbsp;&gt;&gt;&gt;</span>');
+					destRouteList = destRouteList.replace(destRoute, '<span class="matchedHyperlane">&lt;&lt;&lt;&nbsp;' + destRoute + '</span>');
 					totalFactor *= 0.5;
 				}
 			});
