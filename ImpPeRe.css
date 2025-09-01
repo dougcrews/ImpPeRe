@@ -2,7 +2,7 @@ body {
 	font-family: Century Gothic, sans-serif;
 	margin: 20px;
 	background-color: #2c2c2c; /* dark grey */
-	color: #ffff00; /* yellow text */
+	color: #ffffd0; /* off white */
 }
 a {
 	color: green;
@@ -120,13 +120,13 @@ pre {
 }
 .manifestItem {
 	display: inline-block;
-	padding: 15px;
 }
 .locationDetailsItem {
 	display: inline-block;
-	padding: 15px;
 }
-
+.nowrap {
+	white-space: nowrap;
+}
 .silhouette5plus {
 	color: red;
 }

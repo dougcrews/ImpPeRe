@@ -121,11 +121,11 @@ function starportText(val)
 	switch(sanitize0to5(val))
 	{
 		// Operational Costs pg11, Grade 1 is best
-		case 5: return "Grade 1 Imperial Class";
-		case 4: return "Grade 2 Stellar Class";
-		case 3: return "Grade 3 Standard Class";
-		case 2: return "Grade 4 Limited Services";
-		case 1: return "Grade 5 Landing Field";
+		case 5: return "Grade 1 (Imperial Class)";
+		case 4: return "Grade 2 (Stellar Class)";
+		case 3: return "Grade 3 (Standard Class)";
+		case 2: return "Grade 4 (Limited Services)";
+		case 1: return "Grade 5 (Landing Field)";
 		case 0: return "Wilderness";
 	}
 	return "ERROR: unknown"; // fallthrough default
@@ -161,10 +161,6 @@ function updateCurrentAtmosphere()
 	{
 		$('#currentAtmosphereLabel').addClass('atmos1');
 	}
-	else
-	{
-		window.alert("ERROR in updateCurrentAtmosphere()");
-	}
 }
 
 // updates the destination location Atmosphere description
@@ -188,10 +184,6 @@ function updateDestAtmosphere()
 	else if (destLoc.Atmosphere === "Type I")
 	{
 		$('#destAtmosphereLabel').addClass('atmos1');
-	}
-	else
-	{
-		window.alert("ERROR in updateDestAtmosphere()");
 	}
 }
 
