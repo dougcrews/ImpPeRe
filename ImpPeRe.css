@@ -1,5 +1,5 @@
 body {
-	font-family: Arial, sans-serif;
+	font-family: Century Gothic, sans-serif;
 	margin: 20px;
 	background-color: #2c2c2c; /* dark grey */
 	color: #ffff00; /* yellow text */
@@ -7,18 +7,6 @@ body {
 a {
 	color: green;
 	font-weight: bold;
-}
-.section {
-	border: 1px solid #555;
-	border-radius: 6px;
-	margin-bottom: 15px;
-	padding: 10px;
-	display: table-cell;
-	background-color: #3a3a3a; /* slightly lighter dark grey */
-	vertical-align: top;
-}
-.form-group {
-	margin-bottom: 15px;
 }
 label {
 	display: block;
@@ -55,6 +43,19 @@ pre {
 	border-radius: 6px;
 	color: #00ffcc; /* teal output text */
 }
+
+.section {
+	border: 1px solid #555;
+	border-radius: 6px;
+	margin-bottom: 15px;
+	padding: 10px;
+	display: table-cell;
+	background-color: #3a3a3a; /* slightly lighter dark grey */
+	vertical-align: top;
+}
+.form-group {
+	margin-bottom: 15px;
+}
 .widthFullscreen {
 	width: 95vw;
 }
@@ -66,6 +67,9 @@ pre {
 }
 .alignLeft {
 	text-align: left;
+}
+.alignRight {
+	text-align: right;
 }
 .alignTop {
 	vertical-align:top;
@@ -105,4 +109,50 @@ pre {
 .matchedHyperlane {
 	color: green;
 	font-weight: bold;
+}
+.gravityHigh {
+	color: red;
+	font-weight: bolder;
+}
+.gravityLow {
+	color: aquamarine;
+	font-weight: lighter;
+}
+.manifestItem {
+	display: inline-block;
+	padding: 15px;
+}
+.locationDetailsItem {
+	display: inline-block;
+	padding: 15px;
+}
+
+.silhouette5plus {
+	color: red;
+}
+.silhouette5plus:after {
+	content: " (commercial/military starport rates apply)";
+}
+.atmos4 {
+	color: maroon;
+}
+.atmos4:after {
+	content: " (Environment Suit required)";
+}
+.atmos3 {
+	color: red;
+}
+.atmos3:after {
+	content: " (Breath Mask essential)";
+}
+.atmos2 {
+	color: orange;
+}
+.atmos2:after {
+	content: " (Breath Mask recommended)";
+}
+.atmos1 {
+}
+.atmos1:after {
+	content: " (Breathable)";
 }

@@ -6,6 +6,10 @@
 	<title>Imperial Penal Report</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="ImpPeRe.js"></script>
+	<script src="locations.js"></script>
+	<script src="regions.js"></script>
+	<script src="events.js"></script>
+	<script src="hyperspace.js"></script>
 	<link rel="stylesheet" href="ImpPeRe.css">
 </head>
 
@@ -15,38 +19,77 @@
 
 	<table border="2" width="100%">
 		<tr>
-			<td class="alignTop">
-				<div class="form-group">
+			<td class="alignTop" style="white-space: nowrap;">
+				<div class="form-group" style="float: left;">
 					<label for="locationDropdown">Location:
 						<select id="locationDropdown">
 							<option value="">-- Current Location --</option>
 						</select>
 					</label>
 				</div>
+				<div style="float: right;">
+					<a id="currentURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">unknown</a>
+				</div>
+			</td>
+			<td class="alignTop" style="white-space: nowrap;">
+				<div class="form-group" style="float: left;">
+					<label for="destinationDropdown">Destination:
+						<select id="destinationDropdown">
+							<option value="">-- Select Destination --</option>
+						</select>
+					</label>
+				</div>
+				<div style="float: right;">
+					<a id="destURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">unknown</a>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="alignTop" style="colSpan: 2;">
 				<div id="locationDetails" class="section widthHalf">
-					<h3>General Information for <a id="currentURL"
-							href="https://starwars.fandom.com/wiki/Planet/Legends"
-							target="_blank">unknown</a>
-					</h3>
-					<p>
-						<strong>Region:</strong> <a id="currentRegionURL"
-							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
-							target="_blank"><span id="currentRegion">unknown</span></a>
-						<strong>Sector:</strong> <span id="currentSector">unknown</span>
-						<strong>System:</strong> <span id="currentSystem">unknown</span>
-						<strong>Capital City:</strong> <span id="currentCapital">unknown</span>
-						<strong>Starport:</strong> <span id="currentStarport">unknown</span>
-						<strong>Map:</strong> <span id="currentMap">unknown</span><br/>
-						<strong>Hyperspace Lanes:</strong> <pre id="currentHyperspaceLanes">unknown</pre>
-					</p>
+					<ul>
+						<li class="locationDetailsItem">
+							<strong>Region:</strong> <a id="currentRegionURL"
+								href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+								target="_blank"><span id="currentRegion">unknown</span></a>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Sector:</strong> <span id="currentSector">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>System:</strong> <span id="currentSystem">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Capital City:</strong> <span id="currentCapital">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Starport:</strong> <span id="currentStarport">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Map:</strong> <span id="currentMap">unknown</span><br/>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Hyperspace Lanes:</strong> <pre id="currentHyperspaceLanes">unknown</pre>
+						</li>
+					</ul>
 					<h3>Atmosphere & Terrain</h3>
-					<p>
-						<strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span>
-						<strong>Terrain:</strong> <span id="currentTerrain">unknown</span>
-						<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
-						<strong>Climate:</strong> <span id="currentClimate">unknown</span>
-						<strong>Gravity:</strong> <span id="currentGravity">unknown</span>
-					</p>
+					<ul>
+						<li class="locationDetailsItem">
+							<label for="currentAtmosphere" id="currentAtmosphereLabel">Atmosphere:</strong> <span id="currentAtmosphere">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Terrain:</strong> <span id="currentTerrain">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Climate:</strong> <span id="currentClimate">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Gravity:</strong> <span id="currentGravity">unknown</span>
+						</li>
+					</ul>
 					<h3>Current Conditions</h3>
 					<p>
 						<strong>Climate:</strong> unknown
@@ -56,52 +99,77 @@
 				</div>
 			</td>
 			<td class="alignTop">
-				<div class="form-group">
-					<label for="destinationDropdown">Destination:
-						<select id="destinationDropdown">
-							<option value="">-- Select Destination --</option>
-						</select>
-					</label>
-					<div id="destinationDetails" class="section widthHalf">
-					<h3>General Information for <a id="destURL"
-							href="https://starwars.fandom.com/wiki/Planet/Legends"
-							target="_blank">unknown</a>
-					</h3>
-					<p>
-						<strong>Region:</strong> <a id="destRegionURL"
-							href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
-							target="_blank"><span id="destRegion">unknown</span></a>
-						<strong>Sector:</strong> <span id="destSector">unknown</span>
-						<strong>System:</strong> <span id="destSystem">unknown</span>
-						<strong>Capital City:</strong> <span id="destCapital">unknown</span>
-						<strong>Starport:</strong> <span id="destStarport">unknown</span>
-						<strong>Map:</strong> <span id="destMap">unknown</span><br/>
-						<strong>Hyperspace Lanes:</strong> <pre id="destHyperspaceLanes">unknown</pre>
-					</p>
+				<div id="destinationDetails" class="section widthHalf">
+					<ul>
+						<li class="locationDetailsItem">
+							<strong>Region:</strong> <a id="destRegionURL"
+								href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
+								target="_blank"><span id="destRegion">unknown</span></a>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Sector:</strong> <span id="destSector">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>System:</strong> <span id="destSystem">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Capital City:</strong> <span id="destCapital">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Starport:</strong> <span id="destStarport">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Map:</strong> <span id="destMap">unknown</span><br/>
+						</li>
+						<li class="locationDetailsItem">
+							<strong>Hyperspace Lanes:</strong> <pre id="destHyperspaceLanes">unknown</pre>
+						</li>
+					</ul>
 					<h3>Atmosphere & Terrain</h3>
-					<p>
-						<strong>Atmosphere:</strong> <span id="destAtmosphere">unknown</span>
+					<ul>
+						<li class="locationDetailsItem">
+							<label for="destAtmosphere" id="destAtmosphereLabel">Atmosphere:</strong> <span id="destAtmosphere">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
 						<strong>Terrain:</strong> <span id="destTerrain">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
 						<strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
 						<strong>Climate:</strong> <span id="destClimate">unknown</span>
+						</li>
+						<li class="locationDetailsItem">
 						<strong>Gravity:</strong> <span id="destGravity">unknown</span>
-					</p>
+						</li>
+					</ul>
 					<h3>Hyperspace Travel</h3>
 					<strong>Estimated Travel Time</strong> (hyperroute factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>): <span id="estHyperspaceTime">calculating...</span><br/>
-					Reference (no hyperroutes, Class 1): <span id="baseHyperspaceTime">calculating...</span><br/>
+					reference (no hyperroutes, Class 1): <span id="baseHyperspaceTime">calculating...</span><br/>
 				</div>
 			</td>
 		</tr>
 	</table>
-
 	<table border="2" width="100%">
 		<tr><!-- Ship, Crew, and Conditions options -->
 			<td>
-				<p>
-					<h4>Ship Manifest</h4>
-					<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" defaultValue="0"></input>cr</label>
-					<label for="silh">Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"></input></label>
-					<label for="hyperdrive">Hyperdrive: <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" defaultValue="15"></input></label>
+				<p style="white-space: nowrap">
+					<ul>
+						<li class="manifestItem">
+							<h3>Ship Manifest</h3>
+						</li>
+						<li class="manifestItem">
+							<label for="silh" id="silhLabel">Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"><span id="silh5plus"></span></input></label>
+						</li>
+						<li class="manifestItem">
+							<label for="hyperdrive">
+								Hyperdrive: Class <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" defaultValue="15"></input>
+							</label>
+						<li class="manifestItem">
+							<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" defaultValue="0"></input>cr</label>
+						</li>
+						</li>
+					</ul>
 				</p>
 			</td>
 		</tr>
@@ -146,71 +214,41 @@
 				<div class="localCustomsBox"><strong>Suggested Usage:</strong>
 				<ul>
 					<li>Select a Location to retrieve local events and customs from BoSS, regional governors, HoloNet, etc.</li>
-					<li>Each local event is a <i>possibility</i> to enhance the narrative. Nothing is required. Use what makes sense and prompts a better story.</li>
-					<li>Each PC may choose to select <em>up to one event</em> to <em>activate</em> or <em>negate</em> the event for the duration of their stay.</li>
-					<li>An event, once chosen, is unavailable for further actions.</li>
+					<li>Each local event is a <i>possibility</i>, a <i>rumor</i>, to enhance the narrative. <b>Nothing is required.</b> Use what makes sense and prompts a better story.</li>
+					<li>During their stay in the system, each PC may choose to select <em>up to one local event</em> to <em>activate</em> or <em>negate</em> the event for the duration of their stay.</li>
+					<li>A local event, once chosen, is unavailable for further actions.</li>
 					<li><span class="localEventFree">Free Events</span> may be activated or negated for the duration of stay <i>at no cost</i>, limited to one per player.</li>
 					<li><span class="localEventDestinyRequired">Destiny Required Events</span> always require a Destiny Point to activate or negate.</li>
 					<li><span class="localEventDestinyOptional">Destiny Optional Events</span> can apply for one transaction only at no cost, or a Destiny Point may be used to create a permanent NPC.</li>
-					<li>After the party has chosen, the GM may choose up to one <span class="localEventDestinyRequired">Destiny Required Event</span> to activate or negate, and as many <span class="localEventFree">Free Events</span> as creates a good story.</li>
-					<li>Each player (or GM) may only spend a maximum of one Destiny Point upon arrival in a system.</li>
-					<li>Upon departure, all events not made permanent via Destiny Points are reset.</li>
-					<li>Select a Destination to display details and estimated travel statistics to that system.</li>
+					<li><span class="localEventDestinyOptional">Destiny Optional Events</span> permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this spot and able to perform the chosen service at no future cost by any PC.</li>
+					<li>The GM may, at their discretion, not allow NPCs to be found in locations where it doesn't make sense.</li>
+					<li>Upon system arrival, and after the party has chosen whether to select any events initially, the GM may spend a Destiny Point on up to one <span class="localEventDestinyRequired">Destiny Required Event</span> to activate or negate, and as many <span class="localEventFree">Free Events</span> as creates a good story.</li>
+					<li>Expect Imperial presence to be higher near the Core, and weapons laws to be looser nearer or past the Outer Rim.</li>
+					<li>Capital Ships (silhouette 5+) pay substantially higher Starport costs.</li>
+					<li>Upon departure, all local events and NPCs not made permanent via Destiny Points are reset.</li>
+					<li>Select a Destination to display details and estimated travel statistics to that system. Hyperdrive class impacts this heavily, as does the number and quality of Hyperspace Lanes available at this location.</li>
 				</ul>
 			</td>
 		</tr>
 	</table>
 
 	<script>
-		// Hyperlane travel time multiplier
-		function hyperlaneFactor(startLoc, endLoc)
-		{
-			factor = 1.0;
-			Object.keys(hyperspaceRoutes).forEach(key => {
-				const planets = hyperspaceRoutes[key].Route.split(",");
-				if (planets.indexOf(currentLoc.Name) != -1)
-				{
-					routeFactor = hyperspaceRoutes[key].Route.split(",").length * 0.01;
-					factor *= routeFactor;
-				}
-			});
-			return factor;
-		}
 
-		// https://oakthorne.net/wiki/index.php/SW_Hyperspace_Travel_Times
-		function hyperspaceTravelTime(startMap, endMap)
-		{
-			if (startMap && endMap)
-			{
-				const startLetter = startMap[0].charCodeAt(0); // no need to zero, we only care about the difference
-				const startNumber = startMap.substring(2);
-				const endLetter = endMap[0].charCodeAt(0); // no need to zero, we only care about the difference
-				const endNumber = endMap.substring(2);
+function updateSilhouette()
+{
+	shipSilh = $('#silh').val();
 
-				// Assume straight line, ignoring hyperspace routes
-				const distance = Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2));
-				if (distance < 1) return 24;
-				if (distance < 3) return Math.floor(distance * 42);
-				if (distance < 6) return Math.floor(distance * 48);
-				if (distance < 9) return Math.floor(distance * 56);
-				return Math.max(Math.floor(distance * 56), 24); // minimum 24 hours travel time per Fly Casual pg78
-			}
-			else
-			{
-				return Math.NaN;
-			}
-		}
+	if (shipSilh > 4) // Commercial/Military size
+	{
+		$('#silhLabel').addClass("silhouette5plus");
+	}
+	else
+	{
+		$('#silhLabel').removeClass("silhouette5plus");
+	}
 
-		function hoursToTravelTimeDesc(hours) // 178 = 1 week, 0 days, 10 hours
-		{
-			retVal = "";
-			const weeks = Math.floor(hours / (24*7)); //
-			const days = Math.floor((hours - (weeks*24*7)) / 24);
-			const hoursLeft = Math.floor(hours - (weeks*24*7) - (days*24));
-			if (weeks > 0) retVal += weeks + " week" + (weeks === 1 ? "" : "s") + ", ";
-			retVal += days + " day" + (days === 1 ? "" : "s") + ", " + hoursLeft + " hour" + (hoursLeft === 1 ? "" : "s");
-			return retVal;
-		}
+	updateLocalCustoms();
+}
 
 		$(document).ready(function () {
 			// minimize collapsible sections
@@ -244,256 +282,41 @@
 				$(target).slideToggle();
 			});
 
-			function updateTravelEstimates()
-			{
-				totalFactor = 1.0;
-
-				// Find Hyperspace Lanes available for current location
-				currentRouteList = "";
-				if (currentLoc)
-				{
-					Object.keys(hyperspaceRoutes).forEach(key => {
-						const planets = hyperspaceRoutes[key].Route.split(",");
-						if (planets.indexOf(currentLoc.Name) != -1)
-						{
-							if (currentRouteList.length > 0) currentRouteList += "<br/>";
-							const thisRoute = hyperspaceRoutes[key];
-							const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
-							totalFactor *= factor;
-							currentRouteList += thisRoute.Name + " (factor " + factor + ")";
-						}
-					});
-				}
-
-				// Find Hyperspace Lanes available for destination
-				destRouteList = "";
-				if (destLoc)
-				{
-					Object.keys(hyperspaceRoutes).forEach(key => {
-						const planets = hyperspaceRoutes[key].Route.split(",");
-						if (planets.indexOf(destLoc.Name) != -1)
-						{
-							if (destRouteList.length > 0) destRouteList += "<br/>";
-							const thisRoute = hyperspaceRoutes[key];
-							const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
-							totalFactor *= factor;
-							destRouteList += thisRoute.Name + " (factor " + factor + ")";
-						}
-					});
-				};
-
-				if (currentRouteList.length > 0 && destRouteList.length > 0)
-				{
-					// Same hyperroute? Bonus!
-					currentRouteList.split("<br/>").forEach(currRoute => {
-						destRouteList.split("<br/>").forEach(destRoute => {
-							if (currRoute == destRoute)
-							{
-								currentRouteList = currentRouteList.replace(currRoute, '<span class="matchedHyperlane">' + currRoute + '</span>');
-								destRouteList = destRouteList.replace(destRoute, '<span class="matchedHyperlane">' + destRoute + '</span>');
-								totalFactor *= 0.5;
-							}
-						});
-					});
-				}
-
-				$('#currentHyperspaceLanes').html(currentRouteList);
-				$('#destHyperspaceLanes').html(destRouteList);
-
-				// Fly Casual pg78
-				const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
-				const shipHyperdrive = $('#hyperdrive').val();
-				$('#ettHyperdriveClass').text(shipHyperdrive);
-				$('#baseHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime));
-				$('#estHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
-				$('#hyperrouteFactor').text(totalFactor.toFixed(2));
-			}
-
-			currentLoc = {};
-			destLoc = {};
-
 			// Location dropdown events
 			$("#locationDropdown").on("change", function () {
 				$("#locationDetails").slideDown(); // display current location details
 				const currentLocation = $("#locationDropdown").val();
 				currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
-				const currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
-				const rarityMod = rarityModFor(currentLoc);
-				const hiddenRounds = Math.round(Math.random() * 2); // this will be impacted by ship components like Holonet Pirate Array and similar
+				currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+
+				updateCurrentDetails();
+
+				updateLocalCustoms();
 
 				updateTravelEstimates();
 
-				// Reset local events
-				$("#localEvents").empty();
-				$("#localEvents").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
-				$("#localEvents").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
-
-				// Arrival event
-				populateArrivalEvent(hiddenRounds);
-
-				// Imperial Presence events
-				populateImperialEvents(currentLoc.ImperialPresence);
-
-				// Local events
-				populateEmpireEvents(currentLoc.ImperialPresence);
-				populateEmpireEvents(currentRegion.ImperialPresence);
-
-				// Old West events
-				populateOldWestEvents(currentLoc.OldWestiness);
-				populateOldWestEvents(currentRegion.OldWestiness);
-
-				// Flora & Fauna events
-				populateOldWestEvents(currentLoc.Megafauna);
-
-				// Options calculations & variables
-				const shipSilh = $('#silh').val();
-				const shipCargoDeclared = $('#cargo').val();
-				const shipHyperdrive = $('#hyperdrive').val();
-
-				// Current Location update screen elements
-				$('#currentRegion').text(currentLoc.Region);
-				$('#currentSector').text(currentLoc.Sector);
-				$('#currentSystem').text(currentLoc.System);
-				$('#currentCapital').text(currentLoc.CapitalCity);
-				$('#currentMap').text(currentLoc.Map);
-				$('#currentAtmosphere').text(currentLoc.Atmosphere);
-				$('#currentTerrain').text(currentLoc.Terrain);
-				$('#currentInhabitants').text(currentLoc.Inhabitants);
-				$('#currentClimate').text(currentLoc.Climate);
-				$('#currentGravity').text(currentLoc.Gravity);
-				$('#currentStarport').text(starportText(currentLoc.Starport));
-				$('#currentURL').attr('title', currentLoc.Name);
-				$('#currentURL').attr('href', currentLoc.URL);
-				$('#currentURL').text(currentLoc.Name);
-				$('#currentRegionURL').attr('title', currentRegion.Name);
-				$('#currentRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + currentRegion.Name.replace(' ', '_') + '/Legends');
-				$('#currentRegionURL').text(currentRegion.Name);
-
-				// Empire Presence calculations
-				// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
-				const silhCostFactor = shipSilh * (shipSilh > 4 ? 25 : 10); // Capital ships start at Silhouette 5 and have a large jump in capability/cost
-				const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) * silhCostFactor;
-				const textFeePortLanding = creditsOrWaived(feePortLanding);
-				const feePortBerthing = Math.round(feePortLanding * 0.1);
-				const textFeePortBerthing = creditsOrWaived(feePortBerthing);
-				const feeCustoms = Math.round(shipCargoDeclared * 0.01); // "waived" if zero
-				const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
-				const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
-				const textFeeVisitation = creditsOrWaived(Math.max(feeVisitation, 10));
-//				const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
-//				const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
-				const waitDeparture = Math.round(feePortLanding); // in hours
-				const textWaitDeparture = (waitDeparture>24
-					? (waitDeparture/24).toFixed(1) + " days"
-					: waitDeparture.toFixed(0) + " hours"
-					);
-
-				// Empire Presence update screen elements
-				$('#textFeePortLanding').text(textFeePortLanding);
-				$('#textFeePortBerthing').text(textFeePortBerthing);
-				$('#textFeeCustoms').text(textFeeCustoms);
-				$('#textFeeVisitation').text(textFeeVisitation);
-//				$('#textFeeSmuggling').text(textFeeSmuggling);
-				$('#textWaitDeparture').text(textWaitDeparture);
-
-				// Weapon Permits calculations
-				const baseWeapon = currentRegion.OldWestiness;
-
-				const permitWeaponConcealed = baseWeapon;
-				const permitWeaponConcealedCost = (0 - permitWeaponConcealed) * 10;
-				const textPermitWeaponConcealed = permitText(permitWeaponConcealed, permitWeaponConcealedCost, rarityMod);
-
-				const permitWeaponSmall = baseWeapon - 1;
-				const permitWeaponSmallCost = (0 - permitWeaponSmall) * 10;
-				const textPermitWeaponSmall = permitText(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
-
-				const permitWeaponRifle = baseWeapon -	2;
-				const permitWeaponRifleCost = (0 - permitWeaponRifle) * 10;
-				const textPermitWeaponRifle = permitText(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
-
-				const permitWeaponHeavy = baseWeapon - 3;
-				const permitWeaponHeavyCost = (0 - permitWeaponHeavy) * 10;
-				const textPermitWeaponHeavy = permitText(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
-
-				const permitArmorLight = baseWeapon -2;
-				const permitArmorLightCost = (0 - permitArmorLight) * 10;
-				const textPermitArmorLight = permitText(permitArmorLight, permitArmorLightCost, rarityMod);
-
-				const permitArmorPower = baseWeapon - 3;
-				const permitArmorPowerCost = (0 - permitArmorPower) * 10;
-				const textPermitArmorPower = permitText(permitArmorPower, permitArmorPowerCost, rarityMod);
-
-				// Weapon Permits update screen elements
-				$('#textPermitWeaponConcealed').text(textPermitWeaponConcealed);
-				$('#textPermitWeaponSmall').text(textPermitWeaponSmall);
-				$('#textPermitWeaponRifle').text(textPermitWeaponRifle);
-				$('#textPermitWeaponHeavy').text(textPermitWeaponHeavy);
-				$('#textPermitArmorLight').text(textPermitArmorLight);
-				$('#textPermitArmorPower').text(textPermitArmorPower);
-
-				// Law & Order calculations
-				const baseLaw = 0; // - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
-
-				const lawSpice = baseLaw + currentLoc.Spice + currentRegion.Spice;
-				const textLawSpice = legalityOf(lawSpice);
-
-				const lawTrespassing = baseLaw + currentLoc.Trespassing + currentRegion.Trespassing;
-				const textLawTrespassing = legalityOf(lawTrespassing);
-
-				const lawMilitary = baseLaw + currentLoc.Military + currentRegion.Military;
-				const textLawMilitary = legalityOf(lawMilitary);
-
-				const lawSlicing = baseLaw + currentLoc.Slicing + currentRegion.Slicing;
-				const textLawSlicing = legalityOf(lawSlicing);
-
-				const lawCriticism = baseLaw + currentLoc.Criticism + currentRegion.Criticism;
-				const textLawCriticism = legalityOf(lawCriticism);
-
-				const lawTheft = baseLaw + currentLoc.Theft + currentRegion.Theft;
-				const textLawTheft = legalityOf(lawTheft);
-
-				const lawBribery = baseLaw + currentLoc.Bribery + currentRegion.Bribery;
-				const textLawBribery = legalityOf(lawBribery);
-
-				// Law & Order update screen elements
-				$('#textLawSpice').text(textLawSpice);
-				$('#textLawTrespassing').text(textLawTrespassing);
-				$('#textLawMilitary').text(textLawMilitary);
-				$('#textLawSlicing').text(textLawSlicing);
-				$('#textLawCriticism').text(textLawCriticism);
-				$('#textLawTheft').text(textLawTheft);
-				$('#textLawBribery').text(textLawBribery);
-
+				updateLocalEvents();
 			});
 
 			// Destination dropdown events
 			$("#destinationDropdown").on("change", function () {
 				$("#destinationDetails").slideDown();
-				const currentDestination = $("#destinationDropdown").val();
+				currentDestination = $("#destinationDropdown").val();
 				destLoc = locations.find(item => item.Name === currentDestination); // JSON object
-				const destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+				destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+
+				updateDestDetails();
 
 				updateTravelEstimates();
 
-				$('#destRegion').text(destLoc.Region);
-				$('#destSector').text(destLoc.Sector);
-				$('#destSystem').text(destLoc.System);
-				$('#destCapital').text(destLoc.CapitalCity);
-				$('#destMap').text(destLoc.Map);
-				$('#destAtmosphere').text(destLoc.Atmosphere);
-				$('#destTerrain').text(destLoc.Terrain);
-				$('#destInhabitants').text(destLoc.Inhabitants);
-				$('#destClimate').text(destLoc.Climate);
-				$('#destGravity').text(destLoc.Gravity);
-				$('#destStarport').text(starportText(destLoc.Starport));
-				$('#destURL').attr('title', destLoc.Name);
-				$('#destURL').attr('href', destLoc.URL);
-				$('#destURL').text(destLoc.Name);
-				$('#destRegionURL').attr('title', destRegion.Name);
-				$('#destRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + destRegion.Name.replace(' ', '_') + '/Legends');
-				$('#destRegionURL').text(destRegion.Name);
+				updateDestDetails();
 			});
 
+			// On Change event for Ship Silhouette
+			document.getElementById('silh').addEventListener("change", updateSilhouette);
+
+			// On Change event for Hyperdrive Class
+			document.getElementById('hyperdrive').addEventListener("change", updateTravelEstimates);
 		});
 	</script>
 
