@@ -144,7 +144,7 @@ function updateCurrentAtmosphere()
 {
 	$('#currentAtmosphere').text(currentLoc.Atmosphere);
 
-	$('#currentAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4');
+	$('#currentAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontBasic');
 	if (currentLoc.Atmosphere === "Type IV")
 	{
 		$('#currentAtmosphereLabel').addClass('atmos4');
@@ -168,7 +168,7 @@ function updateDestAtmosphere()
 {
 	$('#destAtmosphere').text(destLoc.Atmosphere);
 
-	$('#destAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4');
+	$('#destAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontBasic');;
 	if (destLoc.Atmosphere === "Type IV")
 	{
 		$('#destAtmosphereLabel').addClass('atmos4');
@@ -541,5 +541,31 @@ function updateTravelEstimates()
 		$('#baseHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime));
 		$('#estHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
 		$('#hyperrouteFactor').text(totalFactor.toFixed(2));
+	}
+}
+
+function switchFontFamily()
+{
+	const currentFont = $('#body').css("font-family");
+	$('#body').removeClass('fontBesh fontStarWars fontBasic');
+	$('#instructionsBox').removeClass('fontBesh fontStarWars fontBasic');
+
+	if (currentFont.indexOf("Droidobesh") != -1)
+	{
+		$('#body').addClass('fontStarWars');
+//		$('#instructionsBox').removeClass('fontBesh fontBasic');
+		$('#instructionsBox').addClass('fontStarWars');
+	}
+	else if (currentFont.indexOf("StarWars") != -1)
+	{
+		$('#body').addClass('fontBasic');
+//		$('#instructionsBox').removeClass('fontBesh fontStarWars');
+		$('#instructionsBox').addClass('fontBasic');
+	}
+	else
+	{
+		$('#body').addClass('fontBesh');
+//		$('#instructionsBox').removeClass('fontBesh fontBasic');
+		$('#instructionsBox').addClass('fontStarWars');
 	}
 }
