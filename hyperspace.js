@@ -2,7 +2,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Corellian Run",
 	"SpeedFactor": 0.5,
-	"Route": "Coruscant,Ixtlar,Wukkar,Kailor V,Xorth,Vuma,Leria Kerlsil,Perma,Lolnar,Rehemsa,Sedratis,Rydonni Prime,Corellia,Nubia,Tinnel IV,Loronar,Byblos,Pencael IV,Havricus,Iseno,Denon,Spirana,Rhommamool,Tlactehon,Allanteen Six,Gamor,Milagro,Thaere Privo,New Cov,Doldur,Druckenwell,Kabray,Algara II,Andosha II,Mon Gazza,Herdessa,Radnor,Christophsis,Arkanis,Sirpar,Gorno,Dalchon,Ryloth,Wrea",
+	"Route": "Coruscant,Ixtlar,Wukkar,Kailor V,Xorth,Vuma,Leria Kerlsil,Perma,Lolnar,Rehemsa,Sedratis,Rydonni Prime,Corellia,Nubia,Tinnel IV,Loronar,Byblos,Pencael IV,Havricus,Iseno,Denon,Spirana,Rhommamool,Tlactehon,Allanteen VI,Gamor,Milagro,Thaere Privo,New Cov,Doldur,Druckenwell,Kabray,Algara II,Andosha II,Mon Gazza,Herdessa,Radnor,Christophsis,Arkanis,Sirpar,Gorno,Dalchon,Ryloth,Wrea",
 	"Junctions": "Perlemian Trade Route,Namadii Corridor,Metellos Trade Route,Corellian Trade Spine,Hydian Way,Gamor Run,Harrin Trade Corridor,Duros Space Run,Reena Trade Route,Llanic Spice Run,Triellus Trade Route,Corellian Skip Run,Death Wind Corridor,Old Corellian Run,Ryloth Road",
 },
 {
@@ -20,7 +20,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Hydian Way",
 	"SpeedFactor": 0.5,
-	"Route": "Bonadan,D'ian,Lythos,Mall'ordian,Reltooine,Cadomai Prime,Ruuria,Listehol,Tantive IV,Doniphon,Telos IV,Shi'kar Straits,Praadost II,Pho Ph'eah,Serenno,Toprawa,Simpla-12,Hynah,Sorrus,Feriae Junction,Tierell,Celanon,Hijado,Botajef,Harloen,Bandomeer,Taris,Skorrupon,Corsin,Leafar,Chennis,Adin,Draria,Viga,Kidriff 5,Nessem,Bogden,Paqualis III,Per Lupelo,Drearia,Champala,Nierport VII,Uviuy Exen,Wakeelmui,Brentaal IV,Skako,Aldraig IV,Demophon,Glithnos,Fedalle,Talravin,Ruul,Trellen,Mawan,Loretto,Baraboo,Bellassa,Jaciprus,Voktunma,Exodeen,Boudolayz,Herzob,Besnia,Koensayr,Aquilae,Denon,Sagar,Ronyards,Chardaan,Babbadod,Nordra,Perithal VI,Shibric,Baroli,Gacerian,Ragith III,Majoor,Ramordia,Arrgaw,Plagen,ZeHeth,Malastare,Chryya,Aquilaris Minor,Kamasto,Ventruun,Oranessan,Darkknell,Scelepas,Cmaoli Di,Eriadu,Averam,Rogue Antar,Shumavar,Atravis,Tosste,Rutan,Fwatna,Terminus,Imynusoph",
+	"Route": "Bonadan,D'ian,Lythos I,Lythos VI-IX,Lythos XIV,Mall'ordian,Reltooine,Cadomai Prime,Ruuria,Listehol,Tantive IV,Doniphon,Telos IV,Shi'kar Straits,Praadost II,Pho Ph'eah,Serenno,Toprawa,Simpla-12,Hynah,Sorrus,Feriae Junction,Tierell,Celanon,Hijado,Botajef,Harloen,Bandomeer,Taris,Skorrupon,Corsin,Leafar,Chennis,Adin,Draria,Viga,Kidriff 5,Nessem,Bogden,Paqualis III,Per Lupelo,Drearia,Champala,Nierport VII,Uviuy Exen,Wakeelmui,Brentaal IV,Skako,Aldraig IV,Demophon,Glithnos,Fedalle,Talravin,Ruul,Trellen,Mawan,Loretto,Baraboo,Bellassa,Jaciprus,Voktunma,Exodeen,Boudolayz,Herzob,Besnia,Koensayr,Aquilae,Denon,Sagar,Ronyards,Chardaan,Babbadod,Nordra,Perithal VI,Shibric,Baroli,Gacerian,Ragith III,Majoor,Ramordia,Arrgaw,Plagen,ZeHeth,Malastare,Chryya,Aquilaris Minor,Kamasto,Ventruun,Oranessan,Darkknell,Scelepas,Cmaoli Di,Eriadu,Averam,Rogue Antar,Shumavar,Atravis,Tosste,Rutan,Fwatna,Terminus,Imynusoph",
 	"Junctions": "Tingel Route,Solenbaran Merchant Route,Shaltin Tunnels,Trianii Shunt,Authority Guardian Corridor,Intra-Sector Spur,Listehol Run,Junction-Tierell Loop,Thesme Trace,Celanon Spur,Salin Corridor,Braxant Run,Vaathkree Trade Corridor,Shwuy Exchange,Perlemian Trade Route,Commenor Run,Trellen Trade Route,Quellor Run,Corellian Run,Shipwrights' Trace,Harrin Trade Corridor,Enarc Run,Duros Space Run,Rimma Trade Route,Nothoiin Corridor,Lipsec Run,Corellian Trade Spine",
 },
 {
@@ -28,6 +28,18 @@ const hyperspaceRoutes = [
 	"SpeedFactor": 0.5,
 	"Route": "Corellia,Duro,Chasin,Condular,Gandeal,Belazura,Bryexx,Enisca,Kelada,Foless,Bestine IV,Mechis,Renillis,Yag'Dhul,Harrin,Moorja,Calus,Epica,Roona,Borkyne,Kinyen,Pendari,Tar Morden,Calonica,Bomis Koori IV,Kriselist,Chibias,Kaal,Dalisor,Jiroch-Reslia,Quamar,Mugaar,Javin,Aztubek,Kumru,High Chunah,Kirtarkin,Mexeluine,Gerrenthum,Indellian,Bendeluum,Zhanox,Ione,Mataou,Anantapar,Shuxl system,Ertegas,Darlyn Boda,Orn Kios,Ozu,Isde Naha,Togominda,Berrol's Donn,Sil'Lume,Manpha,Terminus",
 	"Junctions": "Corellian Run,Duros Space Run,Shipwrights' Trace,Rimma Trade Route,Harrin Trade Corridor,Great Gran Run,D'Aelgoth Trade Route,Nothoiin Corridor,Koda Spur,Ison Corridor,Lipsec Run,Hydian Way",
+},
+{
+	"Name": "Triellus Trade Route",
+	"SpeedFactor": 0.9,
+	"Route": "Centares,Sy Myrth,Handooine,Jabiim,Taskeed,Dennogra,Junkfort,Nimat,Tammar,Kegan,Gestrex III,Norval II,Kubindi,Drualkiin,Formos,Bheriz,Aduba-3,Glottal,Teth,Rampa 1,Dilbana,Clantaano III,Barab III,Dubrava,Syvris,Arami,Gamorr,Lyran IV,Arvina,Molavar,Nurasenti,Koiogra,Piroket,A-Foroon,B-Foroon,C-Foroon,Ooo-temiuk,Tatooine,Andooweel,Kemal,New Ator,Issor,Arkanis,Nelvaan,Tythe,Llanic,Zhar,Farstine,Ryndellia,Enarc",
+	"Junctions": "Perlemian Trade Route,Salin Corridor,Lesser Lantillian Route,Kessel Run,Pabol Sleheyron,Shag Pabol,Hollastin Run,The Sy-Y,Manda Merchant Route,5709-DC Shipping Lane,Corellian Skip Run,The Crystal Passage,Old Corellian Run,Tatooine Dash,Najiba Loop,Corellian Run,Llanic Spice Run,Five Veils Route,Duros Space Run,Enarc Run",
+},
+{
+	"Name": "Corellian Skip Run",
+	"SpeedFactor": 0.9,
+	"Route": "Ryloth,Tatooine",
+	"Junctions": "Corellian Run,Death Wind Corridor,Old Corellian Run,Ryloth Road,The Crystal Passage,Old Corellian Run,Tatooine Dash,Triellus Trade Route",
 },
 {
 	"Name": "Namadii Corridor",
@@ -56,32 +68,20 @@ const hyperspaceRoutes = [
 {
 	"Name": "Duros Space Run",
 	"SpeedFactor": 0.9,
-	"Route": "Churba,New Cov,Kalarba,Glom Tho,Triffis,Bannistar Station,Enarc,Alui,Verdanth,Aplooine,Sanrafsix,Heptooine,Jutrand,Darkknell,Knel'char",
+	"Route": "Churba,New Cov,Kalarba,Glom Tho,Triffis,Bannistar Station,Enarc,Alui,Verdanth,Aplooine,Sanrafsix,Heptooine,Jutrand,Darkknell",
 	"Junctions": "Corellian Run,Enarc Run,Triellus Trade Route,Sanrafsix Corridor,Gevarno Loop,Hydian Way",
 },
 {
 	"Name": "Reena Trade Route",
 	"SpeedFactor": 0.9,
-	"Route": "Druckenwell – Haseria – Monastery – Masterra – Nexus Ortai – Spirador – Bothawui",
-	"Junctions": "Corellian Run – Bothan Run,Kaaga Run,Manda Merchant Route",
+	"Route": "Druckenwell,Haseria,Monastery,Masterra,Nexus Ortai,Spirador,Bothawui",
+	"Junctions": "Corellian Run,Bothan Run,Kaaga Run,Manda Merchant Route",
 },
 {
 	"Name": "Llanic Spice Run",
 	"SpeedFactor": 0.9,
 	"Route": "Mon Gazza,Llanic,Magravia,Socorro,Bahalian,Andasala,Reuss,Jermac,Midani,Spice Terminus",
 	"Junctions": "Corellian Run,Triellus Trade Route,Ryloth Road,Five Veils Route",
-},
-{
-	"Name": "Triellus Trade Route",
-	"SpeedFactor": 0.9,
-	"Route": "Centares,Sy Myrth,Handooine,Jabiim,Taskeed,Dennogra,Junkfort,Nimat,Tammar,Kegan,Gestrex III,Norval II,Kubindi,Drualkiin,Formos,Bheriz,Aduba-3,Glottal,Teth,Rampa 1,Dilbana,Clantaano III,Barab III,Dubrava,Syvris,Arami,Gamorr,Lyran IV,Molavar,Koiogra,Piroket,A-Foroon,B-Foroon,C-Foroon,Ooo-temiuk,Tatooine,Andooweel,Kemal,New Ator,Issor,Arkanis,Nelvaan,Tythe,Llanic,Zhar,Farstine,Ryndellia,Enarc",
-	"Junctions": "Perlemian Trade Route,Salin Corridor,Lesser Lantillian Route,Kessel Run,Pabol Sleheyron,Shag Pabol,Hollastin Run,The Sy-Y,Manda Merchant Route,5709-DC Shipping Lane,Corellian Skip Run,The Crystal Passage,Old Corellian Run,Tatooine Dash,Najiba Loop,Corellian Run,Llanic Spice Run,Five Veils Route,Duros Space Run,Enarc Run",
-},
-{
-	"Name": "Corellian Skip Run",
-	"SpeedFactor": 0.9,
-	"Route": "Ryloth,Tatooine",
-	"Junctions": "Corellian Run,Death Wind Corridor,Old Corellian Run,Ryloth Road,The Crystal Passage,Old Corellian Run,Tatooine Dash,Triellus Trade Route",
 },
 {
 	"Name": "Death Wind Corridor",
@@ -158,7 +158,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Trition Trade Route",
 	"SpeedFactor": 0.9,
-	"Route": "Karideph–Pergitor–Kal'Shebbol,Torize–Kolatill–Charis–Gandle Ott",
+	"Route": "Karideph,Pergitor,Kal'Shebbol,Torize,Kolatill,Charis,Gandle Ott",
 	"Junctions": "Rimma Trade Route,",
 },
 {
@@ -170,7 +170,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Commenor Run",
 	"SpeedFactor": 0.9,
-	"Route": "Brentaal,Tepasi,Korfo II,Caamas,Alderaan,The Graveyard,Tyed Kant,Parkis,Kattada,Commenor",
+	"Route": "Brentaal IV,Tepasi,Korfo II,Caamas,Alderaan,The Graveyard,Tyed Kant,Parkis,Kattada,Commenor",
 	"Junctions": "Hydian Way,Perlemian Trade Route,Trellen Trade Route,Quellor Run",
 },
 {
@@ -224,7 +224,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Trianii Shunt",
 	"SpeedFactor": 0.9,
-	"Route": "Etti IV,Lythos Nine,Hiit,Fibuli,Brochiib",
+	"Route": "Etti IV,Lythos I,Lythos VI-IX,Lythos XIV,Hiit,Fibuli,Brochiib",
 	"Junctions": "Etti Route Major,Solenbaran Merchant Route,Shaltin Tunnels,Hydian Way,Authority Guardian Corridor",
 },
 {
@@ -236,7 +236,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Lo'Uran-Lythos hyperlane",
 	"SpeedFactor": 0.9,
-	"Route": "Lo'Uran,Ninn,Lythos",
+	"Route": "Lo'Uran,Ninn,Lythos I,Lythos VI-IX,Lythos XIV",
 	"Junctions": "Authority Guardian Corridor,Hydian Way",
 },
 {
@@ -255,7 +255,7 @@ const hyperspaceRoutes = [
 	"Name": "Junction-Tierell Loop",
 	"SpeedFactor": 0.9,
 	"Route": "Feriae Junction,Tertiary Feswe,Selitan,Pinoora,Torque,Jovan III,Vallusk Cluster,Arkuda,Gulvitch,Bronsoon,Povanaria,Durgen's Star,Trinovat,Near Indosa,Presbalin,Tierell",
-	"Junctions": "Gordian Reach,Hydian Way,Thesme Trace,Pinooran Spur,Wetyin's Way,Korphir Trace,Bronsoon–Maridun hyperspace route,Hydian Way",
+	"Junctions": "Gordian Reach,Hydian Way,Thesme Trace,Pinooran Spur,Wetyin's Way,Korphir Trace,Bronsoon,Maridun hyperspace route,Hydian Way",
 },
 {
 	"Name": "Thesme Trace",
@@ -267,7 +267,7 @@ const hyperspaceRoutes = [
 	"Name": "Celanon Spur",
 	"SpeedFactor": 0.9,
 	"Route": "Dorin,Myomar,Vicondor,Station 88 Spaceport,Vortex,Nentan,T'olan,Dohu VII,Qiilura,Ord Mantell,Dor Nameth,Korvaii,Orocco,Ithor,Noonar,Cademimu V,Paarin Minor,Kebolar,Agamar,Shaum Hii,New Holgha,Vinsoth,Axxila,Ord Cestus,Pedd 4,Celanon",
-	"Junctions": "Namadii Corridor,Entralla Route,Braxant Run,Veragi Trade Route,Salin Corridor,Axxila–Tangrene hyperlane,Hydian Way,Burke's Trailing",
+	"Junctions": "Namadii Corridor,Entralla Route,Braxant Run,Veragi Trade Route,Salin Corridor,Axxila,Tangrene hyperlane,Hydian Way,Burke's Trailing",
 },
 {
 	"Name": "Braxant Run",
@@ -296,7 +296,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Shipwrights' Trace",
 	"SpeedFactor": 0.9,
-	"Route": "Fondor,Bassadro,Teyr,Foless,Las Lagon,Affa,Atzerri,Chardaan,Tynna,Allanteen Six",
+	"Route": "Fondor,Bassadro,Teyr,Foless,Las Lagon,Affa,Atzerri,Chardaan,Tynna,Allanteen VI",
 	"Junctions": "Shapani Bypass,Corellian Trade Spine,Hydian Way,Corellian Run",
 },
 {
@@ -922,5 +922,11 @@ const hyperspaceRoutes = [
 	"SpeedFactor": 0.9,
 	"Route": "Ponemah Terminal - Jakku - Adrathorpe - Jedha - Ord Mantell",
 	"Junctions": "Celanon Spur,Entralla Route",
+},
+{
+	"Name": "Hidakai Pool",
+	"SpeedFactor": 0.9,
+	"Route": "Daupherm,Botor system,Abregado-rae,Giju,Yag'Dhul",
+	"Junctions": "Giju Run,Corellian Trade Spine",
 },
 ];

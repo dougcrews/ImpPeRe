@@ -71,6 +71,7 @@ const localEmpireEvents = [
 	"<li><span class='localEventFree'>LOCAL COLOR:</span> \"Psst! I got a new kind of Spice that will rock your world.\"</i>",
 	"<li><span class='localEventDestinyRequired'>AN OLD FRIEND:</span> My juvenile delinquent buddy is working for law enforcement now???</li>",
 	"<li><span class='localEventDestinyOptional'>LOCAL COLOR:</span> An antiquities dealer wishes to speak to you. Come to the back door of the shop.</i>",
+	"<li><span class='localEventDestinyOptional'>:</span> A \"political prisoner\" desperately needs to get off world. They can pay.</i>",
 ];
 
 const localOldWestEvents = [

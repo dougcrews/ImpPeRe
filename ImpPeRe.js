@@ -1,3 +1,5 @@
+// @TODO Rarity lower/higher based on number of trade routes available
+
 // Globals
 currentLoc = {};
 destLoc = {};
@@ -206,8 +208,8 @@ function populateArrivalEvent() {
 	$("#localWeather").text(localWeather + ", " + localTerrain);
 }
 
-// Imperial Presence events
-function populateImperialEvents(eventCount)
+// Arrival in system events
+function populateArrivalEvents(eventCount)
 {
 	for (ii = 0; ii < eventCount; ii++)
 	{
@@ -241,13 +243,18 @@ function updateLocalEvents()
 	$("#localEvents").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
 	$("#localEvents").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
 
+	// Plot Hooks
+	$("#localEvents").append("<li><span class='localEventFree'>HOT PLOOK Menu:</span> \"Psst. I got a job for you. Legal (well, mostly), easy, pays the rent, y'know? You in?\"</li>");
+	$("#localEvents").append("<li><span class='localEventFree'>HOT PLOOK Menu:</span> \"Psst. You look tough. Got a job, pays well for <em>'tough'</em>.\"</li>");
+	$("#localEvents").append("<li><span class='localEventFree'>HOT PLOOK Menu:</span> \"Psst. My client has an exclusive offer with a handsome payout. There is danger involved.\"</li>");
+
 	// Arrival event
 	populateArrivalEvent();
 
 	if (! currentLoc) window.alert("ERROR in updateLocalEvents()");
 
-	// Imperial Presence events
-	populateImperialEvents(currentLoc.ImperialPresence);
+	// Arrival in system events
+	populateArrivalEvents(currentLoc.ImperialPresence);
 
 	// Local events
 	populateEmpireEvents(currentLoc.ImperialPresence);
@@ -453,6 +460,10 @@ function hyperspaceTravelTime(startMap, endMap)
 
 		// Assume straight line, ignoring hyperspace routes
 		const distance = Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2));
+
+		// side effect: update the display
+		$('#baseHyperSpaceDistance').text(distance + " parsecs, ")
+
 		if (distance < 1) return 24;
 		if (distance < 3) return Math.floor(distance * 42);
 		if (distance < 6) return Math.floor(distance * 48);
