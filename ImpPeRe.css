@@ -192,7 +192,7 @@ pre {
 /* Tooltip container */
 .tooltip {
   position: relative;
-  border-bottom: 1px dotted black; /* dots under the hoverable text */
+  /* border-bottom: 1px dotted black; dots under the hoverable text */
 }
 
 /* Tooltip text */
@@ -211,7 +211,35 @@ pre {
   z-index: 1;
 }
 
+#starportHeader {
+	font-size: smaller;
+}
+
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+.lawFelony {
+	color: red;
+}
+.lawMisdemeanor {
+	color: yellow;
+}
+.lawInfraction {
+	color: aquamarine;
+}
+.lawFrownedUpon {
+	color: burlywood;
+}
+.lawTolerated {
+	color: darkkhaki;
+}
+.lawNoRestrictions {
+	color: darkolivegreen;
+}
+.lawCommon {
+	color: darkseagreen;
+}
+.lawRecommended {
+	color: chartreuse;
 }

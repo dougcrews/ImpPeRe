@@ -1,4 +1,7 @@
 // @TODO Rarity lower/higher based on number of trade routes available
+// @TODO Filter by starport type
+// @TODO Filter by black market
+// @TODO Filter by shadowport if certain equipment is installed
 
 // Globals
 currentLoc = {};
@@ -74,26 +77,35 @@ function rarityText(val)
 }
 
 // Converts a number to display value for weapon/armor permits
-function permitText(val, cost)
+function permitHTML(val, cost)
 {
 	const rarity = sanitizeMinus5to5(val);
 	switch(sanitizeMinus5to5(val))
 	{
-		case -5: return "Felony (Permit " + rarityText(rarity + 2) + cost + "cr)"; break;
-		case -4: return "Felony (Permit " + rarityText(rarity) + cost + "cr)"; break;
-		case -3: return "Misdemeanor (Permit " + rarityText(rarity) + cost + "cr)"; break;
-		case -2: return "Infraction (Permit " + rarityText(rarity) + cost + "cr)"; break;
-		case -1: return "frowned on (Permit " + rarityText(rarity) + cost + "cr)"; break;
-		case 0: return "tolerated"; break;
-		case 1: return "no restrictions"; break;
-		case 2: return "common"; break;
-		case 3: return "recommended"; break;
-		case 4: return "recommended"; break;
-		case 5: return "recommended"; break;
-		default: return "ERROR: return invalid val in permitText()";
+		case -5:
+		case -4:
+			return '<span class="lawFelony">Felony</span> (Permit ' + rarityText(rarity + 2) + cost + 'cr)'; break;
+		case -3:
+			return '<span class="lawMisdemeanor">Misdemeanor</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+		case -2:
+			return '<span class="lawInfraction">Infraction</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+		case -1:
+			return '<span class="lawFrownedUpon">frowned on</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+		case 0:
+			return '<span class="lawTolerated">tolerated</span>'; break;
+		case 1:
+			return '<span class="lawNoRestrictions">no restrictions</span>'; break;
+		case 2:
+			return '<span class="lawCommon">common</span>'; break;
+		case 3:
+		case 4:
+		case 5:
+			return '<span class="lawRecommended">recommended</span>'; break;
+		default:
+			return "ERROR: return invalid val in permitHTML()";
 	}
 
-	return "ERROR in permitText()";
+	return "ERROR in permitHTML()";
 }
 
 // Converts a number to display value for various local crimes
@@ -102,17 +114,17 @@ function legalityOf(val)
 	const saneVal = sanitizeMinus5to5(val);
 	switch(sanitizeMinus5to5(saneVal))
 	{
-		case -5: return "Felony";
-		case -4: return "Felony";
-		case -3: return "Misdemeanor";
-		case -2: return "Infraction";
-		case -1: return "frowned upon";
-		case 0: return "tolerated";
-		case 1: return "allowed";
-		case 2: return "encouraged";
-		case 3: return "encouraged";
-		case 4: return "encouraged";
-		case 5: return "encouraged";
+		case -5:
+		case -4: return '<span class="lawFelony">Felony</span>'; break;
+		case -3: return '<span class="lawMisdemeanor">Misdemeanor</span>'; break;
+		case -2: return '<span class="lawInfraction">Infraction</span>'; break;
+		case -1: return '<span class="lawFrownedUpon">frowned on</span>'; break;
+		case 0: return '<span class="lawTolerated">tolerated</span>'; break;
+		case 1: return '<span class="lawNoRestrictions">no restrictions</span>'; break;
+		case 2:
+		case 3:
+		case 4:
+		case 5: return '<span class="lawRecommended">recommended</span>'; break;
 	}
 }
 
@@ -128,7 +140,7 @@ function starportText(val)
 		case 3: return "Grade 3 (Standard Class)";
 		case 2: return "Grade 4 (Limited Services)";
 		case 1: return "Grade 5 (Landing Field)";
-		case 0: return "Wilderness";
+		case 0: return "None (Wilderness)";
 	}
 	return "ERROR: unknown"; // fallthrough default
 }
@@ -284,6 +296,7 @@ function updateCurrentDetails()
 		$('#currentClimate').text(currentLoc.Climate);
 		$('#currentGravity').html(gravityText(currentLoc.Gravity));
 		$('#currentStarport').html(starportText(currentLoc.Starport));
+		$('#starportHeader').html(starportText(currentLoc.Starport));
 		$('#currentURL').attr('title', currentLoc.Name);
 		$('#currentURL').attr('href', currentLoc.URL);
 		$('#currentURL').text(currentLoc.URL);
@@ -348,8 +361,8 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
 	const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
 	const textFeeVisitation = creditsOrWaived(Math.max(feeVisitation, 10));
-//				const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
-//				const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
+//	const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
+//	const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
 	const waitDeparture = Math.round(feePortLanding); // in hours
 	const textWaitDeparture = (waitDeparture>24
 		? (waitDeparture/24).toFixed(1) + " days"
@@ -361,43 +374,43 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	$('#textFeePortBerthing').text(textFeePortBerthing);
 	$('#textFeeCustoms').text(textFeeCustoms);
 	$('#textFeeVisitation').text(textFeeVisitation);
-//				$('#textFeeSmuggling').text(textFeeSmuggling);
+//	$('#textFeeSmuggling').text(textFeeSmuggling);
 	$('#textWaitDeparture').text(textWaitDeparture);
 
 	// Weapon Permits calculations
-	const baseWeapon = currentRegion.OldWestiness;
+	const baseWeapon = currentLoc.OldWestiness + currentRegion.OldWestiness;
 
 	const permitWeaponConcealed = baseWeapon;
 	const permitWeaponConcealedCost = (0 - permitWeaponConcealed) * 10;
-	const textPermitWeaponConcealed = permitText(permitWeaponConcealed, permitWeaponConcealedCost, rarityMod);
+	const textPermitWeaponConcealed = permitHTML(permitWeaponConcealed, permitWeaponConcealedCost, rarityMod);
 
 	const permitWeaponSmall = baseWeapon - 1;
 	const permitWeaponSmallCost = (0 - permitWeaponSmall) * 10;
-	const textPermitWeaponSmall = permitText(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
+	const textPermitWeaponSmall = permitHTML(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
 
 	const permitWeaponRifle = baseWeapon -	2;
 	const permitWeaponRifleCost = (0 - permitWeaponRifle) * 10;
-	const textPermitWeaponRifle = permitText(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
+	const textPermitWeaponRifle = permitHTML(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
 
 	const permitWeaponHeavy = baseWeapon - 3;
 	const permitWeaponHeavyCost = (0 - permitWeaponHeavy) * 10;
-	const textPermitWeaponHeavy = permitText(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
+	const textPermitWeaponHeavy = permitHTML(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
 
 	const permitArmorLight = baseWeapon -2;
 	const permitArmorLightCost = (0 - permitArmorLight) * 10;
-	const textPermitArmorLight = permitText(permitArmorLight, permitArmorLightCost, rarityMod);
+	const textPermitArmorLight = permitHTML(permitArmorLight, permitArmorLightCost, rarityMod);
 
 	const permitArmorPower = baseWeapon - 3;
 	const permitArmorPowerCost = (0 - permitArmorPower) * 10;
-	const textPermitArmorPower = permitText(permitArmorPower, permitArmorPowerCost, rarityMod);
+	const textPermitArmorPower = permitHTML(permitArmorPower, permitArmorPowerCost, rarityMod);
 
 	// Weapon Permits update screen elements
-	$('#textPermitWeaponConcealed').text(textPermitWeaponConcealed);
-	$('#textPermitWeaponSmall').text(textPermitWeaponSmall);
-	$('#textPermitWeaponRifle').text(textPermitWeaponRifle);
-	$('#textPermitWeaponHeavy').text(textPermitWeaponHeavy);
-	$('#textPermitArmorLight').text(textPermitArmorLight);
-	$('#textPermitArmorPower').text(textPermitArmorPower);
+	$('#textPermitWeaponConcealed').html(textPermitWeaponConcealed);
+	$('#textPermitWeaponSmall').html(textPermitWeaponSmall);
+	$('#textPermitWeaponRifle').html(textPermitWeaponRifle);
+	$('#textPermitWeaponHeavy').html(textPermitWeaponHeavy);
+	$('#textPermitArmorLight').html(textPermitArmorLight);
+	$('#textPermitArmorPower').html(textPermitArmorPower);
 
 	// Law & Order calculations
 	const baseLaw = 0; // - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
@@ -417,6 +430,9 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const lawCriticism = baseLaw + currentLoc.Criticism + currentRegion.Criticism;
 	const textLawCriticism = legalityOf(lawCriticism);
 
+	const lawSlavery = baseLaw + currentLoc.Slavery + currentRegion.Slavery;
+	const textLawSlavery = legalityOf(lawSlavery);
+
 	const lawTheft = baseLaw + currentLoc.Theft + currentRegion.Theft;
 	const textLawTheft = legalityOf(lawTheft);
 
@@ -424,13 +440,14 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textLawBribery = legalityOf(lawBribery);
 
 	// Law & Order update screen elements
-	$('#textLawSpice').text(textLawSpice);
-	$('#textLawTrespassing').text(textLawTrespassing);
-	$('#textLawMilitary').text(textLawMilitary);
-	$('#textLawSlicing').text(textLawSlicing);
-	$('#textLawCriticism').text(textLawCriticism);
-	$('#textLawTheft').text(textLawTheft);
-	$('#textLawBribery').text(textLawBribery);
+	$('#textLawSpice').html(textLawSpice);
+	$('#textLawTrespassing').html(textLawTrespassing);
+	$('#textLawMilitary').html(textLawMilitary);
+	$('#textLawSlicing').html(textLawSlicing);
+	$('#textLawCriticism').html(textLawCriticism);
+	$('#textLawSlavery').html(textLawSlavery);
+	$('#textLawTheft').html(textLawTheft);
+	$('#textLawBribery').html(textLawBribery);
 }
 
 // Hyperlane travel time multiplier
@@ -462,7 +479,7 @@ function hyperspaceTravelTime(startMap, endMap)
 		const distance = Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2));
 
 		// side effect: update the display
-		$('#baseHyperSpaceDistance').text(distance + " parsecs, ")
+		$('#baseHyperSpaceDistance').text(distance.toFixed(2) + " parsecs, ")
 
 		if (distance < 1) return 24;
 		if (distance < 3) return Math.floor(distance * 42);

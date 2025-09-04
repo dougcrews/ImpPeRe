@@ -644,7 +644,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Yavin Bypass",
 	"SpeedFactor": 0.9,
-	"Route": "Krylon,Yavin Prime,Vaal",
+	"Route": "Krylon,Yavin 4,Vaal",
 	"Junctions": "Pinooran Spur,Gordian Reach,Wetyin's Way",
 },
 {
