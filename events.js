@@ -71,7 +71,7 @@ const localEmpireEvents = [
 	"<li><span class='localEventFree'>LOCAL COLOR:</span> \"Psst! I got a new kind of Spice that will rock your world.\"</i>",
 	"<li><span class='localEventDestinyRequired'>AN OLD FRIEND:</span> My juvenile delinquent buddy is working for law enforcement now???</li>",
 	"<li><span class='localEventDestinyOptional'>LOCAL COLOR:</span> An antiquities dealer wishes to speak to you. Come to the back door of the shop.</i>",
-	"<li><span class='localEventDestinyOptional'>:</span> A \"political prisoner\" desperately needs to get off world. They can pay.</i>",
+	"<li><span class='localEventDestinyOptional'>LOCAL COLOR:</span> A \"political prisoner\" desperately needs to get off world. They can pay.</i>",
 ];
 
 const localOldWestEvents = [
@@ -118,4 +118,6 @@ const localOldWestEvents = [
 	"<li><span class='localEventFree'>LOCAL COLOR:</span> You witness a local crime. The perp got away but you know where they are.</li>",
 	"<li><span class='localEventFree'>LOCAL COLOR:</span> You come across blackmail material against a local politician.</li>",
 	"<li><span class='localEventFree'>LOCAL COLOR:</span> Fuel Shortage. Riding beasts are the way to go until something is done.</li>",
+	"<li><span class='localEventFree'>LOCAL COLOR:</span> Local farm/shop requests your assistance with a brutal gang.</li>",
+	"<li><span class='localEventFree'>LOCAL COLOR:</span> Local \"militia\" requests your assistance collecting \"protection fees\".</li>",
 ];

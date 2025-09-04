@@ -56,7 +56,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Gamor Run",
 	"SpeedFactor": 0.9,
-	"Route": "Gamor,Merkat,Aridus,Charra,Aikhibba,Hoylin,Beris,Deneba,Chokan,Shador,Thokosia,Daalang,Circumtore,Rorak 4",
+	"Route": "Gamor,Merkat,Aridus,Charra,Aikhibba,Hoylin,Beris,Deneba,Chokan,Shador,Thokosia,Daalang,Circumtore,Rorak 4,Rorak 5",
 	"Junctions": "Corellian Run,Harrin Trade Corridor,Trax Tube,Bothan Run,Kaaga Run,Hollastin Run,Shag Pabol",
 },
 {
@@ -242,7 +242,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Intra-Sector Spur",
 	"SpeedFactor": 0.9,
-	"Route": "Reltooine,Knolstee,Kail,Craci,Jerrist VI,Biewa",
+	"Route": "Reltooine (gas giant),Knolstee,Kail,Craci,Jerrist VI,Biewa",
 	"Junctions": "Hydian Way,Authority Guardian Corridor,Solenbaran Merchant Route,Tertiary Solenbaran",
 },
 {
@@ -458,7 +458,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Shag Pabol",
 	"SpeedFactor": 0.9,
-	"Route": "Nal Hutta,Rorak 4,Diyu,Ylesia,Ziugen,Outland Transit,Lirra,Teth",
+	"Route": "Nal Hutta,Rorak 4,Rorak 5,Diyu,Ylesia,Ziugen,Outland Transit,Lirra,Teth",
 	"Junctions": "Oktos Route,Ootmian Pabol,Pabol Hutta,Gamor Run,The Sy-Y,Triellus Trade Route",
 },
 {

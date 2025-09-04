@@ -1,7 +1,14 @@
 // @TODO Rarity lower/higher based on number of trade routes available
-// @TODO Filter by starport type
-// @TODO Filter by black market
+// @TODO Filter by starport type https://starwars.fandom.com/wiki/Spaceport/Legends
+// @TODO Filter by black market https://starwars.fandom.com/wiki/Black_market
 // @TODO Filter by shadowport if certain equipment is installed
+// @TODO https://starwars.fandom.com/wiki/Prison https://starwars.fandom.com/wiki/Stars%27_End/Legends
+// @TODO https://starwars.fandom.com/wiki/Shadowport/Legends https://starwars.fandom.com/wiki/Category:Shadowports
+// @TODO galaxy map and links to specific (i.e., "A-1") location
+// @TODO boosts/setbacks/upgrades options per location; see
+//	https://starwars.fandom.com/wiki/Kala%27uun_Starport for example
+//	https://starwars.fandom.com/wiki/Sarkan/Legends#Society_and_culture
+
 
 // Globals
 currentLoc = {};
