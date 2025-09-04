@@ -37,39 +37,31 @@
 
 	<table border="2" width="100%">
 		<tr>
-			<td class="alignTop nowrap">
-				<div class="form-group" style="float: left;">
-					<label for="locationDropdown" id="locationDropdownLabel" class="fontStarWars">Location:
-						<select id="locationDropdown">
-							<option value="">-- Current Location --</option>
-						</select>
-					</label>
-				</div>
-				<div style="float: right;">
-					<a id="currentURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">unknown</a>
-				</div>
+			<td class="widthHalf margin0">
+				<label for="locationDropdown" id="locationDropdownLabel" class="fontStarWars">Location:
+					<select id="locationDropdown">
+						<option value="">-- Current Location --</option>
+					</select>
+				</label><br/>
+				<a id="currentURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">https://starwars.fandom.com/wiki/Planet/Legends</a>
 			</td>
-			<td class="alignTop nowrap">
-				<div class="form-group" style="float: left;">
-					<label for="destinationDropdown" id="destinationDropdownLabel" class="fontBesh">Destination:
-						<select id="destinationDropdown">
-							<option value="">-- Select Destination --</option>
-						</select>
-					</label>
-				</div>
-				<div style="float: right;">
-					<a id="destURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">unknown</a>
-				</div>
+			<td class="widthHalf margin0">
+				<label for="destinationDropdown" id="destinationDropdownLabel" class="fontBesh">Destination:
+					<select id="destinationDropdown">
+						<option value="">-- Select Destination --</option>
+					</select>
+				</label><br/>
+				<a id="destURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">https://starwars.fandom.com/wiki/Planet/Legends</a>
 			</td>
 		</tr>
 		<tr>
-			<td class="alignTop" style="colSpan: 2;">
-				<div id="locationDetails" class="section tooltip">
+			<td class="alignTop widthHalf margin0 colSpan2">
+				<div id="locationDetails" class="section tooltip widthHalf">
 					<span class="tooltiptext">
 					Known and reported details of your current location.
 					</span>
 					<h3>BoSS Database</h3>
-					<ul>
+					<ul class="locationDetailsList">
 						<li class="locationDetailsItem">
 							<strong>Region:</strong> <a id="currentRegionURL"
 								href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
@@ -95,21 +87,31 @@
 						</li>
 					</ul>
 					<h3>Atmosphere & Terrain</h3>
-					<ul>
+					<ul class="locationDetailsList">
 						<li class="locationDetailsItem">
-							<label for="currentAtmosphere" id="currentAtmosphereLabel">Atmosphere:</strong> <span id="currentAtmosphere">unknown</span>
+							<label for="currentAtmosphere" id="currentAtmosphereLabel">
+								Atmosphere: <span id="currentAtmosphere">unknown</span>
+							</label>
 						</li>
 						<li class="locationDetailsItem">
-							<strong>Terrain:</strong> <span id="currentTerrain">unknown</span>
+							<label for="currentAtmosphere" id="currentAtmosphereLabel">
+								Terrain: <span id="currentAtmosphere">unknown</span>
+							</label>
 						</li>
 						<li class="locationDetailsItem">
-							<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
+							<label for="currentClimate" id="currentClimateLabel">
+								Climate: <span id="currentClimate">unknown</span>
+							</label>
 						</li>
 						<li class="locationDetailsItem">
-							<strong>Climate:</strong> <span id="currentClimate">unknown</span>
+							<label for="currentGravity" id="currentGravityLabel">
+								Gravity: <span id="currentGravity">unknown</span>
+							</label>
 						</li>
 						<li class="locationDetailsItem">
-							<strong>Gravity:</strong> <span id="currentGravity">unknown</span>
+							<label for="currentInhabitants" id="currentInhabitantsLabel">
+								Inhabitants: <span id="currentInhabitants">unknown</span>
+							</label>
 						</li>
 					</ul>
 <!--
@@ -122,12 +124,13 @@
 -->
 				</div>
 			</td>
-			<td class="alignTop">
-				<div id="destinationDetails" class="section tooltip">
+			<td class="alignTop widthHalf margin0 colSpan2">
+				<div id="destinationDetails" class="section tooltip widthHalf">
 					<span class="tooltiptext">
 					Known and reported details of your Destination.
 					</span>
-					<ul>
+					<h3>BoSS Database</h3>
+					<ul class="locationDetailsList">
 						<li class="locationDetailsItem">
 							<strong>Region:</strong> <a id="destRegionURL"
 								href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
@@ -143,7 +146,7 @@
 							<strong>Capital City:</strong> <span id="destCapital">unknown</span>
 						</li>
 						<li class="locationDetailsItem">
-							<strong>Starport:</strong> <span id="destStarport">unknown</span>
+							<strong>Starport:</strong> <a href="https://starwars.fandom.com/wiki/Spaceport/Legends"><span id="destStarport">unknown</span></a>
 						</li>
 						<li class="locationDetailsItem">
 							<strong>Map:</strong> <span id="destMap">unknown</span><br/>
@@ -153,21 +156,31 @@
 						</li>
 					</ul>
 					<h3>Atmosphere & Terrain</h3>
-					<ul>
+					<ul class="locationDetailsList">
 						<li class="locationDetailsItem">
-							<label for="destAtmosphere" id="destAtmosphereLabel">Atmosphere:</strong> <span id="destAtmosphere">unknown</span>
+							<label for="destAtmosphere" id="destAtmosphereLabel">
+								Atmosphere: <span id="destAtmosphere">unknown</span>
+							</label>
 						</li>
 						<li class="locationDetailsItem">
-						<strong>Terrain:</strong> <span id="destTerrain">unknown</span>
+							<label for="destAtmosphere" id="destAtmosphereLabel">
+								Terrain: <span id="destAtmosphere">unknown</span>
+							</label>
 						</li>
 						<li class="locationDetailsItem">
-						<strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span>
+							<label for="destClimate" id="destClimateLabel">
+								Climate: <span id="destClimate">unknown</span>
+							</label>
 						</li>
 						<li class="locationDetailsItem">
-						<strong>Climate:</strong> <span id="destClimate">unknown</span>
+							<label for="destGravity" id="destGravityLabel">
+								Gravity: <span id="destGravity">unknown</span>
+							</label>
 						</li>
 						<li class="locationDetailsItem">
-						<strong>Gravity:</strong> <span id="destGravity">unknown</span>
+							<label for="destInhabitants" id="destInhabitantsLabel">
+								Inhabitants: <span id="destInhabitants">unknown</span>
+							</label>
 						</li>
 					</ul>
 					<h3>Hyperspace Travel</h3>

@@ -327,11 +327,9 @@ function updateDestDetails()
 		$('#destCapital').text(destLoc.CapitalCity);
 		$('#destMap').text(destLoc.Map);
 		updateDestAtmosphere();
-//		$('#destAtmosphere').text(destLoc.Atmosphere);
 		$('#destTerrain').text(destLoc.Terrain);
 		$('#destInhabitants').text(destLoc.Inhabitants);
 		$('#destClimate').text(destLoc.Climate);
-		const gravityT= gravityText(currentLoc.Gravity);
 		$('#destGravity').html(gravityText(destLoc.Gravity));
 		$('#destStarport').html(starportText(destLoc.Starport));
 		$('#destURL').attr('title', destLoc.Name);
