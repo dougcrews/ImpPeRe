@@ -91,23 +91,23 @@ function permitHTML(val, cost)
 	{
 		case -5:
 		case -4:
-			return '<span class="lawFelony">Felony</span> (Permit ' + rarityText(rarity + 2) + cost + 'cr)'; break;
+			return '<span class="law-felony">Felony</span> (Permit ' + rarityText(rarity + 2) + cost + 'cr)'; break;
 		case -3:
-			return '<span class="lawMisdemeanor">Misdemeanor</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+			return '<span class="law-misdemeanor">Misdemeanor</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
 		case -2:
-			return '<span class="lawInfraction">Infraction</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+			return '<span class="law-infraction">Infraction</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
 		case -1:
-			return '<span class="lawFrownedUpon">frowned on</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+			return '<span class="law-frowned-upon">frowned on</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
 		case 0:
-			return '<span class="lawTolerated">tolerated</span>'; break;
+			return '<span class="law-tolerated">tolerated</span>'; break;
 		case 1:
-			return '<span class="lawNoRestrictions">no restrictions</span>'; break;
+			return '<span class="law-no-restrictions">no restrictions</span>'; break;
 		case 2:
-			return '<span class="lawCommon">common</span>'; break;
+			return '<span class="law-common">common</span>'; break;
 		case 3:
 		case 4:
 		case 5:
-			return '<span class="lawRecommended">recommended</span>'; break;
+			return '<span class="law-recommended">recommended</span>'; break;
 		default:
 			return "ERROR: return invalid val in permitHTML()";
 	}
@@ -122,16 +122,16 @@ function legalityOf(val)
 	switch(sanitizeMinus5to5(saneVal))
 	{
 		case -5:
-		case -4: return '<span class="lawFelony">Felony</span>'; break;
-		case -3: return '<span class="lawMisdemeanor">Misdemeanor</span>'; break;
-		case -2: return '<span class="lawInfraction">Infraction</span>'; break;
-		case -1: return '<span class="lawFrownedUpon">frowned on</span>'; break;
-		case 0: return '<span class="lawTolerated">tolerated</span>'; break;
-		case 1: return '<span class="lawNoRestrictions">no restrictions</span>'; break;
+		case -4: return '<span class="law-felony">Felony</span>'; break;
+		case -3: return '<span class="law-misdemeanor">Misdemeanor</span>'; break;
+		case -2: return '<span class="law-infraction">Infraction</span>'; break;
+		case -1: return '<span class="law-frowned-upon">frowned on</span>'; break;
+		case 0: return '<span class="law-tolerated">tolerated</span>'; break;
+		case 1: return '<span class="law-no-restrictions">no restrictions</span>'; break;
 		case 2:
 		case 3:
 		case 4:
-		case 5: return '<span class="lawRecommended">recommended</span>'; break;
+		case 5: return '<span class="law-recommended">recommended</span>'; break;
 	}
 }
 
@@ -155,8 +155,8 @@ function starportText(val)
 // converts a number into a Gravity description
 function gravityText(val)
 {
-	if (val > 1.0) return '<span class="gravityHigh">High (' + val + ')</span>';
-	if (val < 1.0) return '<span class="gravityLow">Low (' + val + ')</span>';
+	if (val > 1.0) return '<span class="gravity-high">High (' + val + ')</span>';
+	if (val < 1.0) return '<span class="gravity-low">Low (' + val + ')</span>';
 	return 'Standard';
 }
 
@@ -165,22 +165,22 @@ function updateCurrentAtmosphere()
 {
 	$('#currentAtmosphere').text(currentLoc.Atmosphere);
 
-	$('#currentAtmosphere').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontNormal');
+	$('#currentAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4').addClass('font-normal');
 	if (currentLoc.Atmosphere === "Type IV")
 	{
-		$('#currentAtmosphere').addClass('atmos4');
+		$('#currentAtmosphere').addClass('atmos-4');
 	}
 	else if (currentLoc.Atmosphere === "Type III")
 	{
-		$('#currentAtmosphere').addClass('atmos3');
+		$('#currentAtmosphere').addClass('atmos-3');
 	}
 	else if (currentLoc.Atmosphere === "Type II")
 	{
-		$('#currentAtmosphere').addClass('atmos2');
+		$('#currentAtmosphere').addClass('atmos-2');
 	}
 	else if (currentLoc.Atmosphere === "Type I")
 	{
-		$('#currentAtmosphere').addClass('atmos1');
+		$('#currentAtmosphere').addClass('atmos-1');
 	}
 }
 
@@ -189,22 +189,22 @@ function updateDestAtmosphere()
 {
 	$('#destAtmosphere').text(destLoc.Atmosphere);
 
-	$('#destAtmosphere').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontNormal');;
+	$('#destAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4').addClass('font-normal');;
 	if (destLoc.Atmosphere === "Type IV")
 	{
-		$('#destAtmosphere').addClass('atmos4');
+		$('#destAtmosphere').addClass('atmos-4');
 	}
 	else if (destLoc.Atmosphere === "Type III")
 	{
-		$('#destAtmosphere').addClass('atmos3');
+		$('#destAtmosphere').addClass('atmos-3');
 	}
 	else if (destLoc.Atmosphere === "Type II")
 	{
-		$('#destAtmosphere').addClass('atmos2');
+		$('#destAtmosphere').addClass('atmos-2');
 	}
 	else if (destLoc.Atmosphere === "Type I")
 	{
-		$('#destAtmosphere').addClass('atmos1');
+		$('#destAtmosphere').addClass('atmos-1');
 	}
 }
 
@@ -232,7 +232,7 @@ function populateArrivalEvents(eventCount)
 {
 	for (ii = 0; ii < eventCount; ii++)
 	{
-		$("#localEvents").append(arrivalEvents[ii]);
+		$("#local-events").append(arrivalEvents[ii]);
 	}
 }
 
@@ -242,7 +242,7 @@ function populateEmpireEvents(eventCount)
 	for (ii = 0; ii < eventCount; ii++)
 	{
 		const newEvent = localEmpireEvents[Math.floor(Math.random() * localEmpireEvents.length)];
-		$("#localEvents").append(newEvent);
+		$("#local-events").append(newEvent);
 	}
 }
 
@@ -251,21 +251,21 @@ function populateOldWestEvents(eventCount)
 	for (ii = 0; ii < eventCount; ii++)
 	{
 		const newEvent = localOldWestEvents[Math.floor(Math.random() * localOldWestEvents.length)];
-		$("#localEvents").append(newEvent);
+		$("#local-events").append(newEvent);
 	}
 }
 
 function updateLocalEvents()
 {
 	// Reset local events
-	$("#localEvents").empty();
-	$("#localEvents").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
-	$("#localEvents").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
+	$("#local-events").empty();
+	$("#local-events").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
+	$("#local-events").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
 
 	// Plot Hooks
-	$("#localEvents").append("<li><span class='localEventFree'>HOT PLOOK Menu:</span> \"Psst. I got a job for you. Legal (well, mostly), easy, pays the rent, y'know? You in?\"</li>");
-	$("#localEvents").append("<li><span class='localEventFree'>HOT PLOOK Menu:</span> \"Psst. You look tough. Got a job, pays well for <em>'tough'</em>.\"</li>");
-	$("#localEvents").append("<li><span class='localEventFree'>HOT PLOOK Menu:</span> \"Psst. My client has an exclusive offer with a handsome payout. There is danger involved.\"</li>");
+	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK Menu:</span> \"Psst. I got a job for you. Legal (well, mostly), easy, pays the rent, y'know? You in?\"</li>");
+	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK Menu:</span> \"Psst. You look tough. Got a job, pays well for <em>'tough'</em>.\"</li>");
+	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK Menu:</span> \"Psst. My client has an exclusive offer with a handsome payout. There is danger involved.\"</li>");
 
 	// Arrival event
 	populateArrivalEvent();
@@ -554,8 +554,8 @@ function updateTravelEstimates()
 			destRouteList.split("<br/>").forEach(destRoute => {
 				if (currRoute == destRoute)
 				{
-					currentRouteList = currentRouteList.replace(currRoute, '<span class="matchedHyperlane">' + currRoute + '&nbsp;&gt;&gt;&gt;</span>');
-					destRouteList = destRouteList.replace(destRoute, '<span class="matchedHyperlane">&lt;&lt;&lt;&nbsp;' + destRoute + '</span>');
+					currentRouteList = currentRouteList.replace(currRoute, '<span class="matched-hyperlane">' + currRoute + '&nbsp;&gt;&gt;&gt;</span>');
+					destRouteList = destRouteList.replace(destRoute, '<span class="matched-hyperlane">&lt;&lt;&lt;&nbsp;' + destRoute + '</span>');
 					totalFactor *= 0.5;
 				}
 			});
@@ -579,48 +579,48 @@ function updateTravelEstimates()
 
 function cleanFonts()
 {
-	$('#body').removeClass('fontBesh fontStarWars fontNormal');
-	$('#locationDropdownLabel').removeClass('fontBesh fontStarWars fontNormal');
-	$('#destinationDropdownLabel').removeClass('fontBesh fontStarWars fontNormal');
-	$('#instructionsBox').removeClass('fontBesh fontStarWars fontNormal');
-	$('#localCustomsBoxHeader').removeClass('fontBesh fontStarWars fontNormal');
-	$('.manifestItem').removeClass('fontBesh fontStarWars fontNormal');
+	$('#body').removeClass('font-besh font-starwars font-normal');
+	$('#locationDropdownLabel').removeClass('font-besh font-starwars font-normal');
+	$('#destinationDropdownLabel').removeClass('font-besh font-starwars font-normal');
+	$('#instructions-box').removeClass('font-besh font-starwars font-normal');
+	$('#local-customs-box-header').removeClass('font-besh font-starwars font-normal');
+	$('.ship-manifest-item').removeClass('font-besh font-starwars font-normal');
 }
 
 // switch to Droidobesh (illegible) font
 function switchFontBesh()
 {
 	cleanFonts();
-	$('#body').addClass('fontBesh');
-	$('#locationDropdownLabel').addClass('fontStarWars');
-	$('#destinationDropdownLabel').addClass('fontBesh');
-	$('#instructionsBox').addClass('fontStarWars');
-	$('#localCustomsBoxHeader').addClass('fontStarWars');
-	$('.manifestItem').addClass('fontBesh');
+	$('#body').addClass('font-besh');
+	$('#locationDropdownLabel').addClass('font-starwars');
+	$('#destinationDropdownLabel').addClass('font-besh');
+	$('#instructions-box').addClass('font-starwars');
+	$('#local-customs-box-header').addClass('font-starwars');
+	$('.ship-manifest-item').addClass('font-besh');
 }
 
 // switch to StarWars (legible) font
 function switchFontStarWars()
 {
 	cleanFonts();
-	$('#body').addClass('fontStarWars');
-	$('#locationDropdownLabel').addClass('fontStarWars');
-	$('#destinationDropdownLabel').addClass('fontStarWars');
-	$('#instructionsBox').addClass('fontNormal');
-	$('#localCustomsBoxHeader').addClass('fontNormal');
-	$('.manifestItem').addClass('fontStarWars');
+	$('#body').addClass('font-starwars');
+	$('#locationDropdownLabel').addClass('font-starwars');
+	$('#destinationDropdownLabel').addClass('font-starwars');
+	$('#instructions-box').addClass('font-normal');
+	$('#local-customs-box-header').addClass('font-normal');
+	$('.ship-manifest-item').addClass('font-starwars');
 }
 
 // switch to Droidobesh (illegible) font
 function switchFontNormal()
 {
 	cleanFonts();
-	$('#body').addClass('fontNormal');
-	$('#locationDropdownLabel').addClass('fontNormal');
-	$('#destinationDropdownLabel').addClass('fontNormal');
-	$('#instructionsBox').addClass('fontNormal');
-	$('#localCustomsBoxHeader').addClass('fontNormal');
-	$('.manifestItem').addClass('fontNormal');
+	$('#body').addClass('font-normal');
+	$('#locationDropdownLabel').addClass('font-normal');
+	$('#destinationDropdownLabel').addClass('font-normal');
+	$('#instructions-box').addClass('font-normal');
+	$('#local-customs-box-header').addClass('font-normal');
+	$('.ship-manifest-item').addClass('font-normal');
 }
 
 function toGalactipediaURL(name)

@@ -58,165 +58,14 @@ pre {
 	color: #00ffcc; /* teal output text */
 }
 
-.section {
-	border: 1px solid #555;
-	border-radius: 6px;
-	margin-bottom: 15px;
-	padding: 10px;
-	display: table-cell;
-	background-color: #3a3a3a; /* slightly lighter dark grey */
-	vertical-align: top;
-}
-.fontNormal {
-	font-family: Century Gothic, sans-serif;
-}
-.fontStarWars {
-	font-family: StarWars, sans-serif;
-}
-.fontBesh {
-	font-family: Droidobesh, sans-serif;
-}
-.form-group {
-	margin-bottom: 15px;
-}
-.widthFullscreen {
-	width: 95vw;
-}
-.widthFull {
-	width: 100%;
-}
-.widthHalf {
-	width: 50%;
-}
-.colSpan2 {
-	colSpan: 2;
-}
-.margin0 {
-	margin: 0px;
-}
-.alignLeft {
-	text-align: left;
-}
-.alignRight {
-	text-align: right;
-}
-.alignTop {
-	vertical-align:top;
-}
-.alignMiddle {
-	vertical-align:middle;
-}
-.flex-container {
-	display: flex;
-	flex-wrap: wrap;
-}
-.boxAround {
-	border: solid grey 3px;
-	width: fit-content;
-	padding: 2px;
-}
-.smaller {
+#starportHeader {
 	font-size: smaller;
-	text-align: center;
-}
-.localEventFree {
-	font-weight: bold;
-	background-color: green;
-}
-.localEventDestinyOptional {
-	font-weight: bold;
-	background-color: orange;
-}
-.localEventDestinyRequired {
-	font-weight: bold;
-	background-color: red;
-}
-.localCustomsBox {
-	vertical-align: top;
-	display: block;
-	margin: 10px;
-	padding: 10px;
-	border: 5px solid grey;
-	background-color: black;
-}
-.localCustomsBoxHeader {
-	text-align: center;
-	margin-top: 5px;
-	margin-bottom: 0px;
-}
-.instructionsBox {
-	vertical-align: top;
-	display: block;
-	margin: 10px;
-	padding: 10px;
-	border: 5px solid grey;
-	background-color: black;
-}
-.localEvents {
-	vertical-align: top;
-	display: block;
-}
-.matchedHyperlane {
-	color: green;
-	font-weight: bold;
-}
-.gravityHigh {
-	color: red;
-	font-weight: bolder;
-}
-.gravityLow {
-	color: aquamarine;
-	font-weight: lighter;
-}
-.manifestItem {
-	display: inline-block;
-}
-.locationDetailsList {
-	display: inline-grid;
-}
-.locationDetailsItem {
-	display: inline-block;
-}
-.nowrap {
-	white-space: nowrap;
-}
-.silhouette5plus {
-	color: red;
-}
-.silhouette5plus:after {
-	content: " (commercial/military starport rates apply)";
-}
-.atmos4 {
-	color: fuchsia;
-}
-.atmos4:after {
-	content: " (Environment Suit required)";
-}
-.atmos3 {
-	color: red;
-}
-.atmos3:after {
-	content: " (Breath Mask essential)";
-}
-.atmos2 {
-	color: orange;
-}
-.atmos2:after {
-	content: " (Breath Mask recommended)";
-}
-.atmos1 {
-}
-.atmos1:after {
-	content: " (Breathable)";
 }
 
-/* Tooltip container */
 .tooltip {
   position: relative;
   /* border-bottom: 1px dotted black; dots under the hoverable text */
 }
-
-/* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
   background-color: black;
@@ -231,36 +80,182 @@ pre {
   position: absolute;
   z-index: 1;
 }
-
-#starportHeader {
-	font-size: smaller;
-}
-
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
-.lawFelony {
+.section {
+	border: 1px solid #555;
+	border-radius: 6px;
+	margin-bottom: 15px;
+	padding: 10px;
+	display: table-cell;
+	background-color: #3a3a3a; /* slightly lighter dark grey */
+	vertical-align: top;
+}
+.font-normal {
+	font-family: Century Gothic, sans-serif;
+}
+.font-starwars {
+	font-family: StarWars, sans-serif;
+}
+.font-besh {
+	font-family: Droidobesh, sans-serif;
+}
+.form-group {
+	margin-bottom: 15px;
+}
+.width-fullscreen {
+	width: 95vw;
+}
+.width-full {
+	width: 100%;
+}
+.width-half {
+	width: 50%;
+}
+.colspan-2 {
+	colSpan: 2;
+}
+.margin-0 {
+	margin: 0px;
+}
+.align-left {
+	text-align: left;
+}
+.align-right {
+	text-align: right;
+}
+.align-top {
+	vertical-align:top;
+}
+.align-middle {
+	vertical-align:middle;
+}
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+.box-around {
+	border: solid grey 3px;
+	width: fit-content;
+	padding: 2px;
+}
+.smaller {
+	font-size: smaller;
+	text-align: center;
+}
+.local-event-free {
+	font-weight: bold;
+	background-color: green;
+}
+.local-event-destiny-optional {
+	font-weight: bold;
+	background-color: orange;
+}
+.local-event-destiny-required {
+	font-weight: bold;
+	background-color: red;
+}
+.local-customs-box {
+	vertical-align: top;
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	border: 5px solid grey;
+	background-color: black;
+}
+.local-customs-box-header {
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+.instructions-box {
+	vertical-align: top;
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	border: 5px solid grey;
+	background-color: black;
+}
+.local-events {
+	vertical-align: top;
+	display: block;
+}
+.matched-hyperlane {
+	color: green;
+	font-weight: bold;
+}
+.gravity-high {
+	color: red;
+	font-weight: bolder;
+}
+.gravity-low {
+	color: aquamarine;
+	font-weight: lighter;
+}
+.ship-manifest-item {
+	display: inline-block;
+}
+.location-details-list {
+	display: inline-grid;
+}
+.location-details-item {
+	display: inline-block;
+}
+.nowrap {
+	white-space: nowrap;
+}
+.silhouette-5-plus {
 	color: red;
 }
-.lawMisdemeanor {
+.silhouette-5-plus:after {
+	content: " (commercial/military starport rates apply)";
+}
+.atmos-4 {
+	color: fuchsia;
+}
+.atmos-4:after {
+	content: " (Environment Suit required)";
+}
+.atmos-3 {
+	color: red;
+}
+.atmos-3:after {
+	content: " (Breath Mask essential)";
+}
+.atmos-2 {
+	color: orange;
+}
+.atmos-2:after {
+	content: " (Breath Mask recommended)";
+}
+.atmos-1 {
+}
+.atmos-1:after {
+	content: " (Breathable)";
+}
+.law-felony {
+	color: red;
+}
+.law-misdemeanor {
 	color: yellow;
 }
-.lawInfraction {
+.law-infraction {
 	color: aquamarine;
 }
-.lawFrownedUpon {
+.law-frowned-upon {
 	color: burlywood;
 }
-.lawTolerated {
+.law-tolerated {
 	color: darkkhaki;
 }
-.lawNoRestrictions {
+.law-no-restrictions {
 	color: darkolivegreen;
 }
-.lawCommon {
+.law-common {
 	color: darkseagreen;
 }
-.lawRecommended {
+.law-recommended {
 	color: chartreuse;
 }

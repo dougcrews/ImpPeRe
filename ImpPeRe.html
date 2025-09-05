@@ -15,20 +15,20 @@
 
 <body id='body'>
 
-	<h2 id="mainHeader" class="fontStarWars">Imperial Penal Report</h2>
-	<button onclick="switchFontBesh()" class="fontBesh tooltip">
+	<h2 id="mainHeader" class="font-starwars">Imperial Penal Report</h2>
+	<button onclick="switchFontBesh()" class="font-besh tooltip">
 		Aurebesh
 		<span class="tooltiptext">
 		Switch to Aurebesh font.
 		</span>
 	</button>
-	<button onclick="switchFontStarWars()" class="fontStarWars tooltip">
+	<button onclick="switchFontStarWars()" class="font-starwars tooltip">
 		Galactic Basic
 		<span class="tooltiptext">
 		Switch to Star Wars font.
 		</span>
 	</button>
-	<button onclick="switchFontNormal()" class="fontNormal tooltip">
+	<button onclick="switchFontNormal()" class="font-normal tooltip">
 		En'glsh
 		<span class="tooltiptext">
 		Switch to normal font.
@@ -37,16 +37,16 @@
 
 	<table border="2" width="100%">
 		<tr>
-			<td class="widthHalf margin0">
-				<label for="locationDropdown" id="locationDropdownLabel" class="fontStarWars">Location:
+			<td class="width-half margin-0">
+				<label for="locationDropdown" id="locationDropdownLabel" class="font-starwars">Location:
 					<select id="locationDropdown">
 						<option value="">-- Current Location --</option>
 					</select>
 				</label><br/>
 				<a id="currentURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">https://starwars.fandom.com/wiki/Planet/Legends</a>
 			</td>
-			<td class="widthHalf margin0">
-				<label for="destinationDropdown" id="destinationDropdownLabel" class="fontBesh">Destination:
+			<td class="width-half margin-0">
+				<label for="destinationDropdown" id="destinationDropdownLabel" class="font-besh">Destination:
 					<select id="destinationDropdown">
 						<option value="">-- Select Destination --</option>
 					</select>
@@ -55,54 +55,54 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="alignTop widthHalf margin0 colSpan2">
-				<div id="locationDetails" class="section tooltip widthHalf">
+			<td class="align-top width-half margin-0 colspan-2">
+				<div id="locationDetails" class="section tooltip width-half">
 					<span class="tooltiptext">
 					Known and reported details of your current location.
 					</span>
 					<h3>BoSS Database</h3>
 					<div class="flex-container">
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Region:</strong> <a id="currentRegionURL"
 								href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
 								target="_blank"><span id="currentRegion">unknown</span></a>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Sector:</strong> <span id="currentSector">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>System:</strong> <span id="currentSystem">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Capital City:</strong> <span id="currentCapital">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Starport:</strong> <a href="https://starwars.fandom.com/wiki/Spaceport/Legends"><span id="currentStarport">unknown</span></a>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Map:</strong> <span id="currentMap">unknown</span>
 						</div>
 					</div>
 					<div class="flex-container">
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Hyperlanes:</strong> <pre id="currentHyperlanes">unknown</pre>
 						</div>
 					</div>
 					<h3>Atmosphere & Terrain</h3>
 					<div class="flex-container">
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Terrain:</strong> <span id="currentTerrain">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Climate:</strong> <span id="currentClimate">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Gravity:</strong> <span id="currentGravity">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
 						</div>
 <!--
@@ -115,60 +115,60 @@
 					</div>
 				</div>
 			</td>
-			<td class="alignTop widthHalf margin0 colSpan2">
-				<div id="destinationDetails" class="section tooltip widthHalf">
+			<td class="align-top width-half margin-0 colspan-2">
+				<div id="destinationDetails" class="section tooltip width-half">
 					<span class="tooltiptext">
 					Known and reported details of your Destination.
 					</span>
 					<h3>BoSS Database</h3>
 					<div class="flex-container">
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Region:</strong> <a id="destRegionURL"
 								href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
 								target="_blank"><span id="destRegion">unknown</span></a>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Sector:</strong> <span id="destSector">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>System:</strong> <span id="destSystem">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Capital City:</strong> <span id="destCapital">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Starport:</strong> <a href="https://starwars.fandom.com/wiki/Spaceport/Legends"><span id="destStarport">unknown</span></a>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Map:</strong> <span id="destMap">unknown</span>
 						</div>
 					</div>
 					<div class="flex-container">
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Hyperlanes:</strong> <pre id="destHyperlanes">unknown</pre>
 						</div>
 					</div>
 					<h3>Atmosphere & Terrain</h3>
 					<div class="flex-container">
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Atmosphere:</strong> <span id="destAtmosphere">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Terrain:</strong> <span id="destTerrain">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Climate:</strong> <span id="destClimate">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Gravity:</strong> <span id="destGravity">unknown</span>
 						</div>
-						<div class="boxAround">
+						<div class="box-around">
 							<strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span>
 						</div>
 					</div>
 					<h3>Hyperlane Travel</h3>
 					<div class="flex-container">
-						<div class="boxAround">
+						<div class="box-around">
 							<div>
 								<strong>Estimated Travel Time</strong> (factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>): <span id="estHyperspaceTime">calculating...</span><br/>
 							</div>
@@ -187,19 +187,19 @@
 				<p>
 					<div class="nowrap tooltip">
 						<ul>
-							<li class="manifestItem">
+							<li class="ship-manifest-item">
 								<h2 style="margin-right: 50px;">Ship Manifest</h2>
 							</li>
-							<li class="manifestItem">
+							<li class="ship-manifest-item">
 								<label for="silh" id="silhLabel">
 									Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"><span id="silh5plus"></span></input>
 								</label>
 							</li>
-							<li class="manifestItem">
+							<li class="ship-manifest-item">
 								<label for="hyperdrive">
 									Hyperdrive: Class <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" defaultValue="15"></input>
 								</label>
-							<li class="manifestItem">
+							<li class="ship-manifest-item">
 								<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" defaultValue="0"></input>cr</label>
 							</li>
 							</li>
@@ -215,12 +215,12 @@
 
 	<table border="2" width="100%">
 		<tr><!-- Imperial Presence -->
-			<td class="alignMiddle">
-				<div class="localCustomsBox tooltip">
+			<td class="align-middle">
+				<div class="local-customs-box tooltip">
 					<span class="tooltiptext">
 					Last reported starport fees for this location. Consult your Game Master.
 					</span>
-					<h3 class="localCustomsBoxHeader">Starport <span id="starportHeader"></span></h3>
+					<h3 class="local-customs-box-header">Starport <span id="starportHeader"></span></h3>
 					<strong>Landing Fee:</strong> <span id="textFeePortLanding"></span><br/>
 					<strong>Berthing Fee (per day):</strong> <span id="textFeePortBerthing"></span><br/>
 					<strong>Customs Fee:</strong> <span id="textFeeCustoms"></span><br/>
@@ -228,11 +228,11 @@
 					<strong>Departure Wait:</strong> <span id="textWaitDeparture"></span><br/>
 					<center><strong>Smuggling Penalty: Confiscation + 20% contraband value</span></center>
 				</div>
-				<div class="localCustomsBox tooltip">
+				<div class="local-customs-box tooltip">
 					<span class="tooltiptext">
 					Last reported local restrictions on weapons and armor at this location. Consult your Game Master.
 					</span>
-					<h3 class="localCustomsBoxHeader">Weapon Permits</h3>
+					<h3 class="local-customs-box-header">Weapon Permits</h3>
 					<strong>Concealed:</strong> <span id="textPermitWeaponConcealed"></span><br/>
 					<strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span><br/>
 					<strong>Rifles, Large Melee:</strong> <span id="textPermitWeaponRifle"></span><br/>
@@ -241,11 +241,11 @@
 					<strong>Power Armor:</strong> <span id="textPermitArmorPower"></span><br/>
 					<center><strong>Violations: Confiscation + 200% of permit fee</strong><br/></center>
 				</div>
-				<div class="localCustomsBox tooltip">
+				<div class="local-customs-box tooltip">
 					<span class="tooltiptext">
 					Last reported local laws for this location. Consult your Game Master.
 					</span>
-					<h3 class="localCustomsBoxHeader">Contraband</h3>
+					<h3 class="local-customs-box-header">Contraband</h3>
 					<strong>Spice:</strong> <span id="textLawSpice"></span><br/>
 					<strong>Trespassing:</strong> <span id="textLawTrespassing"></span><br/>
 					<strong>Military Gear:</strong> <span id="textLawMilitary"></span><br/>
@@ -256,17 +256,17 @@
 					<strong>Bribery:</strong> <span id="textLawBribery"></span>
 				</div>
 			</td>
-			<td class="localEvents">
-				<h4 class="localCustomsBoxHeader fontStarWars">Local Events reported at <span id="localEventsLocation">your location</span></h4>
+			<td class="local-events">
+				<h4 class="local-customs-box-header font-starwars">Local Events reported at <span id="local-eventsLocation">your location</span></h4>
 				<div class="tooltip">
 					<span class="tooltiptext">
 					See the Suggested Usage below. These are all SUGGESTIONS to enhance the story. Nothing is required.
 					</span>
-					<ul id="localEvents" class="fontNormal">
+					<ul id="local-events" class="font-normal">
 						<center>(select a Location at top left)</center>
 					</ul><!-- populated dynamically -->
 				</div>
-				<div id="instructionsBox" class="instructionsBox fontStarWars tooltip"><strong>Suggested Usage:</strong>
+				<div id="instructions-box" class="instructions-box font-starwars tooltip"><strong>Suggested Usage:</strong>
 					<span class="tooltiptext">
 					First step is to choose a Location (not Destination) from the dropdown at top left.<br/>
 					This populates the details for that location and some random local events which can be optionally chosen.<br/>
@@ -278,12 +278,12 @@
 						<li>Each local event is a <i>possibility</i>, a <i>rumor</i>, to enhance the narrative. <b>Nothing is required.</b> Use what makes sense and prompts a better story.</li>
 						<li>During their stay in the system, each PC may, at any time, choose to select <em>up to one local event</em> to <em>activate</em> or <em>negate</em> the event for the duration of their stay.</li>
 						<li>A local event, once chosen, is unavailable for further actions.</li>
-						<li><span class="localEventFree">Free Events</span> may be activated or negated for the duration of stay <i>at no cost</i>, limited to one per player.</li>
-						<li><span class="localEventDestinyRequired">Destiny Required Events</span> always require a Destiny Point to activate or negate.</li>
-						<li><span class="localEventDestinyOptional">Destiny Optional Events</span> can apply for one transaction only at no cost, or a Destiny Point may be used to create a permanent NPC.</li>
-						<li><span class="localEventDestinyOptional">Destiny Optional Event</span>-created permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this location and able to perform the chosen service at no future cost by any PC.</li>
+						<li><span class="local-event-free">Free Events</span> may be activated or negated for the duration of stay <i>at no cost</i>, limited to one per player.</li>
+						<li><span class="local-event-destiny-required">Destiny Required Events</span> always require a Destiny Point to activate or negate.</li>
+						<li><span class="local-event-destiny-optional">Destiny Optional Events</span> can apply for one transaction only at no cost, or a Destiny Point may be used to create a permanent NPC.</li>
+						<li><span class="local-event-destiny-optional">Destiny Optional Event</span>-created permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this location and able to perform the chosen service at no future cost by any PC.</li>
 						<li>The GM may, at their discretion, not allow NPCs or events to be found in locations where it doesn't make sense.</li>
-						<li>Upon system arrival, and after the party has chosen whether to select any events initially, the GM may spend a Destiny Point on up to one <span class="localEventDestinyRequired">Destiny Required Event</span> to activate or negate, and as many <span class="localEventFree">Free Events</span> as creates a good story.</li>
+						<li>Upon system arrival, and after the party has chosen whether to select any events initially, the GM may spend a Destiny Point on up to one <span class="local-event-destiny-required">Destiny Required Event</span> to activate or negate, and as many <span class="local-event-free">Free Events</span> as creates a good story.</li>
 						<li>Expect Imperial presence to be higher near the Core, and weapons laws to be looser nearer or past the Outer Rim.</li>
 						<li>Capital Ships (silhouette 5+) pay substantially higher Starport costs.</li>
 						<li>Upon departure, all local events and NPCs not made permanent via Destiny Points are reset.</li>
@@ -302,11 +302,11 @@
 
 			if (shipSilh > 4) // Commercial/Military size
 			{
-				$('#silhLabel').addClass("silhouette5plus");
+				$('#silhLabel').addClass("silhouette-5-plus");
 			}
 			else
 			{
-				$('#silhLabel').removeClass("silhouette5plus");
+				$('#silhLabel').removeClass("silhouette-5-plus");
 			}
 
 			updateLocalCustoms();
@@ -348,7 +348,7 @@
 				const currentLocation = $("#locationDropdown").val();
 				currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 				currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
-				$('#localEventsLocation').text(currentLocation);
+				$('#local-eventsLocation').text(currentLocation);
 
 				updateCurrentDetails();
 
