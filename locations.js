@@ -972,7 +972,7 @@ const locations = [
 	"Gravity": 1,
 	"Inhabitants": "Various",
 	"CapitalCity": "Galactic City",
-	"URL": "https://starwars.fandom.com/wiki/Coruscant",
+	"URL": "https://starwars.fandom.com/wiki/Coruscant/Legends",
 	"Starport": "5", // Coruscant!
 	"Shadowport": false,
 	"BlackMarket": false,
@@ -1602,7 +1602,7 @@ const locations = [
 	"Gravity": 1,
 	"Inhabitants": "",
 	"CapitalCity": "Citadel",
-	"URL": "https://starwars.fandom.com/wiki/Gamor/",
+	"URL": "https://starwars.fandom.com/wiki/Gamor",
 	"Starport": 4, // 100 billion population
 	"Shadowport": false,
 	"BlackMarket": false,
@@ -1632,7 +1632,7 @@ const locations = [
 	"Gravity": 1,
 	"Inhabitants": "Gamorreans",
 	"CapitalCity": "Citadel",
-	"URL": "https://starwars.fandom.com/wiki/Gamorr/",
+	"URL": "https://starwars.fandom.com/wiki/Gamorr",
 	"Starport": 4, // 100 billion population
 	"Shadowport": false,
 	"BlackMarket": false,
@@ -2022,7 +2022,7 @@ const locations = [
 	"Gravity": 1.0,
 	"Inhabitants": "(none)",
 	"CapitalCity": "Lungru's summer palace ruins",
-	"URL": "https://starwars.fandom.com/wiki/",
+	"URL": "https://starwars.fandom.com/wiki/Joodrudda",
 	"Starport": 0, // barren, nearly uninhabited
 	"Shadowport": false,
 	"BlackMarket": false,
@@ -2652,7 +2652,7 @@ const locations = [
 	"Gravity": 1, // mining stations
 	"Inhabitants": "(varied)",
 	"CapitalCity": "night side mining stations",
-	"URL": "https://starwars.fandom.com/wiki/",
+	"URL": "https://starwars.fandom.com/wiki/Lythos_I",
 	"Starport": 2, // mining stations
 	"Shadowport": false,
 	"BlackMarket": false,
@@ -3073,7 +3073,7 @@ const locations = [
 	"Gravity": 1.0,
 	"Inhabitants": "",
 	"CapitalCity": "Namadii",
-	"URL": "https://starwars.fandom.com/wiki/",
+	"URL": "https://starwars.fandom.com/wiki/Namadii/Legends",
 	"Starport": 2, // population 10 million max
 	"Shadowport": false,
 	"BlackMarket": false,
@@ -3703,7 +3703,7 @@ const locations = [
 	"Gravity": 1.0,
 	"Inhabitants": "Randoni,Bimms,Bothans,Lantillians,Lanniks,Wookiees",
 	"CapitalCity": "urban,skyscrapers",
-	"URL": "https://starwars.fandom.com/wiki/",
+	"URL": "https://starwars.fandom.com/wiki/Randon/Legends",
 	"Starport": 4, // intersection of 4 trade routes
 	"Shadowport": false,
 	"BlackMarket": false,
@@ -4813,7 +4813,7 @@ const locations = [
 	"Gravity": 1.0,
 	"Inhabitants": "(varied)",
 	"CapitalCity": "Uviuy Exen",
-	"URL": "https://starwars.fandom.com/wiki/",
+	"URL": "https://starwars.fandom.com/wiki/Uviuy_Exen/Legends",
 	"Starport": 2, // population 1 billion
 	"Shadowport": false,
 	"BlackMarket": false,

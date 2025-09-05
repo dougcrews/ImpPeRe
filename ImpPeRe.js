@@ -165,22 +165,22 @@ function updateCurrentAtmosphere()
 {
 	$('#currentAtmosphere').text(currentLoc.Atmosphere);
 
-	$('#currentAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontNormal');
+	$('#currentAtmosphere').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontNormal');
 	if (currentLoc.Atmosphere === "Type IV")
 	{
-		$('#currentAtmosphereLabel').addClass('atmos4');
+		$('#currentAtmosphere').addClass('atmos4');
 	}
 	else if (currentLoc.Atmosphere === "Type III")
 	{
-		$('#currentAtmosphereLabel').addClass('atmos3');
+		$('#currentAtmosphere').addClass('atmos3');
 	}
 	else if (currentLoc.Atmosphere === "Type II")
 	{
-		$('#currentAtmosphereLabel').addClass('atmos2');
+		$('#currentAtmosphere').addClass('atmos2');
 	}
 	else if (currentLoc.Atmosphere === "Type I")
 	{
-		$('#currentAtmosphereLabel').addClass('atmos1');
+		$('#currentAtmosphere').addClass('atmos1');
 	}
 }
 
@@ -189,22 +189,22 @@ function updateDestAtmosphere()
 {
 	$('#destAtmosphere').text(destLoc.Atmosphere);
 
-	$('#destAtmosphereLabel').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontNormal');;
+	$('#destAtmosphere').removeClass('atmos1 atmos2 atmost3 atmos4').addClass('fontNormal');;
 	if (destLoc.Atmosphere === "Type IV")
 	{
-		$('#destAtmosphereLabel').addClass('atmos4');
+		$('#destAtmosphere').addClass('atmos4');
 	}
 	else if (destLoc.Atmosphere === "Type III")
 	{
-		$('#destAtmosphereLabel').addClass('atmos3');
+		$('#destAtmosphere').addClass('atmos3');
 	}
 	else if (destLoc.Atmosphere === "Type II")
 	{
-		$('#destAtmosphereLabel').addClass('atmos2');
+		$('#destAtmosphere').addClass('atmos2');
 	}
 	else if (destLoc.Atmosphere === "Type I")
 	{
-		$('#destAtmosphereLabel').addClass('atmos1');
+		$('#destAtmosphere').addClass('atmos1');
 	}
 }
 
@@ -513,7 +513,7 @@ function updateTravelEstimates()
 {
 	totalFactor = 1.0;
 
-	// Find Hyperspace Lanes available for current location
+	// Find Hyperlanes available for current location
 	currentRouteList = "";
 	if (currentLoc)
 	{
@@ -530,7 +530,7 @@ function updateTravelEstimates()
 		});
 	}
 
-	// Find Hyperspace Lanes available for destination
+	// Find Hyperlanes available for destination
 	destRouteList = "";
 	if (destLoc)
 	{
@@ -562,8 +562,8 @@ function updateTravelEstimates()
 		});
 	}
 
-	$('#currentHyperspaceLanes').html(currentRouteList);
-	$('#destHyperspaceLanes').html(destRouteList);
+	$('#currentHyperlanes').html(currentRouteList);
+	$('#destHyperlanes').html(destRouteList);
 
 	// Fly Casual pg78
 	if (currentLoc.Map && destLoc.Map)

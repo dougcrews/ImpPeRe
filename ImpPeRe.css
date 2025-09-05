@@ -106,6 +106,19 @@ pre {
 .alignMiddle {
 	vertical-align:middle;
 }
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+.boxAround {
+	border: solid grey 3px;
+	width: fit-content;
+	padding: 2px;
+}
+.smaller {
+	font-size: smaller;
+	text-align: center;
+}
 .localEventFree {
 	font-weight: bold;
 	background-color: green;
@@ -158,6 +171,9 @@ pre {
 .manifestItem {
 	display: inline-block;
 }
+.locationDetailsList {
+	display: inline-grid;
+}
 .locationDetailsItem {
 	display: inline-block;
 }
@@ -171,7 +187,7 @@ pre {
 	content: " (commercial/military starport rates apply)";
 }
 .atmos4 {
-	color: maroon;
+	color: fuchsia;
 }
 .atmos4:after {
 	content: " (Environment Suit required)";
@@ -247,7 +263,4 @@ pre {
 }
 .lawRecommended {
 	color: chartreuse;
-}
-.locationDetailsList {
-	display: inline-grid;
 }
