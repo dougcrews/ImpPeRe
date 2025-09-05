@@ -921,7 +921,7 @@ const locations = [
 	"OldWestiness": -2, // important Core Worlds planet
 	"Megafauna": -5, // important Core Worlds planet
 	"Rarity": 0,
-	"Criticism": 4, // important Core Worlds planet
+	"Criticism": -1, // important Core Worlds planet
 	"Slavery": 0,
 	"Spice": 0,
 	"Trespassing": 0,

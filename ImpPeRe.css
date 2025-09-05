@@ -141,10 +141,13 @@ pre {
 	width: fit-content;
 	padding: 2px;
 }
-.smaller {
+.reference-note {
 	font-size: smaller;
 	text-align: center;
 }
+.smaller {
+	font-size: smaller;
+}	
 .local-event-free {
 	font-weight: bold;
 	background-color: green;
