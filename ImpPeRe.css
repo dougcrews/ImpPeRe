@@ -262,3 +262,17 @@ pre {
 .law-recommended {
 	color: chartreuse;
 }
+.starwars-dice {
+  border: solid white 2px;
+  width: fit-content;
+  padding: 0px 5px 0px 5px;
+  font-weight: bold;
+}
+.boost {
+  background-color: lightblue;
+  color: black;
+}
+.setback {
+  background-color: black;
+  color: white;
+}

@@ -1358,7 +1358,7 @@ const locations = [
 	"Map": "S-4",
 	"Atmosphere": "Type I",
 	"Climate": "hot,stormy",
-	"Terrain": "plains,shallos seas",
+	"Terrain": "plains,shallow seas",
 	"Gravity": 1.1, // dense
 	"Inhabitants": "Humans,Etti,Rakririan",
 	"CapitalCity": "Mondder",
@@ -4395,8 +4395,8 @@ const locations = [
 	"CapitalCity": "Big Meet,Hutt District,Circuit City,Little Kashyyk,New Coruscant,The Hive,Maintenance Distict",
 	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
 	"Starport": 3, // pirate shadowport
-	"Shadowport": true,
-	"BlackMarket": false,
+	"Shadowport": true, // cause I say so
+	"BlackMarket": true, // cause I say so
 	"Precipitation": 0, // space station
 	"ImperialPresence": -5, // pirate shadowport
 	"OldWestiness": 3, // pirates
@@ -4611,6 +4611,36 @@ const locations = [
 	"ImperialPresence": 0,
 	"OldWestiness": 0,
 	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Toydaria",
+	"Region": "Hutt Space",
+	"Sector": "The Slice",
+	"System": "Toydaria",
+	"Map": "R-11",
+	"Atmosphere": "Type I",
+	"Climate": "temperate,monsoons",
+	"Terrain": "swamp,lake",
+	"Gravity": 1.0,
+	"Inhabitants": "Toydarians",
+	"CapitalCity": "Toydor",
+	"URL": "https://starwars.fandom.com/wiki/Toydaria/Legends",
+	"Starport": 2, // population 11 million
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 1,
+	"ImperialPresence": 0,
+	"OldWestiness": 1, // speeders illegal
+	"Megafauna": 1, // grabworms & sharoyns & black gabaki, oh my!
 	"Rarity": 0,
 	"Criticism": 0,
 	"Slavery": 0,
