@@ -105,6 +105,9 @@ pre {
 .form-group {
 	margin-bottom: 15px;
 }
+.highlight {
+	color: orangered;
+}
 .width-fullscreen {
 	width: 95vw;
 }
@@ -263,10 +266,11 @@ pre {
 	color: chartreuse;
 }
 .starwars-dice {
-  border: solid white 2px;
+  border: solid white 1px;
   width: fit-content;
-  padding: 0px 5px 0px 5px;
+  padding: 0px 4px 0px 4px;
   font-weight: bold;
+  font-size: smaller;
 }
 .boost {
   background-color: lightblue;

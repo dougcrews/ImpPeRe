@@ -120,4 +120,5 @@ const localOldWestEvents = [
 	'<li><span class="local-event-free">LOCAL COLOR:</span> Fuel Shortage. Riding beasts are the way to go until something is done.</li>',
 	'<li><span class="local-event-free">LOCAL COLOR:</span> Local farm/shop requests your assistance with a brutal gang.</li>',
 	'<li><span class="local-event-free">LOCAL COLOR:</span> Local "militia" requests your assistance collecting "protection fees".</li>',
+	'<li><span class="local-event-free">LOCAL COLOR:</span> "My friend says he doesn\'t like you. <i><em>I</em></i> don\'t like you either."</li>',
 ];

@@ -84,14 +84,14 @@ function rarityText(val)
 }
 
 // Converts a number to display value for weapon/armor permits
-function permitHTML(val, cost)
+function permitHTML(val, cost, rarityMod)
 {
-	const rarity = sanitizeMinus5to5(val);
+	const rarity = sanitizeMinus5to5(rarityMod);
 	switch(sanitizeMinus5to5(val))
 	{
 		case -5:
 		case -4:
-			return '<span class="law-felony">Felony</span> (Permit ' + rarityText(rarity + 2) + cost + 'cr)'; break;
+			return '<span class="law-felony">Felony</span> (Permit ' + rarityText(rarity + 2) + (cost * 5).toFixed(0) + 'cr)'; break;
 		case -3:
 			return '<span class="law-misdemeanor">Misdemeanor</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
 		case -2:
@@ -222,9 +222,9 @@ function populateArrivalEvent() {
 	}
 	$("#arrivalEvent").text(arrivalEvent);
 
-	const localWeather = "unknown"; // @FIX
-	const localTerrain = "some starport"; // @FIX
-	$("#localWeather").text(localWeather + ", " + localTerrain);
+//	const localWeather = "unknown"; // @FIX
+//	const localTerrain = "some starport"; // @FIX
+//	$("#localWeather").text(localWeather + ", " + localTerrain);
 }
 
 // Arrival in system events
@@ -260,12 +260,22 @@ function updateLocalEvents()
 	// Reset local events
 	$("#local-events").empty();
 	$("#local-events").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
-	$("#local-events").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
+//	$("#local-events").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
+
+	// Shadowport
+	if (currentLoc.Shadowport) {
+		$("#local-events").append('<li>RUMOR HAS IT: A clandestine <href="https://starwars.fandom.com/wiki/Shadowport">shadowport</a> is here somewhere.</li>');
+	}
+
+	// Black Market
+	if (currentLoc.BlackMarket) {
+		$("#local-events").append('<li>RUMOR HAS IT: A thriving <href="https://starwars.fandom.com/wiki/Black_market/Legends">black market</a> is here somewhere.</li>');
+	}
 
 	// Plot Hooks
-	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK Menu:</span> \"Psst. I got a job for you. Legal (well, mostly), easy, pays the rent, y'know? You in?\"</li>");
-	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK Menu:</span> \"Psst. You look tough. Got a job, pays well for <em>'tough'</em>.\"</li>");
-	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK Menu:</span> \"Psst. My client has an exclusive offer with a handsome payout. There is danger involved.\"</li>");
+	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK:</span> \"Psst. I got a job for you. Legal (mostly), easy work, pays the rent, y'know? You in?\"</li>");
+	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK:</span> \"Hey, you. You look tough. I got a job, pays well for <em>'tough'</em>.\"</li>");
+	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK:</span> \"My client has an exclusive offer for an elite team with a handsome payout. There is considerable danger involved.\"</li>");
 
 	// Arrival event
 	populateArrivalEvent();
@@ -292,15 +302,15 @@ function updateCurrentDetails()
 	if (currentLoc)
 	{
 		// Current Location update screen elements
-		$('#currentRegion').text(currentLoc.Region);
-		$('#currentSector').text(currentLoc.Sector);
-		$('#currentSystem').text(currentLoc.System);
-		$('#currentCapital').text(currentLoc.CapitalCity);
-		$('#currentMap').text(currentLoc.Map);
+		$('#currentRegion').html(currentLoc.Region);
+		$('#currentSector').html(currentLoc.Sector);
+		$('#currentSystem').html(currentLoc.System);
+		$('#currentCapital').html(currentLoc.CapitalCity);
+		$('#currentMap').html(currentLoc.Map);
 		updateCurrentAtmosphere();
-		$('#currentTerrain').text(currentLoc.Terrain);
-		$('#currentInhabitants').text(currentLoc.Inhabitants);
-		$('#currentClimate').text(currentLoc.Climate);
+		$('#currentTerrain').html(currentLoc.Terrain);
+		$('#currentInhabitants').html(currentLoc.Inhabitants);
+		$('#currentClimate').html(currentLoc.Climate);
 		$('#currentGravity').html(gravityText(currentLoc.Gravity));
 		$('#currentStarport').html(starportText(currentLoc.Starport));
 		$('#starportHeader').html(starportText(currentLoc.Starport));
@@ -321,15 +331,15 @@ function updateDestDetails()
 {
 	if (destLoc)
 	{
-		$('#destRegion').text(destLoc.Region);
-		$('#destSector').text(destLoc.Sector);
-		$('#destSystem').text(destLoc.System);
-		$('#destCapital').text(destLoc.CapitalCity);
-		$('#destMap').text(destLoc.Map);
+		$('#destRegion').html(destLoc.Region);
+		$('#destSector').html(destLoc.Sector);
+		$('#destSystem').html(destLoc.System);
+		$('#destCapital').html(destLoc.CapitalCity);
+		$('#destMap').html(destLoc.Map);
 		updateDestAtmosphere();
-		$('#destTerrain').text(destLoc.Terrain);
-		$('#destInhabitants').text(destLoc.Inhabitants);
-		$('#destClimate').text(destLoc.Climate);
+		$('#destTerrain').html(destLoc.Terrain);
+		$('#destInhabitants').html(destLoc.Inhabitants);
+		$('#destClimate').html(destLoc.Climate);
 		$('#destGravity').html(gravityText(destLoc.Gravity));
 		$('#destStarport').html(starportText(destLoc.Starport));
 		$('#destURL').attr('title', destLoc.Name);
