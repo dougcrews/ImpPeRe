@@ -128,6 +128,8 @@ function togglePirateHolonet()
 		$(".manifest-menu-hidden").slideUp();
 		// reset any hidden filter conditions to avoid confusion when the filter input is hidden
 		$(".filter-input-hidden").prop("checked", false);
+		$("#filterCurrStarportGrade").val("");
+		$("#filterDestStarportGrade").val("");
 	}
 	populateLocationDropdown();
 	populateDestinationDropdown();
