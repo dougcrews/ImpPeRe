@@ -1,14 +1,15 @@
 // @TODO Rarity lower/higher based on number of trade routes available
-// @TODO Filter by starport type https://starwars.fandom.com/wiki/Spaceport/Legends
-// @TODO Filter by black market https://starwars.fandom.com/wiki/Black_market
-// @TODO Filter by shadowport if certain equipment is installed
+// ***To-DONE !*** Filter by starport type https://starwars.fandom.com/wiki/Spaceport/Legends
+// ***To-DONE !*** Filter by black market https://starwars.fandom.com/wiki/Black_market
+// ***To-DONE !*** Filter by shadowport if certain equipment is installed
 // @TODO https://starwars.fandom.com/wiki/Prison https://starwars.fandom.com/wiki/Stars%27_End/Legends
-// @TODO https://starwars.fandom.com/wiki/Shadowport/Legends https://starwars.fandom.com/wiki/Category:Shadowports
+// ***To-DONE !*** https://starwars.fandom.com/wiki/Shadowport/Legends https://starwars.fandom.com/wiki/Category:Shadowports
 // @TODO galaxy map and links to specific (i.e., "A-1") location
 // @TODO boosts/setbacks/upgrades options per location; see
 //	https://starwars.fandom.com/wiki/Kala%27uun_Starport for example
 //	https://starwars.fandom.com/wiki/Sarkan/Legends#Society_and_culture
-
+// @TODO Pirate Holonet, ECS, Sensor Baffler, Sensor Shunt, Mobile Listening Post, Nightshadow Coating, Pseudo-Cloaking Device, Encryption Array
+// @TODO "Undeclared" cargo, smuggler compartments
 
 // Globals
 currentLoc = {};
@@ -17,6 +18,120 @@ destRegion = {};
 currentDestination = "unknown";
 currentRegion = "unknown";
 shipSilh = $('#silh').val();
+
+// Populate location dropdown
+function populateLocationDropdown()
+{
+	const $locationDropdown = $("#locationDropdown");
+
+	$("#locationDropdown").empty(); // clear previous list
+	$("#locationDropdown").append('<option value="">-- Current Location --</option>');
+
+	$.each(locations, function (index, location) {
+
+		// Apply filters
+		if ($("#filterCurrBlackMarket").is(":checked") && (! location.BlackMarket))	return;
+		if ($("#filterCurrShadowport").is(":checked") && (! location.Shadowport)) return;
+		// starport grade (goes backwards: Grade 1=best; in data file Starport 1=worst, 0=none)
+		filterGrade = $("#filterCurrStarportGrade").val();
+		if (filterGrade)
+		{
+			if ((filterGrade == 0 && location.Starport == 0) || // Grade 0 = unofficial "no starport here"; Grades go 1 (best) to 5 (worst)
+				(filterGrade != (6 - location.Starport)) ) // Starport 5-1 matches Grades 1-5
+			{
+				return;
+			}
+		}
+
+		tags = " ";
+		if ($("#pirateHolonet").is(":checked"))
+		{
+			// Pirate HoloNet is installed, show some extra stuff
+			if (location.BlackMarket)
+			{
+				tags += "[BM]";
+			}
+			if (location.Shadowport)
+			{
+				tags += "[sP]";
+			}
+			if (location.Starport > 0)
+			{
+				tags += "[*p" + (6 - location.Starport) + "]"; // Starport Grade 1=best, data file Starport 1=worst
+			}
+		}
+
+		$locationDropdown.append(
+			$("<option>", { value: location.Name, text: location.Name + tags })
+		);
+	});
+}
+
+// Populate destination dropdown
+function populateDestinationDropdown()
+{
+	const $destinationDropdown = $("#destinationDropdown");
+
+	$("#destinationDropdown").empty(); // clear previous list
+	$("#destinationDropdown").append('<option value="">-- Select Destination --</option>');
+
+	$.each(locations, function (index, location) {
+		// Apply filters
+		if ($("#filterDestBlackMarket").is(":checked") && (! location.BlackMarket))	return;
+		if ($("#filterDestShadowport").is(":checked") && (! location.Shadowport)) return;
+		// starport grade (goes backwards: Grade 1=best; in data file Starport 1=worst, 0=none)
+		filterGrade = $("#filterDestStarportGrade").val();
+		if (filterGrade)
+		{
+			if ((filterGrade == 0 && location.Starport == 0) || // Grade 0 = unofficial "no starport here"; Grades go 1 (best) to 5 (worst)
+				(filterGrade != (6 - location.Starport)) ) // Starport 5-1 matches Grades 1-5
+			{
+				return;
+			}
+		}
+
+		tags = " ";
+		if ($("#pirateHolonet").is(":checked"))
+		{
+			// Pirate HoloNet is installed, show some extra stuff
+			if (location.BlackMarket)
+			{
+				tags += "[BM]";
+			}
+			if (location.Shadowport)
+			{
+				tags += "[sP]";
+			}
+			if (location.Starport > 0)
+			{
+				tags += "[*p" + (6 - location.Starport) + "]"; // Starport Grade 1=best, data file Starport 1=worst
+			}
+		}
+
+		$destinationDropdown.append(
+			$("<option>", { value: location.Name, text: location.Name + tags })
+		);
+	});
+}
+
+function togglePirateHolonet()
+{
+	isInstalled = $("#pirateHolonet").is(":checked");
+	if (isInstalled)
+	{
+		// display the hidden section(s)
+		$(".manifest-menu-hidden").slideDown();
+	}
+	else
+	{
+		// hide the hidden section(s)
+		$(".manifest-menu-hidden").slideUp();
+		// reset any hidden filter conditions to avoid confusion when the filter input is hidden
+		$(".filter-input-hidden").prop("checked", false);
+	}
+	populateLocationDropdown();
+	populateDestinationDropdown();
+}
 
 // Converts a number to an integer, max 5, min 0.
 function sanitize0to5(val)
@@ -273,9 +388,9 @@ function updateLocalEvents()
 	}
 
 	// Plot Hooks
-	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK:</span> \"Psst. I got a job for you. Legal (mostly), easy work, pays the rent, y'know? You in?\"</li>");
-	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK:</span> \"Hey, you. You look tough. I got a job, pays well for <em>'tough'</em>.\"</li>");
-	$("#local-events").append("<li><span class='local-event-free'>HOT PLOOK:</span> \"My client has an exclusive offer for an elite team with a handsome payout. There is considerable danger involved.\"</li>");
+	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Psst. I got a job for you. Legal (mostly), easy work, pays the rent, y\'know? You in?"</i></li>');
+	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Hey, you. You look tough. I got a job, pays well for <em>\'\'tough\'\'</em>."</i></li>');
+	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"My client has an exclusive offer for an elite team with a handsome payout. There is considerable danger involved."</li>');
 
 	// Arrival event
 	populateArrivalEvent();

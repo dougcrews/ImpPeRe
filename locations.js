@@ -2461,6 +2461,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Kuat",
+	"Region": "Core Worlds",
+	"Sector": "Kuat",
+	"System": "Kuat",
+	"Map": "M-10",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "plains,lush forests,gardens",
+	"Gravity": 1.0,
+	"Inhabitants": "Kuati,Humans",
+	"CapitalCity": "Kuat City,Kuat Drive Yards",
+	"URL": "https://starwars.fandom.com/wiki/Kuat/Legends",
+	"Starport": 5, // population 3.6 billion; Kuat Drive Yards
+	"Shadowport": false,
+	"BlackMarket": true, // Zann Consortium
+	"Precipitation": 0,
+	"ImperialPresence": 5, // Kuat Drive Yards; BoSS restricted access; military jurisdiction
+	"OldWestiness": -1, // luxury goods exported
+	"Megafauna": -5, // Hostile animal life was nonexistent
+	"Rarity": -1, // Kuat Drive Yards
+	"Criticism": -1, // Kuat Drive Yards
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
 	"Name": "Lafra",
 	"Region": "Outer Rim",
 	"Sector": "Wyl",
@@ -3076,7 +3106,7 @@ const locations = [
 	"URL": "https://starwars.fandom.com/wiki/Nal_Hutta/Legends",
 	"Starport": 3, // Guarja Shipyards, population 7 billion
 	"Shadowport": true, // smuggler's moon
-	"BlackMarket": true, // smuggler's moon
+	"BlackMarket": true, // smuggler's moon; Zann Consortium
 	"Precipitation": 4,
 	"ImperialPresence": -5, // Hutt home world
 	"OldWestiness": 0,
@@ -4313,7 +4343,7 @@ const locations = [
 	"Megafauna": 2, // ash angels & drutash grubs & miims, oh my!
 	"Rarity": 0,
 	"Criticism": 0,
-	"Slavery": 0,
+	"Slavery": 1, // Zann Consortium
 	"Spice": 0,
 	"Trespassing": 0,
 	"Military": 0,

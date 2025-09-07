@@ -42,7 +42,19 @@
 					<select id="locationDropdown">
 						<option value="">-- Current Location --</option>
 					</select>
-				</label><br/>
+				</label>
+				<div class="flex-container secret-filters hidden manifest-menu-hidden"><!-- display if Pirate Holonet or similar is installed -->
+					<em>Filters: </em>&nbsp;&nbsp;&nbsp;
+					<label for="filterCurrBlackMarket">
+						Black Market: <input type="checkbox" id="filterCurrBlackMarket" class="filter-input-hidden"></input>
+					</label>&nbsp;&nbsp;
+					<label for="filterCurrShadowport">
+						Shadowport: <input type="checkbox" id="filterCurrShadowport" class="filter-input-hidden"></input>
+					</label>&nbsp;&nbsp;
+					<label for="filterCurrStarportGrade">
+						Starport Grade: <input type="number" id="filterCurrStarportGrade" class="filter-input-hidden" min="0" max="5" defaultValue="0"></input>&nbsp;&nbsp;
+					</label>
+				</div>
 				<a id="currentURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">https://starwars.fandom.com/wiki/Planet/Legends</a>
 			</td>
 			<td class="width-half margin-0">
@@ -50,7 +62,19 @@
 					<select id="destinationDropdown">
 						<option value="">-- Select Destination --</option>
 					</select>
-				</label><br/>
+				</label>
+				<div class="flex-container secret-filters hidden manifest-menu-hidden"><!-- display if Pirate Holonet or similar is installed -->
+					<em>Filters: </em>&nbsp;&nbsp;&nbsp;
+					<label for="filterDestBlackMarket">
+						Black Market: <input type="checkbox" id="filterDestBlackMarket" class="filter-input-hidden"></input>
+					</label>&nbsp;&nbsp;
+					<label for="filterDestShadowport">
+						Shadowport: <input type="checkbox" id="filterDestShadowport" class="filter-input-hidden"></input>
+					</label>&nbsp;&nbsp;
+					<label for="filterDestStarportGrade">
+						Starport grade: <input type="number" id="filterDestStarportGrade" class="filter-input-hidden" min="0" max="5" defaultValue="0"></input>&nbsp;&nbsp;
+					</label>
+				</div>
 				<a id="destURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">https://starwars.fandom.com/wiki/Planet/Legends</a>
 			</td>
 		</tr>
@@ -186,10 +210,10 @@
 			<td>
 				<p>
 					<div class="nowrap tooltip">
-						<ul>
-							<li class="ship-manifest-item">
-								<h2 style="margin-right: 50px;">Ship Manifest</h2>
-							</li>
+						<span class="ship-manifest-header">
+							Ship Manifest
+						</span>
+						<ul class="ship-manifest-menu">
 							<li class="ship-manifest-item">
 								<label for="silh" id="silhLabel">
 									Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"><span id="silh5plus"></span></input>
@@ -199,9 +223,12 @@
 								<label for="hyperdrive">
 									Hyperdrive: Class <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" defaultValue="15"></input>
 								</label>
+							</li>
 							<li class="ship-manifest-item">
 								<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" defaultValue="0"></input>cr</label>
 							</li>
+							<li class="ship-manifest-item secret-manifest-item">
+								<label for="pirateHolonet">Pirate HoloNet: <input type="checkbox" id="pirateHolonet"></input></label>
 							</li>
 						</ul>
 						<span class="tooltiptext">
@@ -284,7 +311,7 @@
 						<li><span class="local-event-destiny-optional">Destiny Optional Event</span>-created permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this location and able to perform the chosen service at no future cost by any PC.</li>
 						<li>The GM may, at their discretion, not allow NPCs or events to be found in locations where it doesn't make sense.</li>
 						<li>Upon system arrival, and after the party has chosen whether to select any events initially, the GM may activate or negate up to one <span class="local-event-destiny-required">Destiny Required Event</span> (spending a Destiny point if so), and as many <span class="local-event-free">Free Events</span> at no cost as needed for a good story.</li>
-						<li><span class="highlight">Highlighted</span> data indicates to the GM and to the PCs that <span class="font-normal starwars-dice boost">b</span>oosts and <span class="font-normal starwars-dice setback">s</span>etbacks are possible outcomes if this event is activated.
+						<li><span class="highlight">Highlighted</span> data indicates to the GM and to the PCs that <span class="font-normal starwars-dice boost">b</span>oosts and <span class="font-normal starwars-dice setback">s</span>etbacks are possible consequences of this local event or location description.
 						<li>Wondering what a "hot plook" is? It's the latest food craze sweeping the galaxy. Sometimes people mispronounce it. Seems like every time you're waiting in line for another wet bag of <em><i>h</i></em>ot <em><i>pl</i></em>ook, some shady Game Master sidles up to you and offers you a job, or a mission, or a chance to save the galaxy. Whatever you choose, it will probably be a good story to tell at your funeral.</li>
 						<li>Expect Imperial presence to be higher near the Core, and weapons laws to be looser nearer or past the Outer Rim.</li>
 						<li>Capital Ships (silhouette 5+) pay substantially higher Starport costs.</li>
@@ -320,27 +347,16 @@
 			// minimize collapsible sections
 			$("#locationDetails").slideUp();
 			$("#destinationDetails").slideUp();
+			$("#manifest-menu-hidden").slideUp();
+			$(".hidden").slideUp();
 
 			// Default input values
 			$('#cargo').val(0);
 			$('#silh').val(4);
 			$('#hyperdrive').val(15);
 
-			// Populate location dropdown
-			const $locationDropdown = $("#locationDropdown");
-			$.each(locations, function (index, location) {
-				$locationDropdown.append(
-					$("<option>", { value: location.Name, text: location.Name })
-				);
-			});
-
-			// Populate destination dropdown
-			const $destinationDropdown = $("#destinationDropdown");
-			$.each(locations, function (index, location) {
-				$destinationDropdown.append(
-					$("<option>", { value: location.Name, text: location.Name })
-				);
-			});
+			populateLocationDropdown();
+			populateDestinationDropdown();
 
 			// Location dropdown events
 			$("#locationDropdown").on("change", function () {
@@ -378,10 +394,25 @@
 			});
 
 			// On Change event for Ship Silhouette
-			document.getElementById('silh').addEventListener("change", updateSilhouette);
+			document.getElementById("silh").addEventListener("change", updateSilhouette);
 
 			// On Change event for Hyperdrive Class
-			document.getElementById('hyperdrive').addEventListener("change", updateTravelEstimates);
+			document.getElementById("hyperdrive").addEventListener("change", updateTravelEstimates);
+
+			// On Change event for Declared Cargo
+
+			// On Change event for Undeclared Cargo
+
+			// On Change event for Pirate Holonet
+			document.getElementById("pirateHolonet").addEventListener("change", togglePirateHolonet);
+
+			// On Change event for dropdown filters
+
+			// General update of everything
+			$("input").change(function() {
+				populateLocationDropdown();
+				populateDestinationDropdown();
+			});
 		});
 	</script>
 

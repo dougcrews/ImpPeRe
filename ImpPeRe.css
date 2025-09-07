@@ -8,9 +8,7 @@
 }
 
 body {
-	font-family: Century Gothic, sans-serif;
-/* font-family: StarWars, sans-serif; */
-/*	font-family: Droidobesh, sans-serif; */
+	font-family: Calibri, sans-serif;
 	margin: 20px;
 	background-color: #2c2c2c; /* dark grey */
 	color: #ffffd0; /* off white */
@@ -62,6 +60,9 @@ pre {
 	font-size: smaller;
 }
 
+.hidden {
+	display: none;
+}
 .tooltip {
   position: relative;
   /* border-bottom: 1px dotted black; dots under the hoverable text */
@@ -94,7 +95,7 @@ pre {
 	vertical-align: top;
 }
 .font-normal {
-	font-family: Century Gothic, sans-serif;
+	font-family: Calibri, sans-serif;
 }
 .font-starwars {
 	font-family: StarWars, sans-serif;
@@ -200,8 +201,44 @@ pre {
 	color: aquamarine;
 	font-weight: lighter;
 }
+.ship-manifest-header {
+	vertical-align: text-bottom;
+	font-size: large;
+	font-weight: bold;
+	margin: 0px 0px 0px 10px;
+	padding: 0px 0px 0px 10px;
+}
+.ship-manifest-menu {
+	display: inline-block;
+	vertical-align: bottom;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 10px;
+}
 .ship-manifest-item {
 	display: inline-block;
+	vertical-align: text-bottom;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 10px;
+	border: 1px solid grey;
+}
+.secret-manifest-item {
+	display: inline-block;
+	vertical-align: text-bottom;
+/*	padding: 10px 25px 0px 10px; */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 10px;
+	border: 1px solid green;
+}
+.secret-manifest-item:before {
+	content: "(not shared with BoSS) ";
+	font-size: x-small;
+}
+.secret-filters {
+	padding: 10px 25px 0px 10px;
+	border: 1px solid green;
+}
+.filter-input-hidden {
+	/* placeholder for JavaScript */
 }
 .location-details-list {
 	display: inline-grid;
