@@ -871,6 +871,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "City Of Masks",
+	"Region": "Expansion Region",
+	"Sector": "Thaere",
+	"System": "Genarius",
+	"Map": "P-14",
+	"Atmosphere": "Type I",
+	"Climate": "controlled",
+	"Gravity": 1,
+	"Terrain": "floating city,<span class=\"highlight\">asteroid</span> field",
+	"Inhabitants": "(varied)",
+	"CapitalCity": "City Of Masks",
+	"URL": "https://starwars.fandom.com/wiki/Depatar/Legends",
+	"Starport": 3, // smuggler and black-market spaceport
+	"Shadowport": true, // smuggler and black-market spaceport
+	"BlackMarket": true, // points of interest
+	"Precipitation": 0,
+	"ImperialPresence": -5, // five criminal organizations looking for a neutral ground for secret meetings
+	"OldWestiness": 5, // five criminal organizations looking for a neutral ground for secret meetings
+	"Megafauna": 0,
+	"Rarity": -1, // pirate hideout
+	"Criticism": 5, // pirate hideout
+	"Slavery": 1, // smugglers and pirates
+	"Spice": 1, // smugglers
+	"Trespassing": 1, // smugglers
+	"Military": -1, // commonplace, but permits!
+	"Slicing": 3, // false permits
+	"Theft": 1, // pirate hideout
+	"Bribery": 5, // permits, permits, permits
+},
+{
 	"Name": "Commenor",
 	"Region": "Colonies",
 	"Sector": "The Slice",
@@ -3092,6 +3122,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Naboo",
+	"Region": "Mid Rim",
+	"Sector": "Chommell",
+	"System": "Naboo",
+	"Map": "O-17",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "urban,grassy plains,<span class='highlight'>swamps</span>,grassy hills,forests,mountains,<span class='highlight'>abyssal labyrinths</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Gungan,Human",
+	"CapitalCity": "Theed (Human),Otoh Gunga (Gungan)",
+	"URL": "https://starwars.fandom.com/wiki/Naboo/Legends",
+	"Starport": 4, // population 4.5 billion; Kwilaan Starport
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 2, // sector capital; standing military; Palpatine's homeworld
+	"OldWestiness": -4, // tourism; peaceful, enlightened, and artistic
+	"Megafauna": 3, // colo claw fish & opee sea killers & sando aqua monsters, oh my!
+	"Rarity": 0,
+	"Criticism": -3, // sector capital; standing military; Palpatine's homeworld
+	"Slavery": -1, // tourism
+	"Spice": 0,
+	"Trespassing": -1, // tourism
+	"Military": -3, // tourism; peaceful, enlightened, and artistic
+	"Slicing": 0,
+	"Theft": -1, // tourism
+	"Bribery": 0,
+},
+{
 	"Name": "Nal Hutta",
 	"Region": "Hutt Space",
 	"Sector": "The Slice",
@@ -3872,6 +3932,36 @@ const locations = [
 	"Bribery": 2, // bureaucrats
 },
 {
+	"Name": "Rion",
+	"Region": "Outer Rim",
+	"Sector": "Kessel",
+	"System": "Rion",
+	"Map": "T-10",
+	"Atmosphere": "Type I",
+	"Climate": "<span class='highlight'>tropical</span>,humid",
+	"Terrain": "<span class='highlight'>rainforest</span>",
+	"Gravity": 1,
+	"Inhabitants": "Aqualish,Arcona,Duros,Gands,H'nemthe,Humans,Ithorians,Twi'leks",
+	"CapitalCity": "Tana's Resort",
+	"URL": "https://starwars.fandom.com/wiki/Rion/Legends",
+	"Starport": 2, // population unstated but many species
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 5,
+	"ImperialPresence": 0,
+	"OldWestiness": -5, // paradise with friendly inhabitants
+	"Megafauna": 0, // paradise with friendly inhabitants
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": -1, // paradise with friendly inhabitants
+	"Spice": 0,
+	"Trespassing": -1, // paradise with friendly inhabitants
+	"Military": -3, // paradise with friendly inhabitants
+	"Slicing": 0,
+	"Theft": -1, // paradise with friendly inhabitants
+	"Bribery": 0,
+},
+{
 	"Name": "Rodia",
 	"Region": "Outer Rim",
 	"Sector": "Savareen",
@@ -4483,9 +4573,9 @@ const locations = [
 	"Gravity": 1,
 	"Inhabitants": "Jawas, Tusken Raiders",
 	"CapitalCity": "Bestine",
-	"URL": "https://starwars.fandom.com/wiki/Tatooine",
+	"URL": "https://starwars.fandom.com/wiki/Tatooine/Legends",
 	"Starport": 2, // population 200k; Mos Eisley
-	"Shadowport": false,
+	"Shadowport": true, // not canon, but it is a wretched hive of scum & villainy
 	"BlackMarket": false,
 	"Precipitation": -5, // desert world
 	"ImperialPresence": 1, // several battalions
@@ -5217,6 +5307,36 @@ const locations = [
 	"Spice": 0,
 	"Trespassing": 0,
 	"Military": -5, // luxury world
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Zerm",
+	"Region": "Outer Rim",
+	"Sector": "Kessel",
+	"System": "Zerm",
+	"Map": "T-10",
+	"Atmosphere": "Type I",
+	"Climate": "<span class='highlight'>tropical</span>,<span class='highlight'>weird weather</span>,<span class='highlight'>killer storms</span>",
+	"Terrain": "farmland,<span class='highlight'>rainforests</span>",
+	"Gravity": 1,
+	"Inhabitants": "Humans",
+	"CapitalCity": "Zerm",
+	"URL": "https://starwars.fandom.com/wiki/Zerm/Legends",
+	"Starport": 2, // population unstated; weird weather, killer storms
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 5, // tropical; weird weather; killer storms
+	"ImperialPresence": 0,
+	"OldWestiness": 0,
+	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 5, // pick your spice refinery plant
+	"Trespassing": 0,
+	"Military": 0,
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,

@@ -1,15 +1,12 @@
 // @TODO Rarity lower/higher based on number of trade routes available
-// ***To-DONE !*** Filter by starport type https://starwars.fandom.com/wiki/Spaceport/Legends
-// ***To-DONE !*** Filter by black market https://starwars.fandom.com/wiki/Black_market
-// ***To-DONE !*** Filter by shadowport if certain equipment is installed
 // @TODO https://starwars.fandom.com/wiki/Prison https://starwars.fandom.com/wiki/Stars%27_End/Legends
-// ***To-DONE !*** https://starwars.fandom.com/wiki/Shadowport/Legends https://starwars.fandom.com/wiki/Category:Shadowports
 // @TODO galaxy map and links to specific (i.e., "A-1") location
 // @TODO boosts/setbacks/upgrades options per location; see
 //	https://starwars.fandom.com/wiki/Kala%27uun_Starport for example
 //	https://starwars.fandom.com/wiki/Sarkan/Legends#Society_and_culture
 // @TODO Pirate Holonet, ECS, Sensor Baffler, Sensor Shunt, Mobile Listening Post, Nightshadow Coating, Pseudo-Cloaking Device, Encryption Array
 // @TODO "Undeclared" cargo, smuggler compartments
+// @TODO Add https://starwars.fandom.com/wiki/Depatar/Legends to locations, but only if Pirate Holonet is installed; same for TDS
 
 // Globals
 currentLoc = {};
@@ -60,6 +57,12 @@ function populateLocationDropdown()
 				tags += "[*p" + (6 - location.Starport) + "]"; // Starport Grade 1=best, data file Starport 1=worst
 			}
 		}
+		else
+		{
+			// secret pirate locations remain secret without Pirate HoloNet
+			if (location.Name == "City Of Masks") return;
+			if (location.Name == "Tantalus Detention Facility") return;
+		}
 
 		$locationDropdown.append(
 			$("<option>", { value: location.Name, text: location.Name + tags })
@@ -106,6 +109,12 @@ function populateDestinationDropdown()
 			{
 				tags += "[*p" + (6 - location.Starport) + "]"; // Starport Grade 1=best, data file Starport 1=worst
 			}
+		}
+		else
+		{
+			// secret pirate locations remain secret without Pirate HoloNet
+			if (location.Name == "City Of Masks") return;
+			if (location.Name == "Tantalus Detention Facility") return;
 		}
 
 		$destinationDropdown.append(

@@ -42,6 +42,18 @@ const hyperspaceRoutes = [
 	"Junctions": "Corellian Run,Death Wind Corridor,Old Corellian Run,Ryloth Road,The Crystal Passage,Old Corellian Run,Tatooine Dash,Triellus Trade Route",
 },
 {
+	"Name": "Kessel Run",
+	"SpeedFactor": 0.9,
+	"Route": "Formas,Rion,Kessel",
+	"Junctions": "Kessel Trade Corridor,Pabol Sleheyron,Triellus Trade Route",
+},
+{
+	"Name": "Kessel Trade Corridor",
+	"SpeedFactor": 0.9,
+	"Route": "Kessel,Zerm",
+	"Junctions": "Pabol Sleheyron,Kessel Run",
+},
+{
 	"Name": "Namadii Corridor",
 	"SpeedFactor": 0.9,
 	"Route": "Coruscant,Tanjay IV,Weerden,Galvoni III,Twith,Pantolomin,Borleias,Ord Mirit,Palanhi,Carratos,Voltare,Meastrinnar,Aphran,Bengat,Bilbringi,Rondai-2,Coth Fuuras space station,Dorin,Carvandir,Vaced,Glee Anselm,Belshar Othacuu,Ord Varee,Kalaan,Masgen,Ansion,Namadii",

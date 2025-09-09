@@ -83,7 +83,7 @@ pre {
 }
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+/*  visibility: visible;  I think these get in the way more than they help */
 }
 .section {
 	border: 1px solid #555;
