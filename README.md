@@ -1,5 +1,3 @@
-# From https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide
-
 # ImpPeRe
 
 ## Description
@@ -34,15 +32,15 @@ I'm looking for feedback in general, and suggestions for local flavor in two cat
 Everything is a suggestion for players and GMs to add flavor to the narrative. Use what parts your group likes and ignore the rest.
 
 Screenshots:
-![Full Screen (mostly)](assets/images/ImpPeRe MostOfScreen Rodia-Coruscant.png)
-![Tatooine locations details](assets/images/ImpPeRe Header Tatooine.png)
-![Tatooine local customs](assets/images/ImpPeRe Loca Customs Tatooine.png)
-![Tatooine local events](assets/images/ImpPeRe Local Events Tatooine.png)
-![Outer Rim to Mid Rim travel example (note single Hyperlane bonus)](assets/images/ImpPeRe Hyperspace Tatooine-Centares.png)
+![Full Screen (mostly)](assets/images/ImpPeRe_MostOfScreen_Rodia-Coruscant.png)
+![Tatooine locations_details](assets/images/ImpPeRe_Header_Tatooine.png)
+![Tatooine local customs](assets/images/ImpPeRe_Local_Customs_Tatooine.png)
+![Tatooine local events](assets/images/ImpPeRe_Local_Events_Tatooine.png)
+![Outer Rim to Mid Rim travel example (note single Hyperlane bonus)](assets/images/ImpPeRe_Hyperspace_Tatooine-Centares.png)
 ![Brentaal IV locations details](assets/images/ImpPeRe_Header_Brentaal_IV.png)
-![Brentaal IV local customs](assets/images/ImpPeRe Loca Customs Brentaal IV.png)
-![Brentaal IV local events](assets/images/ImpPeRe Local Events Brentaal IV.png)
-![Instructions](assets/images/ImpPeRe Instructions.png)
+![Brentaal IV_local customs](assets/images/ImpPeRe_Local_Customs_Brentaal_IV.png)
+![Brentaal IV local events](assets/images/ImpPeRe_Local_Events_Brentaal_IV.png)
+![Instructions](assets/images/ImpPeRe_Instructions.png)
 
 ## License
 
