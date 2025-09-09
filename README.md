@@ -39,7 +39,7 @@ Screenshots:
 ![Tatooine local customs](assets/images/ImpPeRe Loca Customs Tatooine.png)
 ![Tatooine local events](assets/images/ImpPeRe Local Events Tatooine.png)
 ![Outer Rim to Mid Rim travel example (note single Hyperlane bonus)](assets/images/ImpPeRe Hyperspace Tatooine-Centares.png)
-![Brentaal IV locations details](assets/images/ImpPeRe Header Brentaal IV.png)
+![Brentaal IV locations details](assets/images/ImpPeRe_Header_Brentaal_IV.png)
 ![Brentaal IV local customs](assets/images/ImpPeRe Loca Customs Brentaal IV.png)
 ![Brentaal IV local events](assets/images/ImpPeRe Local Events Brentaal IV.png)
 ![Instructions](assets/images/ImpPeRe Instructions.png)
