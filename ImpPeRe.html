@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Imperial Penal Report</title>
+	<title>Imperial Penal References</title>
 	<link rel="icon" type="image/x-icon" href="favicon.png">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="ImpPeRe.js"></script>
@@ -16,24 +16,18 @@
 
 <body id='body'>
 
-	<h2 id="mainHeader" class="font-starwars">Imperial Penal Report</h2>
+	<h2 id="mainHeader" class="font-starwars">Imperial Penal References</h2>
 	<button onclick="switchFontBesh()" class="font-besh tooltip">
 		Aurebesh
-		<span class="tooltiptext">
-		Switch to Aurebesh font.
-		</span>
+		<span class="tooltiptext">Switch to Aurebesh font.</span>
 	</button>
 	<button onclick="switchFontStarWars()" class="font-starwars tooltip">
 		Galactic Basic
-		<span class="tooltiptext">
-		Switch to Star Wars font.
-		</span>
+		<span class="tooltiptext">Switch to Star Wars font.</span>
 	</button>
 	<button onclick="switchFontNormal()" class="font-normal tooltip">
 		En'glsh
-		<span class="tooltiptext">
-		Switch to normal font.
-		</span>
+		<span class="tooltiptext">Switch to normal font.</span>
 	</button>
 
 	<table border="2" width="100%">
@@ -90,7 +84,7 @@
 						<div class="box-around">
 							<strong>Region:</strong> <a id="currentRegionURL"
 								href="https://starwars.fandom.com/wiki/Unknown_Regions/Legends"
-								target="_blank"><span id="currentRegion">unknown</span></a>
+								target="_blank"><span id="currentRegion" class="font-normal">unknown</span></a>
 						</div>
 						<div class="box-around">
 							<strong>Sector:</strong> <span id="currentSector">unknown</span>
@@ -323,100 +317,6 @@
 			</td>
 		</tr>
 	</table>
-
-	<script>
-
-		function updateSilhouette()
-		{
-			shipSilh = $('#silh').val();
-
-			if (shipSilh > 4) // Commercial/Military size
-			{
-				$('#silhLabel').addClass("silhouette-5-plus");
-			}
-			else
-			{
-				$('#silhLabel').removeClass("silhouette-5-plus");
-			}
-
-			updateLocalCustoms();
-		}
-
-		$(document).ready(function () {
-			switchFontBesh(); // set initial font
-
-			// minimize collapsible sections
-			$("#locationDetails").slideUp();
-			$("#destinationDetails").slideUp();
-			$("#manifest-menu-hidden").slideUp();
-			$(".hidden").slideUp();
-
-			// Default input values
-			$('#cargo').val(0);
-			$('#silh').val(4);
-			$('#hyperdrive').val(15);
-
-			populateLocationDropdown();
-			populateDestinationDropdown();
-
-			// Location dropdown events
-			$("#locationDropdown").on("change", function () {
-				$("#locationDetails").slideDown(); // display current location details
-				switchFontNormal(); // reset font-family
-
-				const currentLocation = $("#locationDropdown").val();
-				currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
-				currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
-				$('#local-eventsLocation').text(currentLocation);
-
-				updateCurrentDetails();
-
-				updateLocalCustoms();
-
-				updateTravelEstimates();
-
-				updateLocalEvents();
-			});
-
-			// Destination dropdown events
-			$("#destinationDropdown").on("change", function () {
-				$("#destinationDetails").slideDown();
-				switchFontNormal(); // reset font-family
-
-				currentDestination = $("#destinationDropdown").val();
-				destLoc = locations.find(item => item.Name === currentDestination); // JSON object
-				destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
-
-				updateDestDetails();
-
-				updateTravelEstimates();
-
-				updateDestDetails();
-			});
-
-			// On Change event for Ship Silhouette
-			document.getElementById("silh").addEventListener("change", updateSilhouette);
-
-			// On Change event for Hyperdrive Class
-			document.getElementById("hyperdrive").addEventListener("change", updateTravelEstimates);
-
-			// On Change event for Declared Cargo
-
-			// On Change event for Undeclared Cargo
-
-			// On Change event for Pirate Holonet
-			document.getElementById("pirateHolonet").addEventListener("change", togglePirateHolonet);
-
-			// On Change event for dropdown filters
-
-			// General update of everything
-			$("input").change(function() {
-				populateLocationDropdown();
-				populateDestinationDropdown();
-			});
-		});
-	</script>
-
 </body>
 
 </html>

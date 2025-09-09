@@ -7,6 +7,7 @@
 // @TODO Pirate Holonet, ECS, Sensor Baffler, Sensor Shunt, Mobile Listening Post, Nightshadow Coating, Pseudo-Cloaking Device, Encryption Array
 // @TODO "Undeclared" cargo, smuggler compartments
 // @TODO Add https://starwars.fandom.com/wiki/Depatar/Legends to locations, but only if Pirate Holonet is installed; same for TDS
+// @TODO Add local storage and remember events chosen
 
 // Globals
 currentLoc = {};
@@ -15,6 +16,80 @@ destRegion = {};
 currentDestination = "unknown";
 currentRegion = "unknown";
 shipSilh = $('#silh').val();
+
+$(document).ready(function () {
+	switchFontBesh(); // set initial font
+
+	// minimize collapsible sections
+	$("#locationDetails").slideUp();
+	$("#destinationDetails").slideUp();
+	$("#manifest-menu-hidden").slideUp();
+	$(".hidden").slideUp();
+
+	// Default input values
+	$('#cargo').val(0);
+	$('#silh').val(4);
+	$('#hyperdrive').val(15);
+
+	populateLocationDropdown();
+	populateDestinationDropdown();
+
+	// Location dropdown events
+	$("#locationDropdown").on("change", function () {
+		$("#locationDetails").slideDown(); // display current location details
+		switchFontNormal(); // reset font-family
+
+		const currentLocation = $("#locationDropdown").val();
+		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+		$('#local-eventsLocation').text(currentLocation);
+
+		updateCurrentDetails();
+
+		updateLocalCustoms();
+
+		updateTravelEstimates();
+
+		updateLocalEvents();
+	});
+
+	// Destination dropdown events
+	$("#destinationDropdown").on("change", function () {
+		$("#destinationDetails").slideDown();
+		switchFontNormal(); // reset font-family
+
+		currentDestination = $("#destinationDropdown").val();
+		destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+		destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+
+		updateDestDetails();
+
+		updateTravelEstimates();
+
+		updateDestDetails();
+	});
+
+	// On Change event for Ship Silhouette
+	document.getElementById("silh").addEventListener("change", updateSilhouette);
+
+	// On Change event for Hyperdrive Class
+	document.getElementById("hyperdrive").addEventListener("change", updateTravelEstimates);
+
+	// On Change event for Declared Cargo
+
+	// On Change event for Undeclared Cargo
+
+	// On Change event for Pirate Holonet
+	document.getElementById("pirateHolonet").addEventListener("change", togglePirateHolonet);
+
+	// On Change event for dropdown filters
+
+	// General update of everything
+	$("input").change(function() {
+		populateLocationDropdown();
+		populateDestinationDropdown();
+	});
+});
 
 // Populate location dropdown
 function populateLocationDropdown()
@@ -733,6 +808,7 @@ function switchFontBesh()
 	$('#instructions-box').addClass('font-starwars');
 	$('#local-customs-box-header').addClass('font-starwars');
 	$('.ship-manifest-item').addClass('font-besh');
+	fontNormalElements();
 }
 
 // switch to StarWars (legible) font
@@ -745,6 +821,7 @@ function switchFontStarWars()
 	$('#instructions-box').addClass('font-normal');
 	$('#local-customs-box-header').addClass('font-normal');
 	$('.ship-manifest-item').addClass('font-starwars');
+	fontNormalElements();
 }
 
 // switch to Droidobesh (illegible) font
@@ -759,6 +836,54 @@ function switchFontNormal()
 	$('.ship-manifest-item').addClass('font-normal');
 }
 
+function fontNormalElements()
+{
+	$("#baseHyperspaceTime").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentAtmosphere").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentCapital").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentClimate").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentGravity").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentInhabitants").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentMap").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentRegion").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentRegionURL").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentSector").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentStarport").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentSystem").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#currentTerrain").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destAtmosphere").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destCapital").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destClimate").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destGravity").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destInhabitants").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destMap").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destRegion").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destRegionURL").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destSector").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destStarport").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destSystem").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#destTerrain").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#estHyperspaceTime").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textFeeCustoms").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textFeePortBerthing").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textFeePortLanding").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textFeeVisitation").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textLawBribery").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textLawCriticism").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textLawMilitary").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textLawSlavery").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textLawSlicing").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textLawSpice").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textLawTheft").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textLawTrespassing").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textPermitArmorLight").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textPermitArmorPower").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textPermitWeaponConcealed").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textPermitWeaponHeavy").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textPermitWeaponRifle").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textPermitWeaponSmall").removeClass("font-besh font-starwars").addClass("font-normal");
+}
+
 function toGalactipediaURL(name)
 {
 	return "https://starwars.fandom.com/wiki/" + name.replace(" ", "_"); // sometimes with /Legends appended; might need more fine tuning
@@ -767,4 +892,20 @@ function toGalactipediaURL(name)
 function toGalactipediaALink(name)
 {
 	return '<a href="' + toGalactipediaURL(name) + '" target="_blank">' + name + '</a>';
+}
+
+function updateSilhouette()
+{
+	shipSilh = $('#silh').val();
+
+	if (shipSilh > 4) // Commercial/Military size
+	{
+		$('#silhLabel').addClass("silhouette-5-plus");
+	}
+	else
+	{
+		$('#silhLabel').removeClass("silhouette-5-plus");
+	}
+
+	updateLocalCustoms();
 }
