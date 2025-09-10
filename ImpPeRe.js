@@ -513,7 +513,10 @@ function updateCurrentDetails()
 		$('#currentInhabitants').html(currentLoc.Inhabitants);
 		$('#currentClimate').html(currentLoc.Climate);
 		$('#currentGravity').html(gravityText(currentLoc.Gravity));
-		$('#currentStarport').html(starportText(currentLoc.Starport));
+//		$('#currentStarport').html(starportText(currentLoc.Starport));
+
+		$('#currentStarportURL').text(starportText(currentLoc.Starport));
+
 		$('#starportHeader').html(starportText(currentLoc.Starport));
 		$('#currentURL').attr('title', currentLoc.Name);
 		$('#currentURL').attr('href', currentLoc.URL);
@@ -542,7 +545,7 @@ function updateDestDetails()
 		$('#destInhabitants').html(destLoc.Inhabitants);
 		$('#destClimate').html(destLoc.Climate);
 		$('#destGravity').html(gravityText(destLoc.Gravity));
-		$('#destStarport').html(starportText(destLoc.Starport));
+		$('#destStarportURL').text(starportText(destLoc.Starport));
 		$('#destURL').attr('title', destLoc.Name);
 		$('#destURL').attr('href', destLoc.URL);
 		$('#destURL').text(destLoc.URL);
