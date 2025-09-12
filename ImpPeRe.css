@@ -265,7 +265,7 @@ pre {
 	color: red;
 }
 .silhouette-5-plus:after {
-	content: " (commercial/military starport rates apply)";
+	content: "(commercial/military starport rates apply)";
 }
 .atmos-4 {
 	color: fuchsia;
@@ -331,4 +331,7 @@ pre {
 }
 .payme-link {
 	font-size: smaller;
+}
+.cargo-declared {
+	font-size: larger;
 }

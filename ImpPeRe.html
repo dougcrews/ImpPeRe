@@ -6,11 +6,11 @@
 	<title>Imperial Penal References</title>
 	<link rel="icon" type="image/x-icon" href="favicon.png">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="ImpPeRe.js"></script>
 	<script src="locations.js"></script>
 	<script src="regions.js"></script>
 	<script src="events.js"></script>
 	<script src="hyperspace.js"></script>
+	<script src="ImpPeRe.js"></script>
 	<link rel="stylesheet" href="ImpPeRe.css">
 </head>
 
@@ -215,16 +215,48 @@
 						<ul class="ship-manifest-menu">
 							<li class="ship-manifest-item">
 								<label for="silh" id="silhLabel">
-									Silhouette: <input type="number" id="silh" max="10" maxlength="2" min="0" defaultValue="4"><span id="silh5plus"></span></input>
+									Silhouette:&nbsp;
+									<select id="silh">
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4" selected="true">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
 								</label>
+								<span id="silh5plus" class="align-right"></span>
 							</li>
 							<li class="ship-manifest-item">
 								<label for="hyperdrive">
-									Hyperdrive: Class <input type="number" id="hyperdrive" max="20" maxlength="2" min="1" defaultValue="15"></input>
+									Hyperdrive: Class&nbsp;
+									<select id="hyperdrive">
+										<option value="0.5">0.5</option>
+										<option value="1" selected="true">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+									</select>
 								</label>
 							</li>
 							<li class="ship-manifest-item">
-								<label for="cargo">Cargo Declared: <input type="number" id="cargo" min="0" defaultValue="0"></input>cr</label>
+								<label for="cargo">Cargo Declared: <input type="number" id="cargo" class="cargo-declared" min="0" defaultValue="0"></input>cr</label>
 							</li>
 							<li class="ship-manifest-item secret-manifest-item">
 								<label for="pirateHolonet">Pirate HoloNet: <input type="checkbox" id="pirateHolonet"></input></label>

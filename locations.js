@@ -43,7 +43,7 @@ const locations = [
 	"Inhabitants": "Killik,Humans",
 	"CapitalCity": "Aldera",
 	"URL": "https://starwars.fandom.com/wiki/Alderaan",
-	"Starport": 2, // population 2 billion
+	"Starport": 4, // population 2 billion; important Core World planet
 	"Shadowport": false,
 	"BlackMarket": false,
 	"Precipitation": 2,

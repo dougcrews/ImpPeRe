@@ -8,6 +8,8 @@
 // @TODO "Undeclared" cargo, smuggler compartments
 // @TODO Add https://starwars.fandom.com/wiki/Depatar/Legends to locations, but only if Pirate Holonet is installed; same for TDS
 // @TODO Add local storage and remember events chosen
+// @TODO https://starwars.fandom.com/wiki/Spaceport/Legends#Known_spaceports
+// @TODO https://star-wars-rpg-ffg.fandom.com/wiki/Category:Beast#RIDING_BEASTS
 
 // Globals
 currentLoc = {};
@@ -27,9 +29,9 @@ $(document).ready(function () {
 	$(".hidden").slideUp();
 
 	// Default input values
-	$('#cargo').val(0);
-	$('#silh').val(4);
-	$('#hyperdrive').val(15);
+//	$('#cargo').val(0);
+//	$('#silh').val(4);
+//	$('#hyperdrive').val(15);
 
 	populateLocationDropdown();
 	populateDestinationDropdown();
@@ -76,6 +78,7 @@ $(document).ready(function () {
 	document.getElementById("hyperdrive").addEventListener("change", updateTravelEstimates);
 
 	// On Change event for Declared Cargo
+	document.getElementById("cargo").addEventListener("change", updateLocalCustoms);
 
 	// On Change event for Undeclared Cargo
 
@@ -261,10 +264,12 @@ function creditsOrWaived(val)
 
 function rarityModFor(json)
 {
-	baseRarity = json.Rarity;
-	region = json.Region;
-	regionRarity = regions.find(item => item.Name === json.Region).Rarity;
-	return baseRarity + regionRarity;
+	rarity = json.Rarity + 0;
+	if (json.Region)
+	{
+		rarity += regions.find(item => item.Name === json.Region).Rarity;
+	}
+	return rarity;
 }
 
 // Converts a number to display value: "Rarity X(R)" or ""
@@ -513,10 +518,7 @@ function updateCurrentDetails()
 		$('#currentInhabitants').html(currentLoc.Inhabitants);
 		$('#currentClimate').html(currentLoc.Climate);
 		$('#currentGravity').html(gravityText(currentLoc.Gravity));
-//		$('#currentStarport').html(starportText(currentLoc.Starport));
-
 		$('#currentStarportURL').text(starportText(currentLoc.Starport));
-
 		$('#starportHeader').html(starportText(currentLoc.Starport));
 		$('#currentURL').attr('title', currentLoc.Name);
 		$('#currentURL').attr('href', currentLoc.URL);
@@ -576,7 +578,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textFeePortLanding = creditsOrWaived(feePortLanding);
 	const feePortBerthing = Math.round(feePortLanding * 0.1);
 	const textFeePortBerthing = creditsOrWaived(feePortBerthing);
-	const feeCustoms = Math.round(shipCargoDeclared * 0.01); // "waived" if zero
+	const feeCustoms = Math.round(shipCargoDeclared * 0.001); // "waived" if zero
 	const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
 	const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
 	const textFeeVisitation = creditsOrWaived(Math.max(feeVisitation, 10));
@@ -903,11 +905,11 @@ function updateSilhouette()
 
 	if (shipSilh > 4) // Commercial/Military size
 	{
-		$('#silhLabel').addClass("silhouette-5-plus");
+		$('#silh5plus').addClass("silhouette-5-plus");
 	}
 	else
 	{
-		$('#silhLabel').removeClass("silhouette-5-plus");
+		$('#silh5plus').removeClass("silhouette-5-plus");
 	}
 
 	updateLocalCustoms();
