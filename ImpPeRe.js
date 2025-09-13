@@ -15,11 +15,12 @@
 currentLoc = {};
 destLoc = {};
 destRegion = {};
-currentDestination = "unknown";
-currentRegion = "unknown";
-shipSilh = $('#silh').val();
+currentLocation = Cookies.get()["currentLocation"];
+currentDestination = Cookies.get()["currentDestination"];
+currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 
-$(document).ready(function () {
+$(document).ready(function ()
+{
 	switchFontBesh(); // set initial font
 
 	// minimize collapsible sections
@@ -29,12 +30,23 @@ $(document).ready(function () {
 	$(".hidden").slideUp();
 
 	// Default input values
-//	$('#cargo').val(0);
-//	$('#silh').val(4);
-//	$('#hyperdrive').val(15);
+	cargoDeclared = Cookies.get()["cargoDeclared"] || 0;
+	$("#cargoDeclared").val(cargoDeclared);
+	shipSilhouette = Cookies.get()["shipSilhouette"] || 4;
+	$("#shipSilhouette").val(shipSilhouette);
+	hyperdriveClass = Cookies.get()["hyperdriveClass"] || 1;
+	$("#hyperdriveClass").val(hyperdriveClass);
+	gHC = Cookies.get()["GHC"] || 1;
+	$("#galacticHyperspaceConstant").val(gHC);
+	pirateHolonet = Cookies.get()["pirateHolonet"];
+	$("#pirateHolonet").prop("checked", pirateHolonet);
+	currentLocation = Cookies.get()["currentLocation"];
+	currentDestination = Cookies.get()["currentDestination"];
 
 	populateLocationDropdown();
 	populateDestinationDropdown();
+
+	updateAll();
 
 	// Location dropdown events
 	$("#locationDropdown").on("change", function () {
@@ -42,17 +54,13 @@ $(document).ready(function () {
 		switchFontNormal(); // reset font-family
 
 		const currentLocation = $("#locationDropdown").val();
+		Cookies.set("currentLocation", currentLocation);
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
-		$('#local-eventsLocation').text(currentLocation);
+		Cookies.set("currentRegion", currentRegion);
+		$('#localEventsLocation').text(currentLocation);
 
-		updateCurrentDetails();
-
-		updateLocalCustoms();
-
-		updateTravelEstimates();
-
-		updateLocalEvents();
+		updateAll();
 	});
 
 	// Destination dropdown events
@@ -61,36 +69,37 @@ $(document).ready(function () {
 		switchFontNormal(); // reset font-family
 
 		currentDestination = $("#destinationDropdown").val();
+		Cookies.set("currentDestination", currentDestination);
 		destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 		destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 
-		updateDestDetails();
-
-		updateTravelEstimates();
-
-		updateDestDetails();
+		updateAll();
 	});
 
 	// On Change event for Ship Silhouette
-	document.getElementById("silh").addEventListener("change", updateSilhouette);
+	document.getElementById("shipSilhouette").addEventListener("change", onChangeSilhouette);
 
 	// On Change event for Hyperdrive Class
-	document.getElementById("hyperdrive").addEventListener("change", updateTravelEstimates);
+	document.getElementById("hyperdriveClass").addEventListener("change", onChangeHyperdriveClass);
 
 	// On Change event for Declared Cargo
-	document.getElementById("cargo").addEventListener("change", updateLocalCustoms);
+	document.getElementById("cargoDeclared").addEventListener("change", onChangeCargoDeclared);
 
 	// On Change event for Undeclared Cargo
 
 	// On Change event for Pirate Holonet
 	document.getElementById("pirateHolonet").addEventListener("change", togglePirateHolonet);
 
-	// On Change event for dropdown filters
+	// On Change event for Galactic Hyperspace Constant
+	document.getElementById("galacticHyperspaceConstant").addEventListener("change", onChangeGalacticHyperspaceConstant);
 
 	// General update of everything
 	$("input").change(function() {
+		Cookies.set("location", currentLoc.Name);
+		Cookies.set("destination", destLoc.Name);
 		populateLocationDropdown();
 		populateDestinationDropdown();
+		updateAll();
 	});
 });
 
@@ -139,7 +148,7 @@ function populateLocationDropdown()
 		{
 			// secret pirate locations remain secret without Pirate HoloNet
 			if (location.Name == "City Of Masks") return;
-			if (location.Name == "Tantalus Detention Facility") return;
+			if (location.Name == "Tantalus Detention Facility") return; // homebrew
 		}
 
 		$locationDropdown.append(
@@ -192,7 +201,7 @@ function populateDestinationDropdown()
 		{
 			// secret pirate locations remain secret without Pirate HoloNet
 			if (location.Name == "City Of Masks") return;
-			if (location.Name == "Tantalus Detention Facility") return;
+			if (location.Name == "Tantalus Detention Facility") return; // homebrew
 		}
 
 		$destinationDropdown.append(
@@ -201,9 +210,371 @@ function populateDestinationDropdown()
 	});
 }
 
+function updateAll()
+{
+	if (currentLocation)
+	{
+		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+	}
+	if (currentDestination)
+	{
+		destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+		destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+	}
+
+	updateCurrentAtmosphere();
+	updateDestAtmosphere();
+	updateLocalEvents();
+	updateCurrentDetails();
+	updateDestDetails();
+	updateLocalCustoms();
+	updateTravelEstimates();
+
+	if (currentLocation && currentLoc && currentLoc.Name)
+		$("#locationDetails").slideDown();
+	if (currentDestination && destLoc && destLoc.Name)
+		$("#destinationDetails").slideDown();
+}
+
+// updates the current location Atmosphere description
+function updateCurrentAtmosphere()
+{
+	if (! currentLoc.Name) return;
+
+	$('#currentAtmosphere').text(currentLoc.Atmosphere);
+
+	$('#currentAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4').addClass('font-normal');
+	if (currentLoc.Atmosphere === "Type IV")
+	{
+		$('#currentAtmosphere').addClass('atmos-4');
+	}
+	else if (currentLoc.Atmosphere === "Type III")
+	{
+		$('#currentAtmosphere').addClass('atmos-3');
+	}
+	else if (currentLoc.Atmosphere === "Type II")
+	{
+		$('#currentAtmosphere').addClass('atmos-2');
+	}
+	else if (currentLoc.Atmosphere === "Type I")
+	{
+		$('#currentAtmosphere').addClass('atmos-1');
+	}
+}
+
+// updates the destination location Atmosphere description
+function updateDestAtmosphere()
+{
+	if (! destLoc) return;
+
+	$('#destAtmosphere').text(destLoc.Atmosphere);
+
+	$('#destAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4').addClass('font-normal');;
+	if (destLoc.Atmosphere === "Type IV")
+	{
+		$('#destAtmosphere').addClass('atmos-4');
+	}
+	else if (destLoc.Atmosphere === "Type III")
+	{
+		$('#destAtmosphere').addClass('atmos-3');
+	}
+	else if (destLoc.Atmosphere === "Type II")
+	{
+		$('#destAtmosphere').addClass('atmos-2');
+	}
+	else if (destLoc.Atmosphere === "Type I")
+	{
+		$('#destAtmosphere').addClass('atmos-1');
+	}
+}
+
+function updateLocalEvents()
+{
+	if (! currentLoc.Name) return;
+
+	// Reset local events
+	$("#local-events").empty();
+	$("#local-events").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
+//	$("#local-events").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
+
+	// Shadowport
+	if (currentLoc.Shadowport) {
+		$("#local-events").append('<li>RUMOR HAS IT: A clandestine <href="https://starwars.fandom.com/wiki/Shadowport">shadowport</a> is here somewhere.</li>');
+	}
+
+	// Black Market
+	if (currentLoc.BlackMarket) {
+		$("#local-events").append('<li>RUMOR HAS IT: A thriving <href="https://starwars.fandom.com/wiki/Black_market/Legends">black market</a> is here somewhere.</li>');
+	}
+
+	// Plot Hooks
+	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Psst. I got a job for you. Legal (mostly), easy work, pays the rent, y\'know? You in?"</i></li>');
+	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Hey, you. You look tough. I got a job, pays well for <em>\'\'tough\'\'</em>."</i></li>');
+	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"My client has an exclusive offer for an elite team with a handsome payout. There is considerable danger involved."</li>');
+
+	// Arrival event
+	populateArrivalEvent();
+
+	if (! (currentLoc && currentLoc.Name))
+		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+	if (! (currentRegion && currentRegion.Name))
+		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+
+	// Arrival in system events
+	populateArrivalEvents(currentLoc.ImperialPresence);
+
+	// Local events
+	populateEmpireEvents(currentLoc.ImperialPresence);
+	populateEmpireEvents(currentRegion.ImperialPresence);
+
+	// Old West events
+	populateOldWestEvents(currentLoc.OldWestiness);
+	populateOldWestEvents(currentRegion.OldWestiness);
+
+	// Flora & Fauna events
+	populateOldWestEvents(currentLoc.Megafauna);
+}
+
+function updateCurrentDetails()
+{
+	if (currentLoc && currentLoc.Name)
+	{
+		if (! (currentRegion && currentRegion.Name)) currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+
+		// Current Location update screen elements
+		$('#currentRegion').html(currentLoc.Region);
+		$('#currentSector').html(currentLoc.Sector);
+		$('#currentSystem').html(currentLoc.System);
+		$('#currentCapital').html(currentLoc.CapitalCity);
+		$('#currentMap').html(currentLoc.Map);
+		updateCurrentAtmosphere();
+		$('#currentTerrain').html(currentLoc.Terrain);
+		$('#currentInhabitants').html(currentLoc.Inhabitants);
+		$('#currentClimate').html(currentLoc.Climate);
+		$('#currentGravity').html(gravityText(currentLoc.Gravity));
+		$('#currentStarportURL').text(starportText(currentLoc.Starport));
+		$('#starportHeader').html(starportText(currentLoc.Starport));
+		$('#currentURL').attr('title', currentLoc.Name);
+		$('#currentURL').attr('href', currentLoc.URL);
+		$('#currentURL').text(currentLoc.URL);
+		$('#currentRegionURL').attr('title', currentRegion.Name);
+		$('#currentRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + currentRegion.Name.replace(' ', '_') + '/Legends');
+		$('#currentRegionURL').text(currentRegion.Name);
+	}
+}
+
+function updateDestDetails()
+{
+	if (destLoc && destLoc.Name)
+	{
+		if (! (destRegion && destRegion.Name)) destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+
+		$('#destRegion').html(destLoc.Region);
+		$('#destSector').html(destLoc.Sector);
+		$('#destSystem').html(destLoc.System);
+		$('#destCapital').html(destLoc.CapitalCity);
+		$('#destMap').html(destLoc.Map);
+		updateDestAtmosphere();
+		$('#destTerrain').html(destLoc.Terrain);
+		$('#destInhabitants').html(destLoc.Inhabitants);
+		$('#destClimate').html(destLoc.Climate);
+		$('#destGravity').html(gravityText(destLoc.Gravity));
+		$('#destStarportURL').text(starportText(destLoc.Starport));
+		$('#destURL').attr('title', destLoc.Name);
+		$('#destURL').attr('href', destLoc.URL);
+		$('#destURL').text(destLoc.URL);
+		$('#destRegionURL').attr('title', destRegion.Name);
+		$('#destRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + destRegion.Name.replace(' ', '_') + '/Legends');
+		$('#destRegionURL').text(destRegion.Name);
+	}
+}
+function updateLocalCustoms() // and starport costs, permits, contraband,...
+{
+	if (!currentLocation) return;
+	if (! (currentLoc && currentLoc.Name))
+		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+	if (! (currentRegion && currentRegion.Name))
+		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+	shipSilhouette = $('#shipSilhouette').val();
+
+	// Options calculations & variables
+	const shipCargoDeclared = $("#cargoDeclared").val();
+	const shipHyperdrive = $("#hyperdriveClass").val();
+	const rarityMod = rarityModFor(currentLoc);
+
+	// Empire Presence calculations
+	// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
+	const silhCostFactor = shipSilhouette * (shipSilhouette > 4 ? 25 : 10); // Capital ships start at Silhouette 5 and have a large jump in capability/cost
+	const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) * silhCostFactor;
+	const textFeePortLanding = creditsOrWaived(feePortLanding);
+	const feePortBerthing = Math.round(feePortLanding * 0.1);
+	const textFeePortBerthing = creditsOrWaived(feePortBerthing);
+	const feeCustoms = Math.round(shipCargoDeclared * 0.001); // "waived" if zero
+	const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
+	const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
+	const textFeeVisitation = creditsOrWaived(Math.max(feeVisitation, 10));
+//	const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
+//	const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
+	const waitDeparture = Math.round(feePortLanding); // in hours
+	const textWaitDeparture = (waitDeparture>24
+		? (waitDeparture/24).toFixed(1) + " days"
+		: waitDeparture.toFixed(0) + " hours"
+		);
+
+	// Empire Presence update screen elements
+	$('#textFeePortLanding').text(textFeePortLanding);
+	$('#textFeePortBerthing').text(textFeePortBerthing);
+	$('#textFeeCustoms').text(textFeeCustoms);
+	$('#textFeeVisitation').text(textFeeVisitation);
+//	$('#textFeeSmuggling').text(textFeeSmuggling);
+	$('#textWaitDeparture').text(textWaitDeparture);
+
+	// Weapon Permits calculations
+	const baseWeapon = currentLoc.OldWestiness + currentRegion.OldWestiness;
+
+	const permitWeaponConcealed = baseWeapon;
+	const permitWeaponConcealedCost = (0 - permitWeaponConcealed) * 10;
+	const textPermitWeaponConcealed = permitHTML(permitWeaponConcealed, permitWeaponConcealedCost, rarityMod);
+
+	const permitWeaponSmall = baseWeapon - 1;
+	const permitWeaponSmallCost = (0 - permitWeaponSmall) * 10;
+	const textPermitWeaponSmall = permitHTML(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
+
+	const permitWeaponRifle = baseWeapon -	2;
+	const permitWeaponRifleCost = (0 - permitWeaponRifle) * 10;
+	const textPermitWeaponRifle = permitHTML(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
+
+	const permitWeaponHeavy = baseWeapon - 3;
+	const permitWeaponHeavyCost = (0 - permitWeaponHeavy) * 10;
+	const textPermitWeaponHeavy = permitHTML(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
+
+	const permitArmorLight = baseWeapon -2;
+	const permitArmorLightCost = (0 - permitArmorLight) * 10;
+	const textPermitArmorLight = permitHTML(permitArmorLight, permitArmorLightCost, rarityMod);
+
+	const permitArmorPower = baseWeapon - 3;
+	const permitArmorPowerCost = (0 - permitArmorPower) * 10;
+	const textPermitArmorPower = permitHTML(permitArmorPower, permitArmorPowerCost, rarityMod);
+
+	// Weapon Permits update screen elements
+	$('#textPermitWeaponConcealed').html(textPermitWeaponConcealed);
+	$('#textPermitWeaponSmall').html(textPermitWeaponSmall);
+	$('#textPermitWeaponRifle').html(textPermitWeaponRifle);
+	$('#textPermitWeaponHeavy').html(textPermitWeaponHeavy);
+	$('#textPermitArmorLight').html(textPermitArmorLight);
+	$('#textPermitArmorPower').html(textPermitArmorPower);
+
+	// Law & Order calculations
+	const baseLaw = 0; // - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
+
+	const lawSpice = baseLaw + currentLoc.Spice + currentRegion.Spice;
+	const textLawSpice = legalityOf(lawSpice);
+
+	const lawTrespassing = baseLaw + currentLoc.Trespassing + currentRegion.Trespassing;
+	const textLawTrespassing = legalityOf(lawTrespassing);
+
+	const lawMilitary = baseLaw + currentLoc.Military + currentRegion.Military;
+	const textLawMilitary = legalityOf(lawMilitary);
+
+	const lawSlicing = baseLaw + currentLoc.Slicing + currentRegion.Slicing;
+	const textLawSlicing = legalityOf(lawSlicing);
+
+	const lawCriticism = baseLaw + currentLoc.Criticism + currentRegion.Criticism;
+	const textLawCriticism = legalityOf(lawCriticism);
+
+	const lawSlavery = baseLaw + currentLoc.Slavery + currentRegion.Slavery;
+	const textLawSlavery = legalityOf(lawSlavery);
+
+	const lawTheft = baseLaw + currentLoc.Theft + currentRegion.Theft;
+	const textLawTheft = legalityOf(lawTheft);
+
+	const lawBribery = baseLaw + currentLoc.Bribery + currentRegion.Bribery;
+	const textLawBribery = legalityOf(lawBribery);
+
+	// Law & Order update screen elements
+	$('#textLawSpice').html(textLawSpice);
+	$('#textLawTrespassing').html(textLawTrespassing);
+	$('#textLawMilitary').html(textLawMilitary);
+	$('#textLawSlicing').html(textLawSlicing);
+	$('#textLawCriticism').html(textLawCriticism);
+	$('#textLawSlavery').html(textLawSlavery);
+	$('#textLawTheft').html(textLawTheft);
+	$('#textLawBribery').html(textLawBribery);
+}
+function updateTravelEstimates()
+{
+	totalFactor = 1.0;
+
+	// Find Hyperlanes available for current location
+	currentRouteList = "";
+	if (currentLoc)
+	{
+		Object.keys(hyperspaceRoutes).forEach(key => {
+			const planets = hyperspaceRoutes[key].Route.split(",");
+			if (planets.indexOf(currentLoc.Name) != -1)
+			{
+				if (currentRouteList.length > 0) currentRouteList += "<br/>";
+				const thisRoute = hyperspaceRoutes[key];
+				const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
+				totalFactor *= factor;
+				currentRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
+			}
+		});
+	}
+
+	// Find Hyperlanes available for destination
+	destRouteList = "";
+	if (destLoc)
+	{
+		Object.keys(hyperspaceRoutes).forEach(key => {
+			const planets = hyperspaceRoutes[key].Route.split(",");
+			if (planets.indexOf(destLoc.Name) != -1)
+			{
+				if (destRouteList.length > 0) destRouteList += "<br/>";
+				const thisRoute = hyperspaceRoutes[key];
+				const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
+				totalFactor *= factor;
+				destRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
+			}
+		});
+	};
+
+	if (currentRouteList.length > 0 && destRouteList.length > 0)
+	{
+		// Same hyperroute? Bonus!
+		currentRouteList.split("<br/>").forEach(currRoute => {
+			destRouteList.split("<br/>").forEach(destRoute => {
+				if (currRoute == destRoute)
+				{
+					currentRouteList = currentRouteList.replace(currRoute, '<span class="matched-hyperlane">' + currRoute + '&nbsp;&gt;&gt;&gt;</span>');
+					destRouteList = destRouteList.replace(destRoute, '<span class="matched-hyperlane">&lt;&lt;&lt;&nbsp;' + destRoute + '</span>');
+					totalFactor *= 0.5;
+				}
+			});
+		});
+	}
+
+	$('#currentHyperlanes').html(currentRouteList);
+	$('#destHyperlanes').html(destRouteList);
+
+	// Fly Casual pg78
+	if (currentLoc.Map && destLoc.Map)
+	{
+		const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
+		const shipHyperdrive = $("#hyperdriveClass").val();
+		$("#ettHyperdriveClass").text(shipHyperdrive);
+		$("#baseHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime));
+		$("#estHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
+		$("#hyperrouteFactor").text(totalFactor.toFixed(2));
+	}
+}
+
 function togglePirateHolonet()
 {
 	isInstalled = $("#pirateHolonet").is(":checked");
+	Cookies.set("pirateHolonet", isInstalled);
+
 	if (isInstalled)
 	{
 		// display the hidden section(s)
@@ -366,54 +737,6 @@ function gravityText(val)
 	return 'Standard';
 }
 
-// updates the current location Atmosphere description
-function updateCurrentAtmosphere()
-{
-	$('#currentAtmosphere').text(currentLoc.Atmosphere);
-
-	$('#currentAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4').addClass('font-normal');
-	if (currentLoc.Atmosphere === "Type IV")
-	{
-		$('#currentAtmosphere').addClass('atmos-4');
-	}
-	else if (currentLoc.Atmosphere === "Type III")
-	{
-		$('#currentAtmosphere').addClass('atmos-3');
-	}
-	else if (currentLoc.Atmosphere === "Type II")
-	{
-		$('#currentAtmosphere').addClass('atmos-2');
-	}
-	else if (currentLoc.Atmosphere === "Type I")
-	{
-		$('#currentAtmosphere').addClass('atmos-1');
-	}
-}
-
-// updates the destination location Atmosphere description
-function updateDestAtmosphere()
-{
-	$('#destAtmosphere').text(destLoc.Atmosphere);
-
-	$('#destAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4').addClass('font-normal');;
-	if (destLoc.Atmosphere === "Type IV")
-	{
-		$('#destAtmosphere').addClass('atmos-4');
-	}
-	else if (destLoc.Atmosphere === "Type III")
-	{
-		$('#destAtmosphere').addClass('atmos-3');
-	}
-	else if (destLoc.Atmosphere === "Type II")
-	{
-		$('#destAtmosphere').addClass('atmos-2');
-	}
-	else if (destLoc.Atmosphere === "Type I")
-	{
-		$('#destAtmosphere').addClass('atmos-1');
-	}
-}
-
 // Arrival event
 function populateArrivalEvent() {
 	const hiddenRounds = Math.round(Math.random() * 2); // this will be impacted by ship components like Holonet Pirate Array and similar
@@ -461,219 +784,26 @@ function populateOldWestEvents(eventCount)
 	}
 }
 
-function updateLocalEvents()
+function onChangeCargoDeclared()
 {
-	// Reset local events
-	$("#local-events").empty();
-	$("#local-events").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
-//	$("#local-events").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
-
-	// Shadowport
-	if (currentLoc.Shadowport) {
-		$("#local-events").append('<li>RUMOR HAS IT: A clandestine <href="https://starwars.fandom.com/wiki/Shadowport">shadowport</a> is here somewhere.</li>');
-	}
-
-	// Black Market
-	if (currentLoc.BlackMarket) {
-		$("#local-events").append('<li>RUMOR HAS IT: A thriving <href="https://starwars.fandom.com/wiki/Black_market/Legends">black market</a> is here somewhere.</li>');
-	}
-
-	// Plot Hooks
-	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Psst. I got a job for you. Legal (mostly), easy work, pays the rent, y\'know? You in?"</i></li>');
-	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Hey, you. You look tough. I got a job, pays well for <em>\'\'tough\'\'</em>."</i></li>');
-	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"My client has an exclusive offer for an elite team with a handsome payout. There is considerable danger involved."</li>');
-
-	// Arrival event
-	populateArrivalEvent();
-
-	if (! currentLoc) window.alert("ERROR in updateLocalEvents()");
-
-	// Arrival in system events
-	populateArrivalEvents(currentLoc.ImperialPresence);
-
-	// Local events
-	populateEmpireEvents(currentLoc.ImperialPresence);
-	populateEmpireEvents(currentRegion.ImperialPresence);
-
-	// Old West events
-	populateOldWestEvents(currentLoc.OldWestiness);
-	populateOldWestEvents(currentRegion.OldWestiness);
-
-	// Flora & Fauna events
-	populateOldWestEvents(currentLoc.Megafauna);
+	Cookies.set("cargoDeclared", $("#cargoDeclared").val());
+	updateLocalCustoms();
 }
 
-function updateCurrentDetails()
+
+// Galactic Travel Time adjustment
+function onChangeGalacticHyperspaceConstant()
 {
-	if (currentLoc)
-	{
-		// Current Location update screen elements
-		$('#currentRegion').html(currentLoc.Region);
-		$('#currentSector').html(currentLoc.Sector);
-		$('#currentSystem').html(currentLoc.System);
-		$('#currentCapital').html(currentLoc.CapitalCity);
-		$('#currentMap').html(currentLoc.Map);
-		updateCurrentAtmosphere();
-		$('#currentTerrain').html(currentLoc.Terrain);
-		$('#currentInhabitants').html(currentLoc.Inhabitants);
-		$('#currentClimate').html(currentLoc.Climate);
-		$('#currentGravity').html(gravityText(currentLoc.Gravity));
-		$('#currentStarportURL').text(starportText(currentLoc.Starport));
-		$('#starportHeader').html(starportText(currentLoc.Starport));
-		$('#currentURL').attr('title', currentLoc.Name);
-		$('#currentURL').attr('href', currentLoc.URL);
-		$('#currentURL').text(currentLoc.URL);
-		$('#currentRegionURL').attr('title', currentRegion.Name);
-		$('#currentRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + currentRegion.Name.replace(' ', '_') + '/Legends');
-		$('#currentRegionURL').text(currentRegion.Name);
-	}
-	else
-	{
-		window.alert("ERROR in updateCurrentDetails()");
-	}
-}
-
-function updateDestDetails()
-{
-	if (destLoc)
-	{
-		$('#destRegion').html(destLoc.Region);
-		$('#destSector').html(destLoc.Sector);
-		$('#destSystem').html(destLoc.System);
-		$('#destCapital').html(destLoc.CapitalCity);
-		$('#destMap').html(destLoc.Map);
-		updateDestAtmosphere();
-		$('#destTerrain').html(destLoc.Terrain);
-		$('#destInhabitants').html(destLoc.Inhabitants);
-		$('#destClimate').html(destLoc.Climate);
-		$('#destGravity').html(gravityText(destLoc.Gravity));
-		$('#destStarportURL').text(starportText(destLoc.Starport));
-		$('#destURL').attr('title', destLoc.Name);
-		$('#destURL').attr('href', destLoc.URL);
-		$('#destURL').text(destLoc.URL);
-		$('#destRegionURL').attr('title', destRegion.Name);
-		$('#destRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + destRegion.Name.replace(' ', '_') + '/Legends');
-		$('#destRegionURL').text(destRegion.Name);
-	}
-	else
-	{
-		window.alert("ERROR attempting in updateDestDetails()");
-	}
-}
-
-function updateLocalCustoms() // and starport costs, permits, contraband,...
-{
-	if (! currentLoc) window.alert("ERROR in updateLocalCustoms()");
-
-	// Options calculations & variables
-	const shipCargoDeclared = $('#cargo').val();
-	const shipHyperdrive = $('#hyperdrive').val();
-	const rarityMod = rarityModFor(currentLoc);
-
-	// Empire Presence calculations
-	// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
-	shipSilh = $('#silh').val();
-	const silhCostFactor = shipSilh * (shipSilh > 4 ? 25 : 10); // Capital ships start at Silhouette 5 and have a large jump in capability/cost
-	const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) * silhCostFactor;
-	const textFeePortLanding = creditsOrWaived(feePortLanding);
-	const feePortBerthing = Math.round(feePortLanding * 0.1);
-	const textFeePortBerthing = creditsOrWaived(feePortBerthing);
-	const feeCustoms = Math.round(shipCargoDeclared * 0.001); // "waived" if zero
-	const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
-	const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
-	const textFeeVisitation = creditsOrWaived(Math.max(feeVisitation, 10));
-//	const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
-//	const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
-	const waitDeparture = Math.round(feePortLanding); // in hours
-	const textWaitDeparture = (waitDeparture>24
-		? (waitDeparture/24).toFixed(1) + " days"
-		: waitDeparture.toFixed(0) + " hours"
-		);
-
-	// Empire Presence update screen elements
-	$('#textFeePortLanding').text(textFeePortLanding);
-	$('#textFeePortBerthing').text(textFeePortBerthing);
-	$('#textFeeCustoms').text(textFeeCustoms);
-	$('#textFeeVisitation').text(textFeeVisitation);
-//	$('#textFeeSmuggling').text(textFeeSmuggling);
-	$('#textWaitDeparture').text(textWaitDeparture);
-
-	// Weapon Permits calculations
-	const baseWeapon = currentLoc.OldWestiness + currentRegion.OldWestiness;
-
-	const permitWeaponConcealed = baseWeapon;
-	const permitWeaponConcealedCost = (0 - permitWeaponConcealed) * 10;
-	const textPermitWeaponConcealed = permitHTML(permitWeaponConcealed, permitWeaponConcealedCost, rarityMod);
-
-	const permitWeaponSmall = baseWeapon - 1;
-	const permitWeaponSmallCost = (0 - permitWeaponSmall) * 10;
-	const textPermitWeaponSmall = permitHTML(permitWeaponSmall, permitWeaponSmallCost, rarityMod);
-
-	const permitWeaponRifle = baseWeapon -	2;
-	const permitWeaponRifleCost = (0 - permitWeaponRifle) * 10;
-	const textPermitWeaponRifle = permitHTML(permitWeaponRifle, permitWeaponRifleCost, rarityMod);
-
-	const permitWeaponHeavy = baseWeapon - 3;
-	const permitWeaponHeavyCost = (0 - permitWeaponHeavy) * 10;
-	const textPermitWeaponHeavy = permitHTML(permitWeaponHeavy, permitWeaponHeavyCost, rarityMod);
-
-	const permitArmorLight = baseWeapon -2;
-	const permitArmorLightCost = (0 - permitArmorLight) * 10;
-	const textPermitArmorLight = permitHTML(permitArmorLight, permitArmorLightCost, rarityMod);
-
-	const permitArmorPower = baseWeapon - 3;
-	const permitArmorPowerCost = (0 - permitArmorPower) * 10;
-	const textPermitArmorPower = permitHTML(permitArmorPower, permitArmorPowerCost, rarityMod);
-
-	// Weapon Permits update screen elements
-	$('#textPermitWeaponConcealed').html(textPermitWeaponConcealed);
-	$('#textPermitWeaponSmall').html(textPermitWeaponSmall);
-	$('#textPermitWeaponRifle').html(textPermitWeaponRifle);
-	$('#textPermitWeaponHeavy').html(textPermitWeaponHeavy);
-	$('#textPermitArmorLight').html(textPermitArmorLight);
-	$('#textPermitArmorPower').html(textPermitArmorPower);
-
-	// Law & Order calculations
-	const baseLaw = 0; // - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
-
-	const lawSpice = baseLaw + currentLoc.Spice + currentRegion.Spice;
-	const textLawSpice = legalityOf(lawSpice);
-
-	const lawTrespassing = baseLaw + currentLoc.Trespassing + currentRegion.Trespassing;
-	const textLawTrespassing = legalityOf(lawTrespassing);
-
-	const lawMilitary = baseLaw + currentLoc.Military + currentRegion.Military;
-	const textLawMilitary = legalityOf(lawMilitary);
-
-	const lawSlicing = baseLaw + currentLoc.Slicing + currentRegion.Slicing;
-	const textLawSlicing = legalityOf(lawSlicing);
-
-	const lawCriticism = baseLaw + currentLoc.Criticism + currentRegion.Criticism;
-	const textLawCriticism = legalityOf(lawCriticism);
-
-	const lawSlavery = baseLaw + currentLoc.Slavery + currentRegion.Slavery;
-	const textLawSlavery = legalityOf(lawSlavery);
-
-	const lawTheft = baseLaw + currentLoc.Theft + currentRegion.Theft;
-	const textLawTheft = legalityOf(lawTheft);
-
-	const lawBribery = baseLaw + currentLoc.Bribery + currentRegion.Bribery;
-	const textLawBribery = legalityOf(lawBribery);
-
-	// Law & Order update screen elements
-	$('#textLawSpice').html(textLawSpice);
-	$('#textLawTrespassing').html(textLawTrespassing);
-	$('#textLawMilitary').html(textLawMilitary);
-	$('#textLawSlicing').html(textLawSlicing);
-	$('#textLawCriticism').html(textLawCriticism);
-	$('#textLawSlavery').html(textLawSlavery);
-	$('#textLawTheft').html(textLawTheft);
-	$('#textLawBribery').html(textLawBribery);
+	Cookies.set("GHC", $("#galacticHyperspaceConstant").val());
+	Cookies.set("hyperdriveClass", $("#hyperdriveClass").val());
+	updateTravelEstimates();
 }
 
 // Hyperlane travel time multiplier
 function hyperlaneFactor(startLoc, endLoc)
 {
+	if (!currentLoc) return;
+
 	factor = 1.0;
 	Object.keys(hyperspaceRoutes).forEach(key => {
 		const planets = hyperspaceRoutes[key].Route.split(",");
@@ -686,6 +816,7 @@ function hyperlaneFactor(startLoc, endLoc)
 	return factor;
 }
 
+// EotE pg247, Fly Casual pg78
 // https://oakthorne.net/wiki/index.php/SW_Hyperspace_Travel_Times
 function hyperspaceTravelTime(startMap, endMap)
 {
@@ -702,11 +833,17 @@ function hyperspaceTravelTime(startMap, endMap)
 		// side effect: update the display
 		$('#baseHyperSpaceDistance').text(distance.toFixed(2) + " parsecs, ")
 
-		if (distance < 1) return 24;
-		if (distance < 3) return Math.floor(distance * 42);
-		if (distance < 6) return Math.floor(distance * 48);
-		if (distance < 9) return Math.floor(distance * 56);
-		return Math.max(Math.floor(distance * 56), 24); // minimum 24 hours travel time per Fly Casual pg78
+		baseTime = 0;
+		if (distance < 1) baseTime = 12; // sublight, planet-to-planet within a system
+		if (distance < 3) baseTime = Math.floor(distance * 20); // within a sector: 10-24 hours
+		if (distance < 6) baseTime = Math.floor(distance * 25); // within a region: 10-72 hours
+		if (distance < 9) baseTime = Math.floor(distance * 28); // between regions: 3-7 days
+		baseTime = Math.floor(distance * 30); // across the galaxy: 1-3 weeks
+
+		// Adjust for Galactic Hyperspace Constant
+		baseTime *= ($("#galacticHyperspaceConstant").val() || 1.0);
+
+		return baseTime;
 	}
 	else
 	{
@@ -725,94 +862,33 @@ function hoursToTravelTimeDesc(hours) // 178 = 1 week, 0 days, 10 hours
 	return retVal;
 }
 
-function updateTravelEstimates()
+function onChangeHyperdriveClass()
 {
-	totalFactor = 1.0;
-
-	// Find Hyperlanes available for current location
-	currentRouteList = "";
-	if (currentLoc)
-	{
-		Object.keys(hyperspaceRoutes).forEach(key => {
-			const planets = hyperspaceRoutes[key].Route.split(",");
-			if (planets.indexOf(currentLoc.Name) != -1)
-			{
-				if (currentRouteList.length > 0) currentRouteList += "<br/>";
-				const thisRoute = hyperspaceRoutes[key];
-				const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
-				totalFactor *= factor;
-				currentRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
-			}
-		});
-	}
-
-	// Find Hyperlanes available for destination
-	destRouteList = "";
-	if (destLoc)
-	{
-		Object.keys(hyperspaceRoutes).forEach(key => {
-			const planets = hyperspaceRoutes[key].Route.split(",");
-			if (planets.indexOf(destLoc.Name) != -1)
-			{
-				if (destRouteList.length > 0) destRouteList += "<br/>";
-				const thisRoute = hyperspaceRoutes[key];
-				const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
-				totalFactor *= factor;
-				destRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
-			}
-		});
-	};
-
-	if (currentRouteList.length > 0 && destRouteList.length > 0)
-	{
-		// Same hyperroute? Bonus!
-		currentRouteList.split("<br/>").forEach(currRoute => {
-			destRouteList.split("<br/>").forEach(destRoute => {
-				if (currRoute == destRoute)
-				{
-					currentRouteList = currentRouteList.replace(currRoute, '<span class="matched-hyperlane">' + currRoute + '&nbsp;&gt;&gt;&gt;</span>');
-					destRouteList = destRouteList.replace(destRoute, '<span class="matched-hyperlane">&lt;&lt;&lt;&nbsp;' + destRoute + '</span>');
-					totalFactor *= 0.5;
-				}
-			});
-		});
-	}
-
-	$('#currentHyperlanes').html(currentRouteList);
-	$('#destHyperlanes').html(destRouteList);
-
-	// Fly Casual pg78
-	if (currentLoc.Map && destLoc.Map)
-	{
-		const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
-		const shipHyperdrive = $('#hyperdrive').val();
-		$('#ettHyperdriveClass').text(shipHyperdrive);
-		$('#baseHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime));
-		$('#estHyperspaceTime').text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
-		$('#hyperrouteFactor').text(totalFactor.toFixed(2));
-	}
+	Cookies.set("hyperdriveClass", $("#hyperdriveClass").val());
+	updateTravelEstimates();
 }
+
 
 function cleanFonts()
 {
-	$('#body').removeClass('font-besh font-starwars font-normal');
-	$('#locationDropdownLabel').removeClass('font-besh font-starwars font-normal');
-	$('#destinationDropdownLabel').removeClass('font-besh font-starwars font-normal');
-	$('#instructions-box').removeClass('font-besh font-starwars font-normal');
-	$('#local-customs-box-header').removeClass('font-besh font-starwars font-normal');
-	$('.ship-manifest-item').removeClass('font-besh font-starwars font-normal');
+	$("#body").removeClass("font-besh font-starwars font-normal");
+	$("#locationDropdownLabel").removeClass("font-besh font-starwars font-normal");
+	$("#destinationDropdownLabel").removeClass("font-besh font-starwars font-normal");
+	$("#instructions-box").removeClass("font-besh font-starwars font-normal");
+	$("#local-customs-box-header").removeClass("font-besh font-starwars font-normal");
+	$(".ship-manifest-item").removeClass("font-besh font-starwars font-normal");
 }
 
 // switch to Droidobesh (illegible) font
 function switchFontBesh()
 {
 	cleanFonts();
-	$('#body').addClass('font-besh');
-	$('#locationDropdownLabel').addClass('font-starwars');
-	$('#destinationDropdownLabel').addClass('font-besh');
-	$('#instructions-box').addClass('font-starwars');
-	$('#local-customs-box-header').addClass('font-starwars');
-	$('.ship-manifest-item').addClass('font-besh');
+	$("#body").addClass("font-besh");
+	$("#locationDropdownLabel").addClass("font-starwars");
+	$("#destinationDropdownLabel").addClass("font-besh");
+	$("#instructions-box").addClass("font-starwars");
+	$("#local-customs-box-header").addClass("font-starwars");
+	$(".ship-manifest-item").addClass("font-besh");
 	fontNormalElements();
 }
 
@@ -820,12 +896,12 @@ function switchFontBesh()
 function switchFontStarWars()
 {
 	cleanFonts();
-	$('#body').addClass('font-starwars');
-	$('#locationDropdownLabel').addClass('font-starwars');
-	$('#destinationDropdownLabel').addClass('font-starwars');
-	$('#instructions-box').addClass('font-normal');
-	$('#local-customs-box-header').addClass('font-normal');
-	$('.ship-manifest-item').addClass('font-starwars');
+	$("#body").addClass("font-starwars");
+	$("#locationDropdownLabel").addClass("font-starwars");
+	$("#destinationDropdownLabel").addClass("font-starwars");
+	$("#instructions-box").addClass("font-normal");
+	$("#local-customs-box-header").addClass("font-normal");
+	$(".ship-manifest-item").addClass("font-starwars");
 	fontNormalElements();
 }
 
@@ -833,12 +909,12 @@ function switchFontStarWars()
 function switchFontNormal()
 {
 	cleanFonts();
-	$('#body').addClass('font-normal');
-	$('#locationDropdownLabel').addClass('font-normal');
-	$('#destinationDropdownLabel').addClass('font-normal');
-	$('#instructions-box').addClass('font-normal');
-	$('#local-customs-box-header').addClass('font-normal');
-	$('.ship-manifest-item').addClass('font-normal');
+	$("#body").addClass("font-normal");
+	$("#locationDropdownLabel").addClass("font-normal");
+	$("#destinationDropdownLabel").addClass("font-normal");
+	$("#instructions-box").addClass("font-normal");
+	$("#local-customs-box-header").addClass("font-normal");
+	$(".ship-manifest-item").addClass("font-normal");
 }
 
 function fontNormalElements()
@@ -899,11 +975,12 @@ function toGalactipediaALink(name)
 	return '<a href="' + toGalactipediaURL(name) + '" target="_blank">' + name + '</a>';
 }
 
-function updateSilhouette()
+function onChangeSilhouette()
 {
-	shipSilh = $('#silh').val();
+	shipSilhouette = $('#shipSilhouette').val();
+	Cookies.set("shipSilhouette", shipSilhouette);
 
-	if (shipSilh > 4) // Commercial/Military size
+	if (shipSilhouette > 4) // Commercial/Military size
 	{
 		$('#silh5plus').addClass("silhouette-5-plus");
 	}

@@ -3,12 +3,27 @@
 	src: url('SfDistantGalaxy-0l3d.ttf');
 }
 @font-face {
+	font-family: galbasic;
+	src: url('galbasic.ttf');
+}
+@font-face {
 	font-family: Droidobesh;
 	src: url('DroidobeshDepot-gxmVE.otf');
+	font-weight: lighter;
+}
+@font-face {
+	font-family: Aurebesh;
+	src: url('Aurebesh.otf');
+/*	font-weight: lighter; */
+}
+@font-face {
+	font-family: Starkiller;
+	src: url('Starkiller.ttf');
 }
 
 body {
-	font-family: Calibri, sans-serif;
+/*	font-family: Calibri, sans-serif; */
+	font-family: Starkiller, sans-serif;
 	margin: 20px;
 	background-color: #2c2c2c; /* dark grey */
 	color: #ffffd0; /* off white */
@@ -105,10 +120,11 @@ pre {
 	font-family: Calibri, sans-serif;
 }
 .font-starwars {
-	font-family: StarWars, sans-serif;
+	font-family: Starkiller, sans-serif;
+	font-weight: lighter;
 }
 .font-besh {
-	font-family: Droidobesh, sans-serif;
+	font-family: Aurebesh, sans-serif;
 }
 .form-group {
 	margin-bottom: 15px;
@@ -257,6 +273,18 @@ pre {
 }
 .location-details-item {
 	display: inline-block;
+}
+.hyperlanes {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+.header3 {
+	vertical-align: text-bottom;
+	display: contents;
+	font-size: larger;
+	font-weight: bold;
+	margin: 10px 0px 5px 0px;
+	padding: 0px 0px 0px 0px;
 }
 .nowrap {
 	white-space: nowrap;

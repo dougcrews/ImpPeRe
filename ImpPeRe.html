@@ -10,6 +10,7 @@
 	<script src="regions.js"></script>
 	<script src="events.js"></script>
 	<script src="hyperspace.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 	<script src="ImpPeRe.js"></script>
 	<link rel="stylesheet" href="ImpPeRe.css">
 </head>
@@ -79,7 +80,7 @@
 					<span class="tooltiptext">
 					Known and reported details of your current location.
 					</span>
-					<h3>BoSS Database</h3>
+					<div class="header3 align-left">BoSS Database</div>
 					<div class="flex-container">
 						<div class="box-around">
 							<strong>Region:</strong> <a id="currentRegionURL"
@@ -106,10 +107,11 @@
 					</div>
 					<div class="flex-container">
 						<div class="box-around">
-							<strong>Hyperlanes:</strong> <pre id="currentHyperlanes">unknown</pre>
+							<strong>Hyperlanes:</strong> <pre id="currentHyperlanes" class="hyperlanes">unknown</pre>
 						</div>
 					</div>
-					<h3>Atmosphere & Terrain</h3>
+
+					<p class="header3 align-left">Atmosphere & Terrain</p>
 					<div class="flex-container">
 						<div class="box-around">
 							<strong>Atmosphere:</strong> <span id="currentAtmosphere">unknown</span>
@@ -141,7 +143,7 @@
 					<span class="tooltiptext">
 					Known and reported details of your Destination.
 					</span>
-					<h3>BoSS Database</h3>
+					<div class="header3 align-left">BoSS Database</div>
 					<div class="flex-container">
 						<div class="box-around">
 							<strong>Region:</strong> <a id="destRegionURL"
@@ -167,11 +169,13 @@
 						</div>
 					</div>
 					<div class="flex-container">
-						<div class="box-around">
-							<strong>Hyperlanes:</strong> <pre id="destHyperlanes">unknown</pre>
+						<div class="box-around hyperlanes">
+							<strong>Hyperlanes:</strong> <pre id="destHyperlanes" class="hyperlanes">unknown</pre>
 						</div>
 					</div>
-					<h3>Atmosphere & Terrain</h3>
+					<br/>
+
+					<p class="header3 align-left">Atmosphere & Terrain</p>
 					<div class="flex-container">
 						<div class="box-around">
 							<strong>Atmosphere:</strong> <span id="destAtmosphere">unknown</span>
@@ -189,8 +193,25 @@
 							<strong>Inhabitants:</strong> <span id="destInhabitants">unknown</span>
 						</div>
 					</div>
-					<h3>Hyperlane Travel</h3>
-					<div class="flex-container">
+					<br/>
+
+					<div style="display: block;">
+						<span class="header3 align-left">Hyperlane Travel</span>
+						<span class="align-right" style="display: block-ruby; font-size: smaller;>
+							<label for="galacticHyperspaceConstant">Galactic Hyperspace Constant&nbsp;
+							<select id="galacticHyperspaceConstant" style="width: fit-content; font-size: smaller;">
+								<option value="0.01">0.01</option>
+								<option value="0.1">0.1</option>
+								<option value="0.25">0.25</option>
+								<option value="0.5">0.5</option>
+								<option value="1" selected="true">1.0</option>
+								<option value="2.5">2.5</option>
+								<option value="5">5.0</option>
+								<option value="10">10.0</option>
+							</select>
+						</span>
+					</div>
+					<div class="flex-container" style="display: inline-flex;">
 						<div class="box-around">
 							<div>
 								<strong>Estimated Travel Time</strong> (factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>): <span id="estHyperspaceTime">calculating...</span><br/>
@@ -214,9 +235,8 @@
 						</span>
 						<ul class="ship-manifest-menu">
 							<li class="ship-manifest-item">
-								<label for="silh" id="silhLabel">
-									Silhouette:&nbsp;
-									<select id="silh">
+								<label for="shipSilhouette" id="silhLabel">Silhouette:&nbsp;
+									<select id="shipSilhouette">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -233,9 +253,8 @@
 								<span id="silh5plus" class="align-right"></span>
 							</li>
 							<li class="ship-manifest-item">
-								<label for="hyperdrive">
-									Hyperdrive: Class&nbsp;
-									<select id="hyperdrive">
+								<label for="hyperdriveClass">Hyperdrive: Class&nbsp;
+									<select id="hyperdriveClass">
 										<option value="0.5">0.5</option>
 										<option value="1" selected="true">1</option>
 										<option value="2">2</option>
@@ -256,7 +275,7 @@
 								</label>
 							</li>
 							<li class="ship-manifest-item">
-								<label for="cargo">Cargo Declared: <input type="number" id="cargo" class="cargo-declared" min="0" defaultValue="0"></input>cr</label>
+								<label for="cargoDeclared">Cargo Declared: <input type="number" id="cargoDeclared" class="cargo-declared" min="0" defaultValue="0"></input>cr</label>
 							</li>
 							<li class="ship-manifest-item secret-manifest-item">
 								<label for="pirateHolonet">Pirate HoloNet: <input type="checkbox" id="pirateHolonet"></input></label>
@@ -315,7 +334,7 @@
 				</div>
 			</td>
 			<td class="local-events align-top">
-				<h4 class="local-customs-box-header font-starwars">Local Events reported at <span id="local-eventsLocation">your location</span></h4>
+				<h4 class="local-customs-box-header font-starwars">Local Events reported at <span id="localEventsLocation">your location</span></h4>
 				<div class="tooltip">
 					<span class="tooltiptext">
 					See the Suggested Usage below. These are all SUGGESTIONS to enhance the story. Nothing is required.
