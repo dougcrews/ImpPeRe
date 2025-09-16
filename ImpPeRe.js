@@ -38,7 +38,7 @@ $(document).ready(function ()
 	$("#hyperdriveClass").val(hyperdriveClass);
 	gHC = Cookies.get()["GHC"] || 1;
 	$("#galacticHyperspaceConstant").val(gHC);
-	pirateHolonet = Cookies.get()["pirateHolonet"];
+	pirateHolonet = (Cookies.get()["pirateHolonet"] == "true");
 	$("#pirateHolonet").prop("checked", pirateHolonet);
 	currentLocation = Cookies.get()["currentLocation"];
 	currentDestination = Cookies.get()["currentDestination"];
@@ -343,24 +343,24 @@ function updateCurrentDetails()
 		if (! (currentRegion && currentRegion.Name)) currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 
 		// Current Location update screen elements
-		$('#currentRegion').html(currentLoc.Region);
-		$('#currentSector').html(currentLoc.Sector);
-		$('#currentSystem').html(currentLoc.System);
-		$('#currentCapital').html(currentLoc.CapitalCity);
-		$('#currentMap').html(currentLoc.Map);
+		$("#currentRegion").html(currentLoc.Region);
+		$("#currentSector").html(currentLoc.Sector);
+		$("#currentSystem").html(currentLoc.System);
+		$("#currentCapital").html(currentLoc.CapitalCity);
+		$("#currentMap").html(currentLoc.Map);
 		updateCurrentAtmosphere();
-		$('#currentTerrain').html(currentLoc.Terrain);
-		$('#currentInhabitants').html(currentLoc.Inhabitants);
-		$('#currentClimate').html(currentLoc.Climate);
-		$('#currentGravity').html(gravityText(currentLoc.Gravity));
-		$('#currentStarportURL').text(starportText(currentLoc.Starport));
-		$('#starportHeader').html(starportText(currentLoc.Starport));
-		$('#currentURL').attr('title', currentLoc.Name);
-		$('#currentURL').attr('href', currentLoc.URL);
-		$('#currentURL').text(currentLoc.URL);
-		$('#currentRegionURL').attr('title', currentRegion.Name);
-		$('#currentRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + currentRegion.Name.replace(' ', '_') + '/Legends');
-		$('#currentRegionURL').text(currentRegion.Name);
+		$("#currentTerrain").html(currentLoc.Terrain);
+		$("#currentInhabitants").html(currentLoc.Inhabitants);
+		$("#currentClimate").html(currentLoc.Climate);
+		$("#currentGravity").html(gravityText(currentLoc.Gravity));
+		$("#currentStarportURL").text(starportText(currentLoc.Starport));
+		$("#starportHeader").html(starportText(currentLoc.Starport));
+		$("#currentURL").attr("title", currentLoc.Name);
+		$("#currentURL").attr("href", currentLoc.URL);
+		$("#currentURL").text(currentLoc.URL);
+		$("#currentRegionURL").attr("title", currentRegion.Name);
+		$("#currentRegionURL").attr("href", "https://starwars.fandom.com/wiki/" + currentRegion.Name.replace(" ", "_") + "/Legends");
+		$("#currentRegionURL").text(currentRegion.Name);
 	}
 }
 
@@ -370,23 +370,23 @@ function updateDestDetails()
 	{
 		if (! (destRegion && destRegion.Name)) destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 
-		$('#destRegion').html(destLoc.Region);
-		$('#destSector').html(destLoc.Sector);
-		$('#destSystem').html(destLoc.System);
-		$('#destCapital').html(destLoc.CapitalCity);
-		$('#destMap').html(destLoc.Map);
+		$("#destRegion").html(destLoc.Region);
+		$("#destSector").html(destLoc.Sector);
+		$("#destSystem").html(destLoc.System);
+		$("#destCapital").html(destLoc.CapitalCity);
+		$("#destMap").html(destLoc.Map);
 		updateDestAtmosphere();
-		$('#destTerrain').html(destLoc.Terrain);
-		$('#destInhabitants').html(destLoc.Inhabitants);
-		$('#destClimate').html(destLoc.Climate);
-		$('#destGravity').html(gravityText(destLoc.Gravity));
-		$('#destStarportURL').text(starportText(destLoc.Starport));
-		$('#destURL').attr('title', destLoc.Name);
-		$('#destURL').attr('href', destLoc.URL);
-		$('#destURL').text(destLoc.URL);
-		$('#destRegionURL').attr('title', destRegion.Name);
-		$('#destRegionURL').attr('href', 'https://starwars.fandom.com/wiki/' + destRegion.Name.replace(' ', '_') + '/Legends');
-		$('#destRegionURL').text(destRegion.Name);
+		$("#destTerrain").html(destLoc.Terrain);
+		$("#destInhabitants").html(destLoc.Inhabitants);
+		$("#destClimate").html(destLoc.Climate);
+		$("#destGravity").html(gravityText(destLoc.Gravity));
+		$("#destStarportURL").text(starportText(destLoc.Starport));
+		$("#destURL").attr("title", destLoc.Name);
+		$("#destURL").attr("href", destLoc.URL);
+		$("#destURL").text(destLoc.URL);
+		$("#destRegionURL").attr("title", destRegion.Name);
+		$("#destRegionURL").attr("href", "https://starwars.fandom.com/wiki/" + destRegion.Name.replace(" ", "_") + "/Legends");
+		$("#destRegionURL").text(destRegion.Name);
 	}
 }
 function updateLocalCustoms() // and starport costs, permits, contraband,...
