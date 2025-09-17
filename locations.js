@@ -2820,6 +2820,37 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 },
+//////////////////////////////////////////////// @TODO: only show if associated with Rebels
+//{
+//	"Name": "Mako-Ta Space Docks",
+//	"Region": "Outer Rim",
+//	"Sector": "Noonian",
+//	"System": "Mako-Ta",
+//	"Map": "M-6",
+//	"Atmosphere": "Type I",
+//	"Climate": "controlled",
+//	"Terrain": "space station,shipyards",
+//	"Gravity": 1,
+//	"Inhabitants": "(varied)",
+//	"CapitalCity": "Botajef Shipyards",
+//	"URL": "https://starwars.fandom.com/wiki/Mako-Ta_Space_Docks",
+//	"Starport": 5, // important Rebel space dock
+//	"Shadowport": true, // Rebel space dock
+//	"BlackMarket": false,
+//	"Precipitation": -5,
+//	"ImperialPresence": -5,
+//	"OldWestiness": 0,
+//	"Megafauna": 0,
+//	"Rarity": -1, // major space dock
+//	"Criticism": 1, // Rebels gonna Rebel
+//	"Slavery": -1, // Rebels are good guys
+//	"Spice": 0,
+//	"Trespassing": 0,
+//	"Military": 0,
+//	"Slicing": 0,
+//	"Theft": 0,
+//	"Bribery": 0,
+//},
 {
 	"Name": "Malador",
 	"Region": "Mid Rim",
@@ -3930,6 +3961,36 @@ const locations = [
 	"Slicing": -1, // bureaucrats
 	"Theft": 5, // Advozsec tended to care very little about material goods
 	"Bribery": 2, // bureaucrats
+},
+{
+	"Name": "Ring of Kafrene",
+	"Region": "Expansion Region",
+	"Sector": "Thand",
+	"System": "Kafrene",
+	"Map": "J-15",
+	"Atmosphere": "Type I",
+	"Climate": "controlled",
+	"Terrain": "<span class='highlight'>asteroid belt</span>,<span class='highlight'>asteroid mines</span>,<span class='highlight'>graffiti slums</span>",
+	"Gravity": 0,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "The Den,Section Nine",
+	"URL": "https://starwars.fandom.com/wiki/Ring_of_Kafrene",
+	"Starport": 3, // monumental construction; mining colony and deep space trading post
+	"Shadowport": true, // deep space trading post
+	"BlackMarket": true, // deep space trading post
+	"Precipitation": 0,
+	"ImperialPresence": 2, // maintained a presence on Kafrene, and Imperial stormtroopers patrolled its streets
+	"OldWestiness": 2, // failed mining colony, now trading post for desperate travelers
+	"Megafauna": 1,
+	"Rarity": 1, // deep space
+	"Criticism": -1, // Imperial presence
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
 },
 {
 	"Name": "Rion",

@@ -932,7 +932,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Burke's Trailing",
 	"SpeedFactor": 0.9,
-	"Route": "Ponemah Terminal - Jakku - Adrathorpe - Jedha - Ord Mantell",
+	"Route": "Ponemah Terminal,Jakku,Adrathorpe,Jedha,Ord Mantell",
 	"Junctions": "Celanon Spur,Entralla Route",
 },
 {
@@ -940,5 +940,11 @@ const hyperspaceRoutes = [
 	"SpeedFactor": 0.9,
 	"Route": "Daupherm,Botor system,Abregado-rae,Giju,Yag'Dhul",
 	"Junctions": "Giju Run,Corellian Trade Spine",
+},
+{
+	"Name": "Biox Detour",
+	"SpeedFactor": 0.9,
+	"Route": "Takodana,Ring of Kafrene,Malastare",
+	"Junctions": "Rimma Trade Route,Hydian Way",
 },
 ];

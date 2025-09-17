@@ -502,6 +502,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	$('#textLawTheft').html(textLawTheft);
 	$('#textLawBribery').html(textLawBribery);
 }
+
 function updateTravelEstimates()
 {
 	totalFactor = 1.0;
@@ -511,6 +512,12 @@ function updateTravelEstimates()
 	if (currentLoc)
 	{
 		Object.keys(hyperspaceRoutes).forEach(key => {
+			// Only show the secret ones if you have the right equipment
+			if (key in ["Biox Detour"])
+			{
+				if (! $("#pirateHolonet").is(":checked")) return;
+			}
+
 			const planets = hyperspaceRoutes[key].Route.split(",");
 			if (planets.indexOf(currentLoc.Name) != -1)
 			{
@@ -529,6 +536,12 @@ function updateTravelEstimates()
 	{
 		Object.keys(hyperspaceRoutes).forEach(key => {
 			const planets = hyperspaceRoutes[key].Route.split(",");
+			// Only show the secret ones if you have the right equipment
+			if (key in ["Biox Detour"])
+			{
+				if (! $("#pirateHolonet").is(":checked")) return;
+			}
+
 			if (planets.indexOf(destLoc.Name) != -1)
 			{
 				if (destRouteList.length > 0) destRouteList += "<br/>";
