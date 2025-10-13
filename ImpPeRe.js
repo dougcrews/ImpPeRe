@@ -53,7 +53,7 @@ $(document).ready(function ()
 		$("#locationDetails").slideDown(); // display current location details
 		switchFontNormal(); // reset font-family
 
-		const currentLocation = $("#locationDropdown").val();
+		currentLocation = $("#locationDropdown").val();
 		Cookies.set("currentLocation", currentLocation);
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
@@ -293,6 +293,12 @@ function updateLocalEvents()
 {
 	if (! currentLoc.Name) return;
 
+	currentLocation = $("#locationDropdown").val();
+	if (! (currentLoc && currentLoc.Name))
+		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+	if (! (currentRegion && currentRegion.Name))
+		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+
 	// Reset local events
 	$("#local-events").empty();
 	$("#local-events").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
@@ -325,11 +331,11 @@ function updateLocalEvents()
 	populateArrivalEvents(currentLoc.ImperialPresence);
 
 	// Local events
-	populateEmpireEvents(currentLoc.ImperialPresence);
+//	populateEmpireMissions(currentLoc.ImperialPresence);
 	populateEmpireEvents(currentRegion.ImperialPresence);
 
 	// Old West events
-	populateOldWestEvents(currentLoc.OldWestiness);
+//	populateOldWestMissions(currentLoc.OldWestiness);
 	populateOldWestEvents(currentRegion.OldWestiness);
 
 	// Flora & Fauna events
@@ -779,11 +785,12 @@ function populateArrivalEvents(eventCount)
 }
 
 // Local events
+
 function populateEmpireEvents(eventCount)
 {
 	for (ii = 0; ii < eventCount; ii++)
 	{
-		const newEvent = localEmpireEvents[Math.floor(Math.random() * localEmpireEvents.length)];
+		const newEvent = getRandom(localEmpireEvents);
 		$("#local-events").append(newEvent);
 	}
 }
@@ -792,10 +799,30 @@ function populateOldWestEvents(eventCount)
 {
 	for (ii = 0; ii < eventCount; ii++)
 	{
-		const newEvent = localOldWestEvents[Math.floor(Math.random() * localOldWestEvents.length)];
+		const newEvent = getRandom(localOldWestEvents);
 		$("#local-events").append(newEvent);
 	}
 }
+
+/*
+function populateEmpireMissions(eventCount)
+{
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		const newEvent = generateEmpireMission();
+		$("#local-events").append(newEvent);
+	}
+}
+
+function populateOldWestMissions(eventCount)
+{
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		const newEvent = generateOldWestMission();
+		$("#local-events").append(newEvent);
+	}
+}
+*/
 
 function onChangeCargoDeclared()
 {

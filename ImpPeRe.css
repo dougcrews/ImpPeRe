@@ -33,7 +33,6 @@ a {
 }
 label {
 	display: block;
-	margin-bottom: 5px;
 	font-weight: bold;
 	font-size: bigger;
 }
@@ -362,4 +361,10 @@ pre {
 }
 .cargo-declared {
 	font-size: larger;
+}
+.select-short-number {
+	max-width: 50px;
+}
+.select-medium-number {
+	max-width: 100px;
 }

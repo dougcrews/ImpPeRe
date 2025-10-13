@@ -10,6 +10,7 @@
 	<script src="regions.js"></script>
 	<script src="events.js"></script>
 	<script src="hyperspace.js"></script>
+	<script src="missions.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 	<script src="ImpPeRe.js"></script>
 	<link rel="stylesheet" href="ImpPeRe.css">
@@ -236,7 +237,7 @@
 						<ul class="ship-manifest-menu">
 							<li class="ship-manifest-item">
 								<label for="shipSilhouette" id="silhLabel">Silhouette:&nbsp;
-									<select id="shipSilhouette">
+									<select id="shipSilhouette" class="select-short-number">
 										<option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -254,7 +255,7 @@
 							</li>
 							<li class="ship-manifest-item">
 								<label for="hyperdriveClass">Hyperdrive: Class&nbsp;
-									<select id="hyperdriveClass">
+									<select id="hyperdriveClass" class="select-short-number">
 										<option value="0.5">0.5</option>
 										<option value="1" selected="true">1</option>
 										<option value="2">2</option>
@@ -275,7 +276,7 @@
 								</label>
 							</li>
 							<li class="ship-manifest-item">
-								<label for="cargoDeclared">Cargo Declared: <input type="number" id="cargoDeclared" class="cargo-declared" min="0" defaultValue="0"></input>cr</label>
+								<label for="cargoDeclared">Cargo Declared: <input type="number" id="cargoDeclared" class="cargo-declared select-medium-number" min="0" defaultValue="0"></input>cr</label>
 							</li>
 							<li class="ship-manifest-item secret-manifest-item">
 								<label for="pirateHolonet">Pirate HoloNet: <input type="checkbox" id="pirateHolonet"></input></label>

@@ -2461,6 +2461,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Koboh",
+	"Region": "Outer Rim",
+	"Sector": "Varada",
+	"System": "Koboh",
+	"Map": "H-19",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "<span class='highlight'>rugged cliffs</span>",
+	"Gravity": 1,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "Rambler's Reach Outpost",
+	"URL": "https://starwars.fandom.com/wiki/Koboh",
+	"Starport": 2, // sizable landing pad
+	"Shadowport": true, // network of smuggler's tunnels
+	"BlackMarket": true, // network of smuggler's tunnels
+	"Precipitation": 0,
+	"ImperialPresence": 1, // a post on the planet
+	"OldWestiness": 3, // inspiration from the American Old West
+	"Megafauna": 4, // gorgers & rawka & shiverpedes, oh my!
+	"Rarity": 2, // edge of civilized space
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
 	"Name": "Kriselist",
 	"Region": "Mid Rim",
 	"Sector": "Wornal",

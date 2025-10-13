@@ -103,6 +103,10 @@ function generateMission()
 {
 	mission = getRandom(mission_templates);
 	mission = populateMissionTags(mission);
+	window.alert(mission);
+
+	mission = '<li><span class="local-event-free">HOT PLOOK:</span> ' + mission + '</li>';
+
 	return mission;
 }
 
@@ -123,6 +127,10 @@ function generateEmpireMission()
 	mission = mission.replace("<smuggle_location>", "<smuggle_empire_location>");
 
 	mission = populateMissionTags(mission);
+	window.alert(mission);
+
+	mission = '<li><span class="local-event-free">HOT PLOOK:</span> ' + mission + '</li>';
+
 	return mission;
 }
 
@@ -144,6 +152,10 @@ function generateOldWestMission()
 	mission = mission.replace("<smuggle_location>", "<smuggle_oldwest_location>");
 
 	mission = populateMissionTags(mission);
+	window.alert(mission);
+
+	mission = '<li><span class="local-event-free">HOT PLOOK:</span> ' + mission + '</li>';
+
 	return mission;
 }
 
