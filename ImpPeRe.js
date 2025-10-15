@@ -59,6 +59,7 @@ $(document).ready(function ()
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 		Cookies.set("currentRegion", currentRegion);
 		$('#localEventsLocation').text(currentLocation);
+		$('#instructions-box').slideUp(); // hide Suggested Usage panel
 
 		updateAll();
 	});
@@ -69,10 +70,20 @@ $(document).ready(function ()
 		switchFontNormal(); // reset font-family
 
 		currentDestination = $("#destinationDropdown").val();
-		Cookies.set("currentDestination", currentDestination);
-		destLoc = locations.find(item => item.Name === currentDestination); // JSON object
-		destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
-		$('#estTravelTime').slideDown();
+		if ("" == currentDestination)
+		{
+			Cookies.remove("currentDestination");
+			destLoc = []; // JSON object
+			destRegion = []; // JSON object
+			$('#estTravelTime').slideUp();
+		}
+		else
+		{
+			Cookies.set("currentDestination", currentDestination);
+			destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+			destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+			$('#estTravelTime').slideDown();
+		}
 
 		updateAll();
 	});
@@ -315,10 +326,10 @@ function updateLocalEvents()
 		$("#local-events").append('<li>RUMOR HAS IT: A thriving <href="https://starwars.fandom.com/wiki/Black_market/Legends">black market</a> is here somewhere.</li>');
 	}
 
-	// Plot Hooks
-	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Psst. I got a job for you. Legal (mostly), easy work, pays the rent, y\'know? You in?"</i></li>');
-	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Hey, you. You look tough. I got a job, pays well for <em>\'\'tough\'\'</em>."</i></li>');
-	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"My client has an exclusive offer for an elite team with a handsome payout. There is considerable danger involved."</li>');
+	// Plot Hooks to be dangled by the GM
+//	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Psst. I got a job for you. Legal (mostly), easy work, pays the rent, y\'know? You in?"</i></li>');
+//	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Hey, you. You look tough. I got a job, pays well for <em>\'\'tough\'\'</em>."</i></li>');
+//	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"My client has an exclusive offer for an elite team with a handsome payout. There is considerable danger involved."</li>');
 
 	// Arrival event
 	populateArrivalEvent();
@@ -412,8 +423,10 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 
 	// Empire Presence calculations
 	// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
-	const silhCostFactor = shipSilhouette * (shipSilhouette > 4 ? 25 : 10); // Capital ships start at Silhouette 5 and have a large jump in capability/cost
-	const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) * silhCostFactor;
+	const silhCostFactor = shipSilhouette * (shipSilhouette > 4 ? 2.5 : 1); // Capital ships start at Silhouette 5 and have a large jump in capability/cost
+	const starportGradeFactor = currentLoc.Starport; // 0 = none; 5 = best
+	const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) *
+		silhCostFactor * starportGradeFactor;
 	const textFeePortLanding = creditsOrWaived(feePortLanding);
 	const feePortBerthing = Math.round(feePortLanding * 0.1);
 	const textFeePortBerthing = creditsOrWaived(feePortBerthing);
@@ -428,14 +441,18 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 		? (waitDeparture/24).toFixed(1) + " days"
 		: waitDeparture.toFixed(0) + " hours"
 		);
+	const textSmugglingPenalty = smugglingPenalty(sanitize0to5(currentLoc.ImperialPresence) +
+		sanitize0to5(currentRegion.ImperialPresence) - sanitize0to5(currentLoc.OldWestiness) -
+		sanitize0to5(currentRegion.OldWestiness));
 
-	// Empire Presence update screen elements
+	// Starport update screen elements
 	$('#textFeePortLanding').text(textFeePortLanding);
 	$('#textFeePortBerthing').text(textFeePortBerthing);
 	$('#textFeeCustoms').text(textFeeCustoms);
 	$('#textFeeVisitation').text(textFeeVisitation);
 //	$('#textFeeSmuggling').text(textFeeSmuggling);
 	$('#textWaitDeparture').text(textWaitDeparture);
+	$('#textSmugglingPenalty').html(textSmugglingPenalty);
 
 	// Weapon Permits calculations
 	const baseWeapon = currentLoc.OldWestiness + currentRegion.OldWestiness;
@@ -464,6 +481,10 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const permitArmorPowerCost = (0 - permitArmorPower) * 10;
 	const textPermitArmorPower = permitHTML(permitArmorPower, permitArmorPowerCost, rarityMod);
 
+	const textWeaponPenalty = weaponPenalty(sanitize0to5(currentLoc.OldWestiness) +
+		sanitize0to5(currentRegion.OldWestiness) - sanitize0to5(currentLoc.EmpirePresence) -
+		sanitize0to5(currentRegion.EmpirePresence));
+
 	// Weapon Permits update screen elements
 	$('#textPermitWeaponConcealed').html(textPermitWeaponConcealed);
 	$('#textPermitWeaponSmall').html(textPermitWeaponSmall);
@@ -471,6 +492,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	$('#textPermitWeaponHeavy').html(textPermitWeaponHeavy);
 	$('#textPermitArmorLight').html(textPermitArmorLight);
 	$('#textPermitArmorPower').html(textPermitArmorPower);
+	$('#textWeaponPenalty').html(textWeaponPenalty);
 
 	// Law & Order calculations
 	const baseLaw = 0; // - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
@@ -651,6 +673,69 @@ function creditsOrWaived(val)
 		return saneVal + "cr";
 	}
 	return retVal;
+}
+
+// Converts a -5 to 5 number to display value, i.e., "Confiscation + 20% contraband value"
+function smugglingPenalty(val)
+{
+	switch(sanitizeMinus5to5(val)) // Empire Bureacracy minus Old Westiness
+	{
+		case -5:
+			return '<span class="law-recommended">verbal warning</span>'; break;
+		case -4:
+			return '<span class="law-common">written warning</span>'; break;
+		case -3:
+			return '<span class="law-common">an inquiry will be made</span>'; break;
+		case -2:
+			return '<span class="law-common">1% of street value</span>'; break;
+		case -1:
+			return '<span class="law-no-restrictions">2% of street value</span>'; break;
+		case 0:
+			return '<span class="law-tolerated">5% of street value</span>'; break;
+		case 1:
+			return '<span class="law-frowned-upon">10% of street value</span>'; break;
+		case 2:
+			return '<span class="law-infraction">50% of street value</span>'; break;
+		case 3:
+			return '<span class="law-misdemeanor">automatic confiscation of cargo</span>'; break;
+		case 4:
+			return '<span class="law-misdemeanor">automatic confiscation of cargo; indictment likely</span>'; break;
+		case 5:
+			return '<span class="law-felony">automatic confiscation of ship and cargo; indictment likely</span>'; break;
+		default:
+			return "(unknown)";
+	}
+}
+// Converts a -5 to 5 number to display value
+function weaponPenalty(val)
+{
+	switch(sanitizeMinus5to5(val)) // Old Westiness
+	{
+		case -5:
+			return '<span class="law-felony">automatic confiscation; indictment likely</span>'; break;
+		case -4:
+			return '<span class="law-misdemeanor">automatic confiscation; arrest likely</span>'; break;
+		case -3:
+			return '<span class="law-misdemeanor">automatic confiscation</span>'; break;
+		case -2:
+			return '<span class="law-infraction">250% of permit cost</span>'; break;
+		case -1:
+			return '<span class="law-frowned-upon">200% of permit cost</span>'; break;
+		case 0:
+			return '<span class="law-tolerated">150% of permit cost</span>'; break;
+		case 1:
+			return '<span class="law-no-restrictions">temporary confiscation likely</span>'; break;
+		case 2:
+			return '<span class="law-common">weapon inspection</span>'; break;
+		case 3:
+			return '<span class="law-common">nominal fee, 10-20cr</span>'; break;
+		case 4:
+			return '<span class="law-common">written warning</span>'; break;
+		case 5:
+			return '<span class="law-recommended">verbal warning</span>'; break;
+		default:
+			return "(unknown)";
+	}
 }
 
 function rarityModFor(json)
@@ -1004,6 +1089,10 @@ function fontNormalElements()
 	$("#textPermitWeaponHeavy").removeClass("font-besh font-starwars").addClass("font-normal");
 	$("#textPermitWeaponRifle").removeClass("font-besh font-starwars").addClass("font-normal");
 	$("#textPermitWeaponSmall").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textSmugglingPenalty").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textWeaponPenalty").removeClass("font-besh font-starwars").addClass("font-normal");
+	$("#textWaitDeparture").removeClass("font-besh font-starwars").addClass("font-normal");
+
 }
 
 function toGalactipediaURL(name)
@@ -1031,4 +1120,9 @@ function onChangeSilhouette()
 	}
 
 	updateLocalCustoms();
+}
+
+function toggleHelp()
+{
+	$('#instructions-box').slideToggle();
 }
