@@ -749,7 +749,7 @@ function rarityModFor(json)
 	}
 
 	// EotE pg150 Primary Core worlds; https://www.reddit.com/r/swrpg/comments/l9hau2/what_are_the_primary_worlds_of_the_star_wars/
-	if (["Coruscant", "Duro", "Corellia", "Alderaan", "Hosnian Prime", "Kuat", "Nar Shadaa", "Scipio", "Denon", "Eufornis Major", "Taris", "Chandrilla"].includes(json.Name))
+	if (["Coruscant", "Duro", "Corellia", "Alderaan", "Hosnian Prime", "Kuat", "Nar Shaddaa", "Scipio", "Denon", "Eufornis Major", "Taris", "Chandrilla"].includes(json.Name))
 	{
 		rarity += -1;
 	}

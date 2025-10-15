@@ -4653,6 +4653,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Taris",
+	"Region": "Outer Rim",
+	"Sector": "Ojoster",
+	"System": "Taris",
+	"Map": "N-7",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "<span class='highlight'>urban sprawl</span>,<span class='highlight'>oceans</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "Upper Level, Middle City, Lower City, Undercity",
+	"URL": "https://starwars.fandom.com/wiki/Taris/Legends",
+	"Starport": 5, // population 1 billion; major hyperspace hub; "Coruscant of the Outer Rim"
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 5, // "Coruscant of the Outer Rim"
+	"OldWestiness": -2, // "Coruscant of the Outer Rim"
+	"Megafauna": -5, // ecumenopolis
+	"Rarity": -1, // "Coruscant of the Outer Rim"
+	"Criticism": -2, // "Coruscant of the Outer Rim"
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": -1, // Upper Level
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 1, // swoop gangs
+	"Bribery": 0,
+},
+{
 	"Name": "Tatooine",
 	"Region": "Outer Rim",
 	"Sector": "Arkanis",
