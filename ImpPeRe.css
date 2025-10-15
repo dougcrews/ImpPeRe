@@ -357,6 +357,30 @@ pre {
 	background-color: black;
 	color: white;
 }
+.difficulty {
+	background-color: purple;
+	color: black;
+}
+.force {
+	background-color: #FEFEFE;
+	color: #010101;
+}
+.advantage {
+	background-color: green;
+	color: white;
+}
+.threat {
+	background-color: purple;
+	color: white;
+}
+.upgradeSkill {
+	background-color: yellow;
+	color: black;
+}
+.upgradeDifficulty {
+	background-color: red;
+	color: black;
+}
 .payme-link {
 	font-size: smaller;
 }

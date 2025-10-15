@@ -314,7 +314,6 @@ function updateLocalEvents()
 	// Reset local events
 	$("#local-events").empty();
 	$("#local-events").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
-//	$("#local-events").append('<li><strong>Local Weather and Terrain:</strong> <span id="localWeather">please select a Location</span></li>');
 
 	// Shadowport
 	if (currentLoc.Shadowport) {
@@ -430,13 +429,14 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textFeePortLanding = creditsOrWaived(feePortLanding);
 	const feePortBerthing = Math.round(feePortLanding * 0.1);
 	const textFeePortBerthing = creditsOrWaived(feePortBerthing);
-	const feeCustoms = Math.round(shipCargoDeclared * 0.001); // "waived" if zero
-	const textFeeCustoms = creditsOrWaived(Math.max(feeCustoms, 10));
-	const feeVisitation = Math.round(feePortBerthing * 0.1); // "waived" if zero
-	const textFeeVisitation = creditsOrWaived(Math.max(feeVisitation, 10));
+	const feeCustoms = Math.round(shipCargoDeclared * 0.001 * currentLoc.Starport);
+	const textFeeCustoms = creditsOrWaived(feeCustoms); // "waived" if zero
+	const feeVisitation = Math.round(feePortBerthing * 0.1);
+	const textFeeVisitation = creditsOrWaived(feeVisitation); // "waived" if zero
 //	const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
 //	const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
-	const waitDeparture = Math.round(feePortLanding); // in hours
+	const waitDeparture = Math.round(currentLoc.Starport *
+		Math.max(1, sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence))); // in hours
 	const textWaitDeparture = (waitDeparture>24
 		? (waitDeparture/24).toFixed(1) + " days"
 		: waitDeparture.toFixed(0) + " hours"
@@ -444,6 +444,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textSmugglingPenalty = smugglingPenalty(sanitize0to5(currentLoc.ImperialPresence) +
 		sanitize0to5(currentRegion.ImperialPresence) - sanitize0to5(currentLoc.OldWestiness) -
 		sanitize0to5(currentRegion.OldWestiness));
+	const textRarityMod = "" + (rarityMod >= 0 ? "+" : "") + rarityMod;
 
 	// Starport update screen elements
 	$('#textFeePortLanding').text(textFeePortLanding);
@@ -453,6 +454,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 //	$('#textFeeSmuggling').text(textFeeSmuggling);
 	$('#textWaitDeparture').text(textWaitDeparture);
 	$('#textSmugglingPenalty').html(textSmugglingPenalty);
+	$('#textRarityMod').html(textRarityMod);
 
 	// Weapon Permits calculations
 	const baseWeapon = currentLoc.OldWestiness + currentRegion.OldWestiness;
@@ -552,7 +554,7 @@ function updateTravelEstimates()
 			{
 				if (currentRouteList.length > 0) currentRouteList += "<br/>";
 				const thisRoute = hyperspaceRoutes[key];
-				const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
+				const factor = (1.0 - (Math.max(1.0, thisRoute.Route.split(",").length) * 0.005)).toFixed(2);
 				totalFactor *= factor;
 				currentRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
 			}
@@ -575,7 +577,7 @@ function updateTravelEstimates()
 			{
 				if (destRouteList.length > 0) destRouteList += "<br/>";
 				const thisRoute = hyperspaceRoutes[key];
-				const factor = (1.0 - (Math.max(thisRoute.Route.split(",").length, 1) * 0.005)).toFixed(2);
+				const factor = (1.0 - (Math.max(1.0, thisRoute.Route.split(",").length) * 0.005)).toFixed(2);
 				totalFactor *= factor;
 				destRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
 			}
@@ -639,7 +641,7 @@ function togglePirateHolonet()
 function sanitize0to5(val)
 {
 	const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
-	const retVal = Math.min(Math.max(saneVal, 0), 5); // integer, 0 to 5 inclusive
+	const retVal = Math.min(5, Math.max(saneVal, 0)); // integer, 0 to 5 inclusive
 	return retVal;
 }
 
@@ -647,7 +649,7 @@ function sanitize0to5(val)
 function sanitizeMinus5to5(val)
 {
 	const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
-	const retVal = Math.min(Math.max(saneVal, -5), 5); // integer, -5 to 5 inclusive
+	const retVal = Math.min(5, Math.max(saneVal, -5)); // integer, -5 to 5 inclusive
 	return retVal;
 }
 
@@ -656,7 +658,7 @@ function sanitizeMinus5to5(val)
 function sanitizeRarity(val)
 {
 	const saneVal = (Number.isInteger(Math.round(-val)) ? Math.round(val) : 0);
-	const retVal = Math.min(Math.max(saneVal, 0), 9); // integer, 0 to 9 inclusive
+	const retVal = Math.min(9, Math.max(0, saneVal)); // integer, 0 to 9 inclusive
 	return retVal;
 }
 
@@ -775,7 +777,7 @@ function permitHTML(val, cost, rarityMod)
 		case -4:
 			return '<span class="law-felony">Felony</span> (Permit ' + rarityText(rarity + 2) + (cost * 5).toFixed(0) + 'cr)'; break;
 		case -3:
-			return '<span class="law-misdemeanor">Misdemeanor</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+			return '<span class="law-misdemeanor">Misdemeanor</span> (Permit ' + rarityText(rarity + 1) + cost + 'cr)'; break;
 		case -2:
 			return '<span class="law-infraction">Infraction</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
 		case -1:
