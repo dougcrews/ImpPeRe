@@ -72,6 +72,7 @@ $(document).ready(function ()
 		Cookies.set("currentDestination", currentDestination);
 		destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 		destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+		$('#estTravelTime').slideDown();
 
 		updateAll();
 	});
@@ -363,7 +364,7 @@ function updateCurrentDetails()
 		$("#starportHeader").html(starportText(currentLoc.Starport));
 		$("#currentURL").attr("title", currentLoc.Name);
 		$("#currentURL").attr("href", currentLoc.URL);
-		$("#currentURL").text(currentLoc.URL);
+		$("#currentURL").text(currentLoc.Name);
 		$("#currentRegionURL").attr("title", currentRegion.Name);
 		$("#currentRegionURL").attr("href", "https://starwars.fandom.com/wiki/" + currentRegion.Name.replace(" ", "_") + "/Legends");
 		$("#currentRegionURL").text(currentRegion.Name);

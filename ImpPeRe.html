@@ -34,12 +34,20 @@
 
 	<table border="2" width="100%">
 		<tr>
-			<td class="width-half margin-0">
+			<td class="margin-0">
+
+<div class="flex-container">
 				<label for="locationDropdown" id="locationDropdownLabel" class="font-starwars">Location:
 					<select id="locationDropdown">
 						<option value="">-- Current Location --</option>
 					</select>
 				</label>
+				<div style="font-size: larger; margin: 0px 0px 0px 10px;">
+					<a id="currentURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">
+						your location
+					</a>
+				</div>
+</div>
 				<div class="flex-container secret-filters hidden manifest-menu-hidden"><!-- display if Pirate Holonet or similar is installed -->
 					<em>Filters: </em>&nbsp;&nbsp;&nbsp;
 					<label for="filterCurrBlackMarket">
@@ -52,15 +60,15 @@
 						Starport Grade: <input type="number" id="filterCurrStarportGrade" class="filter-input-hidden" min="0" max="5" defaultValue="0"></input>&nbsp;&nbsp;
 					</label>
 				</div>
-				<a id="currentURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">https://starwars.fandom.com/wiki/Planet/Legends</a>
 			</td>
+<!--
 			<td class="width-half margin-0">
 				<label for="destinationDropdown" id="destinationDropdownLabel" class="font-besh">Destination:
 					<select id="destinationDropdown">
 						<option value="">-- Select Destination --</option>
 					</select>
 				</label>
-				<div class="flex-container secret-filters hidden manifest-menu-hidden"><!-- display if Pirate Holonet or similar is installed -->
+				<div class="flex-container secret-filters hidden manifest-menu-hidden"><!-- display if Pirate Holonet or similar is installed -- >
 					<em>Filters: </em>&nbsp;&nbsp;&nbsp;
 					<label for="filterDestBlackMarket">
 						Black Market: <input type="checkbox" id="filterDestBlackMarket" class="filter-input-hidden"></input>
@@ -74,9 +82,10 @@
 				</div>
 				<a id="destURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">https://starwars.fandom.com/wiki/Planet/Legends</a>
 			</td>
+-->
 		</tr>
 		<tr>
-			<td class="align-top width-half margin-0 colspan-2">
+			<td class="align-top margin-0 colspan-2">
 				<div id="locationDetails" class="section tooltip width-half">
 					<span class="tooltiptext">
 					Known and reported details of your current location.
@@ -103,15 +112,9 @@
 								target="_blank">unknown</a>
 						</div>
 						<div class="box-around">
-							<strong>Map:</strong> <span id="currentMap">unknown</span>
+							<strong>Map:</strong> <a href="https://www.starwars.com/star-wars-galaxy-map"><span id="currentMap">unknown</span></a>
 						</div>
 					</div>
-					<div class="flex-container">
-						<div class="box-around">
-							<strong>Hyperlanes:</strong> <pre id="currentHyperlanes" class="hyperlanes">unknown</pre>
-						</div>
-					</div>
-
 					<p class="header3 align-left">Atmosphere & Terrain</p>
 					<div class="flex-container">
 						<div class="box-around">
@@ -137,8 +140,44 @@
 					<strong>Terrain:</strong> unknown
 -->
 					</div>
+
+<br/>
+<div class="header3 align-left">Astrogation Computer</div>
+<div class="flex-container">
+	<div class="box-around">
+		<div class="box-around">
+			<strong>Current Location Hyperlanes:</strong> <pre id="currentHyperlanes" class="hyperlanes">unknown</pre>
+		</div>
+	</div>
+	<div class="box-around">
+		<label for="destinationDropdown" id="destinationDropdownLabel" class="font-besh">Destination:
+			<select id="destinationDropdown">
+				<option value="">-- Select Destination --</option>
+			</select>
+		</label>
+		<br/>
+		<div id="estTravelTime" class="box-around hidden" style="text-align: center;display: contents;">
+			<div style="align: center; width: 95%; text-align: center;">
+				<strong style="font-size: larger">Estimated Travel Time</strong> <span style="font-size: smaller; float: right;">(factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>)</span>
+				<br/>
+				<span id="estHyperspaceTime" style="font-size: larger">calculating...</span>
+				<br/>
+			</div>
+			<div class="reference-note">
+				[ reference (<span id="baseHyperSpaceDistance"></span>factor 1.0, Class 1): <span id="baseHyperspaceTime">calculating...</span> ]
+			</div>
+		</div>
+	</div>
+	<div class="box-around">
+		<div class="box-around">
+			<strong>Destination Hyperlanes:</strong> <pre id="destHyperlanes" class="hyperlanes">unknown</pre>
+		</div>
+	</div>
+</div>
+
 				</div>
 			</td>
+<!--
 			<td class="align-top width-half margin-0 colspan-2">
 				<div id="destinationDetails" class="section tooltip width-half">
 					<span class="tooltiptext">
@@ -224,6 +263,7 @@
 					</div>
 				</div>
 			</td>
+-->
 		</tr>
 	</table>
 	<table border="2" width="100%">
@@ -275,8 +315,8 @@
 									</select>
 								</label>
 							</li>
-							<li class="ship-manifest-item">
-								<label for="cargoDeclared">Cargo Declared: <input type="number" id="cargoDeclared" class="cargo-declared select-medium-number" min="0" defaultValue="0"></input>cr</label>
+							<li class="ship-manifest-item" style="padding: 2px 5px 0px 10px;">
+								<label for="cargoDeclared" style="padding: 0px 0px 3px 0px;">Cargo Declared: <input type="number" id="cargoDeclared" class="cargo-declared select-medium-number" min="0" defaultValue="0"></input>cr</label>
 							</li>
 							<li class="ship-manifest-item secret-manifest-item">
 								<label for="pirateHolonet">Pirate HoloNet: <input type="checkbox" id="pirateHolonet"></input></label>
@@ -344,7 +384,8 @@
 						<center>(select a Location at top left)</center>
 					</ul><!-- populated dynamically -->
 				</div>
-				<div id="instructions-box" class="instructions-box font-starwars tooltip"><strong>Suggested Usage:</strong>
+				<div id="instructions-box" class="instructions-box font-starwars tooltip">
+					<strong>Suggested Usage:</strong>
 					<span class="tooltiptext">
 					First step is to choose a Location (not Destination) from the dropdown at top left.<br/>
 					This populates the details for that location and some random local events which can be optionally chosen.<br/>
@@ -369,6 +410,21 @@
 						<li>Upon departure, all local events and NPCs not made permanent via Destiny Points are reset.</li>
 						<li><em>Select a Destination</em> (top right) to display details and estimated travel statistics to that system. Hyperdrive class impacts this heavily, as does the number and quality of Hyperlanes available at this location.</li>
 					</ul>
+<div>
+	<span class="align-right" style="display: contents; font-size: smaller;>
+		<label for="galacticHyperspaceConstant">Galactic Hyperspace Constant&nbsp;
+		<select id="galacticHyperspaceConstant" style="width: fit-content; font-size: smaller;">
+			<option value="0.01">0.01</option>
+			<option value="0.1">0.1</option>
+			<option value="0.25">0.25</option>
+			<option value="0.5">0.5</option>
+			<option value="1" selected="true">1.0</option>
+			<option value="2.5">2.5</option>
+			<option value="5">5.0</option>
+			<option value="10">10.0</option>
+		</select>
+	</span>
+</div>
 				</div>
 			</td>
 		</tr>
