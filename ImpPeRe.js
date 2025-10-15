@@ -747,6 +747,31 @@ function rarityModFor(json)
 	{
 		rarity += regions.find(item => item.Name === json.Region).Rarity;
 	}
+
+	// EotE pg150 Primary Core worlds; https://www.reddit.com/r/swrpg/comments/l9hau2/what_are_the_primary_worlds_of_the_star_wars/
+	if (["Coruscant", "Duro", "Corellia", "Alderaan", "Hosnian Prime", "Kuat", "Nar Shadaa", "Scipio", "Denon", "Eufornis Major", "Taris", "Chandrilla"].includes(json.Name))
+	{
+		rarity += -1;
+	}
+
+	// EotE pg150 World on primary trade lane
+	// Appromimate by counting the planets in the hyperlanes which include this location.
+	totalFactor = 0;
+	if (currentLoc)
+	{
+		Object.keys(hyperspaceRoutes).forEach(key => {
+			const planets = hyperspaceRoutes[key].Route.split(",");
+			if (planets.indexOf(currentLoc.Name) != -1)
+			{
+				const thisRoute = hyperspaceRoutes[key];
+				const factor = (Math.max(1.0, thisRoute.Route.split(",").length) * 0.005);
+				totalFactor += factor;
+			}
+		});
+
+		rarity -= totalFactor.toFixed(0);
+	}
+
 	return rarity;
 }
 
@@ -928,6 +953,7 @@ function onChangeGalacticHyperspaceConstant()
 }
 
 // Hyperlane travel time multiplier
+/*
 function hyperlaneFactor(startLoc, endLoc)
 {
 	if (!currentLoc) return;
@@ -943,6 +969,7 @@ function hyperlaneFactor(startLoc, endLoc)
 	});
 	return factor;
 }
+*/
 
 // EotE pg247, Fly Casual pg78
 // https://oakthorne.net/wiki/index.php/SW_Hyperspace_Travel_Times

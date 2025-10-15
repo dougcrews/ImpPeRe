@@ -4,7 +4,7 @@ const regions = [
 	"ImperialPresence": 5,
 	"OldWestiness": 1,
 	"Megafauna": 0,
-	"Rarity": 3,
+	"Rarity": 4,
 	"Criticism": -3,
 	"Slavery": 1,
 	"Spice": -3,
