@@ -365,6 +365,14 @@ pre {
 	background-color: #FEFEFE;
 	color: #010101;
 }
+.success {
+	background-color: green;
+	color: white;
+}
+.failure {
+	background-color: purple;
+	color: white;
+}
 .advantage {
 	background-color: green;
 	color: white;
@@ -373,13 +381,17 @@ pre {
 	background-color: purple;
 	color: white;
 }
-.upgradeSkill {
+.upgrade-skill {
 	background-color: yellow;
 	color: black;
 }
-.upgradeDifficulty {
+.upgrade-difficulty {
 	background-color: red;
 	color: black;
+}
+.downgrade-difficulty {
+	background-color: purple;
+	color: white;
 }
 .payme-link {
 	font-size: smaller;

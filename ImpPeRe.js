@@ -444,7 +444,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textSmugglingPenalty = smugglingPenalty(sanitize0to5(currentLoc.ImperialPresence) +
 		sanitize0to5(currentRegion.ImperialPresence) - sanitize0to5(currentLoc.OldWestiness) -
 		sanitize0to5(currentRegion.OldWestiness));
-	const textRarityMod = "" + (rarityMod >= 0 ? "+" : "") + rarityMod;
+	const textRarityMod = "" + (rarityMod >= 0 ? "+" : "") + rarityMod + " (base cost " + rarityCostIncrease(rarity) + ")";
 
 	// Starport update screen elements
 	$('#textFeePortLanding').text(textFeePortLanding);
@@ -1154,4 +1154,30 @@ function onChangeSilhouette()
 function toggleHelp()
 {
 	$('#instructions-box').slideToggle();
+}
+
+function rarityCostIncrease(rarity)
+{
+	switch(rarity)
+	{
+		case -5:
+		case -4:
+		case -3:
+			return "75% for certain items";
+		case -2:
+		case -1:
+			return "90% for certain items";
+		case 0:
+		case 1:
+			return "standard";
+		case 2:
+			return "200%";
+		case 3:
+			return "300%"
+		case 4:
+		case 5:
+			return "400%";
+		default:
+			return "?";
+	}
 }
