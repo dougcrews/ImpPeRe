@@ -366,6 +366,12 @@ const hyperspaceRoutes = [
 	"Junctions": "Spar Trade Route,Ovise Reach",
 },
 {
+	"Name": "Moddell Reach",
+	"SpeedFactor": 0.9,
+	"Route": "Annaj,Cerea",
+	"Junctions": "Annaj-Houche Run,Spar Trade Route,Cerean Reach",
+},
+{
 	"Name": "Ovise Reach",
 	"SpeedFactor": 0.9,
 	"Route": "Ovise III,Trindello,Zorbia II,Endor (Gas Giant),Endor (Forest Moon)",
@@ -946,5 +952,23 @@ const hyperspaceRoutes = [
 	"SpeedFactor": 0.9,
 	"Route": "Takodana,Ring of Kafrene,Malastare",
 	"Junctions": "Rimma Trade Route,Hydian Way",
+},
+{
+	"Name": "The Loop",
+	"SpeedFactor": 0.9,
+	"Route": "Mijos,Shuldene,Lutrillia",
+	"Junctions": "Lutrillian Cross,Cerean Reach,Koda Spur,Lutrillia,Darlyn Boda",
+},
+{
+	"Name": "Koda Spur",
+	"SpeedFactor": 0.9,
+	"Route": "Lutrillia,Ryoone,Urn-Aram,Koda Space Station",
+	"Junctions": "Lutrillian Cross,Cerean Reach",
+},
+{
+	"Name": "Lutrillia–Darlyn Boda Trade Route",
+	"SpeedFactor": 0.9,
+	"Route": "Lutrillia,Darlyn Boda",
+	"Junctions": "Corellian Trade Spine,Lutrillian Cross",
 },
 ];

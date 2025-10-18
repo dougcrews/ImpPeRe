@@ -256,7 +256,7 @@ function updateCurrentAtmosphere()
 
 	$('#currentAtmosphere').text(currentLoc.Atmosphere);
 
-	$('#currentAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4').addClass('font-normal');
+	$('#currentAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4 highlight').addClass('font-normal');
 	if (currentLoc.Atmosphere === "Type IV")
 	{
 		$('#currentAtmosphere').addClass('atmos-4');
@@ -983,7 +983,7 @@ function hyperspaceTravelTime(startMap, endMap)
 		const endNumber = endMap.substring(2);
 
 		// Assume straight line, ignoring hyperspace routes
-		const distance = Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2));
+		const distance = Math.max(0.5, Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2)));
 
 		// side effect: update the display
 		$('#baseHyperSpaceDistance').text(distance.toFixed(2) + " parsecs, ")

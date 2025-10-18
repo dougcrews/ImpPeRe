@@ -211,6 +211,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Annaj",
+	"Region": "Outer Rim",
+	"Sector": "Zuma",
+	"System": "Annaj",
+	"Map": "H-16",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "forests,plains,<span class='highlight'>swamps</span>,lakes,<span class='highlight'>dense fog</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Ayrou,Humans",
+	"Starport": 3, // population 400 million; intersection of two hyperlanes
+	"Shadowport": false,
+	"BlackMarket": false,
+	"CapitalCity": "starport",
+	"URL": "https://starwars.fandom.com/wiki/Annaj/Legends",
+	"Precipitation": 2, // forests,swamps
+	"ImperialPresence": 3, // Imperial Navy staging center, sector capital
+	"OldWestiness": 0,
+	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
 	"Name": "Anoat",
 	"Region": "Outer Rim",
 	"Sector": "Anoat",
@@ -218,7 +248,7 @@ const locations = [
 	"Map": "K-18",
 	"Atmosphere": "Type II",
 	"Climate": "<span class='highlight'>hot</span>",
-	"Terrain": "<span class='highlight'><span class='highlight'><span class='highlight'>polluted</span></span></span> <span class='highlight'>sludge</span>,<span class='highlight'>urban</span> <span class='highlight'>wasteland</span>",
+	"Terrain": "<span class='highlight'>polluted</span> <span class='highlight'>sludge</span>,<span class='highlight'>urban</span> <span class='highlight'>wasteland</span>",
 	"Gravity": 0.85,
 	"Inhabitants": "Humans,Ugnaughts",
 	"Starport": 1, // population 1 million
@@ -1081,6 +1111,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Darlyn Boda",
+	"Region": "Outer Rim",
+	"Sector": "Anoat",
+	"System": "Darlyn Boda",
+	"Map": "K-18",
+	"Atmosphere": "Type I",
+	"Climate": "<span class='highlight'>hot</span>,<span class='highlight'>humid</span>, <span class='highlight'>rainy</span>",
+	"Terrain": "<span class='highlight'>jungles</span>,<span class='highlight'>mud pits</span>,ocean",
+	"Gravity": 1.0,
+	"Inhabitants": "Humans,Yarkora",
+	"CapitalCity": "Darlyn Boda city",
+	"URL": "https://starwars.fandom.com/wiki/Darlyn_Boda/Legends",
+	"Starport": 3, // population 200 million; shadowport world
+	"Shadowport": true, // shadowport world
+	"BlackMarket": true, // crime-ridden
+	"Precipitation": 5, // rainy
+	"ImperialPresence": -3, // relative independence from galactic politics
+	"OldWestiness": 5, // hotbed for piracy
+	"Megafauna": 1, // toccats
+	"Rarity": 1, // far from Core
+	"Criticism": 2, // criminal trading world
+	"Slavery": 1, // criminal trading world
+	"Spice": 1, // Deluge spice
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 1, // criminal trading world
+	"Bribery": 2, // criminal trading world
+},
+{
 	"Name": "Dathomir",
 	"Region": "Outer Rim",
 	"Sector": "Quelli",
@@ -1831,6 +1891,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Gerrenthum",
+	"Region": "Outer Rim",
+	"Sector": "Javin",
+	"System": "Gerrenthum",
+	"Map": "K-18",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "<span class='highlight'>urban</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Humans,Nothoiins,Lutrillians,Mugaari",
+	"CapitalCity": "orbital security station",
+	"URL": "https://starwars.fandom.com/wiki/Gerrenthum/Legends",
+	"Starport": 5, // population 5 billion; thousands of starships every hour
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 1, // sector capital
+	"OldWestiness": 0,
+	"Megafauna": 0,
+	"Rarity": -1, // sector capital
+	"Criticism": -1, // sector capital
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": -1, // tight security for the Figg family
+	"Military": -2, // tight security for the Figg family
+	"Slicing": -2, // tight security for the Figg family
+	"Theft": -2, // tight security for the Figg family
+	"Bribery": 5, // openly bribed Imperials to ignore their illegal activities
+},
+{
 	"Name": "Ghorman",
 	"Region": "Colonies",
 	"Sector": "Sern",
@@ -2031,6 +2121,36 @@ const locations = [
 	"OldWestiness": 0,
 	"Megafauna": 0,
 	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Ivax Nebula",
+	"Region": "Outer Rim",
+	"Sector": "Greater Javin",
+	"System": "(nebula)",
+	"Map": "K-18",
+	"Atmosphere": "(nebula)",
+	"Climate": "(nebula)",
+	"Terrain": "<span class='highlight'>nebula</span>",
+	"Gravity": 0,
+	"Inhabitants": "(none)",
+	"CapitalCity": "(none)",
+	"URL": "https://starwars.fandom.com/wiki/Ivax_Nebula/Legends",
+	"Starport": 0,
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": -5, // nebula
+	"OldWestiness": 5, // nebula
+	"Megafauna": 5, // nebula
+	"Rarity": 5,  // nebula
 	"Criticism": 0,
 	"Slavery": 0,
 	"Spice": 0,
@@ -2281,6 +2401,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Kiax Nebula",
+	"Region": "Outer Rim",
+	"Sector": "Yarth",
+	"System": "(nebula)",
+	"Map": "J-18",
+	"Atmosphere": "(nebula)",
+	"Climate": "(nebula)",
+	"Terrain": "<span class='highlight'>nebula</span>",
+	"Gravity": 0,
+	"Inhabitants": "(none)",
+	"CapitalCity": "(none)",
+	"URL": "https://starwars.fandom.com/wiki/Kiax_Nebula/Legends",
+	"Starport": 0,
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": -5, // nebula
+	"OldWestiness": 5, // nebula
+	"Megafauna": 5, // nebula
+	"Rarity": 5,  // nebula
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
 	"Name": "Kijimi",
 	"Region": "Mid Rim",
 	"Sector": "Bryx",
@@ -2486,6 +2636,36 @@ const locations = [
 	"Spice": 0,
 	"Trespassing": 0,
 	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Koda Space Station",
+	"Region": "Outer Rim",
+	"Sector": "Wazta",
+	"System": "Koda",
+	"Map": "I-18",
+	"Atmosphere": "Type I",
+	"Climate": "controlled",
+	"Terrain": "space station",
+	"Gravity": 1.0,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "The End Of The World tavern",
+	"URL": "https://starwars.fandom.com/wiki/Koda_Space_Station",
+	"Starport": 2, // spacedock
+	"Shadowport": true, // smugglers
+	"BlackMarket": true, // smugglers
+	"Precipitation": -5, // climate controlled space station
+	"ImperialPresence": 0,
+	"OldWestiness": 0,
+	"Megafauna": -5, // space station
+	"Rarity": 1, // backwater corner of the Outer Rim Territories
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 1, // farmers visit for excitement
+	"Trespassing": 0,
+	"Military": -1, // farmers visit for excitement
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
@@ -2750,6 +2930,36 @@ const locations = [
 	"ImperialPresence": 0, // neutral
 	"OldWestiness": 0,
 	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Lutrillia",
+	"Region": "Outer Rim",
+	"Sector": "Yarith",
+	"System": "Lutrillia",
+	"Map": "J-18",
+	"Atmosphere": "Type I",
+	"Climate": "<span class='highlight'>hot</span>",
+	"Terrain": "<span class='highlight'>barren plains</span>,<span class='highlight'>oases</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Lutrillians",
+	"CapitalCity": "wheeled equatorial platform-cities",
+	"URL": "https://starwars.fandom.com/wiki/Lutrillia/Legends",
+	"Starport": 2, // population 800 million
+	"Shadowport": false,
+	"BlackMarket": true,
+	"Precipitation": -3, // hot
+	"ImperialPresence": 0,
+	"OldWestiness": 0,
+	"Megafauna": 2, // nippers & chompers
 	"Rarity": 0,
 	"Criticism": 0,
 	"Slavery": 0,
@@ -3082,6 +3292,36 @@ const locations = [
 	"ImperialPresence": -1, // drove many Morseerians to clandestinely support the Alliance
 	"OldWestiness": 1, // clandestinely received equipment and supplies from smugglers
 	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 1, // drove many Morseerians to clandestinely support the Alliance
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Mijos",
+	"Region": "Outer Rim",
+	"Sector": "Greater Javin",
+	"System": "Mijos",
+	"Map": "K-18",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "<span class='highlight'>swamps</span>",
+	"Gravity": 1,
+	"Inhabitants": "Lutrillians",
+	"CapitalCity": "spaceport",
+	"URL": "https://starwars.fandom.com/wiki/Mijos/Legends",
+	"Starport": 2, // many, but sinking into the swamp due to poor engineering
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 1,
+	"ImperialPresence": -1, // Iron Blockade
+	"OldWestiness": 4, // swamps
+	"Megafauna": 2, // savage beasts
 	"Rarity": 0,
 	"Criticism": 1, // drove many Morseerians to clandestinely support the Alliance
 	"Slavery": 0,
@@ -4317,6 +4557,36 @@ const locations = [
 	"Slavery": 1, // common practice to have prisoners work the <span class='highlight'>mines</span>
 	"Spice": 1, // carsunum & andris exported
 	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Shuldene",
+	"Region": "Outer Rim",
+	"Sector": "Yarith",
+	"System": "Shuldene",
+	"Map": "J-18",
+	"Climate": "<span class='highlight'>frozen/span>",
+	"Atmosphere": "Type I",
+	"Terrain": "<span class='highlight'>frozen oceans</span>",
+	"Gravity": 1,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "(none)",
+	"URL": "https://starwars.fandom.com/wiki/Shuldene/Legends",
+	"Starport": 1, // frozen; tourists
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": -5, // no permanent inhabitants
+	"OldWestiness": 5, // frozen; tourists
+	"Megafauna": 0,
+	"Rarity": 2, // no permanent inhabitants
+	"Criticism": 5,  // no permanent inhabitants
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 5,  // no permanent inhabitants
 	"Military": 0,
 	"Slicing": 0,
 	"Theft": 0,
