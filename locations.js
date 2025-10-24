@@ -2881,6 +2881,36 @@ const locations = [
 	"Bribery": 3, // Governor Blithane
 },
 {
+	"Name": "Lok",
+	"Region": "Outer Rim",
+	"Sector": "Karthakk",
+	"System": "Karthakk",
+	"Map": "Q-17",
+	"Atmosphere": "Type I",
+	"Climate": "<span class='highlight'>arid</span>",
+	"Terrain": "<span class='highlight'>deserts</span>,<span class='highlight'>sulphur pools</span>,<span class='highlight'>mountains</span>,<span class='highlight'>lava lands</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Humans,(varied)",
+	"CapitalCity": "Nym's Stronghold",
+	"URL": "https://starwars.fandom.com/wiki/Lok/Legends",
+	"Starport": 4, // population 300 million; 2 stellar class & 4 limited services
+	"Shadowport": true, // pirate world
+	"BlackMarket": true, // pirate world
+	"Precipitation": -3, // deserts, sulphur pools, lava lands
+	"ImperialPresence": -5, // pirate world
+	"OldWestiness": 5, // pirate world
+	"Megafauna": 1, // beware of dangerous beasts, pirates, confusing mazes and a volcano; kimogila
+	"Rarity": -1, // pirate world
+	"Criticism": 5, // pirate world
+	"Slavery": 1, // pirate world
+	"Spice": 1, // pirate world
+	"Trespassing": 0,
+	"Military": 1, // pirate world
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 1, // pirate world
+},
+{
 	"Name": "Lothal",
 	"Region": "Outer Rim",
 	"Sector": "Lothal",
@@ -3418,6 +3448,36 @@ const locations = [
 	"Spice": 0,
 	"Trespassing": 0,
 	"Military": 1, // <span class='highlight'>lava</span> world
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Maya Kovel",
+	"Region": "Outer Rim",
+	"Sector": "Zuma",
+	"System": "Maya Kovel",
+	"Map": "H-16",
+	"Atmosphere": "Type II",
+	"Climate": "temperate,<span class='highlight'>stormy</span>",
+	"Terrain": "<span class='highlight'>desert</span>,<span class='highlight'>rift valleys</span>",
+	"Gravity": 0.90,
+	"Inhabitants": "Ayrou,Humans,Vashans",
+	"CapitalCity": "Spaceports",
+	"URL": "https://starwars.fandom.com/wiki/Maya_Kovel/Legends",
+	"Starport": 4, // population 300 million; 2 stellar class & 4 limited services
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": -5, // desert; local moss grows in little moisture
+	"ImperialPresence": -5, // pacifists
+	"OldWestiness": -5, // pacifists
+	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": -5, // pacifists
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,

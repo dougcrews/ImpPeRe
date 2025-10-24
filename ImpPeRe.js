@@ -85,7 +85,8 @@ $(document).ready(function ()
 			$('#estTravelTime').slideDown();
 		}
 
-		updateAll();
+		updateTravelEstimates();
+
 	});
 
 	// On Change event for Ship Silhouette
@@ -111,7 +112,7 @@ $(document).ready(function ()
 		Cookies.set("destination", destLoc.Name);
 		populateLocationDropdown();
 		populateDestinationDropdown();
-		updateAll();
+//		updateAll();
 	});
 });
 
@@ -236,10 +237,10 @@ function updateAll()
 	}
 
 	updateCurrentAtmosphere();
-	updateDestAtmosphere();
+//	updateDestAtmosphere();
 	updateLocalEvents();
 	updateCurrentDetails();
-	updateDestDetails();
+//	updateDestDetails();
 	updateLocalCustoms();
 	updateTravelEstimates();
 
@@ -406,6 +407,7 @@ function updateDestDetails()
 		$("#destRegionURL").text(destRegion.Name);
 	}
 }
+
 function updateLocalCustoms() // and starport costs, permits, contraband,...
 {
 	if (!currentLocation) return;
