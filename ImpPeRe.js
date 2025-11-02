@@ -1,14 +1,10 @@
-// @TODO Rarity lower/higher based on number of trade routes available
 // @TODO https://starwars.fandom.com/wiki/Prison https://starwars.fandom.com/wiki/Stars%27_End/Legends
-// @TODO galaxy map and links to specific (i.e., "A-1") location
 // @TODO boosts/setbacks/upgrades options per location; see
 //	https://starwars.fandom.com/wiki/Kala%27uun_Starport for example
 //	https://starwars.fandom.com/wiki/Sarkan/Legends#Society_and_culture
 // @TODO Pirate Holonet, ECS, Sensor Baffler, Sensor Shunt, Mobile Listening Post, Nightshadow Coating, Pseudo-Cloaking Device, Encryption Array
 // @TODO "Undeclared" cargo, smuggler compartments
-// @TODO Add https://starwars.fandom.com/wiki/Depatar/Legends to locations, but only if Pirate Holonet is installed; same for TDS
 // @TODO Add local storage and remember events chosen
-// @TODO https://starwars.fandom.com/wiki/Spaceport/Legends#Known_spaceports
 // @TODO https://star-wars-rpg-ffg.fandom.com/wiki/Category:Beast#RIDING_BEASTS
 
 // Globals
@@ -18,6 +14,9 @@ destRegion = {};
 currentLocation = Cookies.get()["currentLocation"];
 currentDestination = Cookies.get()["currentDestination"];
 currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+
+const htmlBoostDie = '<span class="font-normal starwars-dice boost">b</span>';
+const htmlSetbackDie = '<span class="font-normal starwars-dice setback">s</span>';
 
 $(document).ready(function ()
 {
@@ -79,14 +78,13 @@ $(document).ready(function ()
 		}
 		else
 		{
-			Cookies.set("currentDestination", currentDestination);
+//			Cookies.set("currentDestination", currentDestination);
 			destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 			destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 			$('#estTravelTime').slideDown();
 		}
 
 		updateTravelEstimates();
-
 	});
 
 	// On Change event for Ship Silhouette
@@ -109,7 +107,7 @@ $(document).ready(function ()
 	// General update of everything
 	$("input").change(function() {
 		Cookies.set("location", currentLoc.Name);
-		Cookies.set("destination", destLoc.Name);
+//		Cookies.set("destination", destLoc.Name);
 		populateLocationDropdown();
 		populateDestinationDropdown();
 //		updateAll();
@@ -230,11 +228,6 @@ function updateAll()
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 	}
-	if (currentDestination)
-	{
-		destLoc = locations.find(item => item.Name === currentDestination); // JSON object
-		destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
-	}
 
 	updateCurrentAtmosphere();
 //	updateDestAtmosphere();
@@ -257,7 +250,7 @@ function updateCurrentAtmosphere()
 
 	$('#currentAtmosphere').text(currentLoc.Atmosphere);
 
-	$('#currentAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4 highlight').addClass('font-normal');
+	$('#currentAtmosphere').removeClass('atmos-1 atmos-2 atmos-3 atmos-4 highlight').addClass('font-normal');
 	if (currentLoc.Atmosphere === "Type IV")
 	{
 		$('#currentAtmosphere').addClass('atmos-4');
@@ -539,6 +532,9 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 function updateTravelEstimates()
 {
 	totalFactor = 1.0;
+	hyperlanesAtOrigin = 0;
+	hyperlanesAtDest = 0;
+	parsecsTraveled = 0;
 
 	// Find Hyperlanes available for current location
 	currentRouteList = "";
@@ -554,6 +550,7 @@ function updateTravelEstimates()
 			const planets = hyperspaceRoutes[key].Route.split(",");
 			if (planets.indexOf(currentLoc.Name) != -1)
 			{
+				hyperlanesAtOrigin++;
 				if (currentRouteList.length > 0) currentRouteList += "<br/>";
 				const thisRoute = hyperspaceRoutes[key];
 				const factor = (1.0 - (Math.max(1.0, thisRoute.Route.split(",").length) * 0.005)).toFixed(2);
@@ -577,6 +574,7 @@ function updateTravelEstimates()
 
 			if (planets.indexOf(destLoc.Name) != -1)
 			{
+				hyperlanesAtDest++;
 				if (destRouteList.length > 0) destRouteList += "<br/>";
 				const thisRoute = hyperspaceRoutes[key];
 				const factor = (1.0 - (Math.max(1.0, thisRoute.Route.split(",").length) * 0.005)).toFixed(2);
@@ -609,11 +607,96 @@ function updateTravelEstimates()
 	{
 		const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
 		const shipHyperdrive = $("#hyperdriveClass").val();
+		parsecsTraveled = getParsecsBetween(currentLoc.Map, destLoc.Map);
 		$("#ettHyperdriveClass").text(shipHyperdrive);
 		$("#baseHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime));
 		$("#estHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
 		$("#hyperrouteFactor").text(totalFactor.toFixed(2));
 	}
+
+	// Update Astrogation possible boosts/setbacks
+	astrogationHtml = "";
+
+	if (['Core Worlds'].includes(currentLoc.Region))
+	{
+		astrogationHtml += '<br/>origin Core Worlds: +' + htmlBoostDie + htmlBoostDie;
+	}
+	if (["Colonies", "Inner Rim", "Expansion Region"].includes(currentLoc.Region))
+	{
+		astrogationHtml += '<br/>origin Colonies/Inner Rim/Expansion Region: +' + htmlBoostDie;
+	}
+	if (["Outer Rim", "Hutt Space"].includes(currentLoc.Region))
+	{
+		astrogationHtml += '<br/>origin Outer Rim/Hutt Space: +' + htmlSetbackDie;
+	}
+	if (["Wild Space", "Unknown Regions", "Deep Core", "Extragalactic"].includes(currentLoc.Region))
+	{
+		astrogationHtml += '<br/>origin Wild Space/Unknown Regions/Deep Core/Extragalactic: +' + htmlSetbackDie + htmlSetbackDie;
+	}
+
+	if (hyperlanesAtOrigin > 0)
+	{
+		astrogationHtml += "<br/>Hyperlanes at origin: +";
+		for (ii = 0; ii < hyperlanesAtOrigin; ii++) {
+			astrogationHtml += htmlBoostDie;
+		}
+	}
+	if (parsecsTraveled > 1) // first parsec is free
+	{
+		astrogationHtml += '<br/>Parsecs travelled (straight line): ';
+		for (ii = 1; ii < Math.floor(parsecsTraveled); ii++) {
+			astrogationHtml += htmlSetbackDie;
+		}
+	}
+
+	if (hyperlanesAtDest > 0)
+	{
+		astrogationHtml += "<br/>Hyperlanes at destination: +";
+		for (ii = 0; ii < hyperlanesAtDest; ii++) {
+			astrogationHtml += htmlBoostDie;
+		}
+	}
+
+	if (hyperlanesAtOrigin == 0 && hyperlanesAtDest == 0 && parsecsTraveled > 1)
+	{
+		astrogationHtml += '<br/>No hyperlanes at either end: ' +
+			'Upgrade difficulty <span class="font-normal starwars-dice upgrade-difficulty">1x</span> ' +
+			'(<span class="font-normal starwars-dice difficulty">p</span>»' +
+			'<span class="font-normal starwars-dice upgrade-difficulty">R</span>)';
+	}
+
+	if (hyperlanesAtOrigin > 0 && hyperlanesAtDest > 0)
+	{
+		astrogationHtml += '<br/>Hyperlanes at both ends: +	<span class="font-normal starwars-dice boost">b</span>';
+	}
+
+
+	if (['Core Worlds'].includes(destLoc.Region))
+	{
+		astrogationHtml += '<br/>destination Core Worlds: +' + htmlBoostDie + htmlBoostDie;
+	}
+	if (["Colonies", "Inner Rim", "Expansion Region"].includes(destLoc.Region))
+	{
+		astrogationHtml += '<br/>destination Colonies/Inner Rim/Expansion Region: +' + htmlBoostDie;
+	}
+	if (["Outer Rim", "Hutt Space"].includes(destLoc.Region))
+	{
+		astrogationHtml += '<br/>destination Outer Rim/Hutt Space: +' + htmlSetbackDie;
+	}
+	if (["Wild Space", "Unknown Regions", "Deep Core", "Extragalactic"].includes(destLoc.Region))
+	{
+		astrogationHtml += '<br/>destination Wild Space/Unknown Regions/Deep Core/Extragalactic: +' + htmlSetbackDie + htmlSetbackDie;
+	}
+
+	astrogationHtml +=
+		'<br/>(each enemy targeting you): +' + htmlSetbackDie +
+		'<br/>(damaged navicomputer or astromech): +' + htmlSetbackDie +
+		'<br/>(missing navicomputer or astromech): +' + htmlSetbackDie + htmlSetbackDie +
+		'<br/>(Hull Trauma or System Strain > 25% max): +' + htmlSetbackDie +
+		'<br/>(Hull Trauma or System Strain > 50% max): +' + htmlSetbackDie + htmlSetbackDie +
+		'<br/>(outdated/corrupt/counterfeit navigation data): +' + htmlSetbackDie;
+
+	$('#hyperspaceDice').html(astrogationHtml);
 }
 
 function togglePirateHolonet()
@@ -973,10 +1056,9 @@ function hyperlaneFactor(startLoc, endLoc)
 }
 */
 
-// EotE pg247, Fly Casual pg78
-// https://oakthorne.net/wiki/index.php/SW_Hyperspace_Travel_Times
-function hyperspaceTravelTime(startMap, endMap)
+function getParsecsBetween(startMap, endMap)
 {
+	const minParsecs = 0.5; // minimum travel distance for Astrogation purposes
 	if (startMap && endMap)
 	{
 		const startLetter = startMap[0].charCodeAt(0); // no need to zero, we only care about the difference
@@ -985,7 +1067,18 @@ function hyperspaceTravelTime(startMap, endMap)
 		const endNumber = endMap.substring(2);
 
 		// Assume straight line, ignoring hyperspace routes
-		const distance = Math.max(0.5, Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2)));
+		return Math.max(minParsecs, Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2)));
+	}
+	return minParsecs;
+}
+
+// EotE pg247, Fly Casual pg78
+// https://oakthorne.net/wiki/index.php/SW_Hyperspace_Travel_Times
+function hyperspaceTravelTime(startMap, endMap)
+{
+	if (startMap && endMap)
+	{
+		const distance = getParsecsBetween(startMap, endMap);
 
 		// side effect: update the display
 		$('#baseHyperSpaceDistance').text(distance.toFixed(2) + " parsecs, ")
