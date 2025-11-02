@@ -29,18 +29,7 @@ $(document).ready(function ()
 	$(".hidden").slideUp();
 
 	// Default input values
-	cargoDeclared = Cookies.get()["cargoDeclared"] || 0;
-	$("#cargoDeclared").val(cargoDeclared);
-	shipSilhouette = Cookies.get()["shipSilhouette"] || 4;
-	$("#shipSilhouette").val(shipSilhouette);
-	hyperdriveClass = Cookies.get()["hyperdriveClass"] || 1;
-	$("#hyperdriveClass").val(hyperdriveClass);
-	gHC = Cookies.get()["GHC"] || 1;
-	$("#galacticHyperspaceConstant").val(gHC);
-	pirateHolonet = (Cookies.get()["pirateHolonet"] == "true");
-	$("#pirateHolonet").prop("checked", pirateHolonet);
-	currentLocation = Cookies.get()["currentLocation"];
-	currentDestination = Cookies.get()["currentDestination"];
+	getCookies();
 
 	populateLocationDropdown();
 	populateDestinationDropdown();
@@ -71,14 +60,12 @@ $(document).ready(function ()
 		currentDestination = $("#destinationDropdown").val();
 		if ("" == currentDestination)
 		{
-			Cookies.remove("currentDestination");
 			destLoc = []; // JSON object
 			destRegion = []; // JSON object
 			$('#estTravelTime').slideUp();
 		}
 		else
 		{
-//			Cookies.set("currentDestination", currentDestination);
 			destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 			destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 			$('#estTravelTime').slideDown();
@@ -104,13 +91,17 @@ $(document).ready(function ()
 	// On Change event for Galactic Hyperspace Constant
 	document.getElementById("galacticHyperspaceConstant").addEventListener("change", onChangeGalacticHyperspaceConstant);
 
+	// On Change event for ship hull & system strain
+	document.getElementById("hullMax").addEventListener("change", onChangeShipManifest);
+	document.getElementById("hullCurrent").addEventListener("change", onChangeShipManifest);
+	document.getElementById("strainMax").addEventListener("change", onChangeShipManifest);
+	document.getElementById("strainCurrent").addEventListener("change", onChangeShipManifest);
+
 	// General update of everything
 	$("input").change(function() {
 		Cookies.set("location", currentLoc.Name);
-//		Cookies.set("destination", destLoc.Name);
 		populateLocationDropdown();
 		populateDestinationDropdown();
-//		updateAll();
 	});
 });
 
@@ -221,6 +212,42 @@ function populateDestinationDropdown()
 	});
 }
 
+function setCookies()
+{
+	Cookies.set("currentLocation", currentLocation);
+
+	Cookies.set("hullMax", $('#hullMax').val());
+	Cookies.set("hullCurrent", $('#hullCurrent').val());
+	Cookies.set("strainMax", $('#strainMax').val());
+	Cookies.set("strainCurrent", $('#strainCurrent').val());
+	Cookies.set("cargoDeclared", $("#cargoDeclared").val());
+	Cookies.set("shipSilhouette", $("#shipSilhouette").val());
+	Cookies.set("hyperdriveClass", $("#hyperdriveClass").val());
+	Cookies.set("gHC", $("#gHC").val());
+	Cookies.set("pirateHolonet", $("#pirateHolonet").val());
+}
+
+function getCookies()
+{
+	currentLocation = Cookies.get()["currentLocation" || ""];
+
+	$('#hullMax').val(Cookies.get()["hullMax"] || 99);
+	$('#hullCurrent').val(Cookies.get()["hullCurrent"] || 0);
+	$('#strainMax').val(Cookies.get()["strainMax"] || 99);
+	$('#strainCurrent').val(Cookies.get()["strainCurrent"] || 0);
+	$("#cargoDeclared").val(Cookies.get()["cargoDeclared"] || 0);
+	$("#shipSilhouette").val(Cookies.get()["shipSilhouette"] || 4);
+	$("#hyperdriveClass").val(Cookies.get()["hyperdriveClass"] || 1);
+	$("#galacticHyperspaceConstant").val(Cookies.get()["GHC"] || 1);
+	$("#pirateHolonet").prop("checked", Cookies.get()["pirateHolonet"] == "true");
+}
+
+function onChangeShipManifest()
+{
+	setCookies();
+	updateTravelEstimates();
+}
+
 function updateAll()
 {
 	if (currentLocation)
@@ -241,6 +268,8 @@ function updateAll()
 		$("#locationDetails").slideDown();
 	if (currentDestination && destLoc && destLoc.Name)
 		$("#destinationDetails").slideDown();
+
+	setCookies();
 }
 
 // updates the current location Atmosphere description
@@ -428,8 +457,6 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textFeeCustoms = creditsOrWaived(feeCustoms); // "waived" if zero
 	const feeVisitation = Math.round(feePortBerthing * 0.1);
 	const textFeeVisitation = creditsOrWaived(feeVisitation); // "waived" if zero
-//	const feeSmuggling = Math.round(shipCargoDeclared * 0.2); // "no cargo declared" if no cargo; "(minor bribe)" if small
-//	const textFeeSmuggling = creditsOrWaived(Math.max(feeSmuggling, 10));
 	const waitDeparture = Math.round(currentLoc.Starport *
 		Math.max(1, sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence))); // in hours
 	const textWaitDeparture = (waitDeparture>24
@@ -446,7 +473,6 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	$('#textFeePortBerthing').text(textFeePortBerthing);
 	$('#textFeeCustoms').text(textFeeCustoms);
 	$('#textFeeVisitation').text(textFeeVisitation);
-//	$('#textFeeSmuggling').text(textFeeSmuggling);
 	$('#textWaitDeparture').text(textWaitDeparture);
 	$('#textSmugglingPenalty').html(textSmugglingPenalty);
 	$('#textRarityMod').html(textRarityMod);
@@ -688,12 +714,25 @@ function updateTravelEstimates()
 		astrogationHtml += '<br/>destination Wild Space/Unknown Regions/Deep Core/Extragalactic: +' + htmlSetbackDie + htmlSetbackDie;
 	}
 
+	const hullMax = $('#hullMax').val();
+	const hullCurrent = $('#hullCurrent').val();
+	const strainMax = $('#strainMax').val();
+	const strainCurrent = $('#strainCurrent').val();
+
+	if ((hullCurrent > (hullMax * 0.5)) || (strainCurrent > (strainMax * 0.5)))
+	{
+		astrogationHtml += '<br/>Hull Trauma or System Strain > 50% max: +' + htmlSetbackDie + htmlSetbackDie;
+	}
+	else if ((hullCurrent > (hullMax * 0.25)) || (strainCurrent > (strainMax * 0.25)))
+	{
+		astrogationHtml += '<br/>Hull Trauma or System Strain > 25% max: +' + htmlSetbackDie;
+	}
+
 	astrogationHtml +=
 		'<br/>(each enemy targeting you): +' + htmlSetbackDie +
+		'<br/>(each speed increment): +' + htmlSetbackDie +
 		'<br/>(damaged navicomputer or astromech): +' + htmlSetbackDie +
 		'<br/>(missing navicomputer or astromech): +' + htmlSetbackDie + htmlSetbackDie +
-		'<br/>(Hull Trauma or System Strain > 25% max): +' + htmlSetbackDie +
-		'<br/>(Hull Trauma or System Strain > 50% max): +' + htmlSetbackDie + htmlSetbackDie +
 		'<br/>(outdated/corrupt/counterfeit navigation data): +' + htmlSetbackDie;
 
 	$('#hyperspaceDice').html(astrogationHtml);
@@ -1036,25 +1075,6 @@ function onChangeGalacticHyperspaceConstant()
 	Cookies.set("hyperdriveClass", $("#hyperdriveClass").val());
 	updateTravelEstimates();
 }
-
-// Hyperlane travel time multiplier
-/*
-function hyperlaneFactor(startLoc, endLoc)
-{
-	if (!currentLoc) return;
-
-	factor = 1.0;
-	Object.keys(hyperspaceRoutes).forEach(key => {
-		const planets = hyperspaceRoutes[key].Route.split(",");
-		if (planets.indexOf(currentLoc.Name) != -1)
-		{
-			routeFactor = hyperspaceRoutes[key].Route.split(",").length * 0.01;
-			factor *= routeFactor;
-		}
-	});
-	return factor;
-}
-*/
 
 function getParsecsBetween(startMap, endMap)
 {
