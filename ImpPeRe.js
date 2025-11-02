@@ -83,7 +83,8 @@ $(document).ready(function ()
 	// On Change event for Declared Cargo
 	document.getElementById("cargoDeclared").addEventListener("change", onChangeCargoDeclared);
 
-	// On Change event for Undeclared Cargo
+	// On Change event for Hidden Cargo
+	document.getElementById("cargoHidden").addEventListener("change", onChangeCargoDeclared);
 
 	// On Change event for Pirate Holonet
 	document.getElementById("pirateHolonet").addEventListener("change", togglePirateHolonet);
@@ -99,7 +100,7 @@ $(document).ready(function ()
 
 	// General update of everything
 	$("input").change(function() {
-		Cookies.set("location", currentLoc.Name);
+		Cookies.set("currentLocation", currentLoc.Name);
 		populateLocationDropdown();
 		populateDestinationDropdown();
 	});
@@ -221,6 +222,7 @@ function setCookies()
 	Cookies.set("strainMax", $('#strainMax').val());
 	Cookies.set("strainCurrent", $('#strainCurrent').val());
 	Cookies.set("cargoDeclared", $("#cargoDeclared").val());
+	Cookies.set("cargoHidden", $("#cargoHidden").val());
 	Cookies.set("shipSilhouette", $("#shipSilhouette").val());
 	Cookies.set("hyperdriveClass", $("#hyperdriveClass").val());
 	Cookies.set("gHC", $("#gHC").val());
@@ -236,6 +238,7 @@ function getCookies()
 	$('#strainMax').val(Cookies.get()["strainMax"] || 99);
 	$('#strainCurrent').val(Cookies.get()["strainCurrent"] || 0);
 	$("#cargoDeclared").val(Cookies.get()["cargoDeclared"] || 0);
+	$("#cargoHidden").val(Cookies.get()["cargoHidden"] || 0);
 	$("#shipSilhouette").val(Cookies.get()["shipSilhouette"] || 4);
 	$("#hyperdriveClass").val(Cookies.get()["hyperdriveClass"] || 1);
 	$("#galacticHyperspaceConstant").val(Cookies.get()["GHC"] || 1);
@@ -250,6 +253,8 @@ function onChangeShipManifest()
 
 function updateAll()
 {
+	getCookies();
+
 	if (currentLocation)
 	{
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
@@ -441,6 +446,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 
 	// Options calculations & variables
 	const shipCargoDeclared = $("#cargoDeclared").val();
+	const shipCargoHidden = $("#cargoHidden").val();
 	const shipHyperdrive = $("#hyperdriveClass").val();
 	const rarityMod = rarityModFor(currentLoc);
 
@@ -729,11 +735,11 @@ function updateTravelEstimates()
 	}
 
 	astrogationHtml +=
-		'<br/>(each enemy targeting you): +' + htmlSetbackDie +
-		'<br/>(each speed increment): +' + htmlSetbackDie +
-		'<br/>(damaged navicomputer or astromech): +' + htmlSetbackDie +
-		'<br/>(missing navicomputer or astromech): +' + htmlSetbackDie + htmlSetbackDie +
-		'<br/>(outdated/corrupt/counterfeit navigation data): +' + htmlSetbackDie;
+		'<br/><i>(each enemy targeting you):</i> +' + htmlSetbackDie +
+		'<br/><i>(each speed increment):</i> +' + htmlSetbackDie +
+		'<br/><i>(damaged navicomputer or astromech):</i> +' + htmlSetbackDie +
+		'<br/><i>(missing navicomputer or astromech):</i> +' + htmlSetbackDie + htmlSetbackDie +
+		'<br/><i>(outdated/corrupt/counterfeit navigation data):</i> +' + htmlSetbackDie;
 
 	$('#hyperspaceDice').html(astrogationHtml);
 }
@@ -804,6 +810,7 @@ function creditsOrWaived(val)
 // Converts a -5 to 5 number to display value, i.e., "Confiscation + 20% contraband value"
 function smugglingPenalty(val)
 {
+	const shipCargoHidden = $("#cargoHidden").val() || 0;
 	switch(sanitizeMinus5to5(val)) // Empire Bureacracy minus Old Westiness
 	{
 		case -5:
@@ -813,15 +820,15 @@ function smugglingPenalty(val)
 		case -3:
 			return '<span class="law-common">an inquiry will be made</span>'; break;
 		case -2:
-			return '<span class="law-common">1% of street value</span>'; break;
+			return '<span class="law-common">1% of street value: ' + creditsOrWaived((shipCargoHidden * 0.01).toFixed(0)) + '</span>'; break;
 		case -1:
-			return '<span class="law-no-restrictions">2% of street value</span>'; break;
+			return '<span class="law-no-restrictions">2% of street value: ' + creditsOrWaived((shipCargoHidden * 0.02).toFixed(0)) + '</span>'; break;
 		case 0:
-			return '<span class="law-tolerated">5% of street value</span>'; break;
+			return '<span class="law-tolerated">5% of street value: ' + creditsOrWaived((shipCargoHidden * 0.05).toFixed(0)) + '</span>'; break;
 		case 1:
-			return '<span class="law-frowned-upon">10% of street value</span>'; break;
+			return '<span class="law-frowned-upon">10% of street value: ' + creditsOrWaived((shipCargoHidden * 0.10).toFixed(0)) + '</span>'; break;
 		case 2:
-			return '<span class="law-infraction">50% of street value</span>'; break;
+			return '<span class="law-infraction">50% of street value: ' + creditsOrWaived((shipCargoHidden * 0.50).toFixed(0)) + '</span>'; break;
 		case 3:
 			return '<span class="law-misdemeanor">automatic confiscation of cargo</span>'; break;
 		case 4:
@@ -1063,7 +1070,7 @@ function populateOldWestMissions(eventCount)
 
 function onChangeCargoDeclared()
 {
-	Cookies.set("cargoDeclared", $("#cargoDeclared").val());
+	setCookies();
 	updateLocalCustoms();
 }
 
