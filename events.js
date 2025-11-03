@@ -124,6 +124,7 @@ const localEmpireEvents = [
 	'<li><span class="local-event-free">SHORTAGE:</span> +1 Rarity, +<span class="font-normal starwars-dice setback">s</span> on weapon modifications.</li>',
 	'<li><span class="local-event-destiny-optional">I KNOW A GUY:</span> Not a "fence". Not a "trafficker". They are an "antiquities dealer" who "specializes in hard to find collectibles". (+1 Rarity to sell <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Gear#RELICS" target="_blank">Relics</a>, and handles (R)estricted items under the table.)</li>',
 	'<li><span class="local-event-free">PROBABLY NOT A TRAP:</span> You hear a muffled cry for help from a dark alley.</li>',
+	'<li><span class="local-event-free">IMPERIAL PRESENCE:</span> <i>"Watch out, the Imps are running undercover operations. Trust no one."</i></li>',
 ];
 
 const localOldWestEvents = [

@@ -616,6 +616,9 @@ function updateTravelEstimates()
 		});
 	};
 
+	// Update Astrogation possible boosts/setbacks
+	astrogationHtml = "";
+
 	if (currentRouteList.length > 0 && destRouteList.length > 0)
 	{
 		// Same hyperroute? Bonus!
@@ -626,6 +629,9 @@ function updateTravelEstimates()
 					currentRouteList = currentRouteList.replace(currRoute, '<span class="matched-hyperlane">' + currRoute + '&nbsp;&gt;&gt;&gt;</span>');
 					destRouteList = destRouteList.replace(destRoute, '<span class="matched-hyperlane">&lt;&lt;&lt;&nbsp;' + destRoute + '</span>');
 					totalFactor *= 0.5;
+
+					// Also bonus to Astrogation!
+					astrogationHtml += '<br/><strong>Single hyperlane</strong>: Downgrade difficulty -<span class="font-normal starwars-dice difficulty">p</span>';
 				}
 			});
 		});
@@ -645,9 +651,6 @@ function updateTravelEstimates()
 		$("#estHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
 		$("#hyperrouteFactor").text(totalFactor.toFixed(2));
 	}
-
-	// Update Astrogation possible boosts/setbacks
-	astrogationHtml = "";
 
 	if (['Core Worlds'].includes(currentLoc.Region))
 	{
@@ -676,7 +679,7 @@ function updateTravelEstimates()
 	if (parsecsTraveled > 1) // first parsec is free
 	{
 		astrogationHtml += '<br/>Parsecs travelled (straight line): ';
-		for (ii = 1; ii < Math.floor(parsecsTraveled); ii++) {
+		for (ii = 1; ii < parsecsTraveled; ii++) {
 			astrogationHtml += htmlSetbackDie;
 		}
 	}
