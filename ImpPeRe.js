@@ -261,6 +261,7 @@ function onChangeShipManifest()
 {
 	setCookies();
 	updateTravelEstimates();
+	updateLocalCustoms();
 }
 
 function updateAll()
@@ -454,12 +455,12 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 	if (! (currentRegion && currentRegion.Name))
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
-	shipSilhouette = $('#shipSilhouette').val();
+	shipSilhouette = Number($('#shipSilhouette').val());
 
 	// Options calculations & variables
-	const shipCargoDeclared = $("#cargoDeclared").val();
-	const shipCargoHidden = $("#cargoHidden").val();
-	const shipHyperdrive = $("#hyperdriveClass").val();
+	const shipCargoDeclared = Number($("#cargoDeclared").val());
+	const shipCargoHidden = Number($("#cargoHidden").val());
+	const shipHyperdrive = Number($("#hyperdriveClass").val());
 	const rarityMod = rarityModFor(currentLoc);
 
 	// Empire Presence calculations
@@ -473,6 +474,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textFeePortBerthing = creditsOrWaived(feePortBerthing);
 	const feeCustoms = Math.round(shipCargoDeclared * 0.001 * currentLoc.Starport);
 	const textFeeCustoms = creditsOrWaived(feeCustoms); // "waived" if zero
+	const textFeeRepairs = getRepairsEstimate();
 	const feeVisitation = Math.round(feePortBerthing * 0.1);
 	const textFeeVisitation = creditsOrWaived(feeVisitation); // "waived" if zero
 	const waitDeparture = Math.round(currentLoc.Starport *
@@ -487,11 +489,12 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const textRarityMod = "" + (rarityMod >= 0 ? "+" : "") + rarityMod + " (base cost " + rarityCostIncrease(rarity) + ")";
 
 	// Starport update screen elements
-	$('#textFeePortLanding').text(textFeePortLanding);
-	$('#textFeePortBerthing').text(textFeePortBerthing);
-	$('#textFeeCustoms').text(textFeeCustoms);
-	$('#textFeeVisitation').text(textFeeVisitation);
-	$('#textWaitDeparture').text(textWaitDeparture);
+	$('#textFeePortLanding').html(textFeePortLanding);
+	$('#textFeePortBerthing').html(textFeePortBerthing);
+	$('#textFeeCustoms').html(textFeeCustoms);
+	$('#textFeeRepairs').html(textFeeRepairs);
+	$('#textFeeVisitation').html(textFeeVisitation);
+	$('#textWaitDeparture').html(textWaitDeparture);
 	$('#textSmugglingPenalty').html(textSmugglingPenalty);
 	$('#textRarityMod').html(textRarityMod);
 
@@ -657,7 +660,7 @@ function updateTravelEstimates()
 	if (currentLoc.Map && destLoc.Map)
 	{
 		const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
-		const shipHyperdrive = $("#hyperdriveClass").val();
+		const shipHyperdrive = Number($("#hyperdriveClass").val());
 		parsecsTraveled = getParsecsBetween(currentLoc.Map, destLoc.Map);
 		$("#ettHyperdriveClass").text(shipHyperdrive);
 		$("#baseHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime));
@@ -733,10 +736,10 @@ function updateTravelEstimates()
 		astrogationHtml += '<br/>dest Wild Space/Unknown Regions/Deep Core/Extragalactic: +' + htmlSetbackDie + htmlSetbackDie;
 	}
 
-	const hullMax = $('#hullMax').val();
-	const hullCurrent = $('#hullCurrent').val();
-	const strainMax = $('#strainMax').val();
-	const strainCurrent = $('#strainCurrent').val();
+	const hullMax = Number($('#hullMax').val());
+	const hullCurrent = Number($('#hullCurrent').val());
+	const strainMax = Number($('#strainMax').val());
+	const strainCurrent = Number($('#strainCurrent').val());
 
 	if ((hullCurrent > (hullMax * 0.5)) || (strainCurrent > (strainMax * 0.5)))
 	{
@@ -826,7 +829,7 @@ function creditsOrWaived(val)
 // Converts a -5 to 5 number to display value, i.e., "Confiscation + 20% contraband value"
 function smugglingPenalty(val)
 {
-	const shipCargoHidden = $("#cargoHidden").val() || 0;
+	const shipCargoHidden = Number($("#cargoHidden").val()) || 0;
 	switch(sanitizeMinus5to5(val)) // Empire Bureacracy minus Old Westiness
 	{
 		case -5:
@@ -846,11 +849,11 @@ function smugglingPenalty(val)
 		case 2:
 			return '<span class="law-infraction">50% of street value: ' + creditsOrWaived((shipCargoHidden * 0.50).toFixed(0)) + '</span>'; break;
 		case 3:
-			return '<span class="law-misdemeanor">automatic confiscation of cargo</span>'; break;
+			return '<span class="law-misdemeanor">100% of cargo</span>'; break;
 		case 4:
-			return '<span class="law-misdemeanor">automatic confiscation of cargo; indictment likely</span>'; break;
+			return '<span class="law-misdemeanor">100% of cargo; indictment likely</span>'; break;
 		case 5:
-			return '<span class="law-felony">automatic confiscation of ship and cargo; indictment likely</span>'; break;
+			return '<span class="law-felony">100% of cargo; ship impounded; indictment likely</span>'; break;
 		default:
 			return "(unknown)";
 	}
@@ -1274,7 +1277,7 @@ function toGalactipediaALink(name)
 
 function onChangeSilhouette()
 {
-	shipSilhouette = $('#shipSilhouette').val();
+	shipSilhouette = Number($('#shipSilhouette').val());
 	Cookies.set("shipSilhouette", shipSilhouette);
 
 	if (shipSilhouette > 4) // Commercial/Military size
@@ -1287,6 +1290,7 @@ function onChangeSilhouette()
 	}
 
 	updateLocalCustoms();
+
 }
 
 function toggleHelp()
@@ -1301,21 +1305,111 @@ function rarityCostIncrease(rarity)
 		case -5:
 		case -4:
 		case -3:
-			return "75% for certain items";
+			return '<span style="color:green">75% for certain items</span>';
 		case -2:
 		case -1:
-			return "90% for certain items";
+			return '<span style="color:green">90% for certain items</span>';
 		case 0:
 		case 1:
 			return "standard";
 		case 2:
-			return "200%";
+			return '<span style="color:red">200%</span>';
 		case 3:
-			return "300%"
+			return '<span style="color:red">300%</span>';
 		case 4:
 		case 5:
-			return "400%";
+			return '<span style="color:red">400%</span>';
 		default:
-			return "?";
+			return "the emperor is a fink!";
 	}
+}
+
+// Vehicle Ops: Repairs & Wear https://star-wars-rpg-ffg.fandom.com/wiki/Category:Homebrew
+function getRepairsEstimate()
+{
+	shipSilhouette = Number($('#shipSilhouette').val());
+	starportRating = Number(currentLoc.Starport); // 0 to 5; 0 = none, 5 = best
+	pirateHolonetInstalled = $("#pirateHolonet").is(":checked");
+	basePrice = 0.00;
+	multiplier = 1.0;
+	htmlResponse = "";
+
+	switch(starportRating)
+	{
+		case 0: // no facilities
+			return "(no starport exists)";
+			break;
+		case 1: // Landing Field
+			if (shipSilhouette > 4) return "(Grade 2 starport required)";
+			multiplier *= 0.50;
+			if (pirateHolonetInstalled) htmlResponse += "[Landing Field discount]";
+			break;
+		case 2: // Limited Services
+			if (shipSilhouette > 5) return "(Grade 3 starport required)";
+			multiplier *= 0.75;
+			if (pirateHolonetInstalled) htmlResponse += "[Limited Services discount]";
+			break;
+		case 3: // Standard Class
+			if (shipSilhouette > 6) return "(Grade 4 starport required)";
+			// multiplier *= 1.0;
+			if (pirateHolonetInstalled) htmlResponse += "[Standard Class starport]";
+			break;
+		case 4: // Stellar Class
+			if (shipSilhouette > 8) return "(Grade 5 starport required)";
+			multiplier *= 2.0;
+			if (pirateHolonetInstalled) htmlResponse += "[Stellar Class starport]";
+			break;
+		case 5: // Imperial Class
+			multiplier *= 3.0;
+			if (pirateHolonetInstalled) htmlResponse += "[Imperial Class starport]";
+			break;
+	}
+
+	switch (shipSilhouette)
+	{
+		case 0: basePrice = 100.00; break; // minimum fee to fix your space-skateboard
+		case 1: basePrice = 200.00; break;
+		case 2: basePrice = 400.00; break;
+		case 3: basePrice = 600.00; break;
+		case 4: basePrice = 800.00; break;
+		case 5: basePrice = 1000.00; break;
+		case 6: basePrice = 5000.00; break;
+		case 7: basePrice = 20000.00; break;
+		case 8: basePrice = 100000.00; break;
+		case 9: basePrice = 500000.00; break;
+		default: basePrice = 800.00; break;
+	}
+
+	hullMax = Number($('#hullMax').val());
+	hullCurrent = Number($('#hullCurrent').val());
+	if (hullCurrent > (hullMax * 0.5))
+	{
+		multiplier *= 2.0;
+		if (pirateHolonetInstalled) htmlResponse += "[major hull trauma surcharge]";
+	}
+	else if (hullCurrent > (hullMax * 0.25))
+	{
+		multiplier *= 1.5;
+		if (pirateHolonetInstalled) htmlResponse += "[minor hull trauma surcharge]";
+	}
+	else if (hullCurrent == 0)
+	{
+		return "(no repairs needed)";
+	}
+
+	if (multiplier > 1.0)
+	{
+		htmlResponse = '<span style="color:red">' + htmlResponse;
+	}
+	else if (multiplier < 1.0)
+	{
+		htmlResponse = '<span style="color:green">' + htmlResponse;
+	}
+	else
+	{
+		htmlResponse = '<span>' + htmlResponse;
+	}
+
+	htmlResponse += " " + (basePrice * multiplier) + "cr</span>";
+	return htmlResponse;
 }
