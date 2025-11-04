@@ -33,7 +33,7 @@
 	</button>
 
 	<table border="2" width="100%">
-		<tr>
+		<tr style="display: table-cell;">
 			<td class="margin-0">
 
 				<div class="flex-container">
@@ -119,7 +119,7 @@
 								<strong>Current Location Hyperlanes:</strong> <pre id="currentHyperlanes" class="hyperlanes">unknown</pre>
 							</div>
 						</div>
-						<div class="box-around">
+						<div class="box-around" style="width:40%">
 							<label for="destinationDropdown" id="destinationDropdownLabel" class="font-besh">Destination:
 								<select id="destinationDropdown">
 									<option value="">-- Select Destination --</option>
@@ -158,8 +158,10 @@
 			</td>
 		</tr>
 	</table>
+
+	<!-- Ship Manifest -->
 	<table border="2" width="100%">
-		<tr><!-- Ship, Crew, and Conditions options -->
+		<tr style="display: table-cell;">
 			<td>
 				<p>
 					<div class="tooltip">
@@ -234,6 +236,7 @@
 		</tr>
 	</table>
 
+	<!-- Local Regulations -->
 	<table border="2" width="100%">
 		<tr style="display: table-cell;">
 			<div class="local-customs-box tooltip">
@@ -277,6 +280,7 @@
 				<strong>Minor Theft:</strong> <span id="textLawTheft"></span><br/>
 				<strong>Bribery:</strong> <span id="textLawBribery"></span>
 			</div>
+			<!-- Local Rumors -->
 			<td class="local-events align-top">
 				<h4 class="local-customs-box-header font-starwars">Local Rumors reported at <span id="localEventsLocation">your location</span></h4>
 				<div class="tooltip">

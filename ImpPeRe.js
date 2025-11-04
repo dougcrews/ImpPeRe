@@ -17,6 +17,18 @@ currentRegion = regions.find(region => region.Name === currentLoc.Region); // JS
 
 const htmlBoostDie = '<span class="font-normal starwars-dice boost">b</span>';
 const htmlSetbackDie = '<span class="font-normal starwars-dice setback">s</span>';
+const htmlThreatDie = '<span class="font-normal starwars-dice threat">Threat</span>';
+const htmlAdvantageDie = '<span class="font-normal starwars-dice advantage">Advantage</span>';
+const htmlDifficultyDie = '<span class="font-normal starwars-dice difficulty">p</span>';
+const htmlChallengeDie = '<span class="font-normal starwars-dice challenge">R</span>';
+const htmlUpgradeDifficultyDie1x = '<span class="font-normal starwars-dice challenge">1x</span>';
+const htmlUpgradeDiff1x = 'Upgrade difficulty (+' + htmlDifficultyDie + ')';
+const htmlDowngradeDifficultyDie1x = '<span class="font-normal starwars-dice difficulty">1x</span>';
+const htmlDowngradeDiff1x = 'Downgrade difficulty (-' + htmlDifficultyDie + ')';
+const htmlAbilityDie = '<span class="font-normal starwars-dice ability">g</span>';
+const htmlProficiencyDie = '<span class="font-normal starwars-dice proficiency">Y</span>';
+const htmlUpgradeAbilityDie1x = '<span class="font-normal starwars-dice proficiency">1x</span>';
+const htmlUpgradeAbility1x = 'Upgrade next check (+' + htmlAbilityDie + '»' + htmlProficiencyDie + ')';
 
 $(document).ready(function ()
 {
@@ -631,7 +643,8 @@ function updateTravelEstimates()
 					totalFactor *= 0.5;
 
 					// Also bonus to Astrogation!
-					astrogationHtml += '<br/><strong>Single hyperlane</strong>: Downgrade difficulty -<span class="font-normal starwars-dice difficulty">p</span>';
+					astrogationHtml += '<br/><strong>Single hyperlane</strong>: ' +
+						'Downgrade difficulty -' + htmlDifficultyDie;
 				}
 			});
 		});
@@ -694,10 +707,7 @@ function updateTravelEstimates()
 
 	if (hyperlanesAtOrigin == 0 && hyperlanesAtDest == 0 && parsecsTraveled > 1)
 	{
-		astrogationHtml += '<br/>No hyperlanes at either end: ' +
-			'Upgrade difficulty <span class="font-normal starwars-dice upgrade-difficulty">1x</span> ' +
-			'(<span class="font-normal starwars-dice difficulty">p</span>»' +
-			'<span class="font-normal starwars-dice upgrade-difficulty">R</span>)';
+		astrogationHtml += '<br/>No hyperlanes at either end: ' + htmlUpgradeDiff1x;
 	}
 
 	if (hyperlanesAtOrigin > 0 && hyperlanesAtDest > 0)
@@ -720,7 +730,7 @@ function updateTravelEstimates()
 	}
 	if (["Wild Space", "Unknown Regions", "Deep Core", "Extragalactic"].includes(destLoc.Region))
 	{
-		astrogationHtml += '<br/>destination Wild Space/Unknown Regions/Deep Core/Extragalactic: +' + htmlSetbackDie + htmlSetbackDie;
+		astrogationHtml += '<br/>dest Wild Space/Unknown Regions/Deep Core/Extragalactic: +' + htmlSetbackDie + htmlSetbackDie;
 	}
 
 	const hullMax = $('#hullMax').val();
@@ -738,11 +748,14 @@ function updateTravelEstimates()
 	}
 
 	astrogationHtml +=
-		'<br/><i>(each enemy targeting you):</i> +' + htmlSetbackDie +
-		'<br/><i>(each speed increment):</i> +' + htmlSetbackDie +
-		'<br/><i>(damaged navicomputer or astromech):</i> +' + htmlSetbackDie +
-		'<br/><i>(missing navicomputer or astromech):</i> +' + htmlSetbackDie + htmlSetbackDie +
-		'<br/><i>(outdated/corrupt/counterfeit navigation data):</i> +' + htmlSetbackDie;
+		'<br/><hr width="50%"/><i>(familiar with this route): +' + htmlBoostDie + '</i>' +
+		' <br/><i>(discovered this route): ' + htmlUpgradeAbility1x + '</i>' +
+		' <br/><i>(each enemy targeting you): +' + htmlSetbackDie + '</i>' +
+		' <br/><i>(each speed increment): +' + htmlSetbackDie + '</i>' +
+		' <br/><i>(each extra astromech droid assisting): +' + htmlBoostDie + '</i>' +
+		' <br/><i>(damaged navicomputer or astromech): +' + htmlSetbackDie + ' to +' + htmlSetbackDie + htmlSetbackDie + htmlSetbackDie + '</i>' +
+		' <br/><i>(missing navicomputer or astromech): +' + htmlUpgradeDiff1x + '</i>' +
+		' <br/><i>(start or end in gravity well): automatic +' + htmlThreatDie + '</i>';
 
 	$('#hyperspaceDice').html(astrogationHtml);
 }

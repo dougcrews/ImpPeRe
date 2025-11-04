@@ -357,8 +357,20 @@ pre {
 	background-color: black;
 	color: white;
 }
+.ability {
+	background-color: green;
+	color: black;
+}
+.proficiency {
+	background-color: yellow;
+	color: black;
+}
 .difficulty {
 	background-color: purple;
+	color: white;
+}
+.challenge {
+	background-color: red;
 	color: black;
 }
 .force {
@@ -381,17 +393,13 @@ pre {
 	background-color: purple;
 	color: white;
 }
-.upgrade-skill {
+.triumph {
 	background-color: yellow;
 	color: black;
 }
-.upgrade-difficulty {
+.despair {
 	background-color: red;
 	color: black;
-}
-.downgrade-difficulty {
-	background-color: purple;
-	color: white;
 }
 .payme-link {
 	font-size: smaller;
