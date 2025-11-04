@@ -218,7 +218,7 @@ const hyperspaceRoutes = [
 {
 	"Name": "Overic Griplink",
 	"SpeedFactor": 0.9,
-	"Route": "Quermia,Toola,Florn,Ton-Falk Pakuuni,Shaylin 18,Turkana,Munto Codru,Reginard,Ruisto,Mon Cala (Dac)",
+	"Route": "Quermia,Toola,Florn,Ton-Falk Pakuuni,Shaylin 18,Turkana,Munto Codru,Reginard,Ruisto,Karkaris,Mon Cala (Dac)",
 	"Junctions": "Perlemian Trade Route,Pakuuni Drift,Minntooine Spur,Tidal Circuit",
 },
 {

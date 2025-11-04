@@ -21,12 +21,13 @@ const htmlThreatDie = '<span class="font-normal starwars-dice threat">Threat</sp
 const htmlAdvantageDie = '<span class="font-normal starwars-dice advantage">Advantage</span>';
 const htmlDifficultyDie = '<span class="font-normal starwars-dice difficulty">p</span>';
 const htmlChallengeDie = '<span class="font-normal starwars-dice challenge">R</span>';
+const htmlAbilityDie = '<span class="font-normal starwars-dice ability">g</span>';
+const htmlProficiencyDie = '<span class="font-normal starwars-dice proficiency">Y</span>';
+const htmlSuccess = '<span class="font-normal starwars-dice success">¤</span>';
 const htmlUpgradeDifficultyDie1x = '<span class="font-normal starwars-dice challenge">1x</span>';
 const htmlUpgradeDiff1x = 'Upgrade difficulty (+' + htmlDifficultyDie + ')';
 const htmlDowngradeDifficultyDie1x = '<span class="font-normal starwars-dice difficulty">1x</span>';
 const htmlDowngradeDiff1x = 'Downgrade difficulty (-' + htmlDifficultyDie + ')';
-const htmlAbilityDie = '<span class="font-normal starwars-dice ability">g</span>';
-const htmlProficiencyDie = '<span class="font-normal starwars-dice proficiency">Y</span>';
 const htmlUpgradeAbilityDie1x = '<span class="font-normal starwars-dice proficiency">1x</span>';
 const htmlUpgradeAbility1x = 'Upgrade next check (+' + htmlAbilityDie + '»' + htmlProficiencyDie + ')';
 
@@ -1338,30 +1339,36 @@ function getRepairsEstimate()
 	{
 		case 0: // no facilities
 			return "(no starport exists)";
+			htmlResponse += " +(" + htmlSetbackDie + htmlSetbackDie + ")";
 			break;
 		case 1: // Landing Field
 			if (shipSilhouette > 4) return "(Grade 2 starport required)";
 			multiplier *= 0.50;
-			if (pirateHolonetInstalled) htmlResponse += "[Landing Field discount]";
+			if (pirateHolonetInstalled) htmlResponse += "[Landing Field]";
+			htmlResponse += " +(" + htmlSetbackDie + ")";
 			break;
 		case 2: // Limited Services
 			if (shipSilhouette > 5) return "(Grade 3 starport required)";
 			multiplier *= 0.75;
-			if (pirateHolonetInstalled) htmlResponse += "[Limited Services discount]";
+			if (pirateHolonetInstalled) htmlResponse += "[Limited Services]";
+			htmlResponse += " +(" + htmlBoostDie + ")";
 			break;
 		case 3: // Standard Class
 			if (shipSilhouette > 6) return "(Grade 4 starport required)";
 			// multiplier *= 1.0;
-			if (pirateHolonetInstalled) htmlResponse += "[Standard Class starport]";
+			if (pirateHolonetInstalled) htmlResponse += "[Standard Class garage]";
+			htmlResponse += " +(" + htmlSuccess + ")";
 			break;
 		case 4: // Stellar Class
 			if (shipSilhouette > 8) return "(Grade 5 starport required)";
 			multiplier *= 2.0;
 			if (pirateHolonetInstalled) htmlResponse += "[Stellar Class starport]";
+			htmlResponse += " +(" + htmlSuccess + htmlSuccess + ")";
 			break;
 		case 5: // Imperial Class
 			multiplier *= 3.0;
 			if (pirateHolonetInstalled) htmlResponse += "[Imperial Class starport]";
+			htmlResponse += " +(" + htmlSuccess + htmlSuccess + htmlSuccess + ")";
 			break;
 	}
 
