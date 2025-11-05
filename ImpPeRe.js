@@ -25,9 +25,9 @@ const htmlAbilityDie = '<span class="font-normal starwars-dice ability">g</span>
 const htmlProficiencyDie = '<span class="font-normal starwars-dice proficiency">Y</span>';
 const htmlSuccess = '<span class="font-normal starwars-dice success">¤</span>';
 const htmlUpgradeDifficultyDie1x = '<span class="font-normal starwars-dice challenge">1x</span>';
-const htmlUpgradeDiff1x = 'Upgrade difficulty (+' + htmlDifficultyDie + ')';
+const htmlUpgradeDiff1x = 'Upgrade difficulty (+' + htmlDifficultyDie + '»' + htmlChallengeDie + ')';
 const htmlDowngradeDifficultyDie1x = '<span class="font-normal starwars-dice difficulty">1x</span>';
-const htmlDowngradeDiff1x = 'Downgrade difficulty (-' + htmlDifficultyDie + ')';
+const htmlDowngradeDiff1x = 'Downgrade difficulty (-' + htmlDifficultyDie + '«' + htmlChallengeDie + ')';
 const htmlUpgradeAbilityDie1x = '<span class="font-normal starwars-dice proficiency">1x</span>';
 const htmlUpgradeAbility1x = 'Upgrade next check (+' + htmlAbilityDie + '»' + htmlProficiencyDie + ')';
 
@@ -84,6 +84,7 @@ $(document).ready(function ()
 			$('#estTravelTime').slideDown();
 		}
 
+		updateDestDetails();
 		updateTravelEstimates();
 	});
 
@@ -279,7 +280,7 @@ function updateAll()
 //	updateDestAtmosphere();
 	updateLocalEvents();
 	updateCurrentDetails();
-//	updateDestDetails();
+	updateDestDetails();
 	updateLocalCustoms();
 	updateTravelEstimates();
 
@@ -429,23 +430,23 @@ function updateDestDetails()
 	{
 		if (! (destRegion && destRegion.Name)) destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 
-		$("#destRegion").html(destLoc.Region);
-		$("#destSector").html(destLoc.Sector);
-		$("#destSystem").html(destLoc.System);
-		$("#destCapital").html(destLoc.CapitalCity);
-		$("#destMap").html(destLoc.Map);
-		updateDestAtmosphere();
-		$("#destTerrain").html(destLoc.Terrain);
-		$("#destInhabitants").html(destLoc.Inhabitants);
-		$("#destClimate").html(destLoc.Climate);
-		$("#destGravity").html(gravityText(destLoc.Gravity));
-		$("#destStarportURL").text(starportText(destLoc.Starport));
+//		$("#destRegion").html(destLoc.Region);
+//		$("#destSector").html(destLoc.Sector);
+//		$("#destSystem").html(destLoc.System);
+//		$("#destCapital").html(destLoc.CapitalCity);
+//		$("#destMap").html(destLoc.Map);
+//		updateDestAtmosphere();
+//		$("#destTerrain").html(destLoc.Terrain);
+//		$("#destInhabitants").html(destLoc.Inhabitants);
+//		$("#destClimate").html(destLoc.Climate);
+//		$("#destGravity").html(gravityText(destLoc.Gravity));
+//		$("#destStarportURL").text(starportText(destLoc.Starport));
 		$("#destURL").attr("title", destLoc.Name);
 		$("#destURL").attr("href", destLoc.URL);
-		$("#destURL").text(destLoc.URL);
-		$("#destRegionURL").attr("title", destRegion.Name);
-		$("#destRegionURL").attr("href", "https://starwars.fandom.com/wiki/" + destRegion.Name.replace(" ", "_") + "/Legends");
-		$("#destRegionURL").text(destRegion.Name);
+		$("#destURL").text(destLoc.Name);
+//		$("#destRegionURL").attr("title", destRegion.Name);
+//		$("#destRegionURL").attr("href", "https://starwars.fandom.com/wiki/" + destRegion.Name.replace(" ", "_") + "/Legends");
+//		$("#destRegionURL").text(destRegion.Name);
 	}
 }
 
@@ -1338,8 +1339,7 @@ function getRepairsEstimate()
 	switch(starportRating)
 	{
 		case 0: // no facilities
-			return "(no starport exists)";
-			htmlResponse += " +(" + htmlSetbackDie + htmlSetbackDie + ")";
+			return "(no starport exists) +(" + htmlSetbackDie + htmlSetbackDie + ")";
 			break;
 		case 1: // Landing Field
 			if (shipSilhouette > 4) return "(Grade 2 starport required)";
