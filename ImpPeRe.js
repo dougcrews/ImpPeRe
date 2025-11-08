@@ -1035,6 +1035,7 @@ function starportText(val)
 // converts a number into a Gravity description
 function gravityText(val)
 {
+	if (val == 0) return '<span class="gravity-none">None (' + val + ')</span>';
 	if (val > 1.0) return '<span class="gravity-high">High (' + val + ')</span>';
 	if (val < 1.0) return '<span class="gravity-low">Low (' + val + ')</span>';
 	return 'Standard';

@@ -229,6 +229,10 @@ pre {
 	color: aquamarine;
 	font-weight: lighter;
 }
+.gravity-none {
+	color: red;
+	font-weight: lighter;
+}
 .ship-manifest-header {
 	vertical-align: text-bottom;
 	font-size: large;
