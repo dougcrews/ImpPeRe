@@ -8,12 +8,12 @@
 // @TODO https://star-wars-rpg-ffg.fandom.com/wiki/Category:Beast#RIDING_BEASTS
 
 // Globals
-currentLoc = {};
-destLoc = {};
-destRegion = {};
-currentLocation = Cookies.get()["currentLocation"];
-currentDestination = Cookies.get()["currentDestination"];
-currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+currentLocation = Cookies.get()["currentLocation"] ;
+currentLoc = {}; // JSON object
+currentRegion = {}; // JSON object
+destLocation = Cookies.get()["destLocation"];
+destLoc = {}; // JSON object
+destRegion = {}; // JSON object
 
 const htmlBoostDie = '<span class="font-normal starwars-dice boost">b</span>';
 const htmlSetbackDie = '<span class="font-normal starwars-dice setback">s</span>';
@@ -70,16 +70,16 @@ $(document).ready(function ()
 		$("#destinationDetails").slideDown();
 		switchFontNormal(); // reset font-family
 
-		currentDestination = $("#destinationDropdown").val();
-		if ("" == currentDestination)
+		destLocation = $("#destinationDropdown").val();
+		if ("" == destLocation)
 		{
-			destLoc = []; // JSON object
-			destRegion = []; // JSON object
+			destLoc = {}; // JSON object
+			destRegion = {}; // JSON object
 			$('#estTravelTime').slideUp();
 		}
 		else
 		{
-			destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+			destLoc = locations.find(item => item.Name === destLocation); // JSON object
 			destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 			$('#estTravelTime').slideDown();
 		}
@@ -105,6 +105,9 @@ $(document).ready(function ()
 
 	// On Change event for Galactic Hyperspace Constant
 	document.getElementById("galacticHyperspaceConstant").addEventListener("change", onChangeGalacticHyperspaceConstant);
+
+	// On Change event for Distance from current location
+	document.getElementById("filterDistance").addEventListener("change", populateDestinationDropdown());
 
 	// On Change event for ship hull & system strain
 	document.getElementById("hullMax").addEventListener("change", onChangeShipManifest);
@@ -182,24 +185,38 @@ function populateDestinationDropdown()
 	$("#destinationDropdown").empty(); // clear previous list
 	$("#destinationDropdown").append('<option value="">-- Select Destination --</option>');
 
-	$.each(locations, function (index, location) {
-		// Apply filters
-		if ($("#filterDestBlackMarket").is(":checked") && (! location.BlackMarket))	return;
-		if ($("#filterDestShadowport").is(":checked") && (! location.Shadowport)) return;
-		// starport grade (goes backwards: Grade 1=best; in data file Starport 1=worst, 0=none)
-		filterGrade = $("#filterDestStarportGrade").val();
-		if (filterGrade)
-		{
-			if ((filterGrade == 0 && location.Starport == 0) || // Grade 0 = unofficial "no starport here"; Grades go 1 (best) to 5 (worst)
-				(filterGrade != (6 - location.Starport)) ) // Starport 5-1 matches Grades 1-5
-			{
-				return;
-			}
-		}
+	if (!currentLocation) return;
+	currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 
+	startMap = currentLoc.Map;
+	minDistance = Number($("#filterDistance").val());
+	$.each(locations, function (index, location) {
 		tags = " ";
 		if ($("#pirateHolonet").is(":checked"))
 		{
+			// Apply filters
+			if ($("#filterDestBlackMarket").is(":checked") && (! location.BlackMarket))	return;
+			if ($("#filterDestShadowport").is(":checked") && (! location.Shadowport)) return;
+			// starport grade (goes backwards: Grade 1=best; in data file Starport 1=worst, 0=none)
+			filterGrade = $("#filterDestStarportGrade").val();
+			if (filterGrade)
+			{
+				if ((filterGrade == 0 && location.Starport == 0) || // Grade 0 = unofficial "no starport here"; Grades go 1 (best) to 5 (worst)
+					(filterGrade != (6 - location.Starport)) ) // Starport 5-1 matches Grades 1-5
+				{
+					return;
+				}
+			}
+			endMap = location.Map;
+			distance = getParsecsBetween(startMap, endMap).toFixed(1);
+			if (minDistance)
+			{
+				if (distance > minDistance)
+				{
+					return;
+				}
+			}
+
 			// Pirate HoloNet is installed, show some extra stuff
 			if (location.BlackMarket)
 			{
@@ -213,6 +230,7 @@ function populateDestinationDropdown()
 			{
 				tags += "[*p" + (6 - location.Starport) + "]"; // Starport Grade 1=best, data file Starport 1=worst
 			}
+			tags += "[" + distance + " parsecs]";
 		}
 		else
 		{
@@ -283,10 +301,11 @@ function updateAll()
 	updateDestDetails();
 	updateLocalCustoms();
 	updateTravelEstimates();
+	populateDestinationDropdown();
 
 	if (currentLocation && currentLoc && currentLoc.Name)
 		$("#locationDetails").slideDown();
-	if (currentDestination && destLoc && destLoc.Name)
+	if (destLocation && destLoc && destLoc.Name)
 		$("#destinationDetails").slideDown();
 
 	setCookies();
@@ -1115,9 +1134,9 @@ function getParsecsBetween(startMap, endMap)
 		const endNumber = endMap.substring(2);
 
 		// Assume straight line, ignoring hyperspace routes
-		return Math.max(minParsecs, Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2)));
+		return Number(Math.max(minParsecs, Math.sqrt(Math.pow(startLetter - endLetter, 2) + Math.pow(startNumber - endNumber, 2))));
 	}
-	return minParsecs;
+	return Number(minParsecs);
 }
 
 // EotE pg247, Fly Casual pg78
