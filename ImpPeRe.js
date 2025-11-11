@@ -1413,13 +1413,13 @@ function getRepairsEstimate()
 			if (shipSilhouette > 4) return "(Grade 2 starport required)";
 			multiplier *= 0.50;
 			if (pirateHolonetInstalled) htmlResponse += "[Landing Field]";
-			htmlResponse += "(" + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSetbackDie + ")";
+			htmlResponse += "(" + htmlAbilityDie + " +" + htmlSetbackDie + ")";
 			break;
 		case 2: // Limited Services
 			if (shipSilhouette > 5) return "(Grade 3 starport required)";
 			multiplier *= 0.75;
 			if (pirateHolonetInstalled) htmlResponse += "[Limited Services]";
-			htmlResponse += "(" + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlBoostDie + ")";
+			htmlResponse += "(" + htmlProficiencyDie + htmlAbilityDie + " +" + htmlBoostDie + ")";
 			break;
 		case 3: // Standard Class
 			if (shipSilhouette > 6) return "(Grade 4 starport required)";
