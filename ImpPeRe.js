@@ -1409,31 +1409,31 @@ function getRepairsEstimate()
 		case 0: // no facilities
 			return "(no starport exists) +(" + htmlSetbackDie + htmlSetbackDie + ")";
 			break;
-		case 1: // Landing Field
-			if (shipSilhouette > 4) return "(Grade 2 starport required)";
+		case 1: // Landing Field, grade 5
+			if (shipSilhouette > 4) return "(Grade 4 starport required)";
 			multiplier *= 0.50;
 			if (pirateHolonetInstalled) htmlResponse += "[Landing Field]";
 			htmlResponse += "(" + htmlAbilityDie + " +" + htmlSetbackDie + ")";
 			break;
-		case 2: // Limited Services
+		case 2: // Limited Services, grade 4
 			if (shipSilhouette > 5) return "(Grade 3 starport required)";
 			multiplier *= 0.75;
 			if (pirateHolonetInstalled) htmlResponse += "[Limited Services]";
 			htmlResponse += "(" + htmlProficiencyDie + htmlAbilityDie + " +" + htmlBoostDie + ")";
 			break;
-		case 3: // Standard Class
-			if (shipSilhouette > 6) return "(Grade 4 starport required)";
+		case 3: // Standard Class, grade 3
+			if (shipSilhouette > 6) return "(Grade 2 starport required)";
 			// multiplier *= 1.0;
 			if (pirateHolonetInstalled) htmlResponse += "[Standard Class garage]";
 			htmlResponse += "(" + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + ")";
 			break;
-		case 4: // Stellar Class
-			if (shipSilhouette > 8) return "(Grade 5 starport required)";
+		case 4: // Stellar Class, grade 2
+			if (shipSilhouette > 8) return "(Grade 1 starport required)";
 			multiplier *= 2.0;
 			if (pirateHolonetInstalled) htmlResponse += "[Stellar Class starport]";
 			htmlResponse += "(" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + ")";
 			break;
-		case 5: // Imperial Class
+		case 5: // Imperial Class, grade 1
 			multiplier *= 3.0;
 			if (pirateHolonetInstalled) htmlResponse += "[Imperial Class starport]";
 			htmlResponse += "(" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + htmlSuccess + ")";
