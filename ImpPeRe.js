@@ -654,6 +654,7 @@ function updateTravelEstimates()
 
 	// Update Astrogation possible boosts/setbacks
 	astrogationHtml = "";
+	isSingleHyperlane = false;
 
 	if (currentRouteList.length > 0 && destRouteList.length > 0)
 	{
@@ -1356,42 +1357,6 @@ function getRepairsEstimate()
 	multiplier = 1.0;
 	htmlResponse = "";
 
-	switch(starportRating)
-	{
-		case 0: // no facilities
-			return "(no starport exists) +(" + htmlSetbackDie + htmlSetbackDie + ")";
-			break;
-		case 1: // Landing Field
-			if (shipSilhouette > 4) return "(Grade 2 starport required)";
-			multiplier *= 0.50;
-			if (pirateHolonetInstalled) htmlResponse += "[Landing Field]";
-			htmlResponse += " +(" + htmlSetbackDie + ")";
-			break;
-		case 2: // Limited Services
-			if (shipSilhouette > 5) return "(Grade 3 starport required)";
-			multiplier *= 0.75;
-			if (pirateHolonetInstalled) htmlResponse += "[Limited Services]";
-			htmlResponse += " +(" + htmlBoostDie + ")";
-			break;
-		case 3: // Standard Class
-			if (shipSilhouette > 6) return "(Grade 4 starport required)";
-			// multiplier *= 1.0;
-			if (pirateHolonetInstalled) htmlResponse += "[Standard Class garage]";
-			htmlResponse += " +(" + htmlSuccess + ")";
-			break;
-		case 4: // Stellar Class
-			if (shipSilhouette > 8) return "(Grade 5 starport required)";
-			multiplier *= 2.0;
-			if (pirateHolonetInstalled) htmlResponse += "[Stellar Class starport]";
-			htmlResponse += " +(" + htmlSuccess + htmlSuccess + ")";
-			break;
-		case 5: // Imperial Class
-			multiplier *= 3.0;
-			if (pirateHolonetInstalled) htmlResponse += "[Imperial Class starport]";
-			htmlResponse += " +(" + htmlSuccess + htmlSuccess + htmlSuccess + ")";
-			break;
-	}
-
 	switch (shipSilhouette)
 	{
 		case 0: basePrice = 100.00; break; // minimum fee to fix your space-skateboard
@@ -1437,6 +1402,45 @@ function getRepairsEstimate()
 		htmlResponse = '<span>' + htmlResponse;
 	}
 
-	htmlResponse += " " + (basePrice * multiplier) + "cr</span>";
+	htmlResponse += (basePrice * multiplier) + "cr ";
+
+	switch(starportRating)
+	{
+		case 0: // no facilities
+			return "(no starport exists) +(" + htmlSetbackDie + htmlSetbackDie + ")";
+			break;
+		case 1: // Landing Field
+			if (shipSilhouette > 4) return "(Grade 2 starport required)";
+			multiplier *= 0.50;
+			if (pirateHolonetInstalled) htmlResponse += "[Landing Field]";
+			htmlResponse += "(" + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSetbackDie + ")";
+			break;
+		case 2: // Limited Services
+			if (shipSilhouette > 5) return "(Grade 3 starport required)";
+			multiplier *= 0.75;
+			if (pirateHolonetInstalled) htmlResponse += "[Limited Services]";
+			htmlResponse += "(" + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlBoostDie + ")";
+			break;
+		case 3: // Standard Class
+			if (shipSilhouette > 6) return "(Grade 4 starport required)";
+			// multiplier *= 1.0;
+			if (pirateHolonetInstalled) htmlResponse += "[Standard Class garage]";
+			htmlResponse += "(" + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + ")";
+			break;
+		case 4: // Stellar Class
+			if (shipSilhouette > 8) return "(Grade 5 starport required)";
+			multiplier *= 2.0;
+			if (pirateHolonetInstalled) htmlResponse += "[Stellar Class starport]";
+			htmlResponse += "(" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + ")";
+			break;
+		case 5: // Imperial Class
+			multiplier *= 3.0;
+			if (pirateHolonetInstalled) htmlResponse += "[Imperial Class starport]";
+			htmlResponse += "(" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + htmlSuccess + ")";
+			break;
+	}
+
+	htmlResponse += '</span>';
+
 	return htmlResponse;
 }
