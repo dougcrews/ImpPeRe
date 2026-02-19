@@ -781,6 +781,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Catadra",
+	"Region": "Deep Core",
+	"Sector": "Deep Core",
+	"System": "Cerberon",
+	"Map": "L-10",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "<span class='highlight'>Narthex (moon)</span>,religious temples",
+	"Gravity": 1,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "various cult temples",
+	"URL": "https://starwars.fandom.com/wiki/Catadra",
+	"Starport": 2, // various religious cults
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 0,
+	"OldWestiness": 0,
+	"Megafauna": 0,
+	"Rarity": +1, // religious cults
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 1, // religious cults
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
 	"Name": "Celanon",
 	"Region": "Outer Rim",
 	"Sector": "D'Astan",
@@ -3663,6 +3693,36 @@ const locations = [
 	"Bribery": 2, // embraced ... illegal activity with almost no interference
 },
 {
+	"Name": "Narthex (moon of Catadra)",
+	"Region": "Deep Core",
+	"Sector": "Deep Core",
+	"System": "Cerberon",
+	"Map": "L-10",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "mesas",
+	"Gravity": 1,
+	"Inhabitants": "(abandoned)",
+	"CapitalCity": "(abandoned)",
+	"URL": "https://starwars.fandom.com/wiki/Narthex",
+	"Starport": 0, // abandoned
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": -2, // abandoned
+	"OldWestiness": +2, // abandoned
+	"Megafauna": +1, // hiding in the dirkweek bramble?
+	"Rarity": +2, // abandoned
+	"Criticism": +2, // abandoned
+	"Slavery": +2, // abandoned
+	"Spice": +2, // abandoned
+	"Trespassing": +2, // abandoned
+	"Military": +2, // abandoned
+	"Slicing": -2, // abandoned
+	"Theft": +2, // abandoned
+	"Bribery": -2, // abandoned
+},
+{
 	"Name": "Neftali",
 	"Region": "Outer Rim",
 	"Sector": "Kibilini",
@@ -5373,6 +5433,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Troithe",
+	"Region": "Deep Core",
+	"Sector": "Deep Core",
+	"System": "Cerberon",
+	"Map": "L-10",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "<span class='highlight'>ecumenopolis</span>,<span class='highlight'>Scar of Troithe</span>, <span class='highlight'>industrial</span>",
+	"Gravity": 1,
+	"Inhabitants": "Human",
+	"CapitalCity": "Troithe City",
+	"URL": "https://starwars.fandom.com/wiki/Troithe",
+	"Starport": 3, // population billions, ecumenopolis
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 0,
+	"OldWestiness": 0,
+	"Megafauna": 0,
+	"Rarity": -1, // ecumenopolis
+	"Criticism": 1, // formerly a Coruscant rival, now eclipsed
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
 	"Name": "Tyegin",
 	"Region": "Inner Rim",
 	"Sector": "Tyegin",
@@ -5544,6 +5634,36 @@ const locations = [
 	"Megafauna": 1, // gryzards
 	"Rarity": 0,
 	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Verzan",
+	"Region": "Deep Core",
+	"Sector": "Deep Core",
+	"System": "Cerberon",
+	"Map": "L-10",
+	"Atmosphere": "none",
+	"Climate": "temperate",
+	"Terrain": "ruins",
+	"Gravity": 1,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "Winker's Cantina",
+	"URL": "https://starwars.fandom.com/wiki/Verzan",
+	"Starport": 2, // landing pad on a cracked-glass field
+	"Shadowport": true, // Winker's cantina
+	"BlackMarket": true, // Winker's cantina
+	"Precipitation": 0,
+	"ImperialPresence": -1, // former garrison world
+	"OldWestiness": +1, // former garrison world
+	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": +1, // former garrison world
 	"Slavery": 0,
 	"Spice": 0,
 	"Trespassing": 0,
