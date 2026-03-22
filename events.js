@@ -132,6 +132,7 @@ const localEmpireEvents = [
 	'<li><span class="local-event-destiny-required">ATTENTION, NAVIGATOR:</span> Hyperspace anomaly buffets the ship. (+1 System Strain)</li>',
 	'<li><span class="local-event-destiny-required">ATTENTION, NAVIGATOR:</span> Undetected hyperspace debris impacted the ship. (+1 Hull Trauma)</li>',
 	'<li><span class="local-event-destiny-required">ATTENTION, NAVIGATOR:</span> Hyperdrive failure in flight. Dead stop, position unknown.</li>',
+	'<li><span class="local-event-free">LOCAL COLOR:</span> A protocol droid claims to be the local tourism ambassador. Would you like a tour?</li>',
 ];
 
 const localOldWestEvents = [
@@ -260,5 +261,6 @@ const localOldWestEvents = [
 	'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> Minor celestial event since last hyperspace charting. (automatic +<span class="font-normal starwars-dice threat">Threat</span> to Astrogation).</li>',
 	'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> Major celestial event since last hyperspace charting. (automatic +<span class="font-normal starwars-dice threat">Threat</span><span class="font-normal starwars-dice threat">Threat</span> to Astrogation).</li>',
 	'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> You recognize a familiar hyperspace route. (+<span class="font-normal starwars-dice boost">b</span> to Astrogation).</li>',
+	'<li><span class="local-event-free">LOCAL COLOR:</span> A protocol droid claims to be the local tourism ambassador. Would you like a tour?</li>',
 ];
 

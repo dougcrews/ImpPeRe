@@ -319,19 +319,19 @@ function updateCurrentAtmosphere()
 	$('#currentAtmosphere').text(currentLoc.Atmosphere);
 
 	$('#currentAtmosphere').removeClass('atmos-1 atmos-2 atmos-3 atmos-4 highlight').addClass('font-normal');
-	if (currentLoc.Atmosphere === "Type IV")
+	if (currentLoc.Atmosphere.includes("Type IV"))
 	{
 		$('#currentAtmosphere').addClass('atmos-4');
 	}
-	else if (currentLoc.Atmosphere === "Type III")
+	else if (currentLoc.Atmosphere.includes("Type III"))
 	{
 		$('#currentAtmosphere').addClass('atmos-3');
 	}
-	else if (currentLoc.Atmosphere === "Type II")
+	else if (currentLoc.Atmosphere.includes("Type II"))
 	{
 		$('#currentAtmosphere').addClass('atmos-2');
 	}
-	else if (currentLoc.Atmosphere === "Type I")
+	else if (currentLoc.Atmosphere.includes("Type I"))
 	{
 		$('#currentAtmosphere').addClass('atmos-1');
 	}

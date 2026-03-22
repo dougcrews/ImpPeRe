@@ -114,6 +114,7 @@
 							<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
 						</div>
 					</div>
+<!--
 					<br/>
 					<div class="header3 align-left">Astrogation Computer</div>
 					<div class="flex-container">
@@ -164,6 +165,7 @@
 						</div>
 					</div>
 					<br/>
+-->
 				</div>
 			</td>
 		</tr>
@@ -174,10 +176,8 @@
 		<tr style="display: table-cell;">
 			<td>
 				<p>
-					<div class="tooltip">
-						<span class="ship-manifest-header">
-							Ship Manifest
-						</span>
+					<div class="header3 align-left">Ship Manifest</div>
+					<div class="flex-container">
 						<ul class="ship-manifest-menu">
 							<li class="ship-manifest-item" style="padding: 2px 5px 0px 10px; text-align: right;">
 								<label for="hullMax" style="padding: 0px 0px 3px 0px;">Hull Trauma max: <input type="number" id="hullMax" class="cargo-declared select-medium-number" min="0" defaultValue="0"></input></label>
@@ -238,9 +238,6 @@
 								<label for="cargoHidden" style="padding: 0px 0px 3px 0px;">Cargo Hidden: <input type="number" id="cargoHidden" class="cargo-declared select-medium-number" min="0" defaultValue="0"></input>cr</label>
 							</li>
 						</ul>
-						<span class="tooltiptext">
-						CAPTAIN, you must declare your ship's status, logs, and cargo in order to retrieve Hyperlane updates and BoSS certification.
-						</span>
 					</div>
 				</p>
 			</td>
@@ -348,6 +345,69 @@
 			</td>
 		</tr>
 	</table>
+
+	<table border="2" width="100%">
+		<tr>
+			<td class="align-top margin-0 colspan-2">
+				<div id="locationDetails" class="section tooltip width-half">
+					<span class="tooltiptext">
+					Known and reported details of your current location.
+					</span>
+					<div class="header3 align-left">Astrogation Computer</div>
+					<div class="flex-container">
+						<div class="box-around">
+							<div class="box-around">
+								<strong>Current Location Hyperlanes:</strong> <pre id="currentHyperlanes" class="hyperlanes">unknown</pre>
+							</div>
+						</div>
+						<div class="box-around" style="width:40%">
+							<div class="flex-container">
+								<label for="destinationDropdown" id="destinationDropdownLabel" class="font-besh">Destination:
+									<select id="destinationDropdown">
+										<option value="">-- Select Destination --</option>
+									</select>
+								</label>
+								<div style="font-size: larger; margin: 0px 0px 0px 10px;">
+									<a id="destURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">
+										your destination
+									</a>
+								</div>
+							</div>
+							<br/>
+							<div id="estTravelTime" class="box-around hidden" style="text-align: center;display: contents;">
+								<div style="align: center; width: 95%; text-align: center;">
+									<strong style="font-size: larger">Estimated Travel Time: </strong>
+									<span id="estHyperspaceTime" style="font-size: larger; color: greenyellow;">calculating...</span>
+									<br/>
+								</div>
+								<div class="reference-note">
+									<span style="font-size: smaller; float: center;">(<span id="baseHyperSpaceDistance"></span>factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>)</span>
+									<br/>
+									[ reference: <span id="baseHyperspaceTime" style="color: green;">calculating...</span> (factor 1.0, Class 1) ]
+								</div>
+							</div>
+							<hr style="width: 50%;"/>
+							<div id="travelAdjustments" class="box-around" style="text-align: left; width: 97%" style="text-align: center;display: contents;">
+								<div style="align: center; width: 95%; text-align: center;">
+									<strong style="font-size: smaller">Potential Astrogation Adjustments</strong></span>
+									<span id="hyperspaceDice" style="font-size: smaller">calculating...</span>
+									<br/>
+								</div>
+							</div>
+						</div>
+						<div class="box-around">
+							<div class="box-around">
+								<strong>Destination Hyperlanes:</strong> <pre id="destHyperlanes" class="hyperlanes">unknown</pre>
+							</div>
+						</div>
+					</div>
+					<br/>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
 	<div display="inline">
 		<span class="payme-link"><a href="https://buymeacoffee.com/1gquRzpXr" target="_blank">if you find this helpful</a></span>
 		<span id="helpButton" style="float: right;" onclick="toggleHelp()">help</span>

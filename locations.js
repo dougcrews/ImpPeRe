@@ -5058,7 +5058,7 @@ const locations = [
 	"Starport": 3, // pirate shadowport
 	"Shadowport": true, // cause I say so
 	"BlackMarket": true, // cause I say so
-	"Precipitation": 0, // space station
+	"Precipitation": -5, // space station
 	"ImperialPresence": -5, // pirate shadowport
 	"OldWestiness": 3, // pirates
 	"Megafauna": 1, // nebula
@@ -5071,6 +5071,186 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+},
+{
+	"Name": "Tantalus Detention Facility - Big Meet", // non canon
+	"Region": "Outer Rim",
+	"Sector": "Esstran",
+	"System": "(Classified)",
+	"Map": "Q-5",
+	"Atmosphere": "Type I",
+	"Climate": "controlled",
+	"Terrain": "Garden paths,shopping districts,restaurants,cantinas",
+	"Gravity": 1.0,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "Big Meet",
+	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
+	"Starport": 3, // pirate shadowport
+	"Shadowport": true, // cause I say so
+	"BlackMarket": true, // cause I say so
+	"Precipitation": -5, // space station
+	"ImperialPresence": -5, // pirate shadowport
+	"OldWestiness": 3, // pirates
+	"Megafauna": 1, // nebula
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Tantalus Detention Facility - Circuit City", // non canon
+	"Region": "Outer Rim",
+	"Sector": "Esstran",
+	"System": "(Classified)",
+	"Map": "Q-5",
+	"Atmosphere": "Type I",
+	"Climate": "controlled",
+	"Terrain": "<span class='highlight'>industrial</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Droids",
+	"CapitalCity": "Circuit City",
+	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
+	"Starport": 3, // pirate shadowport
+	"Shadowport": true, // cause I say so
+	"BlackMarket": true, // cause I say so
+	"Precipitation": -5, // space station
+	"ImperialPresence": -5, // pirate shadowport
+	"OldWestiness": 3, // pirates
+	"Megafauna": -5, // spotless, but utilitarian
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": -5,
+	"Spice": -3,
+	"Trespassing": 0,
+	"Military": 1,
+	"Slicing": -2,
+	"Theft": 0,
+	"Bribery": 1,
+},
+{
+	"Name": "Tantalus Detention Facility - Little Kashyyyk", // non canon
+	"Region": "Outer Rim",
+	"Sector": "Esstran",
+	"System": "(Classified)",
+	"Map": "Q-5",
+	"Atmosphere": "Type I",
+	"Climate": "<span class='highlight'>tropical</span>,<span class='highlight'>meteor showers</span>",
+	"Terrain": "<span class='highlight'>tall</span> trees in spherical clusters,<span class='highlight'>rickety</span> bridges",
+	"Gravity": 1.0,
+	"Inhabitants": "Wookies",
+	"CapitalCity": "Little Kashyyyk",
+	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
+	"Starport": 3, // pirate shadowport
+	"Shadowport": true, // cause I say so
+	"BlackMarket": true, // cause I say so
+	"Precipitation": -5, // space station
+	"ImperialPresence": -5, // pirate shadowport
+	"OldWestiness": 3, // pirates
+	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 5,
+	"Slavery": -5,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 1,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Tantalus Detention Facility - Hutt District", // non canon
+	"Region": "Outer Rim",
+	"Sector": "Esstran",
+	"System": "(Classified)",
+	"Map": "Q-5",
+	"Atmosphere": "Type I",
+	"Climate": "controlled",
+	"Terrain": "gated estates,slave pens,private zoos",
+	"Gravity": 1.0,
+	"Inhabitants": "Hutts,(varied)",
+	"CapitalCity": "Hutt District",
+	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
+	"Starport": 3, // pirate shadowport
+	"Shadowport": true, // cause I say so
+	"BlackMarket": true, // cause I say so
+	"Precipitation": -5, // space station
+	"ImperialPresence": -5, // pirate shadowport
+	"OldWestiness": 5, // pirates, Hutts
+	"Megafauna": 2, // nebula, Hutt pets
+	"Rarity": -1, // they know where to get stuff
+	"Criticism": 0,
+	"Slavery": 5, // Hutts
+	"Spice": 3,
+	"Trespassing": -1, // Hutts
+	"Military": 1, // Hutts
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
+	"Name": "Tantalus Detention Facility - New Coruscant", // non canon
+	"Region": "Outer Rim",
+	"Sector": "Esstran",
+	"System": "(Classified)",
+	"Map": "Q-5",
+	"Atmosphere": "Type I",
+	"Climate": "controlled",
+	"Terrain": "<span class='highlight'>industrial</span>,urban",
+	"Gravity": 1.0,
+	"Inhabitants": "Humans,(varied)",
+	"CapitalCity": "New Coruscant",
+	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
+	"Starport": 3, // pirate shadowport
+	"Shadowport": true, // cause I say so
+	"BlackMarket": true, // cause I say so
+	"Precipitation": -5, // space station
+	"ImperialPresence": -5, // pirate shadowport
+	"OldWestiness": -3, // pirates, displaced Core Worlds elite
+	"Megafauna": 1, // nebula
+	"Rarity": -2,
+	"Criticism": -1,
+	"Slavery": 0,
+	"Spice": 1,
+	"Trespassing": -1,
+	"Military": -3,
+	"Slicing": 1,
+	"Theft": 0,
+	"Bribery": 2,
+},
+{
+	"Name": "Tantalus Detention Facility - The Hive", // non canon
+	"Region": "Outer Rim",
+	"Sector": "Esstran",
+	"System": "(Classified)",
+	"Map": "Q-5",
+	"Atmosphere": "Type I",
+	"Climate": "controlled",
+	"Terrain": "<span class='highlight'>crowded</span> streets,<span class='highlight'>seedy</span> cantinas,<span class='highlight'>slums</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "The Hive",
+	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
+	"Starport": 3, // pirate shadowport
+	"Shadowport": true, // cause I say so
+	"BlackMarket": true, // cause I say so
+	"Precipitation": -5, // space station
+	"ImperialPresence": -5, // pirate shadowport
+	"OldWestiness": 5,
+	"Megafauna": 2, // nebula, wretched hive
+	"Rarity": -3, // if you can't find it anywhere else...
+	"Criticism": 5,
+	"Slavery": 3,
+	"Spice": 4,
+	"Trespassing": 2,
+	"Military": 4,
+	"Slicing": 4,
+	"Theft": 3,
+	"Bribery": -1,
 },
 {
 	"Name": "Taris",
@@ -5311,6 +5491,36 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+},
+{
+	"Name": "Toola",
+	"Region": "Outer Rim",
+	"Sector": "Nilgaard",
+	"System": "Kaelta",
+	"Map": "S-5",
+	"Atmosphere": "Type I, <span class='highlight'>thin</span>",
+	"Climate": "<span class='highlight'>frigid</span>",
+	"Terrain": "<span class='highlight'>frozen tundra</span>,<span class='highlight'>snowfield</span>,<span class='highlight'>frozen ocean</span>,hot springs",
+	"Gravity": 1.0,
+	"Inhabitants": "Whiphids",
+	"CapitalCity": "(hot springs/equatorial trading posts)",
+	"URL": "https://starwars.fandom.com/wiki/Toola/Legends",
+	"Starport": 2, // tribal councils, exports of fur, ice, tusks, food, population 8 million, at least 1 spaceport
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 1, // sided with the Empire
+	"OldWestiness": 1, // sided with the Separatists
+	"Megafauna": 3, // snow demons & mastmots & tuggles, oh my!
+	"Rarity": 2, // primitive world
+	"Criticism": 5, // primitive world
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": -3, // nomadic tribes
+	"Military": 5, // primitive world
+	"Slicing": 0,
+	"Theft": -1, // nomadic tribes
+	"Bribery": 5, // nomadic tribes
 },
 {
 	"Name": "Toydaria",
