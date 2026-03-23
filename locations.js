@@ -29,6 +29,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 1,
+	"Rarity": 0,
 },
 {
 	"Name": "Alderaan",
@@ -59,6 +60,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Aleen (surface)",
@@ -89,6 +91,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Aleen (Underworld)",
@@ -119,6 +122,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Allanteen VI",
@@ -149,6 +153,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Aloxl",
@@ -179,6 +184,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ando",
@@ -209,6 +215,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Annaj",
@@ -239,6 +246,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Anoat",
@@ -269,6 +277,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ansion",
@@ -299,6 +308,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Arbra",
@@ -329,6 +339,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Atraken",
@@ -359,6 +370,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Auratera",
@@ -389,6 +401,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Bakura",
@@ -419,6 +432,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Bandomeer",
@@ -449,6 +463,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Bardotta",
@@ -479,6 +494,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": -1, // quiet home world
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Begamor",
@@ -509,6 +525,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Bespin",
@@ -539,6 +556,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Biewa",
@@ -569,6 +587,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Bonadan",
@@ -599,6 +618,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Borgo Prime",
@@ -629,6 +649,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 1, // bustling center of trade & commerce
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Bothawui",
@@ -659,6 +680,7 @@ const locations = [
 	"Slicing": 1, // Assassinations, espionage, and sabotage were as commonplace
 	"Theft": 1, // Assassinations, espionage, and sabotage were as commonplace
 	"Bribery": 1, // Assassinations, espionage, and sabotage were as commonplace
+	"Rarity": 0,
 },
 {
 	"Name": "Brentaal IV",
@@ -689,6 +711,7 @@ const locations = [
 	"Slicing": -1, // each Brentaal House met daily in the central Trade Hall in Cormond
 	"Theft": -2, // each Brentaal House met daily in the central Trade Hall in Cormond
 	"Bribery": -1, // each Brentaal House met daily in the central Trade Hall in Cormond
+	"Rarity": 0,
 },
 {
 	"Name": "Brochiib",
@@ -719,6 +742,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Byss",
@@ -749,6 +773,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Carida",
@@ -779,6 +804,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Catadra",
@@ -809,6 +835,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Celanon",
@@ -839,6 +866,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Centares",
@@ -869,6 +897,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Cerea",
@@ -899,6 +928,7 @@ const locations = [
 	"Slicing": -5, // anti-tech
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Churba",
@@ -929,6 +959,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "City Of Masks",
@@ -959,6 +990,7 @@ const locations = [
 	"Slicing": 3, // false permits
 	"Theft": 1, // pirate hideout
 	"Bribery": 5, // permits, permits, permits
+	"Rarity": 0,
 },
 {
 	"Name": "Commenor",
@@ -989,6 +1021,7 @@ const locations = [
 	"Slicing": -1, // conservative
 	"Theft": -1, // conservative
 	"Bribery": -1, // conservative
+	"Rarity": 0,
 },
 {
 	"Name": "Corellia",
@@ -1019,6 +1052,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Corsin",
@@ -1049,6 +1083,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Coruscant",
@@ -1079,6 +1114,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Dantooine",
@@ -1109,6 +1145,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Darkknell",
@@ -1139,6 +1176,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Darlyn Boda",
@@ -1169,6 +1207,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 1, // criminal trading world
 	"Bribery": 2, // criminal trading world
+	"Rarity": 0,
 },
 {
 	"Name": "Dathomir",
@@ -1199,6 +1238,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Dellalt",
@@ -1229,6 +1269,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Dorin",
@@ -1259,6 +1300,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Druckenwell",
@@ -1289,6 +1331,7 @@ const locations = [
 	"Slicing": 2, // governed by corporate guilds
 	"Theft": 1, // governed by corporate guilds
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Duro",
@@ -1319,6 +1362,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Empress Teta",
@@ -1349,6 +1393,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Enarc",
@@ -1379,6 +1424,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Endor (Gas Giant)",
@@ -1409,6 +1455,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Endor (Forest Moon)",
@@ -1439,6 +1486,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Eriadu",
@@ -1469,6 +1517,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Estaria",
@@ -1499,6 +1548,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": -1, // only moderately corrupt
+	"Rarity": 0,
 },
 {
 	"Name": "Etti IV",
@@ -1529,6 +1579,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Falleen",
@@ -1559,6 +1610,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Felucia",
@@ -1589,6 +1641,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Feriae Junction",
@@ -1619,6 +1672,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Fondor",
@@ -1649,6 +1703,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Gabredor III",
@@ -1679,6 +1734,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Galaan",
@@ -1709,6 +1765,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Galzez",
@@ -1739,6 +1796,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 1, // pirate base
 	"Bribery": 1, // pirate base
+	"Rarity": 0,
 },
 {
 	"Name": "Gamor", // not Gamorr
@@ -1769,6 +1827,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Gamorr", // not Gamor
@@ -1799,6 +1858,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Gandle Ott",
@@ -1829,6 +1889,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Gand",
@@ -1859,6 +1920,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Gentes",
@@ -1889,6 +1951,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Geonosis",
@@ -1919,6 +1982,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Gerrenthum",
@@ -1949,6 +2013,7 @@ const locations = [
 	"Slicing": -2, // tight security for the Figg family
 	"Theft": -2, // tight security for the Figg family
 	"Bribery": 5, // openly bribed Imperials to ignore their illegal activities
+	"Rarity": 0,
 },
 {
 	"Name": "Ghorman",
@@ -1979,6 +2044,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Gizer",
@@ -2009,6 +2075,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Gravlex Med",
@@ -2039,6 +2106,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Harrin",
@@ -2069,6 +2137,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Haruun Kal",
@@ -2099,6 +2168,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Hoth",
@@ -2129,6 +2199,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Imynusoph",
@@ -2159,6 +2230,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ivax Nebula",
@@ -2189,6 +2261,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Jakku",
@@ -2219,6 +2292,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Joodrudda",
@@ -2249,6 +2323,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kadavo",
@@ -2279,6 +2354,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kamino",
@@ -2309,6 +2385,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Karideph",
@@ -2339,6 +2416,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Karkaris",
@@ -2369,6 +2447,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kashyyyk",
@@ -2399,6 +2478,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kassido",
@@ -2429,6 +2509,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kessel",
@@ -2459,6 +2540,7 @@ const locations = [
 	"Slicing": -1, // Imperial prison
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kiax Nebula",
@@ -2489,6 +2571,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kijimi",
@@ -2519,6 +2602,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 1, // haven for criminals and lawlessness
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kintan",
@@ -2549,6 +2633,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kinyen",
@@ -2579,6 +2664,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kir",
@@ -2609,6 +2695,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kirtarkin",
@@ -2639,6 +2726,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Klatooine",
@@ -2669,6 +2757,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Koboh",
@@ -2699,6 +2788,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Koda Space Station",
@@ -2729,6 +2819,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kriselist",
@@ -2759,6 +2850,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Kuat",
@@ -2789,6 +2881,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lafra",
@@ -2819,6 +2912,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lantillies",
@@ -2849,6 +2943,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lianna",
@@ -2879,6 +2974,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Listehol",
@@ -2909,6 +3005,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lo'Uran",
@@ -2939,6 +3036,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 3, // Governor Blithane
+	"Rarity": 0,
 },
 {
 	"Name": "Lok",
@@ -2969,6 +3067,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 1, // pirate world
+	"Rarity": 0,
 },
 {
 	"Name": "Lothal",
@@ -2999,6 +3098,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lowick",
@@ -3029,6 +3129,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lutrillia",
@@ -3059,6 +3160,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lythos I",
@@ -3089,6 +3191,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lythos VI-IX",
@@ -3119,6 +3222,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Lythos XIV",
@@ -3149,6 +3253,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 //////////////////////////////////////////////// @TODO: only show if associated with Rebels
 //{
@@ -3180,6 +3285,7 @@ const locations = [
 //	"Slicing": 0,
 //	"Theft": 0,
 //	"Bribery": 0,
+//	"Rarity": 0,
 //},
 {
 	"Name": "Malador",
@@ -3210,6 +3316,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Malastare",
@@ -3240,6 +3347,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Manaan",
@@ -3270,6 +3378,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Mandalore",
@@ -3301,6 +3410,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Mataou",
@@ -3331,6 +3441,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Megalox Beta",
@@ -3361,6 +3472,7 @@ const locations = [
 	"Slicing": -1, // supermax prison
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Merj",
@@ -3391,6 +3503,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Mijos",
@@ -3421,6 +3534,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Mon Cala (Dac)",
@@ -3451,6 +3565,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Mon Gazza",
@@ -3481,6 +3596,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Mustafar",
@@ -3511,6 +3627,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Maya Kovel",
@@ -3541,6 +3658,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Naboo",
@@ -3571,6 +3689,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": -1, // tourism
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Nal Hutta",
@@ -3601,6 +3720,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 1, // tourism
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Namadii",
@@ -3631,6 +3751,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Nar Haaska",
@@ -3661,6 +3782,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Nar Shaddaa",
@@ -3691,6 +3813,7 @@ const locations = [
 	"Slicing": 1, // embraced ... illegal activity with almost no interference
 	"Theft": 2, // embraced ... illegal activity with almost no interference
 	"Bribery": 2, // embraced ... illegal activity with almost no interference
+	"Rarity": 0,
 },
 {
 	"Name": "Narthex (moon of Catadra)",
@@ -3721,6 +3844,7 @@ const locations = [
 	"Slicing": -2, // abandoned
 	"Theft": +2, // abandoned
 	"Bribery": -2, // abandoned
+	"Rarity": 0,
 },
 {
 	"Name": "Neftali",
@@ -3751,6 +3875,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Neimoidia",
@@ -3781,6 +3906,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": -1, // traders
 	"Bribery": 3, // traders
+	"Rarity": 0,
 },
 {
 	"Name": "Nelvaan",
@@ -3811,6 +3937,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Nixus",
@@ -3841,6 +3968,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Nurasenti",
@@ -3871,6 +3999,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Nwarcol Point",
@@ -3901,6 +4030,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ord Pardron",
@@ -3931,6 +4061,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ord Mantell",
@@ -3961,6 +4092,7 @@ const locations = [
 	"Slicing": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
 	"Theft": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
 	"Bribery": 1, // history of
+	"Rarity": 0,
 },
 {
 	"Name": "Orooturoo",
@@ -3991,6 +4123,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Phatrong",
@@ -4021,6 +4154,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Polis Massa",
@@ -4051,6 +4185,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Port Haven",
@@ -4081,6 +4216,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Qualai",
@@ -4111,6 +4247,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Quarzite",
@@ -4141,6 +4278,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Quarzite (subterranean)",
@@ -4171,6 +4309,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Quellor",
@@ -4201,6 +4340,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Quermia",
@@ -4231,6 +4371,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Radhii",
@@ -4261,6 +4402,7 @@ const locations = [
 	"Slicing": -1, // Segenka Imperial Prison
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Randon",
@@ -4291,6 +4433,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Raxus Prime",
@@ -4321,6 +4464,7 @@ const locations = [
 	"Slicing": -2, // the Core <span class='highlight'>planetwide</span> intelligence supercomputer (evil sometimes)
 	"Theft": 1, // garbage pit of the galaxy
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Reltooine (gas giant)",
@@ -4351,6 +4495,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Riflor",
@@ -4381,6 +4526,7 @@ const locations = [
 	"Slicing": -1, // bureaucrats
 	"Theft": 5, // Advozsec tended to care very little about material goods
 	"Bribery": 2, // bureaucrats
+	"Rarity": 0,
 },
 {
 	"Name": "Ring of Kafrene",
@@ -4411,6 +4557,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Rion",
@@ -4441,6 +4588,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": -1, // paradise with friendly inhabitants
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Rodia",
@@ -4471,6 +4619,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Rorak 4",
@@ -4501,6 +4650,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Rorak 5",
@@ -4531,6 +4681,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ryloth",
@@ -4561,6 +4712,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Saclas",
@@ -4591,6 +4743,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Salin",
@@ -4621,6 +4774,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Sarka",
@@ -4651,6 +4805,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Savareen",
@@ -4681,6 +4836,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Sevarcos II",
@@ -4711,6 +4867,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Shuldene",
@@ -4741,6 +4898,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Sirpar",
@@ -4771,6 +4929,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Skako",
@@ -4801,6 +4960,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Skor II",
@@ -4831,6 +4991,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": -1, // traders
 	"Bribery": 2, // traders
+	"Rarity": 0,
 },
 {
 	"Name": "Socorro",
@@ -4861,6 +5022,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Spice Terminus",
@@ -4891,6 +5053,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Subterrel",
@@ -4921,6 +5084,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Sullust",
@@ -4951,6 +5115,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Sump",
@@ -4981,6 +5146,7 @@ const locations = [
 	"Slicing": 5, // diminished brain capacity
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Taloraan",
@@ -5011,6 +5177,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Tansyl 5",
@@ -5041,6 +5208,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Tantalus Detention Facility", // non canon
@@ -5071,6 +5239,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
 },
 {
 	"Name": "Tantalus Detention Facility - Big Meet", // non canon
@@ -5101,6 +5270,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": -1, // you can get anything you want, at Tantalus Restaurant...
 },
 {
 	"Name": "Tantalus Detention Facility - Circuit City", // non canon
@@ -5131,6 +5301,7 @@ const locations = [
 	"Slicing": -2,
 	"Theft": 0,
 	"Bribery": 1,
+	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
 },
 {
 	"Name": "Tantalus Detention Facility - Little Kashyyyk", // non canon
@@ -5161,6 +5332,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Tantalus Detention Facility - Hutt District", // non canon
@@ -5191,6 +5363,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
 },
 {
 	"Name": "Tantalus Detention Facility - New Coruscant", // non canon
@@ -5221,6 +5394,7 @@ const locations = [
 	"Slicing": 1,
 	"Theft": 0,
 	"Bribery": 2,
+	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
 },
 {
 	"Name": "Tantalus Detention Facility - The Hive", // non canon
@@ -5251,6 +5425,7 @@ const locations = [
 	"Slicing": 4,
 	"Theft": 3,
 	"Bribery": -1,
+	"Rarity": 0,
 },
 {
 	"Name": "Taris",
@@ -5281,6 +5456,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 1, // swoop gangs
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Tatooine",
@@ -5311,6 +5487,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Tei-Untis",
@@ -5341,6 +5518,7 @@ const locations = [
 	"Slicing": 4, // kleptocracy
 	"Theft": 5, // kleptocracy
 	"Bribery": 4, // kleptocracy
+	"Rarity": 0,
 },
 {
 	"Name": "Terminus",
@@ -5371,6 +5549,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Thyferra",
@@ -5401,6 +5580,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Thesme",
@@ -5431,6 +5611,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Tierell",
@@ -5461,6 +5642,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Tokmia",
@@ -5491,6 +5673,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Toola",
@@ -5521,6 +5704,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": -1, // nomadic tribes
 	"Bribery": 5, // nomadic tribes
+	"Rarity": 0,
 },
 {
 	"Name": "Toydaria",
@@ -5551,6 +5735,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Trandosha",
@@ -5581,6 +5766,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Trellen",
@@ -5611,6 +5797,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Troiken",
@@ -5641,6 +5828,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Troithe",
@@ -5671,6 +5859,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Tyegin",
@@ -5701,6 +5890,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ukio",
@@ -5731,6 +5921,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ulicia",
@@ -5761,6 +5952,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Uviuy Exen",
@@ -5791,6 +5983,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Vakkar",
@@ -5821,6 +6014,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Veelo",
@@ -5851,6 +6045,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Verzan",
@@ -5881,6 +6076,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Vodran",
@@ -5911,6 +6107,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Wrea",
@@ -5941,6 +6138,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Xerton Nine",
@@ -5971,6 +6169,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Yaga Minor",
@@ -6001,6 +6200,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Yar Togna",
@@ -6031,6 +6231,7 @@ const locations = [
 	"Slicing": 1, // Cybernetics popular
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Yavin 4",
@@ -6061,6 +6262,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Ylesia",
@@ -6091,6 +6293,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Zeltros",
@@ -6121,6 +6324,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Zerm",
@@ -6151,6 +6355,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "Zygerria",
@@ -6181,6 +6386,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Deep Core location",
@@ -6211,6 +6417,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Core Worlds location",
@@ -6241,6 +6448,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Colonies location",
@@ -6272,6 +6480,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Inner Rim location",
@@ -6302,6 +6511,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Expansion Region location",
@@ -6332,6 +6542,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Mid Rim location",
@@ -6362,6 +6573,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Hutt Space location",
@@ -6392,6 +6604,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Outer Rim location",
@@ -6422,6 +6635,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Wild Space location",
@@ -6452,6 +6666,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Unknown Regions location",
@@ -6482,6 +6697,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Extragalactic location",
@@ -6512,6 +6728,7 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 {
 	"Name": "generic Unknown location",
@@ -6542,5 +6759,6 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"Rarity": 0,
 },
 ];

@@ -15,6 +15,7 @@ destLocation = Cookies.get()["destLocation"];
 destLoc = {}; // JSON object
 destRegion = {}; // JSON object
 
+const htmlRightArrow = '&#8658;';
 const htmlBoostDie = '<span class="font-normal starwars-dice boost">b</span>';
 const htmlSetbackDie = '<span class="font-normal starwars-dice setback">s</span>';
 const htmlThreatDie = '<span class="font-normal starwars-dice threat">Threat</span>';
@@ -25,11 +26,12 @@ const htmlAbilityDie = '<span class="font-normal starwars-dice ability">g</span>
 const htmlProficiencyDie = '<span class="font-normal starwars-dice proficiency">Y</span>';
 const htmlSuccess = '<span class="font-normal starwars-dice success">¤</span>';
 const htmlUpgradeDifficultyDie1x = '<span class="font-normal starwars-dice challenge">1x</span>';
-const htmlUpgradeDiff1x = 'Upgrade difficulty (+' + htmlDifficultyDie + '»' + htmlChallengeDie + ')';
+const htmlUpgradeDiff1x = '(' + htmlDifficultyDie + htmlRightArrow + htmlChallengeDie + ')';
 const htmlDowngradeDifficultyDie1x = '<span class="font-normal starwars-dice difficulty">1x</span>';
-const htmlDowngradeDiff1x = 'Downgrade difficulty (-' + htmlDifficultyDie + '«' + htmlChallengeDie + ')';
+const htmlDowngradeDiff1x = '(' + htmlChallengeDie + htmlRightArrow + htmlDifficultyDie + ')';
 const htmlUpgradeAbilityDie1x = '<span class="font-normal starwars-dice proficiency">1x</span>';
-const htmlUpgradeAbility1x = 'Upgrade next check (+' + htmlAbilityDie + '»' + htmlProficiencyDie + ')';
+const htmlUpgradeAbility1x = '(' + htmlAbilityDie + htmlRightArrow + htmlProficiencyDie + ')';
+const htmlDowngradeAbility1x = '(' + htmlProficiencyDie + htmlRightArrow + htmlAbilityDie + ')';
 
 $(document).ready(function ()
 {
@@ -488,7 +490,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	// https://star-wars-rpg-ffg.fandom.com/wiki/Category:Ship_Operating
 	const silhCostFactor = shipSilhouette * (shipSilhouette > 4 ? 2.5 : 1); // Capital ships start at Silhouette 5 and have a large jump in capability/cost
 	const starportGradeFactor = currentLoc.Starport; // 0 = none; 5 = best
-	const feePortLanding = (sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence)) *
+	const feePortLanding = (sanitize(currentLoc.ImperialPresence, 0, 5) + sanitize(currentRegion.ImperialPresence, 0, 5)) *
 		silhCostFactor * starportGradeFactor;
 	const textFeePortLanding = creditsOrWaived(feePortLanding);
 	const feePortBerthing = Math.round(feePortLanding * 0.1);
@@ -499,14 +501,15 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const feeVisitation = Math.round(feePortBerthing * 0.1);
 	const textFeeVisitation = creditsOrWaived(feeVisitation); // "waived" if zero
 	const waitDeparture = Math.round(currentLoc.Starport *
-		Math.max(1, sanitize0to5(currentLoc.ImperialPresence) + sanitize0to5(currentRegion.ImperialPresence))); // in hours
+		Math.max(1, sanitize(currentLoc.ImperialPresence, 0, 5) + sanitize(currentRegion.ImperialPresence, 0, 5))); // in hours
 	const textWaitDeparture = (waitDeparture>24
 		? (waitDeparture/24).toFixed(1) + " days"
 		: waitDeparture.toFixed(0) + " hours"
 		);
-	const textSmugglingPenalty = smugglingPenalty(sanitize0to5(currentLoc.ImperialPresence) +
-		sanitize0to5(currentRegion.ImperialPresence) - sanitize0to5(currentLoc.OldWestiness) -
-		sanitize0to5(currentRegion.OldWestiness));
+	const textSmugglingPenalty = smugglingPenalty(sanitize(currentLoc.ImperialPresence, 0, 5) +
+		sanitize(currentRegion.ImperialPresence, 0, 5) - sanitize(currentLoc.OldWestiness, 0, 5) -
+		sanitize(currentRegion.OldWestiness, 0, 5));
+	const rarity = rarityModFor(currentLoc);
 	const textRarityMod = "" + (rarityMod >= 0 ? "+" : "") + rarityMod + " (base cost " + rarityCostIncrease(rarity) + ")";
 
 	// Starport update screen elements
@@ -546,9 +549,9 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	const permitArmorPowerCost = (0 - permitArmorPower) * 10;
 	const textPermitArmorPower = permitHTML(permitArmorPower, permitArmorPowerCost, rarityMod);
 
-	const textWeaponPenalty = weaponPenalty(sanitize0to5(currentLoc.OldWestiness) +
-		sanitize0to5(currentRegion.OldWestiness) - sanitize0to5(currentLoc.EmpirePresence) -
-		sanitize0to5(currentRegion.EmpirePresence));
+	const textWeaponPenalty = weaponPenalty(sanitize(currentLoc.OldWestiness, 0, 5) +
+		sanitize(currentRegion.OldWestiness, 0, 5) - sanitize(currentLoc.EmpirePresence, 0, 5) -
+		sanitize(currentRegion.EmpirePresence, 0, 5));
 
 	// Weapon Permits update screen elements
 	$('#textPermitWeaponConcealed').html(textPermitWeaponConcealed);
@@ -560,7 +563,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	$('#textWeaponPenalty').html(textWeaponPenalty);
 
 	// Law & Order calculations
-	const baseLaw = 0; // - sanitizeMinus5to5(currentLoc.ImperialPresence + currentRegion.ImperialPresence);
+	const baseLaw = 0; // - sanitize(currentLoc.ImperialPresence + currentRegion.ImperialPresence, -5, 5);
 
 	const lawSpice = baseLaw + currentLoc.Spice + currentRegion.Spice;
 	const textLawSpice = legalityOf(lawSpice);
@@ -608,22 +611,21 @@ function updateTravelEstimates()
 	currentRouteList = "";
 	if (currentLoc)
 	{
-		Object.keys(hyperspaceRoutes).forEach(key => {
+		hyperspaceRoutes.forEach(route => {
 			// Only show the secret ones if you have the right equipment
-			if (key in ["Biox Detour"])
+			if (route.Name in ["Biox Detour"])
 			{
 				if (! $("#pirateHolonet").is(":checked")) return;
 			}
 
-			const planets = hyperspaceRoutes[key].Route.split(",");
+			const planets = route.Route.split(",");
 			if (planets.indexOf(currentLoc.Name) != -1)
 			{
 				hyperlanesAtOrigin++;
 				if (currentRouteList.length > 0) currentRouteList += "<br/>";
-				const thisRoute = hyperspaceRoutes[key];
-				const factor = (1.0 - (Math.max(1.0, thisRoute.Route.split(",").length) * 0.005)).toFixed(2);
+				const factor = (1.0 - (Math.max(1.0, route.Route.split(",").length) * 0.005)).toFixed(2);
 				totalFactor *= factor;
-				currentRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
+				currentRouteList += toGalactipediaALink(route.Name) + " (factor " + factor + ")";
 			}
 		});
 	}
@@ -632,10 +634,10 @@ function updateTravelEstimates()
 	destRouteList = "";
 	if (destLoc)
 	{
-		Object.keys(hyperspaceRoutes).forEach(key => {
-			const planets = hyperspaceRoutes[key].Route.split(",");
+		hyperspaceRoutes.forEach(route => {
+			const planets = route.Route.split(",");
 			// Only show the secret ones if you have the right equipment
-			if (key in ["Biox Detour"])
+			if (route.Name in ["Biox Detour"])
 			{
 				if (! $("#pirateHolonet").is(":checked")) return;
 			}
@@ -644,17 +646,15 @@ function updateTravelEstimates()
 			{
 				hyperlanesAtDest++;
 				if (destRouteList.length > 0) destRouteList += "<br/>";
-				const thisRoute = hyperspaceRoutes[key];
-				const factor = (1.0 - (Math.max(1.0, thisRoute.Route.split(",").length) * 0.005)).toFixed(2);
+				const factor = (1.0 - (Math.max(1.0, route.Route.split(",").length) * 0.005)).toFixed(2);
 				totalFactor *= factor;
-				destRouteList += toGalactipediaALink(thisRoute.Name) + " (factor " + factor + ")";
+				destRouteList += toGalactipediaALink(route.Name) + " (factor " + factor + ")";
 			}
 		});
 	};
 
 	// Update Astrogation possible boosts/setbacks
 	astrogationHtml = "";
-	isSingleHyperlane = false;
 
 	if (currentRouteList.length > 0 && destRouteList.length > 0)
 	{
@@ -668,8 +668,7 @@ function updateTravelEstimates()
 					totalFactor *= 0.5;
 
 					// Also bonus to Astrogation!
-					astrogationHtml += '<br/><strong>Single hyperlane</strong>: ' +
-						'Downgrade difficulty -' + htmlDifficultyDie;
+					astrogationHtml += '<br/><strong>Single Hyperlane</strong>: ' + htmlDowngradeDiff1x;
 				}
 			});
 		});
@@ -683,7 +682,7 @@ function updateTravelEstimates()
 	{
 		const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
 		const shipHyperdrive = Number($("#hyperdriveClass").val());
-		parsecsTraveled = getParsecsBetween(currentLoc.Map, destLoc.Map);
+		parsecsTraveled = getParsecsBetween(currentLoc.Map, destLoc.Map).toFixed(0);
 		$("#ettHyperdriveClass").text(shipHyperdrive);
 		$("#baseHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime));
 		$("#estHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
@@ -692,70 +691,98 @@ function updateTravelEstimates()
 
 	if (['Core Worlds'].includes(currentLoc.Region))
 	{
-		astrogationHtml += '<br/>origin Core Worlds: +' + htmlBoostDie + htmlBoostDie;
+		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " +" + htmlBoostDie + htmlBoostDie;
 	}
 	if (["Colonies", "Inner Rim", "Expansion Region"].includes(currentLoc.Region))
 	{
-		astrogationHtml += '<br/>origin Colonies/Inner Rim/Expansion Region: +' + htmlBoostDie;
+		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " +" + htmlBoostDie;
 	}
 	if (["Outer Rim", "Hutt Space"].includes(currentLoc.Region))
 	{
-		astrogationHtml += '<br/>origin Outer Rim/Hutt Space: +' + htmlSetbackDie;
+		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " +" + htmlSetbackDie;
 	}
 	if (["Wild Space", "Unknown Regions", "Deep Core", "Extragalactic"].includes(currentLoc.Region))
 	{
-		astrogationHtml += '<br/>origin Wild Space/Unknown Regions/Deep Core/Extragalactic: +' + htmlSetbackDie + htmlSetbackDie;
+		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " +" + htmlSetbackDie + htmlSetbackDie;
 	}
 
 	if (hyperlanesAtOrigin > 0)
 	{
-		astrogationHtml += "<br/>Hyperlanes at origin: +";
-		for (ii = 0; ii < hyperlanesAtOrigin; ii++) {
+		astrogationHtml += "<br/>Hyperlanes at origin: " + hyperlanesAtOrigin + " ";
+
+		hyperlanes = hyperlanesAtOrigin;
+		// convert 5 boosts to 1 diff downgrade
+		while(hyperlanes > 4)
+		{
+			astrogationHtml += htmlDowngradeDiff1x;
+			hyperlanes -= 5;
+		}
+		if (hyperlanes > 0) astrogationHtml += " +";
+		while (hyperlanes > 0) {
 			astrogationHtml += htmlBoostDie;
+			hyperlanes--;
 		}
 	}
-	if (parsecsTraveled > 1) // first parsec is free
+	if (parsecsTraveled > 1)
 	{
-		astrogationHtml += '<br/>Parsecs travelled (straight line): ';
-		for (ii = 1; ii < parsecsTraveled; ii++) {
+		astrogationHtml += "<br/>Parsecs travelled (straight line): " + parsecsTraveled + " ";
+		distance = parsecsTraveled - 1; // first parsec is free
+		// convert 5 setbacks to 1 diff upgrade
+		while(distance > 4)
+		{
+			astrogationHtml += htmlUpgradeDiff1x;
+			distance -= 5;
+		}
+		if (distance > 0) astrogationHtml += " +";
+		while (distance > 0) {
 			astrogationHtml += htmlSetbackDie;
+			distance--;
 		}
 	}
 
 	if (hyperlanesAtDest > 0)
 	{
-		astrogationHtml += "<br/>Hyperlanes at destination: +";
-		for (ii = 0; ii < hyperlanesAtDest; ii++) {
+		astrogationHtml += "<br/>Hyperlanes at destination: " + hyperlanesAtDest + " ";
+		hyperlanes = hyperlanesAtDest;
+		// convert 5 boosts to 1 diff downgrade
+		while(hyperlanes > 4)
+		{
+			astrogationHtml += htmlDowngradeDiff1x;
+			hyperlanes -= 5;
+		}
+		if (hyperlanes > 0) astrogationHtml += " +";
+		while (hyperlanes > 0) {
 			astrogationHtml += htmlBoostDie;
+			hyperlanes--;
 		}
 	}
 
 	if (hyperlanesAtOrigin == 0 && hyperlanesAtDest == 0 && parsecsTraveled > 1)
 	{
-		astrogationHtml += '<br/>No hyperlanes at either end: ' + htmlUpgradeDiff1x;
+		astrogationHtml += "<br/>No hyperlanes at either end: " + htmlUpgradeDiff1x;
 	}
 
 	if (hyperlanesAtOrigin > 0 && hyperlanesAtDest > 0)
 	{
-		astrogationHtml += '<br/>Hyperlanes at both ends: +	<span class="font-normal starwars-dice boost">b</span>';
+		astrogationHtml += "<br/>Hyperlanes at both ends: +" + htmlBoostDie;
 	}
 
 
 	if (['Core Worlds'].includes(destLoc.Region))
 	{
-		astrogationHtml += '<br/>destination Core Worlds: +' + htmlBoostDie + htmlBoostDie;
+		astrogationHtml += "<br/>Destination: " + destLoc.Region + " +" + htmlBoostDie + htmlBoostDie;
 	}
 	if (["Colonies", "Inner Rim", "Expansion Region"].includes(destLoc.Region))
 	{
-		astrogationHtml += '<br/>destination Colonies/Inner Rim/Expansion Region: +' + htmlBoostDie;
+		astrogationHtml += "<br/>Destination: " + destLoc.Region + " +" + htmlBoostDie;
 	}
 	if (["Outer Rim", "Hutt Space"].includes(destLoc.Region))
 	{
-		astrogationHtml += '<br/>destination Outer Rim/Hutt Space: +' + htmlSetbackDie;
+		astrogationHtml += "<br/>Destination: " + destLoc.Region + " +" + htmlSetbackDie;
 	}
 	if (["Wild Space", "Unknown Regions", "Deep Core", "Extragalactic"].includes(destLoc.Region))
 	{
-		astrogationHtml += '<br/>dest Wild Space/Unknown Regions/Deep Core/Extragalactic: +' + htmlSetbackDie + htmlSetbackDie;
+		astrogationHtml += "<br/>Destination: " + destLoc.Region + " +" + htmlSetbackDie + htmlSetbackDie;
 	}
 
 	const hullMax = Number($('#hullMax').val());
@@ -782,6 +809,10 @@ function updateTravelEstimates()
 		' <br/><i>(missing navicomputer or astromech): +' + htmlUpgradeDiff1x + '</i>' +
 		' <br/><i>(start or end in gravity well): automatic +' + htmlThreatDie + '</i>';
 
+	const boosts5 = htmlBoostDie + htmlBoostDie + htmlBoostDie + htmlBoostDie + htmlBoostDie;
+	astrogationHtml = astrogationHtml.replace(boosts5, htmlDowngradeDiff1x + " ");
+	const setbacks5 = htmlSetbackDie + htmlSetbackDie + htmlSetbackDie + htmlSetbackDie + htmlSetbackDie;
+	astrogationHtml = astrogationHtml.replace(setbacks5, htmlUpgradeDiff1x + " ");
 	$('#hyperspaceDice').html(astrogationHtml);
 }
 
@@ -808,28 +839,11 @@ function togglePirateHolonet()
 	populateDestinationDropdown();
 }
 
-// Converts a number to an integer, max 5, min 0.
-function sanitize0to5(val)
+// Converts a number to an integer within the given bounds
+function sanitize(val, lowerBound, upperBound)
 {
 	const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
-	const retVal = Math.min(5, Math.max(saneVal, 0)); // integer, 0 to 5 inclusive
-	return retVal;
-}
-
-// Converts a number to an integer, max 5, min -5.
-function sanitizeMinus5to5(val)
-{
-	const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
-	const retVal = Math.min(5, Math.max(saneVal, -5)); // integer, -5 to 5 inclusive
-	return retVal;
-}
-
-// Converts a number to an integer, max 9, min 0.
-// (Rarity goes higher as value goes lower)
-function sanitizeRarity(val)
-{
-	const saneVal = (Number.isInteger(Math.round(-val)) ? Math.round(val) : 0);
-	const retVal = Math.min(9, Math.max(0, saneVal)); // integer, 0 to 9 inclusive
+	const retVal = Math.min(upperBound, Math.max(saneVal, lowerBound));
 	return retVal;
 }
 
@@ -852,7 +866,7 @@ function creditsOrWaived(val)
 function smugglingPenalty(val)
 {
 	const shipCargoHidden = Number($("#cargoHidden").val()) || 0;
-	switch(sanitizeMinus5to5(val)) // Empire Bureacracy minus Old Westiness
+	switch(sanitize(val, -5, 5)) // Empire Bureacracy minus Old Westiness
 	{
 		case -5:
 			return '<span class="law-recommended">verbal warning</span>'; break;
@@ -883,7 +897,7 @@ function smugglingPenalty(val)
 // Converts a -5 to 5 number to display value
 function weaponPenalty(val)
 {
-	switch(sanitizeMinus5to5(val)) // Old Westiness
+	switch(sanitize(val, -5, 5)) // Old Westiness
 	{
 		case -5:
 			return '<span class="law-felony">automatic confiscation; indictment likely</span>'; break;
@@ -912,54 +926,72 @@ function weaponPenalty(val)
 	}
 }
 
+// More hyperspace connections means lower Rarity and faster Astrogation and ...
+// Returns a real number between 0 and 1, with lower values denoting more hyperspace connections.
+function getHyperspaceFactor()
+{
+	totalFactor = 1;
+	if (currentLoc)
+	{
+		// EotE pg150 World on primary trade lane
+		// Appromimate by counting the planets in the hyperlanes which include this location.
+		// More planets on the route, more important hyperroute, lower rarity,
+		hyperspaceRoutes.forEach(hyperspaceRoute => {
+			// Only show the secret ones if you have the right equipment
+			if (hyperspaceRoute.Name in ["Biox Detour"])
+			{
+				if (! $("#pirateHolonet").is(":checked")) return;
+			}
+
+			const planets = hyperspaceRoute.Route.split(",");
+			if (planets.indexOf(currentLoc.Name) != -1)
+			{
+				hyperlanesAtOrigin++;
+				if (currentRouteList.length > 0) currentRouteList += "<br/>";
+				const factor = (1.0 - (hyperspaceRoute.Route.split(",").length * 0.01)); // largest length 44, smallest 0
+				totalFactor *= factor;
+				currentRouteList += toGalactipediaALink(hyperspaceRoute.Name) + " (factor " + factor + ")";
+			}
+		});
+	}
+	return totalFactor;
+}
+
 function rarityModFor(json)
 {
-	rarity = json.Rarity + 0;
+	localRarity = json.Rarity + 0;
 	if (json.Region)
 	{
-		rarity += regions.find(item => item.Name === json.Region).Rarity;
+		localRarity += regions.find(item => item.Name === json.Region).Rarity;
 	}
+
+	// adjust for specific location
+	localRarity += currentLoc.Rarity;
 
 	// EotE pg150 Primary Core worlds; https://www.reddit.com/r/swrpg/comments/l9hau2/what_are_the_primary_worlds_of_the_star_wars/
 	if (["Coruscant", "Duro", "Corellia", "Alderaan", "Hosnian Prime", "Kuat", "Nar Shaddaa", "Scipio", "Denon", "Eufornis Major", "Taris", "Chandrilla"].includes(json.Name))
 	{
-		rarity += -1;
+		localRarity -= 1;
 	}
 
-	// EotE pg150 World on primary trade lane
-	// Appromimate by counting the planets in the hyperlanes which include this location.
-	totalFactor = 0;
-	if (currentLoc)
-	{
-		Object.keys(hyperspaceRoutes).forEach(key => {
-			const planets = hyperspaceRoutes[key].Route.split(",");
-			if (planets.indexOf(currentLoc.Name) != -1)
-			{
-				const thisRoute = hyperspaceRoutes[key];
-				const factor = (Math.max(1.0, thisRoute.Route.split(",").length) * 0.005);
-				totalFactor += factor;
-			}
-		});
+	localRarity -= (1 - getHyperspaceFactor()); // lower factor == better; getHyperspaceFactor = 0.1715 Coruscant
 
-		rarity -= totalFactor.toFixed(0);
-	}
-
-	return rarity;
+	return sanitize(localRarity.toFixed(0), -4, 4);
 }
 
 // Converts a number to display value: "Rarity X(R)" or ""
 function rarityText(val)
 {
 	retVal = "";
-	saneRarity = sanitizeRarity(val);
-	if (saneRarity>0)
+	saneRarity = sanitize(val, -4, 4);
+	if (saneRarity > 0)
 	{
 		retVal += "Rarity " + saneRarity;
-	  if (saneRarity>6)
-	  {
-		  retVal += "(R) ";
-	  }
-	  retVal += ", ";
+		if (val > 6) // house rule, Rarity > 6 indicates very very rare, thus Restricted
+		{
+			retVal += "(R) ";
+	  	}
+		retVal += ", ";
 	}
 	return retVal;
 }
@@ -967,18 +999,18 @@ function rarityText(val)
 // Converts a number to display value for weapon/armor permits
 function permitHTML(val, cost, rarityMod)
 {
-	const rarity = sanitizeMinus5to5(rarityMod);
-	switch(sanitizeMinus5to5(val))
+	permitRarity = sanitize(rarityMod, -5, 5);
+	switch(sanitize(val, -5, 5))
 	{
 		case -5:
 		case -4:
-			return '<span class="law-felony">Felony</span> (Permit ' + rarityText(rarity + 2) + (cost * 5).toFixed(0) + 'cr)'; break;
+			return '<span class="law-felony">Felony</span> (Permit ' + rarityText(permitRarity + 2) + (cost * 5).toFixed(0) + 'cr)'; break;
 		case -3:
-			return '<span class="law-misdemeanor">Misdemeanor</span> (Permit ' + rarityText(rarity + 1) + cost + 'cr)'; break;
+			return '<span class="law-misdemeanor">Misdemeanor</span> (Permit ' + rarityText(permitRarity + 1) + cost + 'cr)'; break;
 		case -2:
-			return '<span class="law-infraction">Infraction</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+			return '<span class="law-infraction">Infraction</span> (Permit ' + rarityText(permitRarity) + cost + 'cr)'; break;
 		case -1:
-			return '<span class="law-frowned-upon">frowned on</span> (Permit ' + rarityText(rarity) + cost + 'cr)'; break;
+			return '<span class="law-frowned-upon">frowned on</span> (Permit ' + rarityText(permitRarity) + cost + 'cr)'; break;
 		case 0:
 			return '<span class="law-tolerated">tolerated</span>'; break;
 		case 1:
@@ -999,8 +1031,7 @@ function permitHTML(val, cost, rarityMod)
 // Converts a number to display value for various local crimes
 function legalityOf(val)
 {
-	const saneVal = sanitizeMinus5to5(val);
-	switch(sanitizeMinus5to5(saneVal))
+	switch(sanitize(val, -5, 5))
 	{
 		case -5:
 		case -4: return '<span class="law-felony">Felony</span>'; break;
@@ -1020,7 +1051,7 @@ function legalityOf(val)
 // "Operational Costs" fan supplement grades them 1 (best) to 5 (worst)
 function starportText(val)
 {
-	switch(sanitize0to5(val))
+	switch(sanitize(val, 0, 5))
 	{
 		// Operational Costs pg11, Grade 1 is best
 		case 5: return "Grade 1 (Imperial Class)";
@@ -1069,6 +1100,17 @@ function populateArrivalEvents(eventCount)
 		$("#local-events").append(arrivalEvents[ii]);
 	}
 }
+
+// Arrival at location events
+/* @TODO
+function populateLocationEvents(locationName)
+{
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		$("#local-events").append(arrivalEvents[ii]);
+	}
+}
+//*/
 
 // Local events
 
@@ -1321,17 +1363,18 @@ function toggleHelp()
 	$('#instructions-box').slideToggle();
 }
 
-function rarityCostIncrease(rarity)
+function rarityCostIncrease(costRarity)
 {
-	switch(rarity)
+	switch(sanitize(costRarity, -4, 4))
 	{
-		case -5:
 		case -4:
+			return '<span style="color:green">50% for certain items</span>';
 		case -3:
 			return '<span style="color:green">75% for certain items</span>';
 		case -2:
-		case -1:
 			return '<span style="color:green">90% for certain items</span>';
+		case -1:
+			return '<span style="color:green">95% for certain items</span>';
 		case 0:
 		case 1:
 			return "standard";
@@ -1340,7 +1383,6 @@ function rarityCostIncrease(rarity)
 		case 3:
 			return '<span style="color:red">300%</span>';
 		case 4:
-		case 5:
 			return '<span style="color:red">400%</span>';
 		default:
 			return "the emperor is a fink!";
