@@ -5211,7 +5211,7 @@ const locations = [
 	"Rarity": 0,
 },
 {
-	"Name": "Tantalus Detention Facility", // non canon
+	"Name": "Tantalus Detention Facility  - Nebula", // non canon
 	"Region": "Outer Rim",
 	"Sector": "Esstran",
 	"System": "(Classified)",
@@ -5239,7 +5239,12 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
-	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
+	"Rarity": 2, // Vendors don't ask questions, and at these prices, they don't have to.
+	"events": [
+		'<li>Tantalus Detention Facility: The station is at the center of a nebula of helium and oxygen which obscures sensors and vision, but portions <i>may</i> be breathable.</li>',
+		'<li>Tantalus Detention Facility: Vendors in the nebula don\'t ask questions. At these prices, they don\'t have to.</li>',
+		'<li>Tantalus Detention Facility: "Unknown Vessel, warning. You have breached the perimeter of a secure facility. Power down your engines and prepare to be vaporized for your own protection."</li>',
+	],
 },
 {
 	"Name": "Tantalus Detention Facility - Big Meet", // non canon
@@ -5254,8 +5259,8 @@ const locations = [
 	"Inhabitants": "(varied)",
 	"CapitalCity": "Big Meet",
 	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
-	"Starport": 3, // pirate shadowport
-	"Shadowport": true, // cause I say so
+	"Starport": 0,
+	"Shadowport": false,
 	"BlackMarket": true, // cause I say so
 	"Precipitation": -5, // space station
 	"ImperialPresence": -5, // pirate shadowport
@@ -5271,6 +5276,10 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"Rarity": -1, // you can get anything you want, at Tantalus Restaurant...
+	"events": [
+		'<li>Big Meet: Big Meet is neutral turf. No bounties, vengeance, feuds, etc., are enforceable here.</li>',
+		'<li>Big Meet: (R)estricted goods are available, but at Rarity +1.</li>',
+	],
 },
 {
 	"Name": "Tantalus Detention Facility - Circuit City", // non canon
@@ -5285,9 +5294,9 @@ const locations = [
 	"Inhabitants": "Droids",
 	"CapitalCity": "Circuit City",
 	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
-	"Starport": 3, // pirate shadowport
-	"Shadowport": true, // cause I say so
-	"BlackMarket": true, // cause I say so
+	"Starport": 2,
+	"Shadowport": false,
+	"BlackMarket": false,
 	"Precipitation": -5, // space station
 	"ImperialPresence": -5, // pirate shadowport
 	"OldWestiness": 3, // pirates
@@ -5301,7 +5310,17 @@ const locations = [
 	"Slicing": -2,
 	"Theft": 0,
 	"Bribery": 1,
-	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
+	"Rarity": -2,
+	"events": [
+		'<li>Circuit City: Clean, well-lit, and utilitarian. Skulduggery, Stealth +<span class="font-normal starwars-dice setback">s</span><span class="font-normal starwars-dice setback">s</span></li>',
+		'<li>Circuit City: Organics are tolerated, cybernetics are acceptable, droids are welcomed.</li>',
+		'<li>Circuit City: Cybernetics, Droids, Electronics: Rarity -1</li>',
+		'<li>Circuit City: Drugs, Medical, Relics, Survival: Rarity +1</li>',
+		'<li>Circuit City: Spotless, but utilitarian. Brightly lit. +<span class="font-normal starwars-dice setback">s</span> vision-based skills</li>',
+		'<li>Circuit City: Null Hub connects via tubes to faction territories.</li>',
+		'<li>Factions: Entities Front for Droids (EFfD), Droidian Entities Front (DEF), Front for Droidian Entitiness (FfDE), EntiDroids, others...</li>',
+		'<li>Circuit City: Organics beware. There are no bathrooms in Circuit City.</li>',
+	],
 },
 {
 	"Name": "Tantalus Detention Facility - Little Kashyyyk", // non canon
@@ -5312,15 +5331,15 @@ const locations = [
 	"Atmosphere": "Type I",
 	"Climate": "<span class='highlight'>tropical</span>,<span class='highlight'>meteor showers</span>",
 	"Terrain": "<span class='highlight'>tall</span> trees in spherical clusters,<span class='highlight'>rickety</span> bridges",
-	"Gravity": 1.0,
+	"Gravity": 0.0,
 	"Inhabitants": "Wookies",
 	"CapitalCity": "Little Kashyyyk",
 	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
-	"Starport": 3, // pirate shadowport
-	"Shadowport": true, // cause I say so
-	"BlackMarket": true, // cause I say so
-	"Precipitation": -5, // space station
-	"ImperialPresence": -5, // pirate shadowport
+	"Starport": 2,
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 1,
+	"ImperialPresence": -5, // pirates
 	"OldWestiness": 3, // pirates
 	"Megafauna": 0,
 	"Rarity": 0,
@@ -5333,6 +5352,13 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"Rarity": 0,
+	"events": [
+		'<li>Little Kashyyyk: Located not on the main station, but in a thick part of the nebula a short way away.</li>',
+		'<li>Little Kashyyyk: Nebula oxygen is thick enough to breathe normally.</li>',
+		'<li>Little Kashyyyk: NO GRAVITY. The Wookiees who live here have adapted to life without gravity. Jumping between trees is a common method of travel.</li>',
+		'<li>Little Kashyyyk: Headquarters of the Hnggarghhngh Onghghgh Wookiee Liberation League (HOWLL)</li>',
+		'<li>Little Kashyyyk: Wookiee gear is Rarity -1, but non-Wookiees pay a +1 Rarity surcharge on <i>all</i> items.</li>',
+	],
 },
 {
 	"Name": "Tantalus Detention Facility - Hutt District", // non canon
@@ -5347,8 +5373,8 @@ const locations = [
 	"Inhabitants": "Hutts,(varied)",
 	"CapitalCity": "Hutt District",
 	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
-	"Starport": 3, // pirate shadowport
-	"Shadowport": true, // cause I say so
+	"Starport": 2,
+	"Shadowport": false,
 	"BlackMarket": true, // cause I say so
 	"Precipitation": -5, // space station
 	"ImperialPresence": -5, // pirate shadowport
@@ -5364,6 +5390,15 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
+	"events": [
+		'<li>Hutt District: Clean but not fancy. Mildly moist, high humidity. Perception, Stealth, Skulduggery +<span class="font-normal starwars-dice setback">s</span></li>',
+		'<li>Hutt District: Corrosive atmosphere. <span class="highlight">Wear a mask</span> to avoid lung damage.</li>',
+		'<li>Hutt District: Gamorrean guards patrol everywhere.</li>',
+		'<li>Hutt District: Mild sedative/hallucinogen added to airflow system +<span class="font-normal starwars-dice setback">s</span> all mental skill checks</li>',
+		'<li>Hutt District: All species are welcome to gamble on the races and Sabacc tables.</li>',
+		'<li>Hutt District: Creatures for sale at Rarity -2.</li>',
+		'<li>Hutt District: Neutral turf for all feuds and bounty contracts.</li>',
+	],
 },
 {
 	"Name": "Tantalus Detention Facility - New Coruscant", // non canon
@@ -5380,7 +5415,7 @@ const locations = [
 	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
 	"Starport": 3, // pirate shadowport
 	"Shadowport": true, // cause I say so
-	"BlackMarket": true, // cause I say so
+	"BlackMarket": false,
 	"Precipitation": -5, // space station
 	"ImperialPresence": -5, // pirate shadowport
 	"OldWestiness": -3, // pirates, displaced Core Worlds elite
@@ -5394,7 +5429,14 @@ const locations = [
 	"Slicing": 1,
 	"Theft": 0,
 	"Bribery": 2,
-	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
+	"Rarity": 1,
+	"events": [
+		'<li>New Coruscant: Busy streets, high rise buildings, crowds, artificial rain. All <i>civilized</i> sentients welcome.</li>',
+		'<li>New Coruscant: Drugs & poisons, medical care Rarity -2</li>',
+		'<li>New Coruscant: If you\'re wealthy (or can pretend to be), Rarity -1.</li>',
+		'<li>New Coruscant: Strong police presence. Skulduggery, Streetwise +<span class="font-normal starwars-dice setback">s</span></li>',
+		'<li>New Coruscant: The finest shipwrights exiled from Corellia landed here. But their expertise costs...</li>',
+	],
 },
 {
 	"Name": "Tantalus Detention Facility - The Hive", // non canon
@@ -5409,8 +5451,8 @@ const locations = [
 	"Inhabitants": "(varied)",
 	"CapitalCity": "The Hive",
 	"URL": "https://starwars.fandom.com/wiki/Radama_Void/Legends",
-	"Starport": 3, // pirate shadowport
-	"Shadowport": true, // cause I say so
+	"Starport": 0,
+	"Shadowport": false,
 	"BlackMarket": true, // cause I say so
 	"Precipitation": -5, // space station
 	"ImperialPresence": -5, // pirate shadowport
@@ -5425,7 +5467,14 @@ const locations = [
 	"Slicing": 4,
 	"Theft": 3,
 	"Bribery": -1,
-	"Rarity": 0,
+	"Rarity": -5,
+	"events": [
+		'<li>The Hive: Obi-wan was wrong. There <b><i>is</i></b> a more wretched hive of scum and villiany. It\'s picking your pocket right now.</li>',
+		'<li>The Hive: Dimly lit. Chaotic infrastructure. Crowds. Comlinks don\'t always work.</li>',
+		'<li>The Hive: All species, all occupations, all genders, all sizes, are welcome to be the next victim.</li>',
+		'<li>The Hive: If you can\'t find it anywhere else, you can find it here. Lowest Rarity in the known \'verse.</li>',
+		'<li>The Hive: Hand-to-hand weapons and explosives are -1 Rarity here.</li>',
+	],
 },
 {
 	"Name": "Taris",

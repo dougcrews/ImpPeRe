@@ -1095,6 +1095,7 @@ function populateArrivalEvent() {
 // Arrival in system events
 function populateArrivalEvents(eventCount)
 {
+	$("#local-events").append(currentLoc.events);
 	for (ii = 0; ii < eventCount; ii++)
 	{
 		$("#local-events").append(arrivalEvents[ii]);
