@@ -6,30 +6,30 @@
 	<title>Imperial Penal References</title>
 	<link rel="icon" type="image/x-icon" href="favicon.png">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="locations.js"></script>
-	<script src="regions.js"></script>
-	<script src="events.js"></script>
-	<script src="hyperspace.js"></script>
-	<script src="missions.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 	<script src="ImpPeRe.js"></script>
+	<script src="locations.js"></script>
+	<script src="regions.js"></script>
+	<script src="hyperspace.js"></script>
+	<script src="missions.js"></script>
+	<script src="events.js"></script>
 	<link rel="stylesheet" href="ImpPeRe.css">
 </head>
 
 <body id='body'>
 
 	<span id="mainHeader" class="main-header align-left font-starwars">Imperial Penal References</span>
-	<button onclick="switchFontBesh()" class="font-besh align-bottom align-right tooltip">
+	<button onclick="switchFontBesh()" class="font-besh font-chooser tooltip">
 		Aurebesh
-		<span class="tooltiptext">Switch to Aurebesh font.</span>
+		<span class="tooltiptext font-normal">Switch to Aurebesh font.</span>
 	</button>
-	<button onclick="switchFontStarWars()" class="font-starwars align-bottom align-right tooltip">
+	<button onclick="switchFontStarWars()" class="font-starwars font-chooser tooltip">
 		Galactic Basic
-		<span class="tooltiptext">Switch to Star Wars font.</span>
+		<span class="tooltiptext font-normal">Switch to Star Wars font.</span>
 	</button>
-	<button onclick="switchFontNormal()" class="font-normal align-bottom align-right tooltip">
+	<button onclick="switchFontNormal()" class="font-normal font-chooser tooltip">
 		En'glsh
-		<span class="tooltiptext">Switch to normal font.</span>
+		<span class="tooltiptext font-normal">Switch to normal font.</span>
 	</button>
 
 	<table border="2" width="100%">
@@ -67,10 +67,7 @@
 		</tr>
 		<tr>
 			<td class="align-top margin-0 colspan-2">
-				<div id="locationDetails" class="section tooltip width-half">
-					<span class="tooltiptext">
-					Known and reported details of your current location.
-					</span>
+				<div id="locationDetails" class="section width-half">
 					<div class="header3 align-left">BoSS Database</div>
 					<div class="flex-container">
 						<div class="box-around">
@@ -114,58 +111,6 @@
 							<strong>Inhabitants:</strong> <span id="currentInhabitants">unknown</span>
 						</div>
 					</div>
-<!--
-					<br/>
-					<div class="header3 align-left">Astrogation Computer</div>
-					<div class="flex-container">
-						<div class="box-around">
-							<div class="box-around">
-								<strong>Current Location Hyperlanes:</strong> <pre id="currentHyperlanes" class="hyperlanes">unknown</pre>
-							</div>
-						</div>
-						<div class="box-around" style="width:40%">
-							<div class="flex-container">
-								<label for="destinationDropdown" id="destinationDropdownLabel" class="font-besh">Destination:
-									<select id="destinationDropdown">
-										<option value="">-- Select Destination --</option>
-									</select>
-								</label>
-								<div style="font-size: larger; margin: 0px 0px 0px 10px;">
-									<a id="destURL" href="https://starwars.fandom.com/wiki/Planet/Legends" target="_blank">
-										your destination
-									</a>
-								</div>
-							</div>
-							<br/>
-							<div id="estTravelTime" class="box-around hidden" style="text-align: center;display: contents;">
-								<div style="align: center; width: 95%; text-align: center;">
-									<strong style="font-size: larger">Estimated Travel Time: </strong>
-									<span id="estHyperspaceTime" style="font-size: larger; color: greenyellow;">calculating...</span>
-									<br/>
-								</div>
-								<div class="reference-note">
-									<span style="font-size: smaller; float: center;">(<span id="baseHyperSpaceDistance"></span>factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>)</span>
-									<br/>
-									[ reference: <span id="baseHyperspaceTime" style="color: green;">calculating...</span> (factor 1.0, Class 1) ]
-								</div>
-							</div>
-							<hr style="width: 50%;"/>
-							<div id="travelAdjustments" class="box-around" style="text-align: left; width: 97%" style="text-align: center;display: contents;">
-								<div style="align: center; width: 95%; text-align: center;">
-									<strong style="font-size: smaller">Potential Astrogation Adjustments</strong></span>
-									<span id="hyperspaceDice" style="font-size: smaller">calculating...</span>
-									<br/>
-								</div>
-							</div>
-						</div>
-						<div class="box-around">
-							<div class="box-around">
-								<strong>Destination Hyperlanes:</strong> <pre id="destHyperlanes" class="hyperlanes">unknown</pre>
-							</div>
-						</div>
-					</div>
-					<br/>
--->
 				</div>
 			</td>
 		</tr>
@@ -244,13 +189,11 @@
 		</tr>
 	</table>
 
+<div class="popup_rarity">
 	<!-- Local Regulations -->
 	<table border="2" width="100%">
 		<tr style="display: table-cell;">
-			<div class="local-customs-box tooltip">
-				<span class="tooltiptext">
-				Last reported starport fees for this location. Consult your Game Master.
-				</span>
+			<div class="local-customs-box">
 				<h3 class="local-customs-box-header">Starport</h3>
 				<strong><center><span id="starportHeader"></span></center></strong>
 				<strong>Landing Fee:</strong> <span id="textFeePortLanding"></span><br/>
@@ -260,12 +203,9 @@
 				<strong>Visitation Fee:</strong> <span id="textFeeVisitation"></span><br/>
 				<strong>Departure Wait:</strong> <span id="textWaitDeparture"></span><br/>
 				<strong>Smuggling Penalty<i>/Bribe</i>:</strong> <span id="textSmugglingPenalty"></span><br/>
-				<strong>Local Rarity:</strong> <span id="textRarityMod"></span><br/>
+				<strong><span class="tooltip">Local Rarity<span class="tooltiptext popup-helper" id="textLocalRarity"/></span>:</strong> <span id="textRarityMod"></span><br/>
 			</div>
-			<div class="local-customs-box tooltip">
-				<span class="tooltiptext">
-				Last reported local restrictions on weapons and armor at this location. Consult your Game Master.
-				</span>
+			<div class="local-customs-box">
 				<h3 class="local-customs-box-header">Weapon Permits</h3>
 				<strong>Concealed:</strong> <span id="textPermitWeaponConcealed"></span><br/>
 				<strong>Small Arms:</strong> <span id="textPermitWeaponSmall"></span><br/>
@@ -275,10 +215,7 @@
 				<strong>Power Armor:</strong> <span id="textPermitArmorPower"></span><br/>
 				<strong>Violations Penalty<i>/Bribe</i>:</strong> <span id="textWeaponPenalty"></span><br/>
 			</div>
-			<div class="local-customs-box tooltip">
-				<span class="tooltiptext">
-				Last reported local laws for this location. Consult your Game Master.
-				</span>
+			<div class="local-customs-box">
 				<h3 class="local-customs-box-header">Contraband</h3>
 				<strong>Spice:</strong> <span id="textLawSpice"></span><br/>
 				<strong>Trespassing:</strong> <span id="textLawTrespassing"></span><br/>
@@ -292,22 +229,13 @@
 			<!-- Local Rumors -->
 			<td class="local-events align-top">
 				<h4 class="local-customs-box-header font-starwars">Local Rumors reported at <span id="localEventsLocation">your location</span></h4>
-				<div class="tooltip">
-					<span class="tooltiptext">
-					See the Suggested Usage below. These are all SUGGESTIONS to enhance the story. Nothing is required.
-					</span>
+				<div>
 					<ul id="local-events" class="font-normal">
-						<center>(select a Location at top left)</center>
-					</ul><!-- populated dynamically -->
+						<center>(select a Location at top left)</center><!-- populated dynamically -->
+					</ul>
 				</div>
-				<div id="instructions-box" class="instructions-box font-starwars tooltip">
+				<div id="instructions-box" class="instructions-box font-normal tooltip">
 					<strong>Suggested Usage:</strong>
-					<span class="tooltiptext">
-					First step is to choose a Location (not Destination) from the dropdown at top left.<br/>
-					This populates the details for that location and some random local events which can be optionally chosen.<br/>
-					Next, choose a Destination at top right to show details for that location and estimated travel statistics.<br/>
-					If you can't read the font, there are buttons underneath the main header. If they don't work, you may have disabled JavaScript.<br/>
-					</span>
 					<ul>
 						<li><em>Select a Current Location</em> (top left) to retrieve local events and customs from BoSS, regional governors, HoloNet, etc.</li>
 						<li>Each local event is a <i>possibility</i> - a <i>rumor</i> - to enhance the narrative. <b>Nothing is required.</b> Use what makes sense and prompts a better story.</li>
@@ -319,8 +247,7 @@
 						<li><span class="local-event-destiny-optional">Destiny Optional Event</span>-created permanent NPCs are named and managed by the PC who created them, voiced by the GM, and are always available at this location and able to perform the chosen service at no future cost by any PC.</li>
 						<li>The GM may, at their discretion, not allow NPCs or events to be found in locations where it doesn't make sense.</li>
 						<li>Upon system arrival, and after the party has chosen whether to select any events initially, the GM may activate or negate up to one <span class="local-event-destiny-required">Destiny Required Event</span> (spending a Destiny point if so), and as many <span class="local-event-free">Free Events</span> at no cost as needed for a good story.</li>
-						<li><span class="highlight">Highlighted</span> data indicates to the GM and to the PCs that <span class="font-normal starwars-dice boost">b</span>oosts and <span class="font-normal starwars-dice setback">s</span>etbacks are possible consequences of this local event or location description.
-						<!-- li>Wondering what a "hot plook" is? It's the latest food craze sweeping the galaxy. Sometimes people mispronounce it. Seems like every time you're waiting in line for another wet bag of <em><i>h</i></em>ot <em><i>pl</i></em>ook, some shady Game Master sidles up to you and offers you a job, or a mission, or a chance to save the galaxy. Whatever you choose, it will probably be a good story to tell at your funeral.</li -->
+						<li><span class="highlight">Highlighted</span> data indicates to the GM and to the PCs that <span class="font-normal starwars-dice-text boost">b</span>oosts and <span class="font-normal starwars-dice-text setback">s</span>etbacks are possible consequences of this local event or location description.
 						<li>Expect Imperial presence to be higher near the Core, and weapons laws to be looser nearer or past the Outer Rim.</li>
 						<li>Capital Ships (silhouette 5+) pay substantially higher Starport costs.</li>
 						<li>Upon departure, all local events and NPCs not made permanent via Destiny Points are reset.</li>
@@ -349,10 +276,7 @@
 	<table border="2" width="100%">
 		<tr>
 			<td class="align-top margin-0 colspan-2">
-				<div id="locationDetails" class="section tooltip width-half">
-					<span class="tooltiptext">
-					Known and reported details of your current location.
-					</span>
+				<div id="locationDetails" class="section width-half">
 					<div class="header3 align-left">Astrogation Computer</div>
 					<div class="flex-container">
 						<div class="box-around">
@@ -376,22 +300,24 @@
 							<br/>
 							<div id="estTravelTime" class="box-around hidden" style="text-align: center;display: contents;">
 								<div style="align: center; width: 95%; text-align: center;">
-									<strong style="font-size: larger">Estimated Travel Time: </strong>
+									<strong style="font-size: larger">Estimated Travel Difficulty & Time</strong><br/>
+									<span id="astrogationDicePool">calculating...</span>&nbsp;
 									<span id="estHyperspaceTime" style="font-size: larger; color: greenyellow;">calculating...</span>
 									<br/>
 								</div>
 								<div class="reference-note">
-									<span style="font-size: smaller; float: center;">(<span id="baseHyperSpaceDistance"></span>factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>)</span>
+									<span style="font-size: smaller; float: center;">
+										(<span id="baseHyperSpaceDistance"></span>, hyperroute factor <span id="hyperrouteFactor">1.0</span>, Class <span id="ettHyperdriveClass">?</span>)
+									</span>
 									<br/>
-									[ reference: <span id="baseHyperspaceTime" style="color: green;">calculating...</span> (factor 1.0, Class 1) ]
+									[ reference (factor 1.0, Class 1): <span id="baseHyperspaceTime" style="color: green;">calculating...</span> ]
 								</div>
 							</div>
 							<hr style="width: 50%;"/>
 							<div id="travelAdjustments" class="box-around" style="text-align: left; width: 97%" style="text-align: center;display: contents;">
 								<div style="align: center; width: 95%; text-align: center;">
-									<strong style="font-size: smaller">Potential Astrogation Adjustments</strong></span>
-									<span id="hyperspaceDice" style="font-size: smaller">calculating...</span>
-									<br/>
+									<strong style="font-size: smaller"><span class="tooltip">Astrogation Adjustments<span class="tooltiptext popup-helper" id="astrogationPopup"></span></strong></span>
+									<span id="hyperspaceDice" style="font-size: smaller; border: 3px red;">calculating...</span>
 								</div>
 							</div>
 						</div>

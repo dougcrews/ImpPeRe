@@ -14,24 +14,35 @@ currentRegion = {}; // JSON object
 destLocation = Cookies.get()["destLocation"];
 destLoc = {}; // JSON object
 destRegion = {}; // JSON object
+currentRouteList = [];
 
 const htmlRightArrow = '&#8658;';
-const htmlBoostDie = '<span class="font-normal starwars-dice boost">b</span>';
-const htmlSetbackDie = '<span class="font-normal starwars-dice setback">s</span>';
-const htmlThreatDie = '<span class="font-normal starwars-dice threat">Threat</span>';
-const htmlAdvantageDie = '<span class="font-normal starwars-dice advantage">Advantage</span>';
-const htmlDifficultyDie = '<span class="font-normal starwars-dice difficulty">p</span>';
-const htmlChallengeDie = '<span class="font-normal starwars-dice challenge">R</span>';
-const htmlAbilityDie = '<span class="font-normal starwars-dice ability">g</span>';
-const htmlProficiencyDie = '<span class="font-normal starwars-dice proficiency">Y</span>';
-const htmlSuccess = '<span class="font-normal starwars-dice success">¤</span>';
-const htmlUpgradeDifficultyDie1x = '<span class="font-normal starwars-dice challenge">1x</span>';
+const htmlBoostDie = '<span class="font-normal starwars-dice-text boost">b</span>';
+const htmlSetbackDie = '<span class="font-normal starwars-dice-text setback">s</span>';
+const htmlSuccess = '<img alt="Success" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_success.png"/>';
+const htmlFailure = '<img alt="Failure" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_failure.png"/>';
+const htmlAdvantage = '<img alt="Advantage" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_advantage.png"/>';
+const htmlThreat = '<img alt="Threat" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_threat.png"/>';
+const htmlTriumph = '<img alt="Triumph" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_triumph.png"/>';
+const htmlDespair = '<img alt="Despair" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_despair.png"/>';
+
+const htmlAbilityDie = '<img alt="Ability" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_ability.png"/>';
+const htmlProficiencyDie = '<img alt="Proficiency" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_proficiency.png"/>';
+const htmlDifficultyDie = '<img alt="Difficulty" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_difficulty.png"/>';
+const htmlChallengeDie = '<img alt="Challenge" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_challenge.png"/>';
+
+const htmlForceDie = '<img alt="Force" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_force.png"/>';
+const htmlForceLight = '<img alt="Force" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_force_light.png"/>';
+const htmlForceDark = '<img alt="Force" style="display: inline; vertical-align: text-top; max-width: 20px;" src="assets/images/swrpg_dice_force_dark.png"/>';
+
+const htmlUpgradeDifficultyDie1x = '<span class="font-normal starwars-dice-text challenge">1x</span>';
 const htmlUpgradeDiff1x = '(' + htmlDifficultyDie + htmlRightArrow + htmlChallengeDie + ')';
-const htmlDowngradeDifficultyDie1x = '<span class="font-normal starwars-dice difficulty">1x</span>';
+const htmlDowngradeDifficultyDie1x = '<span class="font-normal starwars-dice-text difficulty">1x</span>';
 const htmlDowngradeDiff1x = '(' + htmlChallengeDie + htmlRightArrow + htmlDifficultyDie + ')';
-const htmlUpgradeAbilityDie1x = '<span class="font-normal starwars-dice proficiency">1x</span>';
+const htmlUpgradeAbilityDie1x = '<span class="font-normal starwars-dice-text proficiency">1x</span>';
 const htmlUpgradeAbility1x = '(' + htmlAbilityDie + htmlRightArrow + htmlProficiencyDie + ')';
 const htmlDowngradeAbility1x = '(' + htmlProficiencyDie + htmlRightArrow + htmlAbilityDie + ')';
+
 
 $(document).ready(function ()
 {
@@ -267,14 +278,14 @@ function getCookies()
 {
 	currentLocation = Cookies.get()["currentLocation" || ""];
 
-	$('#hullMax').val(Cookies.get()["hullMax"] || 99);
+	$('#hullMax').val(Cookies.get()["hullMax"] || 22); // YT-1300
 	$('#hullCurrent').val(Cookies.get()["hullCurrent"] || 0);
-	$('#strainMax').val(Cookies.get()["strainMax"] || 99);
+	$('#strainMax').val(Cookies.get()["strainMax"] || 15); // YT-1300
 	$('#strainCurrent').val(Cookies.get()["strainCurrent"] || 0);
 	$("#cargoDeclared").val(Cookies.get()["cargoDeclared"] || 0);
 	$("#cargoHidden").val(Cookies.get()["cargoHidden"] || 0);
-	$("#shipSilhouette").val(Cookies.get()["shipSilhouette"] || 4);
-	$("#hyperdriveClass").val(Cookies.get()["hyperdriveClass"] || 1);
+	$("#shipSilhouette").val(Cookies.get()["shipSilhouette"] || 4); // YT-1300
+	$("#hyperdriveClass").val(Cookies.get()["hyperdriveClass"] || 2); // YT-1300
 	$("#galacticHyperspaceConstant").val(Cookies.get()["GHC"] || 1);
 	$("#pirateHolonet").prop("checked", Cookies.get()["pirateHolonet"] == "true");
 }
@@ -294,16 +305,16 @@ function updateAll()
 	{
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
-	}
 
-	updateCurrentAtmosphere();
-//	updateDestAtmosphere();
-	updateLocalEvents();
-	updateCurrentDetails();
-	updateDestDetails();
-	updateLocalCustoms();
-	updateTravelEstimates();
-	populateDestinationDropdown();
+		updateCurrentAtmosphere();
+//		updateDestAtmosphere();
+		updateLocalEvents();
+		updateCurrentDetails();
+		updateDestDetails();
+		updateLocalCustoms();
+		updateTravelEstimates();
+		populateDestinationDropdown();
+	}
 
 	if (currentLocation && currentLoc && currentLoc.Name)
 		$("#locationDetails").slideDown();
@@ -389,11 +400,6 @@ function updateLocalEvents()
 		$("#local-events").append('<li>RUMOR HAS IT: A thriving <href="https://starwars.fandom.com/wiki/Black_market/Legends">black market</a> is here somewhere.</li>');
 	}
 
-	// Plot Hooks to be dangled by the GM
-//	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Psst. I got a job for you. Legal (mostly), easy work, pays the rent, y\'know? You in?"</i></li>');
-//	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"Hey, you. You look tough. I got a job, pays well for <em>\'\'tough\'\'</em>."</i></li>');
-//	$("#local-events").append('<li><span class="local-event-free">HOT PLOOK:</span> <i>"My client has an exclusive offer for an elite team with a handsome payout. There is considerable danger involved."</li>');
-
 	// Arrival event
 	populateArrivalEvent();
 
@@ -406,11 +412,9 @@ function updateLocalEvents()
 	populateArrivalEvents(currentLoc.ImperialPresence);
 
 	// Local events
-//	populateEmpireMissions(currentLoc.ImperialPresence);
 	populateEmpireEvents(currentRegion.ImperialPresence);
 
 	// Old West events
-//	populateOldWestMissions(currentLoc.OldWestiness);
 	populateOldWestEvents(currentRegion.OldWestiness);
 
 	// Flora & Fauna events
@@ -451,23 +455,9 @@ function updateDestDetails()
 	{
 		if (! (destRegion && destRegion.Name)) destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 
-//		$("#destRegion").html(destLoc.Region);
-//		$("#destSector").html(destLoc.Sector);
-//		$("#destSystem").html(destLoc.System);
-//		$("#destCapital").html(destLoc.CapitalCity);
-//		$("#destMap").html(destLoc.Map);
-//		updateDestAtmosphere();
-//		$("#destTerrain").html(destLoc.Terrain);
-//		$("#destInhabitants").html(destLoc.Inhabitants);
-//		$("#destClimate").html(destLoc.Climate);
-//		$("#destGravity").html(gravityText(destLoc.Gravity));
-//		$("#destStarportURL").text(starportText(destLoc.Starport));
 		$("#destURL").attr("title", destLoc.Name);
 		$("#destURL").attr("href", destLoc.URL);
 		$("#destURL").text(destLoc.Name);
-//		$("#destRegionURL").attr("title", destRegion.Name);
-//		$("#destRegionURL").attr("href", "https://starwars.fandom.com/wiki/" + destRegion.Name.replace(" ", "_") + "/Legends");
-//		$("#destRegionURL").text(destRegion.Name);
 	}
 }
 
@@ -511,6 +501,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 		sanitize(currentRegion.OldWestiness, 0, 5));
 	const rarity = rarityModFor(currentLoc);
 	const textRarityMod = "" + (rarityMod >= 0 ? "+" : "") + rarityMod + " (base cost " + rarityCostIncrease(rarity) + ")";
+	const textLocalRarity = getTextLocalRarity(rarity);
 
 	// Starport update screen elements
 	$('#textFeePortLanding').html(textFeePortLanding);
@@ -521,6 +512,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	$('#textWaitDeparture').html(textWaitDeparture);
 	$('#textSmugglingPenalty').html(textSmugglingPenalty);
 	$('#textRarityMod').html(textRarityMod);
+	$('#textLocalRarity').html(textLocalRarity);
 
 	// Weapon Permits calculations
 	const baseWeapon = currentLoc.OldWestiness + currentRegion.OldWestiness;
@@ -605,7 +597,16 @@ function updateTravelEstimates()
 	totalFactor = 1.0;
 	hyperlanesAtOrigin = 0;
 	hyperlanesAtDest = 0;
-	parsecsTraveled = 0;
+
+	// Update Astrogation possible boosts/setbacks
+	astrogationHtml = "";
+	astrogationPopupHtml = "";
+
+	parsecsTraveled = getParsecsBetween(currentLoc.Map, destLoc.Map);
+	baseDifficulty = (parsecsTraveled * 1).toFixed(1); // number of purple & yellow dice
+
+	htmlBaseDicePool = getDicePool(baseDifficulty); // just for raw distance
+	$('#astrogationDicePoolBase').html(htmlBaseDicePool);
 
 	// Find Hyperlanes available for current location
 	currentRouteList = "";
@@ -653,136 +654,84 @@ function updateTravelEstimates()
 		});
 	};
 
-	// Update Astrogation possible boosts/setbacks
-	astrogationHtml = "";
-
 	if (currentRouteList.length > 0 && destRouteList.length > 0)
 	{
-		// Same hyperroute? Bonus!
-		currentRouteList.split("<br/>").forEach(currRoute => {
-			destRouteList.split("<br/>").forEach(destRoute => {
-				if (currRoute == destRoute)
-				{
-					currentRouteList = currentRouteList.replace(currRoute, '<span class="matched-hyperlane">' + currRoute + '&nbsp;&gt;&gt;&gt;</span>');
-					destRouteList = destRouteList.replace(destRoute, '<span class="matched-hyperlane">&lt;&lt;&lt;&nbsp;' + destRoute + '</span>');
-					totalFactor *= 0.5;
+		// short-circuit if origin & destination are the same system
+		if (currentLoc.System != destLoc.System)
+		{
+			// Same hyperroute? Bonus!
+			currentRouteList.split("<br/>").forEach(currRoute => {
+				destRouteList.split("<br/>").forEach(destRoute => {
+					if (currRoute == destRoute)
+					{
+						currentRouteList = currentRouteList.replace(currRoute, '<span class="matched-hyperlane">' + currRoute + '&nbsp;&gt;&gt;&gt;</span>');
+						destRouteList = destRouteList.replace(destRoute, '<span class="matched-hyperlane">&lt;&lt;&lt;&nbsp;' + destRoute + '</span>');
+						totalFactor *= 0.5;
 
-					// Also bonus to Astrogation!
-					astrogationHtml += '<br/><strong>Single Hyperlane</strong>: ' + htmlDowngradeDiff1x;
-				}
+						// Also bonus to Astrogation!
+						astrogationHtml += '<br/><strong>Single Hyperlane</strong>: ' + htmlDowngradeDiff1x;
+						baseDifficulty -= 8; // effectively a yellow to purple conversion
+					}
+				});
 			});
-		});
+		}
 	}
 
 	$('#currentHyperlanes').html(currentRouteList);
 	$('#destHyperlanes').html(destRouteList);
 
 	// Fly Casual pg78
-	if (currentLoc.Map && destLoc.Map)
-	{
-		const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
-		const shipHyperdrive = Number($("#hyperdriveClass").val());
-		parsecsTraveled = getParsecsBetween(currentLoc.Map, destLoc.Map).toFixed(0);
-		$("#ettHyperdriveClass").text(shipHyperdrive);
-		$("#baseHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime));
-		$("#estHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
-		$("#hyperrouteFactor").text(totalFactor.toFixed(2));
-	}
+	if  (! (currentLoc.Map && destLoc.Map)) return;
+
+	const baseHyperspaceTime = hyperspaceTravelTime(currentLoc.Map, destLoc.Map);
+	const shipHyperdrive = Number($("#hyperdriveClass").val());
+	$("#ettHyperdriveClass").text(shipHyperdrive);
+	$("#baseHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime));
+	$("#estHyperspaceTime").text(hoursToTravelTimeDesc(baseHyperspaceTime * shipHyperdrive * totalFactor));
+	$("#hyperrouteFactor").text(totalFactor.toFixed(2));
 
 	if (['Core Worlds'].includes(currentLoc.Region))
 	{
-		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " +" + htmlBoostDie + htmlBoostDie;
+		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " (+" + htmlBoostDie + htmlBoostDie + ")";
 	}
 	if (["Colonies", "Inner Rim", "Expansion Region"].includes(currentLoc.Region))
 	{
-		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " +" + htmlBoostDie;
+		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " (+" + htmlBoostDie + ")";
 	}
 	if (["Outer Rim", "Hutt Space"].includes(currentLoc.Region))
 	{
-		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " +" + htmlSetbackDie;
+		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " (+" + htmlSetbackDie + ")";
 	}
 	if (["Wild Space", "Unknown Regions", "Deep Core", "Extragalactic"].includes(currentLoc.Region))
 	{
-		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " +" + htmlSetbackDie + htmlSetbackDie;
-	}
-
-	if (hyperlanesAtOrigin > 0)
-	{
-		astrogationHtml += "<br/>Hyperlanes at origin: " + hyperlanesAtOrigin + " ";
-
-		hyperlanes = hyperlanesAtOrigin;
-		// convert 5 boosts to 1 diff downgrade
-		while(hyperlanes > 4)
-		{
-			astrogationHtml += htmlDowngradeDiff1x;
-			hyperlanes -= 5;
-		}
-		if (hyperlanes > 0) astrogationHtml += " +";
-		while (hyperlanes > 0) {
-			astrogationHtml += htmlBoostDie;
-			hyperlanes--;
-		}
-	}
-	if (parsecsTraveled > 1)
-	{
-		astrogationHtml += "<br/>Parsecs travelled (straight line): " + parsecsTraveled + " ";
-		distance = parsecsTraveled - 1; // first parsec is free
-		// convert 5 setbacks to 1 diff upgrade
-		while(distance > 4)
-		{
-			astrogationHtml += htmlUpgradeDiff1x;
-			distance -= 5;
-		}
-		if (distance > 0) astrogationHtml += " +";
-		while (distance > 0) {
-			astrogationHtml += htmlSetbackDie;
-			distance--;
-		}
-	}
-
-	if (hyperlanesAtDest > 0)
-	{
-		astrogationHtml += "<br/>Hyperlanes at destination: " + hyperlanesAtDest + " ";
-		hyperlanes = hyperlanesAtDest;
-		// convert 5 boosts to 1 diff downgrade
-		while(hyperlanes > 4)
-		{
-			astrogationHtml += htmlDowngradeDiff1x;
-			hyperlanes -= 5;
-		}
-		if (hyperlanes > 0) astrogationHtml += " +";
-		while (hyperlanes > 0) {
-			astrogationHtml += htmlBoostDie;
-			hyperlanes--;
-		}
+		astrogationHtml += "<br/>Origin: " + currentLoc.Region + " (+" + htmlSetbackDie + htmlSetbackDie + ")";
 	}
 
 	if (hyperlanesAtOrigin == 0 && hyperlanesAtDest == 0 && parsecsTraveled > 1)
 	{
-		astrogationHtml += "<br/>No hyperlanes at either end: " + htmlUpgradeDiff1x;
+		astrogationHtml += "<br/>No hyperlanes at either end: " + htmlSetbackDie;
 	}
 
 	if (hyperlanesAtOrigin > 0 && hyperlanesAtDest > 0)
 	{
-		astrogationHtml += "<br/>Hyperlanes at both ends: +" + htmlBoostDie;
+		astrogationHtml += "<br/>Hyperlanes at both ends: (+" + htmlBoostDie +")";
 	}
-
 
 	if (['Core Worlds'].includes(destLoc.Region))
 	{
-		astrogationHtml += "<br/>Destination: " + destLoc.Region + " +" + htmlBoostDie + htmlBoostDie;
+		astrogationHtml += "<br/>Destination: " + destLoc.Region + " (+" + htmlBoostDie + htmlBoostDie + ")";
 	}
 	if (["Colonies", "Inner Rim", "Expansion Region"].includes(destLoc.Region))
 	{
-		astrogationHtml += "<br/>Destination: " + destLoc.Region + " +" + htmlBoostDie;
+		astrogationHtml += "<br/>Destination: " + destLoc.Region + " (+" + htmlBoostDie + ")";
 	}
 	if (["Outer Rim", "Hutt Space"].includes(destLoc.Region))
 	{
-		astrogationHtml += "<br/>Destination: " + destLoc.Region + " +" + htmlSetbackDie;
+		astrogationHtml += "<br/>Destination: " + destLoc.Region + " (+" + htmlSetbackDie + ")";
 	}
 	if (["Wild Space", "Unknown Regions", "Deep Core", "Extragalactic"].includes(destLoc.Region))
 	{
-		astrogationHtml += "<br/>Destination: " + destLoc.Region + " +" + htmlSetbackDie + htmlSetbackDie;
+		astrogationHtml += "<br/>Destination: " + destLoc.Region + " (+" + htmlSetbackDie + htmlSetbackDie + ")";
 	}
 
 	const hullMax = Number($('#hullMax').val());
@@ -792,28 +741,72 @@ function updateTravelEstimates()
 
 	if ((hullCurrent > (hullMax * 0.5)) || (strainCurrent > (strainMax * 0.5)))
 	{
-		astrogationHtml += '<br/>Hull Trauma or System Strain > 50% max: +' + htmlSetbackDie + htmlSetbackDie;
+		astrogationHtml += '<br/>Hull Trauma (' + hullCurrent + '/' + hullMax + ') or System Strain (' + strainCurrent + '/' + strainMax + ') > 50% max: (+' + htmlSetbackDie + htmlSetbackDie + ")";
 	}
 	else if ((hullCurrent > (hullMax * 0.25)) || (strainCurrent > (strainMax * 0.25)))
 	{
-		astrogationHtml += '<br/>Hull Trauma or System Strain > 25% max: +' + htmlSetbackDie;
+		astrogationHtml += '<br/>Hull Trauma (' + hullCurrent + '/' + hullMax + ') or System Strain (' + strainCurrent + '/' + strainMax + ') > 25% max: (+' + htmlSetbackDie + ")";
 	}
 
-	astrogationHtml +=
-		'<br/><hr width="50%"/><i>(familiar with this route): +' + htmlBoostDie + '</i>' +
-		' <br/><i>(discovered this route): ' + htmlUpgradeAbility1x + '</i>' +
-		' <br/><i>(each enemy targeting you): +' + htmlSetbackDie + '</i>' +
-		' <br/><i>(each speed increment): +' + htmlSetbackDie + '</i>' +
-		' <br/><i>(each extra astromech droid assisting): +' + htmlBoostDie + '</i>' +
-		' <br/><i>(damaged navicomputer or astromech): +' + htmlSetbackDie + ' to +' + htmlSetbackDie + htmlSetbackDie + htmlSetbackDie + '</i>' +
-		' <br/><i>(missing navicomputer or astromech): +' + htmlUpgradeDiff1x + '</i>' +
-		' <br/><i>(start or end in gravity well): automatic +' + htmlThreatDie + '</i>';
-
-	const boosts5 = htmlBoostDie + htmlBoostDie + htmlBoostDie + htmlBoostDie + htmlBoostDie;
-	astrogationHtml = astrogationHtml.replace(boosts5, htmlDowngradeDiff1x + " ");
-	const setbacks5 = htmlSetbackDie + htmlSetbackDie + htmlSetbackDie + htmlSetbackDie + htmlSetbackDie;
-	astrogationHtml = astrogationHtml.replace(setbacks5, htmlUpgradeDiff1x + " ");
 	$('#hyperspaceDice').html(astrogationHtml);
+
+	astrogationDicePool = getDicePool(baseDifficulty);
+
+	$('#astrogationDicePool').html(astrogationDicePool);
+
+	astrogationPopupHtml +=
+		'<h2 align="center">Astrogation</h2>' +
+		'<h3 align="left">Situational Modifiers:</h3>' +
+		'<ul>' +
+		'<li>(familiar with this route): +' + htmlBoostDie + '</lu>' +
+		'<li>(discovered this route): ' + htmlUpgradeAbility1x + '</lu>' +
+		'<li>(each enemy targeting you): +' + htmlSetbackDie + '</lu>' +
+		'<li>(each speed increment): +' + htmlSetbackDie + '</lu>' +
+		'<li>(each extra astromech droid assisting): +' + htmlBoostDie + '</lu>' +
+		'<li>(damaged navicomputer or astromech): +' + htmlSetbackDie + ' to +' + htmlSetbackDie + htmlSetbackDie + htmlSetbackDie + '</lu>' +
+		'<li>(missing navicomputer or astromech): +' + htmlUpgradeDiff1x + '</lu>' +
+		'<li>(start or end in gravity well): automatic +' + htmlThreat + '</lu>' +
+		'</ul>'+
+		'<h3 align="left">Dice Results:</h3>' + // Vehicle Ops Star Journeys https://sites.google.com/view/sturns-stuff/star-wars-stuff/vehicle-ops
+		'<ul>' +
+		'<li>' + htmlSuccess + ' ' + htmlRightArrow + ' better exit point or reduced calculation time</li>' +
+		'<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' reduced travel time or +' + htmlBoostDie + ' next Piloting check</li>' +
+		'<li>' + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' hidden 1 round (stacking) from detection attempts</li>' +
+		'<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' minimum calculation time or travel time</li>' +
+		'<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' discovered a new Hyperroute</li>' +
+		'<li>' + htmlFailure + ' ' + htmlRightArrow + ' real-space debris near miss during flight: +1 System Strain</li>' +
+		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' +' + htmlSetbackDie + ' on next Piloting check</li>' +
+		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' navicomputer or astromech damaged 1 step (minor +' + htmlSetbackDie + ' ' + htmlRightArrow + ' major ' + htmlUpgradeDiff1x + ' ' + htmlRightArrow + ' unusable)';
+		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' real-space debris collision on arrival: +1 Hull Trauma</li>' +
+		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' +10 on a Vehicle Critical Hit this flight</li>' +
+		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' Imperial presence (capital ship/base) nearby</li>' +
+		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' Imperial Customs inspection</li>' +
+		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' Astrogation computer damaged</li>' +
+		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' real-space debris collision: +1 Vehicle Critical Hit</li>' +
+		'</ul>';
+
+	$('#astrogationPopup').html(astrogationPopupHtml);
+}
+
+function getDicePool(difficulty)
+{
+	html = "";
+	const difficultyToChallengeDice = 10;
+	const difficultyToDifficultyDice = 2;
+
+	if (difficulty < difficultyToDifficultyDice) return "(-)"; // Simple, no purple dice
+
+	while (difficulty >= difficultyToChallengeDice)
+	{
+		html += htmlChallengeDie;
+		difficulty -= difficultyToChallengeDice;
+	}
+	while (difficulty >= difficultyToDifficultyDice) {
+		html += htmlDifficultyDie;
+		difficulty -= difficultyToDifficultyDice;
+	}
+
+	return html;
 }
 
 function togglePirateHolonet()
@@ -946,14 +939,14 @@ function getHyperspaceFactor()
 			const planets = hyperspaceRoute.Route.split(",");
 			if (planets.indexOf(currentLoc.Name) != -1)
 			{
-				hyperlanesAtOrigin++;
-				if (currentRouteList.length > 0) currentRouteList += "<br/>";
+				if (currentRouteList && currentRouteList.length > 0) currentRouteList += "<br/>";
 				const factor = (1.0 - (hyperspaceRoute.Route.split(",").length * 0.01)); // largest length 44, smallest 0
 				totalFactor *= factor;
 				currentRouteList += toGalactipediaALink(hyperspaceRoute.Name) + " (factor " + factor + ")";
 			}
 		});
 	}
+
 	return totalFactor;
 }
 
@@ -1102,17 +1095,6 @@ function populateArrivalEvents(eventCount)
 	}
 }
 
-// Arrival at location events
-/* @TODO
-function populateLocationEvents(locationName)
-{
-	for (ii = 0; ii < eventCount; ii++)
-	{
-		$("#local-events").append(arrivalEvents[ii]);
-	}
-}
-//*/
-
 // Local events
 
 function populateEmpireEvents(eventCount)
@@ -1133,32 +1115,11 @@ function populateOldWestEvents(eventCount)
 	}
 }
 
-/*
-function populateEmpireMissions(eventCount)
-{
-	for (ii = 0; ii < eventCount; ii++)
-	{
-		const newEvent = generateEmpireMission();
-		$("#local-events").append(newEvent);
-	}
-}
-
-function populateOldWestMissions(eventCount)
-{
-	for (ii = 0; ii < eventCount; ii++)
-	{
-		const newEvent = generateOldWestMission();
-		$("#local-events").append(newEvent);
-	}
-}
-*/
-
 function onChangeCargoDeclared()
 {
 	setCookies();
 	updateLocalCustoms();
 }
-
 
 // Galactic Travel Time adjustment
 function onChangeGalacticHyperspaceConstant()
@@ -1193,7 +1154,7 @@ function hyperspaceTravelTime(startMap, endMap)
 		const distance = getParsecsBetween(startMap, endMap);
 
 		// side effect: update the display
-		$('#baseHyperSpaceDistance').text(distance.toFixed(2) + " parsecs, ")
+		$('#baseHyperSpaceDistance').text(distance.toFixed(2) + " parsecs")
 
 		baseTime = 0;
 		if (distance < 1) baseTime = 12; // sublight, planet-to-planet within a system
@@ -1455,35 +1416,67 @@ function getRepairsEstimate()
 		case 1: // Landing Field, grade 5
 			if (shipSilhouette > 4) return "(Grade 4 starport required)";
 			multiplier *= 0.50;
-//			if (pirateHolonetInstalled) htmlResponse += "[50% discount]";
 			htmlResponse += " (" + htmlAbilityDie + " +" + htmlSetbackDie + ")";
 			break;
 		case 2: // Limited Services, grade 4
 			if (shipSilhouette > 5) return "(Grade 3 starport required)";
 			multiplier *= 0.75;
-//			if (pirateHolonetInstalled) htmlResponse += "[25% discount]";
 			htmlResponse += " (" + htmlProficiencyDie + htmlAbilityDie + " +" + htmlBoostDie + ")";
 			break;
 		case 3: // Standard Class, grade 3
 			if (shipSilhouette > 6) return "(Grade 2 starport required)";
 			// multiplier *= 1.0;
-//			if (pirateHolonetInstalled) htmlResponse += "[standard fees]";
 			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + ")";
 			break;
 		case 4: // Stellar Class, grade 2
 			if (shipSilhouette > 8) return "(Grade 1 starport required)";
 			multiplier *= 2.0;
-//			if (pirateHolonetInstalled) htmlResponse += "[200% premium]";
 			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + ")";
 			break;
 		case 5: // Imperial Class, grade 1
 			multiplier *= 3.0;
-//			if (pirateHolonetInstalled) htmlResponse += "[300% premium]";
 			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + htmlSuccess + ")";
 			break;
 	}
 
 	htmlResponse += '</span>';
+
+	return htmlResponse;
+}
+
+// EotE Table 5-1 pg150
+function getTextLocalRarity()
+{
+	htmlResponse = '';
+
+	htmlResponse += '<h2 align="center">Negotiation</h2>';
+	htmlResponse += '<h3 align="left">Base Difficulty:</h3>';
+	htmlResponse += 'Rarity 0-1: Simple (-)<br/>';
+	htmlResponse += 'Rarity 2-3: Easy (' + htmlDifficultyDie + ')<br/>';
+	htmlResponse += 'Rarity 4-5: Average (' + htmlDifficultyDie + htmlDifficultyDie + ')<br/>';
+	htmlResponse += 'Rarity 6-7: Hard (' + htmlDifficultyDie + htmlDifficultyDie + htmlDifficultyDie + ')<br/>';
+	htmlResponse += 'Rarity 8-9: Daunting (' + htmlDifficultyDie + htmlDifficultyDie + htmlDifficultyDie + htmlDifficultyDie + ')<br/>';
+	htmlResponse += 'Rarity 10: Formidable (' + htmlDifficultyDie + htmlDifficultyDie + htmlDifficultyDie + htmlDifficultyDie + htmlDifficultyDie + ')<br/>';
+	htmlResponse += '(R)estricted: ' + htmlUpgradeDiff1x + '<br/>';
+	htmlResponse += '<br/>';
+
+	htmlResponse += '<h3 align="left">Dice Results:</h3>';
+	htmlResponse += '<ul>';
+	htmlResponse += '<li>' + htmlSuccess + ' ' + htmlRightArrow + ' 1 of that specific item available to purchase</li>';
+	htmlResponse += '<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' boost for the next vendor (which might be on a completely different planet)';
+	htmlResponse += '<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' 1% discount (stacking) on price</li>';
+	htmlResponse += '<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' 1 item for sale already has a random mod installed, lower Encumbrance, or a situation-specific boost die</li>';
+	htmlResponse += '<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' the shopkeeper likes you and gives you a discount</li>';
+	htmlResponse += '<li>' + htmlFailure + ' ' + htmlRightArrow + ' the item is not in local stock</li>';
+	htmlResponse += '<li>' + htmlThreat + ' ' + htmlRightArrow + ' setback for the next vendor (if the item is not available locally)';
+	htmlResponse += '<li>' + htmlThreat + ' ' + htmlRightArrow + ' item for sale is damaged 1 step (minor +' + htmlSetbackDie + ' ' + htmlRightArrow + ' major ' + htmlUpgradeDiff1x + ' ' + htmlRightArrow + ' unusable)';
+	htmlResponse += '<li>' + htmlThreat + ' ' + htmlRightArrow + ' cost is increased 1% (stacking) due to local demand</li>';
+	htmlResponse += '<li>' + htmlDespair + '/' + htmlThreat + ' ' + htmlRightArrow + ' the item is available but on a different planet';
+	htmlResponse += '<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' <i>"do me a favor first"</i></li>';
+	htmlResponse += '<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' you\'ve angered the shopkeeper';
+	htmlResponse += '<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' local law enforcement shows up';
+	htmlResponse += '<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' another buyer starts a bidding war';
+	htmlResponse += '</ul>';
 
 	return htmlResponse;
 }
