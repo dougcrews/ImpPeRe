@@ -58,7 +58,7 @@ $(document).ready(function ()
 	getCookies();
 
 	populateLocationDropdown();
-	populateDestinationDropdown();
+//	populateDestinationDropdown();
 
 	updateAll();
 
@@ -304,7 +304,7 @@ function updateAll()
 	if (currentLocation)
 	{
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
-		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+		if (currentLoc.Region) currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 
 		updateCurrentAtmosphere();
 //		updateDestAtmosphere();
@@ -709,7 +709,7 @@ function updateTravelEstimates()
 
 	if (hyperlanesAtOrigin == 0 && hyperlanesAtDest == 0 && parsecsTraveled > 1)
 	{
-		astrogationHtml += "<br/>No hyperlanes at either end: " + htmlSetbackDie;
+		astrogationHtml += "<br/>No hyperlanes at either end: (+" + htmlSetbackDie + ")";
 	}
 
 	if (hyperlanesAtOrigin > 0 && hyperlanesAtDest > 0)
