@@ -4095,6 +4095,37 @@ const locations = [
 	"Rarity": 0,
 },
 {
+	"Name": "Ojom",
+	"Region": "Deep Core",
+	"Sector": "Sector 5",
+	"System": "Ojom",
+	"Map": "M-11",
+	"Atmosphere": "Type I",
+	"Climate": "frigid",
+	"Terrain": "<span class='highlight'>oceans</span>,<span class='highlight'>glaciers</span>",
+	"Gravity": 1,
+	"Inhabitants": "Besalisk",
+	"CapitalCity": "Communal Arbiters",
+	"URL": "https://starwars.fandom.com/wiki/Ojom/Legends",
+	"Starport": 3, // population 500 million; orbital space stations fill the need
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 1, // safe world for organized rebellion in 2 BBY; Empire controlled by 1 BBY
+	"OldWestiness": 3, // infested with criminal elements
+	"Megafauna": 4, // oceans
+	"Rarity": 0,
+	"Criticism": 3, // resisted Empire influence
+	"Slavery": 0,
+	"Spice": 1, // Hutt contacts
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 2, // infested with criminal elements
+	"Bribery": 3, // infested with criminal elements
+	"Rarity": 0,
+},
+{
 	"Name": "Ord Pardron",
 	"Region": "Mid Rim",
 	"Sector": "Dufilvian",
