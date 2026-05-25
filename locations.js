@@ -841,6 +841,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Cato Neimoidia",
+	"Region": "Colonies",
+	"Sector": "The Slice",
+	"System": "Cato Neimodia",
+	"Inhabitants": "Neimoidian",
+	"Map": "N-11",
+	"Atmosphere": "Type I",
+	"Climate": "temperate, moist",
+	"Terrain": "<span class='highlight'>rock arch cities</span>, forest, <span class='highlight'>mountains</span>, plains",
+	"Gravity": 1,
+	"CapitalCity": "Zarra",
+	"URL": "https://starwars.fandom.com/wiki/Cato_Neimoidia/Legends",
+	"Starport": 2, // population 8.5 million; wealthiest of the Purse Worlds
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 1, // Imperial garrison led by Baron Tarko
+	"OldWestiness": -5, // wealthiest of the Purse Worlds
+	"Megafauna": -4,  // wealthiest of the Purse Worlds
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": -1, // wealthiest of the Purse Worlds
+	"Military": -5, // wealthiest of the Purse Worlds
+	"Slicing": -1, // wealthiest of the Purse Worlds
+	"Theft": -2, // wealthiest of the Purse Worlds
+	"Bribery": 0,
+},
+{
 	"Name": "Celanon",
 	"Region": "Outer Rim",
 	"Sector": "D'Astan",
@@ -4034,9 +4064,9 @@ const locations = [
 	"Terrain": "<span class='highlight'>urban</span>, <span class='highlight'>jungle</span>, sea, <span class='highlight'>mountains</span>, mesa, plains, <span class='highlight'>volcanic</span> island, <span class='highlight'>vast</span> <span class='highlight'>junkyards</span>",
 	"Gravity": 1.0,
 	"Inhabitants": "Mantellian Savrip, (varied)",
-	"CapitalCity": "Ord Mantell City",
+	"CapitalCity": "Worlport city, Morro Spaceport",
 	"URL": "https://starwars.fandom.com/wiki/Ord_Mantell/Legends",
-	"Starport": 2, // population 4 billion
+	"Starport": 3, // population 4 billion, Morro "one of the busiest spaceports in Bright Jewel sector"
 	"Shadowport": false,
 	"BlackMarket": false,
 	"Precipitation": 1,
@@ -4726,7 +4756,7 @@ const locations = [
 	"Inhabitants": "Pantorans, Humans, Gotals, Grans, Rodians, Twi'leks, Weequays, Wroonians",
 	"CapitalCity": "Taleucema",
 	"URL": "https://starwars.fandom.com/wiki/Saleucami/Legends",
-	"Starport": 2, // pop 1.4b, constantly busy with traffic
+	"Starport": 3, // pop 1.4b, constantly busy with traffic
 	"Shadowport": true, // Mask of the Pirate Queen
 	"BlackMarket": true, // Mask of the Pirate Queen
 	"Precipitation": 0, // deserts+ swamps-
@@ -4735,13 +4765,16 @@ const locations = [
 	"Megafauna": 2, // deserts, swamps
 	"Rarity": -1,
 	"Criticism": 1, // Mask of the Pirate Queen
-	"Slavery": 1, // Mask of the Pirate Queen
+	"Slavery": 3, // Mask of the Pirate Queen
 	"Spice": 3, // Mask of the Pirate Queen
-	"Trespassing": 1, // Mask of the Pirate Queen
+	"Trespassing": 3, // Mask of the Pirate Queen
 	"Military": 2, // Mask of the Pirate Queen
 	"Slicing": 0,
-	"Theft": 1, // Mask of the Pirate Queen
-	"Bribery": 1, // Mask of the Pirate Queen
+	"Theft": 2, // Mask of the Pirate Queen
+	"Bribery": 5, // Mask of the Pirate Queen
+	"events": [
+		'<li><span class="local-event-destiny-optional">SALEUCAMI:</span> <i>"Psst! I got some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Bubse_Spice" target="_blank">Bubse</a>."</i> (Wound Threshold +4, one encounter; +20 Critical Hit result, one encounter)</li>',
+	],
 },
 {
 	"Name": "Sarka",
