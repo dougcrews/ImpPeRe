@@ -269,6 +269,9 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Hoth asteroid field provides some cover and concealment, if you desire.</li>',
+	],
 },
 {
 	"Name": "Ansion",
@@ -1139,6 +1142,39 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+},
+{
+	"Name": "Cron Drift",
+	"Region": "Outer Rim",
+	"Sector": "Auril",
+	"System": "Cron",
+	"Map": "R-6",
+	"Atmosphere": "<span class='highlight'>none</span>",
+	"Climate": "<span class='highlight'>space</span>",
+	"Terrain": "<span class='highlight'>space</span>",
+	"Gravity": 0.0,
+	"Inhabitants": "hidden pirates and smugglers",
+	"Starport": 0,
+	"Shadowport": false,
+	"BlackMarket": true,
+	"CapitalCity": "(rebel outpost AX-235)",
+	"URL": "https://starwars.fandom.com/wiki/Cron_Drift/Legends",
+	"Precipitation": 0,
+	"ImperialPresence": -5,
+	"OldWestiness": 5,
+	"Megafauna": -4,
+	"Rarity": 2,
+	"Criticism": 5,
+	"Slavery": 4,
+	"Spice": 4,
+	"Trespassing": 4,
+	"Military": 5,
+	"Slicing": 0,
+	"Theft": 1,
+	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The vast asteroid field provides some cover and concealment, if you desire.</li>',
+	],
 },
 {
 	"Name": "Dantooine",
@@ -2219,6 +2255,9 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Hoth asteroid field provides some cover and concealment, if you desire.</li>',
+	],
 },
 {
 	"Name": "Imynusoph",
@@ -3424,6 +3463,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Maya Kovel",
+	"Region": "Outer Rim",
+	"Sector": "Zuma",
+	"System": "Maya Kovel",
+	"Map": "H-16",
+	"Atmosphere": "Type II",
+	"Climate": "temperate, <span class='highlight'>stormy</span>",
+	"Terrain": "<span class='highlight'>desert</span>, <span class='highlight'>rift valleys</span>",
+	"Gravity": 0.90,
+	"Inhabitants": "Ayrou, Humans, Vashans",
+	"CapitalCity": "Spaceports",
+	"URL": "https://starwars.fandom.com/wiki/Maya_Kovel/Legends",
+	"Starport": 4, // population 300 million; 2 stellar class & 4 limited services
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": -5, // desert; local moss grows in little moisture
+	"ImperialPresence": -5, // pacifists
+	"OldWestiness": -5, // pacifists
+	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": -5, // pacifists
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
 	"Name": "Megalox Beta",
 	"Region": "Expansion Region",
 	"Sector": "Bes Ber Bikade",
@@ -3574,6 +3643,40 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Muunilinst",
+	"Region": "Outer Rim",
+	"Sector": "Obrexta",
+	"System": "Muunilinst",
+	"Map": "K-4",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "plains, forests, hills, mountains, <span class='highlight'>cities</span>, <span class='highlight'>\"smoker\" volcanoes</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Muun",
+	"CapitalCity": "Harnaidan, High Port Space Center, Mariunhus, Munn City, Pilaan",
+	"URL": "https://starwars.fandom.com/wiki/Muunilinst/Legends",
+	"Starport": 3, // population 5 billion, major banking center
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": 3, // financial center of the Empire
+	"OldWestiness": -4, // InterGalactic Banking Clan
+	"Megafauna": -3, // tubeworms, dragon beasts
+	"Rarity": -1,
+	"Criticism": 2, // supports both sides
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": -1, // InterGalactic Banking Clan
+	"Slicing": -1, // InterGalactic Banking Clan
+	"Theft": -1, // InterGalactic Banking Clan
+	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, PILOT:</span> The Pilaan podrace course is looking for talented drivers.</li>',
+		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> We are being hailed by High Port Space Center. They want to know our business in the system. Your orders?</li>',
+	],
+},
+{
 	"Name": "Mustafar",
 	"Region": "Outer Rim",
 	"Sector": "Atravis",
@@ -3604,34 +3707,38 @@ const locations = [
 	"Bribery": 0,
 },
 {
-	"Name": "Maya Kovel",
+	"Name": "Mygeeto",
 	"Region": "Outer Rim",
-	"Sector": "Zuma",
-	"System": "Maya Kovel",
-	"Map": "H-16",
-	"Atmosphere": "Type II",
-	"Climate": "temperate, <span class='highlight'>stormy</span>",
-	"Terrain": "<span class='highlight'>desert</span>, <span class='highlight'>rift valleys</span>",
-	"Gravity": 0.90,
-	"Inhabitants": "Ayrou, Humans, Vashans",
-	"CapitalCity": "Spaceports",
-	"URL": "https://starwars.fandom.com/wiki/Maya_Kovel/Legends",
-	"Starport": 4, // population 300 million; 2 stellar class & 4 limited services
+	"Sector": "Obrexta",
+	"System": "Mygeeto",
+	"Map": "K-5",
+	"Atmosphere": "Type I",
+	"Climate": "<span class='highlight'>frigid</span>",
+	"Terrain": "<span class='highlight'>crystallized glaciers</span>, <span class='highlight'>jagged mountains</span>, <span class='highlight'>ice canyons</span>, <span class='highlight'>ice wadi</span>, <span class='highlight'>crevasses</span>, <span class='highlight'>tunnels</span>, <span class='highlight'>cliffs</span>, <span class='highlight'>underground lakes</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Lurmen, Muun",
+	"CapitalCity": "Jygat, crystal mines",
+	"URL": "https://starwars.fandom.com/wiki/Mygeeto/Legends",
+	"Starport": 2, // population 19 million
 	"Shadowport": false,
 	"BlackMarket": false,
-	"Precipitation": -5, // desert; local moss grows in little moisture
-	"ImperialPresence": -5, // pacifists
-	"OldWestiness": -5, // pacifists
-	"Megafauna": 0,
-	"Rarity": 0,
+	"Precipitation": 0,
+	"ImperialPresence": 3,
+	"OldWestiness": -4, // InterGalactic Banking Clan
+	"Megafauna": 2, // nexu, mygeetan whiteworm
+	"Rarity": 1,
 	"Criticism": 0,
 	"Slavery": 0,
 	"Spice": 0,
 	"Trespassing": 0,
-	"Military": -5, // pacifists
-	"Slicing": 0,
-	"Theft": 0,
+	"Military": -1, // InterGalactic Banking Clan
+	"Slicing": -1, // InterGalactic Banking Clan
+	"Theft": -1, // InterGalactic Banking Clan
 	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Zuborte Ma asteroid field provides some cover and concealment, if you desire.</li>',
+		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> We are being hailed by InterGalactic Banking Clan warships. Your orders?</li>',
+	],
 },
 {
 	"Name": "Naboo",
@@ -4114,6 +4221,41 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Sixth Belt",
+	"Region": "Outer Rim",
+	"Sector": "Centrality",
+	"System": "Oseon",
+	"Map": "T-8",
+	"Atmosphere": "none",
+	"Climate": "space",
+	"Terrain": "space",
+	"Gravity": 0.0,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "Oseon 6845",
+	"URL": "https://starwars.fandom.com/wiki/Sixth_Belt",
+	"Starport": 3,
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": -5,
+	"ImperialPresence": -5,
+	"OldWestiness": 3, // pirates
+	"Megafauna": 1, // nebula
+	"Rarity": -1, // tourists
+	"Criticism": -1, // tourists
+	"Slavery": -1, // tourists
+	"Spice": 0,
+	"Trespassing": -1, // tourists
+	"Military": -5, // capital punishment for carrying a lethal weapon
+	"Slicing": 0,
+	"Theft": -1, // tourists
+	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> The 6 large asteroid fields provide some cover and concealment, if you prefer.</li>',
+		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> Tourists convene in great numbers for the Flamewind.</li>',
+		'<li><span class="local-event-destiny-required">ATTENTION, CAPTAIN:</span> The Flamewind is active, causing radiation, communications, travel, and health concerns.</li>',
+	],
+},
+{
 	"Name": "Phatrong",
 	"Region": "Outer Rim",
 	"Sector": "Thrasybule",
@@ -4172,6 +4314,9 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Polis Massa asteroid field provides some cover and concealment, if you desire.</li>',
+	],
 },
 {
 	"Name": "Port Haven",
@@ -4985,6 +5130,39 @@ const locations = [
 	"Slicing": 0,
 	"Theft": -1, // traders
 	"Bribery": 2, // traders
+},
+{
+	"Name": "Smuggler's Run",
+	"Region": "Outer Rim",
+	"Sector": "Gaulus",
+	"System": "(asteroid belt)",
+	"Map": "S-18",
+	"Atmosphere": "<span class='highlight'>none</span>",
+	"Climate": "<span class='highlight'>space</span>",
+	"Terrain": "<span class='highlight'>space</span>",
+	"Gravity": 0.0,
+	"Inhabitants": "hidden pirates and smugglers",
+	"Starport": 3, // massive smuggling facility on Skip 1
+	"Shadowport": false,
+	"BlackMarket": true,
+	"CapitalCity": "Skip 1",
+	"URL": "https://starwars.fandom.com/wiki/Smuggler%27s_Run/Legends",
+	"Precipitation": 0,
+	"ImperialPresence": -5,
+	"OldWestiness": 5,
+	"Megafauna": -4,
+	"Rarity": 2,
+	"Criticism": 5,
+	"Slavery": 4,
+	"Spice": 4,
+	"Trespassing": 4,
+	"Military": 5,
+	"Slicing": 0,
+	"Theft": 1,
+	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The vast asteroid field provides some cover and concealment, if you desire.</li>',
+	],
 },
 {
 	"Name": "Socorro",
@@ -6146,6 +6324,9 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Smuggler\'s Run asteroid field provides some cover and concealment, if you desire.</li>',
+	],
 },
 {
 	"Name": "Xerton Nine",
