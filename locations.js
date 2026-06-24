@@ -2380,6 +2380,36 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Junkfort Station",
+	"Region": "Outer Rim",
+	"Sector": "Tharin",
+	"System": "Junkfort",
+	"Map": "T-8",
+	"Atmosphere": "Type I",
+	"Climate": "(controlled)",
+	"Terrain": "space station",
+	"Gravity": 1.0,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "Junkport Station",
+	"URL": "https://starwars.fandom.com/wiki/Junkfort_Station/Legends",
+	"Starport": 3, // ship upgrades
+	"Shadowport": true,
+	"BlackMarket": true,
+	"Precipitation": -5,
+	"ImperialPresence": -4,
+	"OldWestiness": 1,
+	"Megafauna": 0,
+	"Rarity": -1,
+	"Criticism": 3,
+	"Slavery": 1, // Hutts
+	"Spice": 5, // spice smuggling
+	"Trespassing": 0,
+	"Military": 5,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 1, // Hutts
+},
+{
 	"Name": "Kadavo",
 	"Region": "Wild Space",
 	"Sector": "Chorlian",
@@ -4221,41 +4251,6 @@ const locations = [
 	"Bribery": 0,
 },
 {
-	"Name": "Sixth Belt",
-	"Region": "Outer Rim",
-	"Sector": "Centrality",
-	"System": "Oseon",
-	"Map": "T-8",
-	"Atmosphere": "none",
-	"Climate": "space",
-	"Terrain": "space",
-	"Gravity": 0.0,
-	"Inhabitants": "(varied)",
-	"CapitalCity": "Oseon 6845",
-	"URL": "https://starwars.fandom.com/wiki/Sixth_Belt",
-	"Starport": 3,
-	"Shadowport": false,
-	"BlackMarket": false,
-	"Precipitation": -5,
-	"ImperialPresence": -5,
-	"OldWestiness": 3, // pirates
-	"Megafauna": 1, // nebula
-	"Rarity": -1, // tourists
-	"Criticism": -1, // tourists
-	"Slavery": -1, // tourists
-	"Spice": 0,
-	"Trespassing": -1, // tourists
-	"Military": -5, // capital punishment for carrying a lethal weapon
-	"Slicing": 0,
-	"Theft": -1, // tourists
-	"Bribery": 0,
-	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> The 6 large asteroid fields provide some cover and concealment, if you prefer.</li>',
-		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> Tourists convene in great numbers for the Flamewind.</li>',
-		'<li><span class="local-event-destiny-required">ATTENTION, CAPTAIN:</span> The Flamewind is active, causing radiation, communications, travel, and health concerns.</li>',
-	],
-},
-{
 	"Name": "Phatrong",
 	"Region": "Outer Rim",
 	"Sector": "Thrasybule",
@@ -5070,6 +5065,41 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+},
+{
+	"Name": "Sixth Belt",
+	"Region": "Outer Rim",
+	"Sector": "Centrality",
+	"System": "Oseon",
+	"Map": "T-8",
+	"Atmosphere": "none",
+	"Climate": "space",
+	"Terrain": "space",
+	"Gravity": 0.0,
+	"Inhabitants": "(varied)",
+	"CapitalCity": "Oseon 6845",
+	"URL": "https://starwars.fandom.com/wiki/Sixth_Belt",
+	"Starport": 3,
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": -5,
+	"ImperialPresence": -5,
+	"OldWestiness": 3, // pirates
+	"Megafauna": 1, // nebula
+	"Rarity": -1, // tourists
+	"Criticism": -1, // tourists
+	"Slavery": -1, // tourists
+	"Spice": 0,
+	"Trespassing": -1, // tourists
+	"Military": -5, // capital punishment for carrying a lethal weapon
+	"Slicing": 0,
+	"Theft": -1, // tourists
+	"Bribery": 0,
+	"events": [
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> The 6 large asteroid fields provide some cover and concealment, if you prefer.</li>',
+		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> Tourists convene in great numbers for the Flamewind.</li>',
+		'<li><span class="local-event-destiny-required">ATTENTION, CAPTAIN:</span> The Flamewind is active, causing radiation, communications, travel, and health concerns.</li>',
+	],
 },
 {
 	"Name": "Skako",

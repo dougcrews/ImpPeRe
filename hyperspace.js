@@ -536,13 +536,13 @@ const hyperspaceRoutes = [
 {
 	"Name": "Cadma Conduit",
 	"SpeedFactor": 0.9,
-	"Route": "Junkfort system,Dagelin Minor,Oseon VII,Scillal,Lekua V,Cadma,Zebitrope IV",
+	"Route": "Junkfort Station,Dagelin Minor,Oseon VII,Sixth Belt,Scillal,Lekua V,Cadma,Zebitrope IV",
 	"Junctions": "Lesser Lantillian Route,Triellus Trade Route,Falko Run,Arleen Loop",
 },
 {
 	"Name": "Falko Run",
 	"SpeedFactor": 0.9,
-	"Route": "Oseon VII,Arleen,Ringneldia II,Dilonexa XXIII,Uaua,Falko,Antipose,Paulking XIV,Douglas III",
+	"Route": "Oseon VII,Sixth Belt,Arleen,Ringneldia II,Dilonexa XXIII,Uaua,Falko,Antipose,Paulking XIV,Douglas III",
 	"Junctions": "Cadma Conduit,Arleen Loop",
 },
 {
