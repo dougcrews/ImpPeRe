@@ -769,20 +769,23 @@ function updateTravelEstimates()
 		'</ul>'+
 		'<h3 align="left">Dice Results:</h3>' + // Vehicle Ops Star Journeys https://sites.google.com/view/sturns-stuff/star-wars-stuff/vehicle-ops
 		'<ul>' +
-		'<li>' + htmlSuccess + ' ' + htmlRightArrow + ' better exit point or reduced calculation time</li>' +
-		'<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' reduced travel time or +' + htmlBoostDie + ' next Piloting check</li>' +
-		'<li>' + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' hidden 1 round (stacking) from detection attempts</li>' +
-		'<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' minimum calculation time or travel time</li>' +
-		'<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' discovered a new Hyperroute</li>' +
-		'<li>' + htmlFailure + ' ' + htmlRightArrow + ' real-space debris near miss during flight: +1 System Strain</li>' +
+		'<li>each additional ' + htmlSuccess + ' ' + htmlRightArrow + ' +' + htmlBoostDie + ' next Piloting/Gunnery, one named crewmate.</li>' +
+		'<li>' + htmlFailure + ' ' + htmlRightArrow + ' failed to calculate route; may try again.</li>' +
+		'<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' reduced travel time 1 day (minimum 1 day).</li>' +
+		'<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' ' + htmlBoostDie + ' next Piloting check.</li>' +
+		'<li>' + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' hidden 1 round (stacking) from detection attempts.</li>' +
+		'<li>' + htmlTriumph + ' ' + htmlRightArrow + ' reduced travel time 1 week (minimum 1 day).</li>' +
+		'<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' discovered a new Hyperroute.</li>' +
+		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' real-space debris near miss during flight: +1 System Strain.</li>' +
+		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' navicomputer or astromech damaged 1 step (minor +' + htmlSetbackDie + ' ' + htmlRightArrow + ' major ' + htmlUpgradeDiff1x + ' ' + htmlRightArrow + ' unusable).';
+		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' Imperial presence (capital ship/base) nearby.</li>' +
+		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' real-space debris collision on arrival: +1 Hull Trauma.</li>' +
+		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' Imperial Customs inspection.</li>' +
+		'<li>' + htmlDespair + htmlDespair + ' ' + htmlRightArrow + ' real-space debris collision: Vehicle Critical Hit.</li>' +
+
 		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' +' + htmlSetbackDie + ' on next Piloting check</li>' +
-		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' navicomputer or astromech damaged 1 step (minor +' + htmlSetbackDie + ' ' + htmlRightArrow + ' major ' + htmlUpgradeDiff1x + ' ' + htmlRightArrow + ' unusable)';
-		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' real-space debris collision on arrival: +1 Hull Trauma</li>' +
 		'<li>' + htmlThreat + ' ' + htmlRightArrow + ' +10 on a Vehicle Critical Hit this flight</li>' +
-		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' Imperial presence (capital ship/base) nearby</li>' +
-		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' Imperial Customs inspection</li>' +
-		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' Astrogation computer damaged</li>' +
-		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' real-space debris collision: +1 Vehicle Critical Hit</li>' +
+		'<li>' + htmlDespair + '/' + htmlThreat + htmlThreat + ' ' + htmlRightArrow + ' BoSS inspection; </li>' +
 		'</ul>';
 
 	$('#astrogationPopup').html(astrogationPopupHtml);

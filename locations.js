@@ -4199,6 +4199,36 @@ const locations = [
 	"Bribery": 3, // infested with criminal elements
 },
 {
+	"Name": "Onderon",
+	"Region": "Inner Rim",
+	"Sector": "The Slice",
+	"System": "Japrael",
+	"Map": "O-9",
+	"Atmosphere": "Type I",
+	"Climate": "temperate",
+	"Terrain": "plains,<span class='highlight'>mountains</span>,<span class='highlight'>jungles</span>",
+	"Gravity": 1,
+	"Inhabitants": "Humans, (varied)",
+	"CapitalCity": "Iziz",
+	"URL": "https://starwars.fandom.com/wiki/Onderon/Legends",
+	"Starport": 3, // population 4 million, Royal Space Dock
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 2,
+	"ImperialPresence": 2, //most important ordance center in the sector
+	"OldWestiness": 0,
+	"Megafauna": 3, // cannocks & bomas & rupings, oh my!
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+},
+{
 	"Name": "Ord Pardron",
 	"Region": "Mid Rim",
 	"Sector": "Dufilvian",
