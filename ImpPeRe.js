@@ -772,7 +772,7 @@ function updateTravelEstimates()
 		'<li>each additional ' + htmlSuccess + ' ' + htmlRightArrow + ' +' + htmlBoostDie + ' next Piloting/Gunnery, one named crewmate.</li>' +
 		'<li>' + htmlFailure + ' ' + htmlRightArrow + ' failed to calculate route; may try again.</li>' +
 		'<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' reduced travel time 1 day (minimum 1 day).</li>' +
-		'<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' ' + htmlBoostDie + ' next Piloting check.</li>' +
+		'<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' +' + htmlBoostDie + ' next Piloting check.</li>' +
 		'<li>' + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' hidden 1 round (stacking) from detection attempts.</li>' +
 		'<li>' + htmlTriumph + ' ' + htmlRightArrow + ' reduced travel time 1 week (minimum 1 day).</li>' +
 		'<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' discovered a new Hyperroute.</li>' +
