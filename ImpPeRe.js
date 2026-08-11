@@ -1469,9 +1469,9 @@ function getTextLocalRarity()
 	htmlResponse += '<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' boost for the next vendor (which might be on a completely different planet)';
 	htmlResponse += '<li>' + htmlAdvantage + ' ' + htmlRightArrow + ' 1% discount (stacking) on price</li>';
 	htmlResponse += '<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' 1 item for sale already has a random mod installed, lower Encumbrance, or a situation-specific boost die</li>';
-	htmlResponse += '<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' the shopkeeper likes you and gives you a discount</li>';
+	htmlResponse += '<li>' + htmlTriumph + '/' + htmlAdvantage + htmlAdvantage + htmlAdvantage + ' ' + htmlRightArrow + ' the shopkeeper likes you and gives you a bulk discount</li>';
 	htmlResponse += '<li>' + htmlFailure + ' ' + htmlRightArrow + ' the item is not in local stock</li>';
-	htmlResponse += '<li>' + htmlThreat + ' ' + htmlRightArrow + ' setback for the next vendor (if the item is not available locally)';
+	htmlResponse += '<li>' + htmlThreat + ' ' + htmlRightArrow + ' +' + htmlSetbackDie + ' for the next vendor (if the item is not available locally)';
 	htmlResponse += '<li>' + htmlThreat + ' ' + htmlRightArrow + ' item for sale is damaged 1 step (minor +' + htmlSetbackDie + ' ' + htmlRightArrow + ' major ' + htmlUpgradeDiff1x + ' ' + htmlRightArrow + ' unusable)';
 	htmlResponse += '<li>' + htmlThreat + ' ' + htmlRightArrow + ' cost is increased 1% (stacking) due to local demand</li>';
 	htmlResponse += '<li>' + htmlDespair + '/' + htmlThreat + ' ' + htmlRightArrow + ' the item is available but on a different planet';
