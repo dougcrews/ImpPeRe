@@ -4229,6 +4229,49 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Ord Mantell",
+	"Region": "Mid Rim",
+	"Sector": "Bright Jewel",
+	"System": "Bright Jewel",
+	"Map": "L-7",
+	"Atmosphere": "Type I",
+	"Climate": "temperate, <span class='highlight'>hot</span>, pink clouds",
+	"Terrain": "<span class='highlight'>urban</span>, <span class='highlight'>jungle</span>, sea, <span class='highlight'>mountains</span>, mesa, plains, <span class='highlight'>volcanic</span> island, <span class='highlight'>vast</span> <span class='highlight'>junkyards</span>",
+	"Gravity": 1.0,
+	"Inhabitants": "Mantellian Savrip, (varied)",
+	"CapitalCity": "Worlport city, Morro Spaceport",
+	"URL": "https://starwars.fandom.com/wiki/Ord_Mantell/Legends",
+	"Starport": 3, // population 4 billion, Morro "one of the busiest spaceports in Bright Jewel sector"
+	"Shadowport": true, // haven for many smugglers, mercenaries and bounty hunters
+	"BlackMarket": true, // haven for many smugglers, mercenaries and bounty hunters
+	"Precipitation": 1,
+	"ImperialPresence": 0,
+	"OldWestiness": 3, // lawless haven for smugglers, mercenaries, and bounty hunters; popular among criminal orgs
+	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 4, // lawless haven for smugglers, mercenaries, and bounty hunters
+	"Slavery": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
+	"Spice": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
+	"Trespassing": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
+	"Military": 2, // lawless haven for smugglers, mercenaries, and bounty hunters
+	"Slicing": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
+	"Theft": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
+	"Bribery": 1, // history of
+	"events": [
+		'<li>Ord Mantell: It is not recommended to go unarmed into the Scraplands. Take the armored train instead.</li>',
+		'<li>Ord Mantell: Pink clouds waft lazily through the sky.</li>',
+		'<li>Ord Mantell: Two large moons fill the sky, even in daylight, causing unusual tidal forces.</li>',
+		'<li>Ord Mantell: A persistent brown smog burns your eyes slightly. +' + htmlSetbackDie + ' Perception and ranged attacks.</li>',
+		'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> A thick, pinkish outer cometary cloud offers a place to hide, if you wish.</li>',
+		'<li><span class="local-event-free">ATTENTION, PILOT:</span> The annual Blockade Runners Derby is seeking intrepid pilots. Cash prizes and fame await you.</li>',
+		'<li><span class="local-event-destiny-optional">LOCAL COLOR:</span> Groundquakes are common, causing unstable footing and potential threats to safety.</li>',
+		'<li><span class="local-event-destiny-optional">LOOT ALERT:</span> During descent from orbit, you notice a seemingly untouched derelict in the Scraplands. Might be worth checking out.</li>',
+		'<li><span class="local-event-destiny-optional">LOCAL CORRUPTION:</span> You are met at the starport by a local official. There are "additional fees" to be paid, in credits, if you don\'t want trouble.</li>',
+		'<li><span class="local-event-destiny-optional">POLITICAL STRIFE:</span> Tensions between pro-Savrip activists and Savrip hunting guides are escalating.</li>',
+		'<li><span class="local-event-free">LOCAL COLOR:</span> A Jawa scrapcrawler is parked in the marketplace. -1 Rarity and -10% cost on weapons and gear, but stock is limited and at least mildy damaged.</li>',
+	],
+},
+{
 	"Name": "Ord Pardron",
 	"Region": "Mid Rim",
 	"Sector": "Dufilvian",
@@ -4257,36 +4300,6 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
-},
-{
-	"Name": "Ord Mantell",
-	"Region": "Mid Rim",
-	"Sector": "Bright Jewel",
-	"System": "Bright Jewel",
-	"Map": "L-7",
-	"Atmosphere": "Type I",
-	"Climate": "temperate, <span class='highlight'>hot</span>, pink clouds",
-	"Terrain": "<span class='highlight'>urban</span>, <span class='highlight'>jungle</span>, sea, <span class='highlight'>mountains</span>, mesa, plains, <span class='highlight'>volcanic</span> island, <span class='highlight'>vast</span> <span class='highlight'>junkyards</span>",
-	"Gravity": 1.0,
-	"Inhabitants": "Mantellian Savrip, (varied)",
-	"CapitalCity": "Worlport city, Morro Spaceport",
-	"URL": "https://starwars.fandom.com/wiki/Ord_Mantell/Legends",
-	"Starport": 3, // population 4 billion, Morro "one of the busiest spaceports in Bright Jewel sector"
-	"Shadowport": false,
-	"BlackMarket": false,
-	"Precipitation": 1,
-	"ImperialPresence": 0,
-	"OldWestiness": 3, // lawless haven for smugglers, mercenaries, and bounty hunters; popular among criminal orgs
-	"Megafauna": 0,
-	"Rarity": 0,
-	"Criticism": 4, // lawless haven for smugglers, mercenaries, and bounty hunters
-	"Slavery": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
-	"Spice": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
-	"Trespassing": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
-	"Military": 2, // lawless haven for smugglers, mercenaries, and bounty hunters
-	"Slicing": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
-	"Theft": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
-	"Bribery": 1, // history of
 },
 {
 	"Name": "Orooturoo",
