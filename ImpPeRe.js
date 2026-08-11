@@ -187,6 +187,8 @@ function populateLocationDropdown()
 		$locationDropdown.append(
 			$("<option>", { value: location.Name, text: location.Name + tags })
 		);
+
+		$locationDropdown.value = currentLocation;
 	});
 }
 
