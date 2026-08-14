@@ -9,6 +9,7 @@
 
 // Globals
 currentLocation = Cookies.get()["currentLocation"] ;
+currentDestination = Cookies.get()["currentDestination"];
 currentLoc = {}; // JSON object
 currentRegion = {}; // JSON object
 destLocation = Cookies.get()["destLocation"];
@@ -54,13 +55,24 @@ $(document).ready(function ()
 	$("#manifest-menu-hidden").slideUp();
 	$(".hidden").slideUp();
 
-	// Default input values
+	// retrieve previous settings if they exist
 	getCookies();
+	if (currentLocation)
+	{
+		switchFontNormal();
+		$('#instructions-box').slideUp(); // hide Suggested Usage panel
+		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+		updateTravelEstimates();
+	}
 
 	populateLocationDropdown();
-//	populateDestinationDropdown();
+	if (currentLoc && currentLoc.Name)
+	{
+		populateDestinationDropdown();
+		updateAll();
+	}
 
-	updateAll();
 
 	// Location dropdown events
 	$("#locationDropdown").on("change", function () {
@@ -76,6 +88,7 @@ $(document).ready(function ()
 		$('#instructions-box').slideUp(); // hide Suggested Usage panel
 
 		updateAll();
+		setCookies();
 	});
 
 	// Destination dropdown events
@@ -83,8 +96,8 @@ $(document).ready(function ()
 		$("#destinationDetails").slideDown();
 		switchFontNormal(); // reset font-family
 
-		destLocation = $("#destinationDropdown").val();
-		if ("" == destLocation)
+		currentDestination = $("#destinationDropdown").val();
+		if ("" == currentDestination)
 		{
 			destLoc = {}; // JSON object
 			destRegion = {}; // JSON object
@@ -92,13 +105,14 @@ $(document).ready(function ()
 		}
 		else
 		{
-			destLoc = locations.find(item => item.Name === destLocation); // JSON object
+			destLoc = locations.find(item => item.Name === currentDestination); // JSON object
 			destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 			$('#estTravelTime').slideDown();
 		}
 
 		updateDestDetails();
 		updateTravelEstimates();
+		setCookies();
 	});
 
 	// On Change event for Ship Silhouette
@@ -128,9 +142,10 @@ $(document).ready(function ()
 	document.getElementById("strainMax").addEventListener("change", onChangeShipManifest);
 	document.getElementById("strainCurrent").addEventListener("change", onChangeShipManifest);
 
+
 	// General update of everything
 	$("input").change(function() {
-		Cookies.set("currentLocation", currentLoc.Name);
+		setCookies();
 		populateLocationDropdown();
 		populateDestinationDropdown();
 	});
@@ -147,8 +162,8 @@ function populateLocationDropdown()
 	$.each(locations, function (index, location) {
 
 		// Apply filters
-		if ($("#filterCurrBlackMarket").is(":checked") && (! location.BlackMarket))	return;
-		if ($("#filterCurrShadowport").is(":checked") && (! location.Shadowport)) return;
+		if ($("#filterCurrBlackMarket").is(":checked") && (!location.BlackMarket))	return;
+		if ($("#filterCurrShadowport").is(":checked") && (!location.Shadowport)) return;
 		// starport grade (goes backwards: Grade 1=best; in data file Starport 1=worst, 0=none)
 		filterGrade = $("#filterCurrStarportGrade").val();
 		if (filterGrade)
@@ -187,9 +202,29 @@ function populateLocationDropdown()
 		$locationDropdown.append(
 			$("<option>", { value: location.Name, text: location.Name + tags })
 		);
-
-		$locationDropdown.value = currentLocation;
 	});
+
+	document.getElementById("locationDropdown").value = currentLocation;
+}
+
+function getLocation(locationName)
+{
+	locationFound = locations.find(item => item.Name === locationName); // JSON object
+	if (!locationFound)
+	{
+		console.error('Unable to find location "' + locationName + '"');
+	}
+	return locationFound;
+}
+
+function getRegion(regionName)
+{
+	region = regions.find(region => region.Name === regionName); // JSON object
+	if (!region)
+	{
+		console.error('Unable to find region "' + regionName + '"');
+	}
+	return region;
 }
 
 // Populate destination dropdown
@@ -198,10 +233,17 @@ function populateDestinationDropdown()
 	const $destinationDropdown = $("#destinationDropdown");
 
 	$("#destinationDropdown").empty(); // clear previous list
-	$("#destinationDropdown").append('<option value="">-- Select Destination --</option>');
 
-	if (!currentLocation) return;
-	currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+	if (!(currentLoc && currentLoc.Name))
+	{
+		$("#destinationDropdown").append('<option value="">-- Please choose a current location --</option>');
+		return;
+	}
+	else
+	{
+		$("#destinationDropdown").append('<option value="">-- Select Destination --</option>');
+	}
+//	currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 
 	startMap = currentLoc.Map;
 	minDistance = Number($("#filterDistance").val());
@@ -258,11 +300,15 @@ function populateDestinationDropdown()
 			$("<option>", { value: location.Name, text: location.Name + tags })
 		);
 	});
+
+	// set dropdown element current value
+	document.getElementById("destinationDropdown").value = currentDestination;
 }
 
 function setCookies()
 {
 	Cookies.set("currentLocation", currentLocation);
+	Cookies.set("currentDestination", currentDestination);
 
 	Cookies.set("hullMax", $('#hullMax').val());
 	Cookies.set("hullCurrent", $('#hullCurrent').val());
@@ -278,7 +324,58 @@ function setCookies()
 
 function getCookies()
 {
-	currentLocation = Cookies.get()["currentLocation" || ""];
+	const paramsString = window.location.search;
+	const searchParams = new URLSearchParams(paramsString);
+	console.log(searchParams);
+
+	currentLocation = searchParams.get("loc");
+	if (!currentLocation)
+	{
+		currentLocation = Cookies.get()["currentLocation"] || "";
+	}
+	console.log('currentLocation = "' + currentLocation + '"');
+
+	if (currentLocation)
+	{
+		currentLoc = getLocation(currentLocation);
+		if (currentLoc && currentLoc.Region)
+		{
+			currentRegion = getRegion(currentLoc.Region);
+		}
+		else
+		{
+			console.error("No currentLoc.Region defined");
+		}
+	}
+	else
+	{
+		console.error("No location in getCookies()");
+	}
+
+	currentDestination = searchParams.get("dest");
+	if (!currentDestination)
+	{
+		currentDestination = Cookies.get()["currentDestination"] || "";
+	}
+	console.log('currentDestination = "' + currentDestination + '"');
+	if (currentDestination)
+	{
+		destLoc = getLocation(currentDestination);
+	}
+	else
+	{
+		console.error('Unable to find destination "' + currentDestination + '"');
+	}
+
+	// If these are set, then no need for help panel
+	if (currentLocation + currentDestination != "")
+	{
+		$('#instructions-box').slideUp(); // hide Suggested Usage panel
+	}
+	else
+	{
+		$('#instructions-box').slideDown(); // show Suggested Usage panel
+	}
 
 	$('#hullMax').val(Cookies.get()["hullMax"] || 22); // YT-1300
 	$('#hullCurrent').val(Cookies.get()["hullCurrent"] || 0);
@@ -292,36 +389,110 @@ function getCookies()
 	$("#pirateHolonet").prop("checked", Cookies.get()["pirateHolonet"] == "true");
 }
 
+function onChangeSilhouette()
+{
+	shipSilhouette = Number($('#shipSilhouette').val());
+	if (shipSilhouette > 4) // Commercial/Military size
+	{
+		$('#silh5plus').addClass("silhouette-5-plus");
+	}
+	else
+	{
+		$('#silh5plus').removeClass("silhouette-5-plus");
+	}
+
+	updateLocalCustoms();
+	setCookies();
+}
+
+function onChangeHyperdriveClass()
+{
+	updateTravelEstimates();
+	setCookies();
+}
+
+function onChangeCargoDeclared()
+{
+	updateLocalCustoms();
+	setCookies();
+}
+
+function togglePirateHolonet()
+{
+	isInstalled = $("#pirateHolonet").is(":checked");
+
+	if (isInstalled)
+	{
+		// display the hidden section(s)
+		$(".manifest-menu-hidden").slideDown();
+	}
+	else
+	{
+		// hide the hidden section(s)
+		$(".manifest-menu-hidden").slideUp();
+		// reset any hidden filter conditions to avoid confusion when the filter input is hidden
+		$(".filter-input-hidden").prop("checked", false);
+		$("#filterCurrStarportGrade").val("");
+		$("#filterDestStarportGrade").val("");
+	}
+
+	// Pirate Holonet alters the locations lists with extra info if installed
+	populateLocationDropdown();
+	populateDestinationDropdown();
+
+	setCookies();
+}
+
+// Galactic Travel Time adjustment
+function onChangeGalacticHyperspaceConstant()
+{
+	updateTravelEstimates();
+	setCookies();
+}
+
 function onChangeShipManifest()
 {
-	setCookies();
 	updateTravelEstimates();
 	updateLocalCustoms();
+	setCookies();
 }
 
 function updateAll()
 {
-	getCookies();
-
-	if (currentLocation)
+	if (!(currentLoc && currentLoc.Name))
 	{
-		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
-		if (currentLoc.Region) currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+		console.error("No current location in updateAll()");
+		return;
+	}
+
+//	if (currentLocation)
+//	{
+//		if (!currentLoc) currentLoc = getLocation(currentLocation);
+
+//		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+//		if (currentLoc.Region) currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 
 		updateCurrentAtmosphere();
-//		updateDestAtmosphere();
 		updateLocalEvents();
 		updateCurrentDetails();
-		updateDestDetails();
 		updateLocalCustoms();
 		updateTravelEstimates();
 		populateDestinationDropdown();
-	}
+//	}
 
 	if (currentLocation && currentLoc && currentLoc.Name)
+	{
 		$("#locationDetails").slideDown();
-	if (destLocation && destLoc && destLoc.Name)
+	}
+
+	if (currentDestination)
+	{
+		destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+		destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+		updateDestDetails();
+		$('#estTravelTime').slideDown();
 		$("#destinationDetails").slideDown();
+	}
 
 	setCookies();
 }
@@ -329,7 +500,9 @@ function updateAll()
 // updates the current location Atmosphere description
 function updateCurrentAtmosphere()
 {
-	if (! currentLoc.Name) return;
+	if (!(currentLoc && currentLoc.Name)) console.error("No currentLoc in updateCurrentAtmosphere()");
+
+//	if (! currentLoc.Name) return;
 
 	$('#currentAtmosphere').text(currentLoc.Atmosphere);
 
@@ -352,68 +525,46 @@ function updateCurrentAtmosphere()
 	}
 }
 
-// updates the destination location Atmosphere description
-function updateDestAtmosphere()
-{
-	if (! destLoc) return;
-
-	$('#destAtmosphere').text(destLoc.Atmosphere);
-
-	$('#destAtmosphere').removeClass('atmos-1 atmos-2 atmost3 atmos-4').addClass('font-normal');;
-	if (destLoc.Atmosphere === "Type IV")
-	{
-		$('#destAtmosphere').addClass('atmos-4');
-	}
-	else if (destLoc.Atmosphere === "Type III")
-	{
-		$('#destAtmosphere').addClass('atmos-3');
-	}
-	else if (destLoc.Atmosphere === "Type II")
-	{
-		$('#destAtmosphere').addClass('atmos-2');
-	}
-	else if (destLoc.Atmosphere === "Type I")
-	{
-		$('#destAtmosphere').addClass('atmos-1');
-	}
-}
-
 function updateLocalEvents()
 {
-	if (! currentLoc.Name) return;
+	if (!(currentLoc && currentLoc.Name)) console.error("No currentLoc in updateLocalEvents()");
+	if (!(currentRegion && currentRegion.Name)) console.error("No currentRegion in updateLocalEvents()");
 
-	currentLocation = $("#locationDropdown").val();
-	if (! (currentLoc && currentLoc.Name))
-		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
-	if (! (currentRegion && currentRegion.Name))
-		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+//	if (! currentLoc.Name) return;
+
+//	currentLocation = $("#locationDropdown").val();
+//	if (! (currentLoc && currentLoc.Name))
+//		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+//	if (! (currentRegion && currentRegion.Name))
+//		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 
 	// Reset local events
 	$("#local-events").empty();
 	$("#local-events").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
 
 	// Shadowport
-	if (currentLoc.Shadowport) {
+	if (currentLoc && currentLoc.Shadowport) {
 		$("#local-events").append('<li>RUMOR HAS IT: A clandestine <href="https://starwars.fandom.com/wiki/Shadowport">shadowport</a> is here somewhere.</li>');
 	}
 
 	// Black Market
-	if (currentLoc.BlackMarket) {
+	if (currentLoc && currentLoc.BlackMarket) {
 		$("#local-events").append('<li>RUMOR HAS IT: A thriving <href="https://starwars.fandom.com/wiki/Black_market/Legends">black market</a> is here somewhere.</li>');
 	}
 
 	// Arrival event
 	populateArrivalEvent();
 
-	if (! (currentLoc && currentLoc.Name))
-		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
-	if (! (currentRegion && currentRegion.Name))
-		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+//	if (! (currentLoc && currentLoc.Name))
+//		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
+
+//	if (! (currentRegion && currentRegion.Name))
+//		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 
 	// Arrival in system events
 	populateArrivalEvents(currentLoc.ImperialPresence);
 
-	// Local events
+	// Empire events
 	populateEmpireEvents(currentRegion.ImperialPresence);
 
 	// Old West events
@@ -423,11 +574,72 @@ function updateLocalEvents()
 	populateOldWestEvents(currentLoc.Megafauna);
 }
 
+// Arrival event
+function populateArrivalEvent()
+{
+	const hiddenRounds = Math.round(Math.random() * 2); // this will be impacted by ship components like Holonet Pirate Array and similar
+	arrivalEvent = "ATTENTION, NAVIGATOR: ";
+	if (hiddenRounds > 0)
+	{
+		arrivalEvent += "You are hidden for " + hiddenRounds + " round(s) from detection attempts.";
+	}
+	else
+	{
+		arrivalEvent += "You have arrived safely.";
+	}
+	$("#arrivalEvent").text(arrivalEvent);
+
+//	const localWeather = "unknown"; // @FIX
+//	const localTerrain = "some starport"; // @FIX
+//	$("#localWeather").text(localWeather + ", " + localTerrain);
+}
+
+// Arrival in system events
+function populateArrivalEvents(eventCount)
+{
+	$("#local-events").append(currentLoc.events);
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		$("#local-events").append(arrivalEvents[ii]);
+	}
+}
+
+// Local events
+
+function populateEmpireEvents(eventCount)
+{
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		const newEvent = getRandom(localEmpireEvents);
+		$("#local-events").append(newEvent);
+	}
+}
+
+function populateOldWestEvents(eventCount)
+{
+	for (ii = 0; ii < eventCount; ii++)
+	{
+		const newEvent = getRandom(localOldWestEvents);
+		$("#local-events").append(newEvent);
+	}
+}
+
 function updateCurrentDetails()
 {
-	if (currentLoc && currentLoc.Name)
+	if (!(currentLoc && currentLoc.Name))
 	{
-		if (! (currentRegion && currentRegion.Name)) currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+		console.error("No currentLoc in updateLocalEvents()");
+		return;
+	}
+	if (!(currentLoc && currentRegion.Name))
+	{
+		console.error("No currentRegion in updateLocalEvents()");
+		return;
+	}
+
+//	if (currentLoc && currentLoc.Name)
+//	{
+//		if (! (currentRegion && currentRegion.Name)) currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 
 		// Current Location update screen elements
 		$("#currentRegion").html(currentLoc.Region);
@@ -435,7 +647,7 @@ function updateCurrentDetails()
 		$("#currentSystem").html(currentLoc.System);
 		$("#currentCapital").html(currentLoc.CapitalCity);
 		$("#currentMap").html(currentLoc.Map);
-		updateCurrentAtmosphere();
+//		updateCurrentAtmosphere();
 		$("#currentTerrain").html(currentLoc.Terrain);
 		$("#currentInhabitants").html(currentLoc.Inhabitants);
 		$("#currentClimate").html(currentLoc.Climate);
@@ -446,30 +658,46 @@ function updateCurrentDetails()
 		$("#currentURL").attr("href", currentLoc.URL);
 		$("#currentURL").text(currentLoc.Name);
 		$("#currentRegionURL").attr("title", currentRegion.Name);
-		$("#currentRegionURL").attr("href", "https://starwars.fandom.com/wiki/" + currentRegion.Name.replace(" ", "_") + "/Legends");
+//		$("#currentRegionURL").attr("href", "https://starwars.fandom.com/wiki/" + currentRegion.Name.replace(" ", "_") + "/Legends");
+		$("#currentRegionURL").attr("href", toGalactipediaALink(currentRegion.Name));
 		$("#currentRegionURL").text(currentRegion.Name);
-	}
+//	}
 }
 
 function updateDestDetails()
 {
-	if (destLoc && destLoc.Name)
-	{
-		if (! (destRegion && destRegion.Name)) destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+	if (!destLoc.Name) console.error("No destLoc in updateDestDetails()");
+
+//	destLoc = locations.find(item => item.Name === currentDestination); // JSON object
+//	destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
+
+//	if (destLoc && destLoc.Name)
+//	{
+//		if (! (destRegion && destRegion.Name)) destRegion = regions.find(region => region.Name === destLoc.Region); // JSON object
 
 		$("#destURL").attr("title", destLoc.Name);
 		$("#destURL").attr("href", destLoc.URL);
 		$("#destURL").text(destLoc.Name);
-	}
+//	}
 }
 
 function updateLocalCustoms() // and starport costs, permits, contraband,...
 {
-	if (!currentLocation) return;
-	if (! (currentLoc && currentLoc.Name))
+//	if (!currentLocation) return;
+	if (!(currentLoc && currentLoc.Name))
+	{
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
-	if (! (currentRegion && currentRegion.Name))
+	}
+	if (!(currentRegion && currentRegion.Name))
+	{
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
+	}
+	if (!(currentLoc && currentLoc.Name))
+	{
+		console.error("currentLoc not defined");
+		return;
+	}
+
 	shipSilhouette = Number($('#shipSilhouette').val());
 
 	// Options calculations & variables
@@ -594,8 +822,139 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	$('#textLawBribery').html(textLawBribery);
 }
 
+function rarityCostIncrease(costRarity)
+{
+	switch(sanitize(costRarity, -4, 4))
+	{
+		case -4:
+			return '<span style="color:green">50% for certain items</span>';
+		case -3:
+			return '<span style="color:green">75% for certain items</span>';
+		case -2:
+			return '<span style="color:green">90% for certain items</span>';
+		case -1:
+			return '<span style="color:green">95% for certain items</span>';
+		case 0:
+		case 1:
+			return "standard";
+		case 2:
+			return '<span style="color:red">200%</span>';
+		case 3:
+			return '<span style="color:red">300%</span>';
+		case 4:
+			return '<span style="color:red">400%</span>';
+		default:
+			return "the emperor is a fink!";
+	}
+}
+
+// Vehicle Ops: Repairs & Wear https://star-wars-rpg-ffg.fandom.com/wiki/Category:Homebrew
+function getRepairsEstimate()
+{
+	if (!(currentLoc && currentLoc.Starport))
+	{
+		console.err("No currentLoc in getRepairsEstimate()");
+		return;
+	}
+
+	shipSilhouette = Number($('#shipSilhouette').val());
+	starportRating = Number(currentLoc.Starport); // 0 to 5; 0 = none, 5 = best
+	pirateHolonetInstalled = $("#pirateHolonet").is(":checked");
+	basePrice = 0.00;
+	multiplier = 1.0;
+	htmlResponse = "";
+
+	switch (shipSilhouette)
+	{
+		case 0: basePrice = 100.00; break; // minimum fee to fix your space-skateboard
+		case 1: basePrice = 200.00; break;
+		case 2: basePrice = 400.00; break;
+		case 3: basePrice = 600.00; break;
+		case 4: basePrice = 800.00; break;
+		case 5: basePrice = 1000.00; break;
+		case 6: basePrice = 5000.00; break;
+		case 7: basePrice = 20000.00; break;
+		case 8: basePrice = 100000.00; break;
+		case 9: basePrice = 500000.00; break;
+		default: basePrice = 800.00; break;
+	}
+
+	hullMax = Number($('#hullMax').val());
+	hullCurrent = Number($('#hullCurrent').val());
+	if (hullCurrent > (hullMax * 0.5))
+	{
+		multiplier *= 2.0;
+		if (pirateHolonetInstalled) htmlResponse += "[major hull trauma surcharge] ";
+	}
+	else if (hullCurrent > (hullMax * 0.25))
+	{
+		multiplier *= 1.5;
+		if (pirateHolonetInstalled) htmlResponse += "[minor hull trauma surcharge] ";
+	}
+	else if (hullCurrent == 0)
+	{
+		return "(no repairs needed)";
+	}
+
+	if (multiplier > 1.0)
+	{
+		htmlResponse = '<span style="color:red">' + htmlResponse;
+	}
+	else if (multiplier < 1.0)
+	{
+		htmlResponse = '<span style="color:green">' + htmlResponse;
+	}
+	else
+	{
+		htmlResponse = '<span>' + htmlResponse;
+	}
+
+	htmlResponse += (basePrice * multiplier) + "cr ";
+
+	switch(starportRating)
+	{
+		case 0: // no facilities
+			return "(no starport exists) +(" + htmlSetbackDie + htmlSetbackDie + ")";
+			break;
+		case 1: // Landing Field, grade 5
+			if (shipSilhouette > 4) return "(Grade 4 starport required)";
+			multiplier *= 0.50;
+			htmlResponse += " (" + htmlAbilityDie + " +" + htmlSetbackDie + ")";
+			break;
+		case 2: // Limited Services, grade 4
+			if (shipSilhouette > 5) return "(Grade 3 starport required)";
+			multiplier *= 0.75;
+			htmlResponse += " (" + htmlProficiencyDie + htmlAbilityDie + " +" + htmlBoostDie + ")";
+			break;
+		case 3: // Standard Class, grade 3
+			if (shipSilhouette > 6) return "(Grade 2 starport required)";
+			// multiplier *= 1.0;
+			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + ")";
+			break;
+		case 4: // Stellar Class, grade 2
+			if (shipSilhouette > 8) return "(Grade 1 starport required)";
+			multiplier *= 2.0;
+			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + ")";
+			break;
+		case 5: // Imperial Class, grade 1
+			multiplier *= 3.0;
+			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + htmlSuccess + ")";
+			break;
+	}
+
+	htmlResponse += '</span>';
+
+	return htmlResponse;
+}
+
 function updateTravelEstimates()
 {
+	if (!(currentLoc && currentLoc.Map))
+	{
+		console.error("No currentLoc in updateTravelEstimates()");
+		return;
+	}
+
 	totalFactor = 1.0;
 	hyperlanesAtOrigin = 0;
 	hyperlanesAtDest = 0;
@@ -612,49 +971,51 @@ function updateTravelEstimates()
 
 	// Find Hyperlanes available for current location
 	currentRouteList = "";
-	if (currentLoc)
-	{
-		hyperspaceRoutes.forEach(route => {
-			// Only show the secret ones if you have the right equipment
-			if (route.Name in ["Biox Detour"])
-			{
-				if (! $("#pirateHolonet").is(":checked")) return;
-			}
+	hyperspaceRoutes.forEach(route => {
+		// Only show the secret ones if you have the right equipment
+		if (route.Name in ["Biox Detour"])
+		{
+			if (! $("#pirateHolonet").is(":checked")) return;
+		}
 
-			const planets = route.Route.split(",");
-			if (planets.indexOf(currentLoc.Name) != -1)
-			{
-				hyperlanesAtOrigin++;
-				if (currentRouteList.length > 0) currentRouteList += "<br/>";
-				const factor = (1.0 - (Math.max(1.0, route.Route.split(",").length) * 0.005)).toFixed(2);
-				totalFactor *= factor;
-				currentRouteList += toGalactipediaALink(route.Name) + " (factor " + factor + ")";
-			}
-		});
+		const planets = route.Route.split(",");
+		if (planets.indexOf(currentLoc.Name) != -1)
+		{
+			hyperlanesAtOrigin++;
+			if (currentRouteList.length > 0) currentRouteList += "<br/>";
+			const factor = (1.0 - (Math.max(1.0, route.Route.split(",").length) * 0.005)).toFixed(2);
+			totalFactor *= factor;
+			currentRouteList += toGalactipediaALink(route.Name) + " (factor " + factor + ")";
+		}
+	});
+
+	$('#currentHyperlanes').html(currentRouteList);
+
+	if (!(destLoc && destLoc.Map))
+	{
+		console.error("No destLoc in updateTravelEstimates()");
+		return;
 	}
 
 	// Find Hyperlanes available for destination
 	destRouteList = "";
-	if (destLoc)
-	{
-		hyperspaceRoutes.forEach(route => {
-			const planets = route.Route.split(",");
-			// Only show the secret ones if you have the right equipment
-			if (route.Name in ["Biox Detour"])
-			{
-				if (! $("#pirateHolonet").is(":checked")) return;
-			}
+	hyperspaceRoutes.forEach(route => {
+		const planets = route.Route.split(",");
+		// Only show the secret ones if you have the right equipment
+		if (route.Name in ["Biox Detour"])
+		{
+			if (! $("#pirateHolonet").is(":checked")) return;
+		}
 
-			if (planets.indexOf(destLoc.Name) != -1)
-			{
-				hyperlanesAtDest++;
-				if (destRouteList.length > 0) destRouteList += "<br/>";
-				const factor = (1.0 - (Math.max(1.0, route.Route.split(",").length) * 0.005)).toFixed(2);
-				totalFactor *= factor;
-				destRouteList += toGalactipediaALink(route.Name) + " (factor " + factor + ")";
-			}
-		});
-	};
+		if (planets.indexOf(destLoc.Name) != -1)
+		{
+			hyperlanesAtDest++;
+			if (destRouteList.length > 0) destRouteList += "<br/>";
+			const factor = (1.0 - (Math.max(1.0, route.Route.split(",").length) * 0.005)).toFixed(2);
+			totalFactor *= factor;
+			destRouteList += toGalactipediaALink(route.Name) + " (factor " + factor + ")";
+		}
+	});
 
 	if (currentRouteList.length > 0 && destRouteList.length > 0)
 	{
@@ -679,7 +1040,6 @@ function updateTravelEstimates()
 		}
 	}
 
-	$('#currentHyperlanes').html(currentRouteList);
 	$('#destHyperlanes').html(destRouteList);
 
 	// Fly Casual pg78
@@ -814,29 +1174,6 @@ function getDicePool(difficulty)
 	return html;
 }
 
-function togglePirateHolonet()
-{
-	isInstalled = $("#pirateHolonet").is(":checked");
-	Cookies.set("pirateHolonet", isInstalled);
-
-	if (isInstalled)
-	{
-		// display the hidden section(s)
-		$(".manifest-menu-hidden").slideDown();
-	}
-	else
-	{
-		// hide the hidden section(s)
-		$(".manifest-menu-hidden").slideUp();
-		// reset any hidden filter conditions to avoid confusion when the filter input is hidden
-		$(".filter-input-hidden").prop("checked", false);
-		$("#filterCurrStarportGrade").val("");
-		$("#filterDestStarportGrade").val("");
-	}
-	populateLocationDropdown();
-	populateDestinationDropdown();
-}
-
 // Converts a number to an integer within the given bounds
 function sanitize(val, lowerBound, upperBound)
 {
@@ -845,7 +1182,7 @@ function sanitize(val, lowerBound, upperBound)
 	return retVal;
 }
 
-// Converts a number to display value: "XXcr" or "(waived)"
+// Converts a number XX to display value: "XXcr" or "(waived)"
 function creditsOrWaived(val)
 {
 	const saneVal = (Number.isInteger(Math.round(val)) ? Math.round(val) : 0);
@@ -892,6 +1229,7 @@ function smugglingPenalty(val)
 			return "(unknown)";
 	}
 }
+
 // Converts a -5 to 5 number to display value
 function weaponPenalty(val)
 {
@@ -929,7 +1267,7 @@ function weaponPenalty(val)
 function getHyperspaceFactor()
 {
 	totalFactor = 1;
-	if (currentLoc)
+	if (currentLoc && currentLoc.Name)
 	{
 		// EotE pg150 World on primary trade lane
 		// Appromimate by counting the planets in the hyperlanes which include this location.
@@ -957,6 +1295,11 @@ function getHyperspaceFactor()
 
 function rarityModFor(json)
 {
+	if (!(currentLoc && currentLoc.Name))
+	{
+		console.error("No currentLoc in rarityModFor()");
+		return;
+	}
 	localRarity = json.Rarity + 0;
 	if (json.Region)
 	{
@@ -1071,69 +1414,6 @@ function gravityText(val)
 	return 'Standard';
 }
 
-// Arrival event
-function populateArrivalEvent() {
-	const hiddenRounds = Math.round(Math.random() * 2); // this will be impacted by ship components like Holonet Pirate Array and similar
-	arrivalEvent = "ATTENTION, NAVIGATOR: ";
-	if (hiddenRounds > 0)
-	{
-		arrivalEvent += "You are hidden for " + hiddenRounds + " round(s) from detection attempts.";
-	}
-	else
-	{
-		arrivalEvent += "You have arrived safely.";
-	}
-	$("#arrivalEvent").text(arrivalEvent);
-
-//	const localWeather = "unknown"; // @FIX
-//	const localTerrain = "some starport"; // @FIX
-//	$("#localWeather").text(localWeather + ", " + localTerrain);
-}
-
-// Arrival in system events
-function populateArrivalEvents(eventCount)
-{
-	$("#local-events").append(currentLoc.events);
-	for (ii = 0; ii < eventCount; ii++)
-	{
-		$("#local-events").append(arrivalEvents[ii]);
-	}
-}
-
-// Local events
-
-function populateEmpireEvents(eventCount)
-{
-	for (ii = 0; ii < eventCount; ii++)
-	{
-		const newEvent = getRandom(localEmpireEvents);
-		$("#local-events").append(newEvent);
-	}
-}
-
-function populateOldWestEvents(eventCount)
-{
-	for (ii = 0; ii < eventCount; ii++)
-	{
-		const newEvent = getRandom(localOldWestEvents);
-		$("#local-events").append(newEvent);
-	}
-}
-
-function onChangeCargoDeclared()
-{
-	setCookies();
-	updateLocalCustoms();
-}
-
-// Galactic Travel Time adjustment
-function onChangeGalacticHyperspaceConstant()
-{
-	Cookies.set("GHC", $("#galacticHyperspaceConstant").val());
-	Cookies.set("hyperdriveClass", $("#hyperdriveClass").val());
-	updateTravelEstimates();
-}
-
 function getParsecsBetween(startMap, endMap)
 {
 	const minParsecs = 0.5; // minimum travel distance for Astrogation purposes
@@ -1189,13 +1469,6 @@ function hoursToTravelTimeDesc(hours) // 178 = 1 week, 0 days, 10 hours
 	retVal += days + " day" + (days === 1 ? "" : "s") + ", " + hoursLeft + " hour" + (hoursLeft === 1 ? "" : "s");
 	return retVal;
 }
-
-function onChangeHyperdriveClass()
-{
-	Cookies.set("hyperdriveClass", $("#hyperdriveClass").val());
-	updateTravelEstimates();
-}
-
 
 function cleanFonts()
 {
@@ -1294,159 +1567,22 @@ function fontNormalElements()
 	$("#textSmugglingPenalty").removeClass("font-besh font-starwars").addClass("font-normal");
 	$("#textWeaponPenalty").removeClass("font-besh font-starwars").addClass("font-normal");
 	$("#textWaitDeparture").removeClass("font-besh font-starwars").addClass("font-normal");
-
 }
 
-function toGalactipediaURL(name)
-{
-	return "https://starwars.fandom.com/wiki/" + name.replace(" ", "_"); // sometimes with /Legends appended; might need more fine tuning
-}
+//function toGalactipediaURL(name)
+//{
+//	return "https://starwars.fandom.com/wiki/" + name.replace(" ", "_"); // sometimes with /Legends appended; might need more fine tuning
+//}
 
 function toGalactipediaALink(name)
 {
-	return '<a href="' + toGalactipediaURL(name) + '" target="_blank">' + name + '</a>';
-}
-
-function onChangeSilhouette()
-{
-	shipSilhouette = Number($('#shipSilhouette').val());
-	Cookies.set("shipSilhouette", shipSilhouette);
-
-	if (shipSilhouette > 4) // Commercial/Military size
-	{
-		$('#silh5plus').addClass("silhouette-5-plus");
-	}
-	else
-	{
-		$('#silh5plus').removeClass("silhouette-5-plus");
-	}
-
-	updateLocalCustoms();
-
+	linkName = "https://starwars.fandom.com/wiki/" + name.replace(" ", "_");
+	return '<a href="' + linkName + '" target="_blank">' + name + '</a>';
 }
 
 function toggleHelp()
 {
 	$('#instructions-box').slideToggle();
-}
-
-function rarityCostIncrease(costRarity)
-{
-	switch(sanitize(costRarity, -4, 4))
-	{
-		case -4:
-			return '<span style="color:green">50% for certain items</span>';
-		case -3:
-			return '<span style="color:green">75% for certain items</span>';
-		case -2:
-			return '<span style="color:green">90% for certain items</span>';
-		case -1:
-			return '<span style="color:green">95% for certain items</span>';
-		case 0:
-		case 1:
-			return "standard";
-		case 2:
-			return '<span style="color:red">200%</span>';
-		case 3:
-			return '<span style="color:red">300%</span>';
-		case 4:
-			return '<span style="color:red">400%</span>';
-		default:
-			return "the emperor is a fink!";
-	}
-}
-
-// Vehicle Ops: Repairs & Wear https://star-wars-rpg-ffg.fandom.com/wiki/Category:Homebrew
-function getRepairsEstimate()
-{
-	shipSilhouette = Number($('#shipSilhouette').val());
-	starportRating = Number(currentLoc.Starport); // 0 to 5; 0 = none, 5 = best
-	pirateHolonetInstalled = $("#pirateHolonet").is(":checked");
-	basePrice = 0.00;
-	multiplier = 1.0;
-	htmlResponse = "";
-
-	switch (shipSilhouette)
-	{
-		case 0: basePrice = 100.00; break; // minimum fee to fix your space-skateboard
-		case 1: basePrice = 200.00; break;
-		case 2: basePrice = 400.00; break;
-		case 3: basePrice = 600.00; break;
-		case 4: basePrice = 800.00; break;
-		case 5: basePrice = 1000.00; break;
-		case 6: basePrice = 5000.00; break;
-		case 7: basePrice = 20000.00; break;
-		case 8: basePrice = 100000.00; break;
-		case 9: basePrice = 500000.00; break;
-		default: basePrice = 800.00; break;
-	}
-
-	hullMax = Number($('#hullMax').val());
-	hullCurrent = Number($('#hullCurrent').val());
-	if (hullCurrent > (hullMax * 0.5))
-	{
-		multiplier *= 2.0;
-		if (pirateHolonetInstalled) htmlResponse += "[major hull trauma surcharge] ";
-	}
-	else if (hullCurrent > (hullMax * 0.25))
-	{
-		multiplier *= 1.5;
-		if (pirateHolonetInstalled) htmlResponse += "[minor hull trauma surcharge] ";
-	}
-	else if (hullCurrent == 0)
-	{
-		return "(no repairs needed)";
-	}
-
-	if (multiplier > 1.0)
-	{
-		htmlResponse = '<span style="color:red">' + htmlResponse;
-	}
-	else if (multiplier < 1.0)
-	{
-		htmlResponse = '<span style="color:green">' + htmlResponse;
-	}
-	else
-	{
-		htmlResponse = '<span>' + htmlResponse;
-	}
-
-	htmlResponse += (basePrice * multiplier) + "cr ";
-
-	switch(starportRating)
-	{
-		case 0: // no facilities
-			return "(no starport exists) +(" + htmlSetbackDie + htmlSetbackDie + ")";
-			break;
-		case 1: // Landing Field, grade 5
-			if (shipSilhouette > 4) return "(Grade 4 starport required)";
-			multiplier *= 0.50;
-			htmlResponse += " (" + htmlAbilityDie + " +" + htmlSetbackDie + ")";
-			break;
-		case 2: // Limited Services, grade 4
-			if (shipSilhouette > 5) return "(Grade 3 starport required)";
-			multiplier *= 0.75;
-			htmlResponse += " (" + htmlProficiencyDie + htmlAbilityDie + " +" + htmlBoostDie + ")";
-			break;
-		case 3: // Standard Class, grade 3
-			if (shipSilhouette > 6) return "(Grade 2 starport required)";
-			// multiplier *= 1.0;
-			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + ")";
-			break;
-		case 4: // Stellar Class, grade 2
-			if (shipSilhouette > 8) return "(Grade 1 starport required)";
-			multiplier *= 2.0;
-			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + ")";
-			break;
-		case 5: // Imperial Class, grade 1
-			multiplier *= 3.0;
-			htmlResponse += " (" + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlProficiencyDie + htmlAbilityDie + " +" + htmlSuccess + htmlSuccess + htmlSuccess + ")";
-			break;
-	}
-
-	htmlResponse += '</span>';
-
-	return htmlResponse;
 }
 
 // EotE Table 5-1 pg150

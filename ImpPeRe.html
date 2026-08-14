@@ -11,6 +11,7 @@
 	<script src="locations.js"></script>
 	<script src="regions.js"></script>
 	<script src="hyperspace.js"></script>
+	<script src="missions.js"></script>
 	<script src="url.js"></script>
 	<script src="events.js"></script>
 	<link rel="stylesheet" href="ImpPeRe.css">
@@ -228,11 +229,6 @@
 			<!-- Local Rumors -->
 			<td class="local-events align-top">
 				<h4 class="local-customs-box-header font-starwars">Local Rumors reported at <span id="localEventsLocation">your location</span></h4>
-				<div>
-					<ul id="local-events" class="font-normal">
-						<center>(select a Location at top left)</center><!-- populated dynamically -->
-					</ul>
-				</div>
 				<div id="instructions-box" class="instructions-box font-normal tooltip">
 					<strong>Suggested Usage:</strong>
 					<ul>
@@ -267,6 +263,11 @@
 							</select>
 						</span>
 					</div>
+				</div>
+				<div>
+					<ul id="local-events" class="font-normal">
+						<center>(select a Location at top left)</center><!-- populated dynamically -->
+					</ul>
 				</div>
 			</td>
 		</tr>
@@ -335,7 +336,7 @@
 
 	<div display="inline">
 		<span class="payme-link"><a href="https://buymeacoffee.com/1gquRzpXr" target="_blank">if you find this helpful</a></span>
-		<span id="helpButton" style="float: right;" onclick="toggleHelp()">help</span>
+		<span id="helpButton" style="float:right; text-decoration-line=underline" onclick="toggleHelp()">help</span>
 	</div>
 </body>
 
