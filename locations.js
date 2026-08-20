@@ -424,6 +424,48 @@ const locations = [
 	"Bribery": 0,
 },
 {
+	"Name": "Balosar",
+	"Region": "Core Worlds",
+	"Sector": "Southern Core",
+	"System": "Balosar",
+	"Map": "L-12",
+	"Atmosphere": "Type I <span class='highlight'>highly polluted</span>",
+	"Climate": "temperate",
+	"Terrain": "<span class='highlight'>polluted, poverty-stricken industrial</span>, <a href='https://starwars.fandom.com/wiki/Balo_mushroom/Legends' target='_blank'>balo mushroom</a> caves",
+	"Gravity": 1,
+	"Inhabitants": "Balosar",
+	"CapitalCity": "(feuding factories)",
+	"URL": "https://starwars.fandom.com/wiki/Balosar/Legends",
+	"Starport": 3, // population 10 billion
+	"Shadowport": false,
+	"BlackMarket": true, // source of Death Sticks
+	"Precipitation": 0,
+	"ImperialPresence": 0,
+	"OldWestiness": 5, // most residents turned to crime
+	"Megafauna": -3, // heavily industrialized
+	"Rarity": 0,
+	"Criticism": 0,
+	"Slavery": 0,
+	"Spice": 5, // source of Death Sticks
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 2, // feuding factories
+	"Bribery": 0, // feuding factories
+	"events": [
+		'Balosar: Air pollution hurts your lungs (smog +' + htmlSetbackDie + ' all physical activities).',
+		'Balosar: The polluted air blocks out even the night sky (smog +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting).',
+		'<span class="local-event-free" id="local1" checked>YOUR DEALER CALLED</span>: <i>"Psst! Wanna buy some ' +
+			'<b>Rarity -1, not (R)estricted</b> <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Sticks" target="_blank">Death Sticks</a>?" ' +
+			'</i> (' + htmlUpgradeAbility1x + ' Charm/Cool/Resilience; +' + htmlSetbackDie +
+			' all tasks, one encounter; Resilience Easy or +1 Obligation from addiction)',
+		'<span class="local-event-free" id="local2" checked>SHORTAGE</span>: Pollution has hit the mushroom caves, poisoning the spores. ' +
+			'(+1 Rarity <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Sticks" target="_blank">Death Sticks</a>" ' +
+			'(Rarity -1, not (R)estricted)</i> (' + htmlUpgradeAbility1x + ' Charm/Cool/Resilience; +' + htmlSetbackDie +
+			' all tasks, one encounter; Resilience Easy or +1 Obligation from addiction)',
+	],
+},
+{
 	"Name": "Bandomeer",
 	"Region": "Outer Rim",
 	"Sector": "Meerian",
@@ -4230,13 +4272,12 @@ const locations = [
 	"events": [
 		'Onderon: Of the four moons in the sky, Dxun looms over you almost close enough to touch.',
 		'Onderon: Iziz is not only the capital and largest city, it is the <i>only</i> city on the planet.',
+		'Onderon: It is not wise to venture into the jungle without a guide.',
 		'<span class="local-event-free" id="local1">LOCAL COLOR:</span> Dxun is close enough to share atmosphere with Onderon.',
-		'<span class="local-event-free" id="local2">LOCAL COLOR:</span> It is not wise to venture into the jungle without a guide.',
-		'<span class="local-event-destiny-optional" id="local3">LOOT ALERT:</span> On descent from orbit, you spot what might be a long-abandoned Mandalorian structure, untouched by looters.',
-		'<span class="local-event-destiny-optional" id="local4">IMPERIAL PRESENCE:</span> Travel is restricted over the giant Imperial military ordnance depot.',
-		'<span class="local-event-destiny-optional" id="local5">POLITICAL STRIFE:</span> Tensions are running high between Iziz City leaders and the exiled Beast Riders of Kira.',
-		'<span class="local-event-destiny-optional" id="local6">SURPLUS:</span> The Beast Riders are rumored to have well-trained riding beasts at a deep discount. <i>If you can find them.</i>',
-		'<span class="local-event-free" id="local7">LOCAL COLOR:</span> Was that a Mandalorian you just saw?',
+		'<span class="local-event-destiny-optional" id="local3">IMPERIAL PRESENCE:</span> Travel is restricted over the giant Imperial military ordnance depot.',
+		'<span class="local-event-destiny-optional" id="local4">POLITICAL STRIFE:</span> Tensions are running high between Iziz City leaders and the exiled Beast Riders of Kira.',
+		'<span class="local-event-destiny-optional" id="local5">SURPLUS:</span> The Beast Riders are rumored to have well-trained riding beasts at a deep discount. <i>If you can find them.</i>',
+		'<span class="local-event-free" id="local6">A BRUSH WITH GREATNESS:</span> Was that a Mandalorian you just saw?',
 	],
 },
 {
@@ -4914,6 +4955,24 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+		'Ryloth: Tidally locked, Bright Side (constant glare +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting); Nightlands (darkness +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting)',
+		'Ryloth: How do they stand it so hot here? (+' + htmlSetbackDie + ' all physical activities from high temperatures)',
+		'Ryloth: If you venture out the blast doors of the underground cities at the Bright Side/Nightlands terminator, be aware of vicious predators.',
+		'Ryloth: YOUR DEALER CALLED: <i>"Psst! Wanna buy some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ryll" target="_blank">Ryll</a>? Fresh from the factory."</i> ' +
+			'(ignore Critical Injury temporarily, one encounter; withdrawal: suffer the Critical Injury, +' + htmlSetbackDie + '' + htmlSetbackDie + ' this session)',
+		'<span class="local-event-free" id="local1" checked>LOCAL WEATHER</span>: The atmosphere is particularly thin today. (Resilience Easy or +' +
+			htmlSetbackDie + ' all physical activites)',
+		'<span class="local-event-free" id="local2" checked>LOCAL WEATHER</span>: Heat Storm! Extremely high winds (500 km/h) and ' +
+			'temperatures (300°C) are possible.',
+		'<span class="local-event-free" id="local3" checked>LOCAL COLOR</span>: Visit the Floating Rock Gardens. Super relaxing! (+' + htmlBoostDie + ' next Charm, Cool, Deception, Leadership check)',
+		'<span class="local-event-destiny-optional" id="local4" checked>YOUR DEALER CALLED</span>: You haven\'t partied until you\'ve partied ' +
+			'with Glitteryll. Only on Ryloth! (ignore Critical Injury temporarily, one encounter; withdrawal, suffer Critical Injury effects, +' + htmlSetbackDie +
+			htmlSetbackDie + ', this session); hallucinogenic (+' + htmlBoostDie + htmlBoostDie + htmlBoostDie +
+			' all Perception & Vigilance, one encounter; highly addictive (Resilience Avg or +1 Obligation from addiction); possible temporary telepathy)',
+		'<span class="local-event-free" id="local5" checked>SCUM & VILLAINY</span>: A skilled doctor could use the local <a href="Ixetal cilona" target="_blank">' +
+			' to enhance their skills. (+' + htmlBoostDie + ' Medicine checks each dose used)',
+	],
 },
 {
 	"Name": "Saclas",
