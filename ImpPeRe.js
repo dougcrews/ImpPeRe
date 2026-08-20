@@ -60,6 +60,7 @@ $(document).ready(function ()
 	if (currentLocation)
 	{
 		switchFontNormal();
+		$('#genericEventsLocation').text(currentLocation);
 		$('#instructions-box').slideUp(); // hide Suggested Usage panel
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
@@ -84,7 +85,7 @@ $(document).ready(function ()
 		currentLoc = locations.find(item => item.Name === currentLocation); // JSON object
 		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 		Cookies.set("currentRegion", currentRegion);
-		$('#localEventsLocation').text(currentLocation);
+		$('#genericEventsLocation').text(currentLocation);
 		$('#instructions-box').slideUp(); // hide Suggested Usage panel
 
 		updateAll();
@@ -540,16 +541,16 @@ function updateLocalEvents()
 
 	// Reset local events
 	$("#local-events").empty();
-	$("#local-events").append('<li id="arrivalEvent">ATTENTION, NAVIGATOR: You have arrived safely.</li>');
+	$("#local-events").append('ATTENTION, NAVIGATOR: You have arrived safely.<br/>');
 
 	// Shadowport
 	if (currentLoc && currentLoc.Shadowport) {
-		$("#local-events").append('<li>RUMOR HAS IT: A clandestine <href="https://starwars.fandom.com/wiki/Shadowport">shadowport</a> is here somewhere.</li>');
+		$("#local-events").append('RUMOR HAS IT: A clandestine <href="https://starwars.fandom.com/wiki/Shadowport">shadowport</a> is here somewhere.<br/>');
 	}
 
 	// Black Market
 	if (currentLoc && currentLoc.BlackMarket) {
-		$("#local-events").append('<li>RUMOR HAS IT: A thriving <href="https://starwars.fandom.com/wiki/Black_market/Legends">black market</a> is here somewhere.</li>');
+		$("#local-events").append('RUMOR HAS IT: A thriving <href="https://starwars.fandom.com/wiki/Black_market/Legends">black market</a> is here somewhere.<br/>');
 	}
 
 	// Arrival event
@@ -562,7 +563,7 @@ function updateLocalEvents()
 //		currentRegion = regions.find(region => region.Name === currentLoc.Region); // JSON object
 
 	// Arrival in system events
-	populateArrivalEvents(currentLoc.ImperialPresence);
+	populateLocalEvents(currentLoc.ImperialPresence + currentRegion.ImperialPresence + currentRegion.OldWestiness + currentLoc.Megafauna);
 
 	// Empire events
 	populateEmpireEvents(currentRegion.ImperialPresence);
@@ -577,7 +578,7 @@ function updateLocalEvents()
 // Arrival event
 function populateArrivalEvent()
 {
-	const hiddenRounds = Math.round(Math.random() * 2); // this will be impacted by ship components like Holonet Pirate Array and similar
+	const hiddenRounds = Math.round(Math.random() * 2); // this should be impacted by ship components like Holonet Pirate Array and similar
 	arrivalEvent = "ATTENTION, NAVIGATOR: ";
 	if (hiddenRounds > 0)
 	{
@@ -587,7 +588,8 @@ function populateArrivalEvent()
 	{
 		arrivalEvent += "You have arrived safely.";
 	}
-	$("#arrivalEvent").text(arrivalEvent);
+
+	$("#arrivalEvent").text(arrivalEvent + '<br/>');
 
 //	const localWeather = "unknown"; // @FIX
 //	const localTerrain = "some starport"; // @FIX
@@ -595,33 +597,47 @@ function populateArrivalEvent()
 }
 
 // Arrival in system events
-function populateArrivalEvents(eventCount)
+function populateLocalEvents(eventCount)
 {
-	$("#local-events").append(currentLoc.events);
-	for (ii = 0; ii < eventCount; ii++)
+	if (!(currentLoc.events && currentLoc.events.length)) return;
+
+	for (ii = 0; ii < currentLoc.events.length; ii++)
 	{
-		$("#local-events").append(arrivalEvents[ii]);
+		if (currentLoc.events[ii].indexOf("local-event-") == -1) // event always active for this location
+		{
+			$("#local-events").append(currentLoc.events[ii] + '<br/>');
+		}
+		else if ((Math.random() * 10) < eventCount)
+		{
+			$("#local-events").append('<input type="checkbox" id="local' + ii + '"/> (' + currentLoc.Name + ') ' + currentLoc.events[ii] + '<br/>');
+		}
 	}
+
 }
 
 // Local events
 
 function populateEmpireEvents(eventCount)
 {
-	for (ii = 0; ii < eventCount; ii++)
+	for (ii = 0; ii < localEmpireEvents.length; ii++)
 	{
-		const newEvent = getRandom(localEmpireEvents);
-		$("#local-events").append(newEvent);
+		if ((Math.random() * 100) < eventCount)
+		{
+			$("#local-events").append('<input type="checkbox" id="empire' + ii + '"/> ' + localEmpireEvents[ii] + '<br/>');
+		}
 	}
 }
 
 function populateOldWestEvents(eventCount)
 {
-	for (ii = 0; ii < eventCount; ii++)
+	for (ii = 0; ii < localOldWestEvents.length; ii++)
 	{
-		const newEvent = getRandom(localOldWestEvents);
-		$("#local-events").append(newEvent);
+		if ((Math.random() * 100) < eventCount)
+		{
+			$("#local-events").append('<input type="checkbox" id="oldwest' + ii + '"/> ' + localOldWestEvents[ii] + '<br/>');
+		}
 	}
+
 }
 
 function updateCurrentDetails()

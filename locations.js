@@ -270,7 +270,7 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Hoth asteroid field provides some cover and concealment, if you desire.</li>',
+		'<span class="local-event-free" id="local1" checked>ATTENTION, NAVIGATOR</span>: The Hoth asteroid field provides some cover and concealment, if you desire.',
 	],
 },
 {
@@ -1173,7 +1173,7 @@ const locations = [
 	"Theft": 1,
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The vast asteroid field provides some cover and concealment, if you desire.</li>',
+		'<span class="local-event-free" id="local1" checked>ATTENTION, NAVIGATOR</span>: The vast asteroid field provides some cover and concealment, if you desire.',
 	],
 },
 {
@@ -2136,12 +2136,12 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-destiny-optional">GORSE</span>: The Interstellar Thorilide Guild is striking. Expect transportation delays and possible street violence.</li>',
-		'<li><span class="local-event-free">GORSE</span>: Local cantina, The Asteroid Belt, has some <i>interesting</i> denizens lately. You must be cautious.</li>',
-		'<li><span class="local-event-free">GORSE</span>: A minor festival celebrates the monthly reflected light from Cynda.</li>',
-		'<li><span class="local-event-destiny-optional">GORSE</span>: Full Cynda moon. The secretive blood cult may be active. Watch your pets.</li>',
-		'<li><span class="local-event-destiny-optional">GORSE</span>: It\'s earthquake season thanks to Cynda\'s close orbit.</li>',
-		'<li><span class="local-event-destiny-optional">ATTENTION, DOCTOR</span>: An outbreak of Shilmer\'s Disease threatens public safety.</li>',
+		'<span class="local-event-destiny-optional id="local1">GORSE</span>: The Interstellar Thorilide Guild is striking. Expect transportation delays and possible street violence.',
+		'<span class="local-event-free" id="local2">GORSE</span>: Local cantina, The Asteroid Belt, has some <i>interesting</i> denizens lately. You must be cautious.',
+		'<span class="local-event-free" id="local3">GORSE</span>: A minor festival celebrates the monthly reflected light from Cynda.',
+		'<span class="local-event-destiny-optional" id="local4">GORSE</span>: Full Cynda moon. The secretive blood cult may be active. Watch your pets.',
+		'<span class="local-event-destiny-optional" id="local5">GORSE</span>: It\'s earthquake season thanks to Cynda\'s close orbit.',
+		'<span class="local-event-destiny-optional" id="local6">ATTENTION, DOCTOR</span>: An outbreak of Shilmer\'s Disease threatens public safety.',
 	],
 },
 {
@@ -2294,7 +2294,7 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Hoth asteroid field provides some cover and concealment, if you desire.</li>',
+		'<span class="local-event-free" id="local1" checked>ATTENTION, NAVIGATOR</span>: The Hoth asteroid field provides some cover and concealment, if you desire.',
 	],
 },
 {
@@ -3740,8 +3740,8 @@ const locations = [
 	"Theft": -1, // InterGalactic Banking Clan
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, PILOT:</span> The Pilaan podrace course is looking for talented drivers.</li>',
-		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> We are being hailed by High Port Space Center. They want to know our business in the system. Your orders?</li>',
+		'<span class="local-event-free" id="local1">ATTENTION, PILOT:</span> The Pilaan podrace course is looking for talented drivers.',
+		'<span class="local-event-free" id="local2">ATTENTION, CAPTAIN:</span> We are being hailed by High Port Space Center. They want to know our business in the system. Your orders?',
 	],
 },
 {
@@ -3804,8 +3804,8 @@ const locations = [
 	"Theft": -1, // InterGalactic Banking Clan
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Zuborte Ma asteroid field provides some cover and concealment, if you desire.</li>',
-		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> We are being hailed by InterGalactic Banking Clan warships. Your orders?</li>',
+		'<span class="local-event-free" id="local1">ATTENTION, NAVIGATOR</span>: The Zuborte Ma asteroid field provides some cover and concealment, if you desire.',
+		'<span class="local-event-free" id="local2">ATTENTION, CAPTAIN:</span> We are being hailed by InterGalactic Banking Clan warships. Your orders?',
 	],
 },
 {
@@ -4227,6 +4227,17 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+		'Onderon: Of the four moons in the sky, Dxun looms over you almost close enough to touch.',
+		'Onderon: Iziz is not only the capital and largest city, it is the <i>only</i> city on the planet.',
+		'<span class="local-event-free" id="local1">LOCAL COLOR:</span> Dxun is close enough to share atmosphere with Onderon.',
+		'<span class="local-event-free" id="local2">LOCAL COLOR:</span> It is not wise to venture into the jungle without a guide.',
+		'<span class="local-event-destiny-optional" id="local3">LOOT ALERT:</span> On descent from orbit, you spot what might be a long-abandoned Mandalorian structure, untouched by looters.',
+		'<span class="local-event-destiny-optional" id="local4">IMPERIAL PRESENCE:</span> Travel is restricted over the giant Imperial military ordnance depot.',
+		'<span class="local-event-destiny-optional" id="local5">POLITICAL STRIFE:</span> Tensions are running high between Iziz City leaders and the exiled Beast Riders of Kira.',
+		'<span class="local-event-destiny-optional" id="local6">SURPLUS:</span> The Beast Riders are rumored to have well-trained riding beasts at a deep discount. <i>If you can find them.</i>',
+		'<span class="local-event-free" id="local7">LOCAL COLOR:</span> Was that a Mandalorian you just saw?',
+	],
 },
 {
 	"Name": "Ord Mantell",
@@ -4258,17 +4269,17 @@ const locations = [
 	"Theft": 1, // lawless haven for smugglers, mercenaries, and bounty hunters
 	"Bribery": 1, // history of
 	"events": [
-		'<li>Ord Mantell: It is not recommended to go unarmed into the Scraplands. Take the armored train instead.</li>',
-		'<li>Ord Mantell: Pink clouds waft lazily through the sky.</li>',
-		'<li>Ord Mantell: Two large moons fill the sky, even in daylight, causing unusual tidal forces.</li>',
-		'<li>Ord Mantell: A persistent brown smog burns your eyes slightly. +' + htmlSetbackDie + ' Perception and ranged attacks.</li>',
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> A thick, pinkish outer cometary cloud offers a place to hide, if you wish.</li>',
-		'<li><span class="local-event-free">ATTENTION, PILOT:</span> The annual Blockade Runners Derby is seeking intrepid pilots. Cash prizes and fame await you.</li>',
-		'<li><span class="local-event-destiny-optional">LOCAL COLOR:</span> Groundquakes are common, causing unstable footing and potential threats to safety.</li>',
-		'<li><span class="local-event-destiny-optional">LOOT ALERT:</span> During descent from orbit, you notice a seemingly untouched derelict in the Scraplands. Might be worth checking out.</li>',
-		'<li><span class="local-event-destiny-optional">LOCAL CORRUPTION:</span> You are met at the starport by a local official. There are "additional fees" to be paid, in credits, if you don\'t want trouble.</li>',
-		'<li><span class="local-event-destiny-optional">POLITICAL STRIFE:</span> Tensions between pro-Savrip activists and Savrip hunting guides are escalating.</li>',
-		'<li><span class="local-event-free">LOCAL COLOR:</span> A Jawa scrapcrawler is parked in the marketplace. -1 Rarity and -10% cost on weapons and gear, but stock is limited and at least mildy damaged.</li>',
+		'Ord Mantell: It is not recommended to go unarmed into the Scraplands. Take the armored train instead.',
+		'Ord Mantell: Pink clouds waft lazily through the sky.',
+		'Ord Mantell: Two large moons fill the sky, even in daylight, causing unusual tidal forces.',
+		'Ord Mantell: A persistent brown smog burns your eyes slightly. +' + htmlSetbackDie + ' Perception and ranged attacks.',
+		'<span class="local-event-free" id="local1">ATTENTION, NAVIGATOR:</span> A thick, pinkish outer cometary cloud offers a place to hide, if you wish.',
+		'<span class="local-event-free" id="local2">ATTENTION, PILOT:</span> The annual Blockade Runners Derby is seeking intrepid pilots. Cash prizes and fame await you.',
+		'<span class="local-event-destiny-optional" id="local3">LOCAL COLOR:</span> Groundquakes are common, causing unstable footing and potential threats to safety.',
+		'<span class="local-event-destiny-optional" id="local4">LOOT ALERT:</span> During descent from orbit, you notice a seemingly untouched derelict in the Scraplands. Might be worth checking out.',
+		'<span class="local-event-destiny-optional" id="local5">LOCAL CORRUPTION:</span> You are met at the starport by a local official. There are "additional fees" to be paid, in credits, if you don\'t want trouble.',
+		'<span class="local-event-destiny-optional" id="local6">POLITICAL STRIFE:</span> Tensions between pro-Savrip activists and Savrip hunting guides are escalating.',
+		'<span class="local-event-free" id="local7">LOCAL COLOR:</span> A Jawa scrapcrawler is parked in the marketplace. -1 Rarity and -10% cost on weapons and gear, but stock is limited and at least mildy damaged.',
 	],
 },
 {
@@ -4391,7 +4402,7 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Polis Massa asteroid field provides some cover and concealment, if you desire.</li>',
+		'<span class="local-event-free" id="local" checked>ATTENTION, NAVIGATOR</span>: The Polis Massa asteroid field provides some cover and concealment, if you desire.',
 	],
 },
 {
@@ -4994,7 +5005,7 @@ const locations = [
 	"Theft": 2, // Mask of the Pirate Queen
 	"Bribery": 5, // Mask of the Pirate Queen
 	"events": [
-		'<li><span class="local-event-destiny-optional">SALEUCAMI:</span> <i>"Psst! I got some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Bubse_Spice" target="_blank">Bubse</a>."</i> (Wound Threshold +4, one encounter; +20 Critical Hit result, one encounter)</li>',
+		'<span class="local-event-destiny-optional" id="local1">SALEUCAMI:</span> <i>"Psst! I got some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Bubse_Spice" target="_blank">Bubse</a>."</i> (Wound Threshold +4, one encounter; +20 Critical Hit result, one encounter)',
 	],
 },
 {
@@ -5177,9 +5188,9 @@ const locations = [
 	"Theft": -1, // tourists
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR:</span> The 6 large asteroid fields provide some cover and concealment, if you prefer.</li>',
-		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> Tourists convene in great numbers for the Flamewind.</li>',
-		'<li><span class="local-event-destiny-required">ATTENTION, CAPTAIN:</span> The Flamewind is active, causing radiation, communications, travel, and health concerns.</li>',
+		'<span class="local-event-free" id="local1">ATTENTION, NAVIGATOR:</span> The 6 large asteroid fields provide some cover and concealment, if you prefer.',
+		'<span class="local-event-free" id="local2">ATTENTION, CAPTAIN:</span> Tourists convene in great numbers for the Flamewind.',
+		'<span class="local-event-destiny-required" id="local3">ATTENTION, CAPTAIN:</span> The Flamewind is active, causing radiation, communications, travel, and health concerns.',
 	],
 },
 {
@@ -5272,7 +5283,7 @@ const locations = [
 	"Theft": 1,
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The vast asteroid field provides some cover and concealment, if you desire.</li>',
+		'<span class="local-event-free" id="local1" checked>ATTENTION, NAVIGATOR</span>: The vast asteroid field provides some cover and concealment, if you desire.',
 	],
 },
 {
@@ -5515,8 +5526,8 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'<li>Tantalus Detention Facility: The station is at the center of a nebula of helium and oxygen which obscures sensors, but portions <i>may</i> be breathable. What little your sensors can detect indicates a large number of weapon platforms tracking you.</li>',
-		'<li><span class="local-event-free">ATTENTION, CAPTAIN:</span> <i>"<b>Unknown Vessel</b>, warning. You have breached the perimeter of a secure facility. <b>Identify yourself</b> immediately. <b>Power down your engines</b> and prepare to be vaporized for your own protection.</i>"</li>',
+		'Tantalus Detention Facility: The station is at the center of a nebula of helium and oxygen which obscures sensors, but portions <i>may</i> be breathable. What little your sensors can detect indicates a large number of weapon platforms tracking you.',
+		'<span class="local-event-free" id="local" checked>ATTENTION, CAPTAIN:</span> <i>"<b>Unknown Vessel</b>, warning. You have breached the perimeter of a secure facility. <b>Identify yourself</b> immediately. <b>Power down your engines</b> and prepare to be vaporized for your own protection.</i>"',
 	],
 },
 {
@@ -5549,8 +5560,8 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'<li>Big Meet: Big Meet is neutral turf. No bounties, vengeance, feuds, etc., are enforceable here.</li>',
-		'<li>Big Meet: (R)estricted goods are available, but at Rarity +1.</li>',
+		'Big Meet: Big Meet is neutral turf. No bounties, vengeance, feuds, etc., are enforceable here.',
+		'Big Meet: (R)estricted goods are available, but at Rarity +1.',
 	],
 },
 {
@@ -5583,13 +5594,13 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 1,
 	"events": [
-		'<li>Circuit City: Clean, well-lit, and utilitarian. Skulduggery, Stealth +' + htmlSetbackDie + htmlSetbackDie + '</li>',
-		'<li>Circuit City: Organics are tolerated, cybernetics are accepted, droids are welcomed.</li>',
-		'<li>Circuit City: Cybernetics, Droids, Electronics: Rarity -1</li>',
-		'<li>Circuit City: Drugs, Medical, Relics, Survival: Rarity +1</li>',
-		'<li>Circuit City: Null Hub (neutral ground for Droidian factions) connects via tubes to various faction territories.</li>',
-		'<li>Factions: Entities Front for Droids (EFfD), Droidian Entities Front (DEF), Front for Droidian Entitiness (FfDE), EntiDroids, others...</li>',
-		'<li>Circuit City: Organics beware. There are no bathrooms, showers, or food in Circuit City.</li>',
+		'Circuit City: Clean, well-lit, and utilitarian. Skulduggery, Stealth +' + htmlSetbackDie + htmlSetbackDie + '',
+		'Circuit City: Organics are tolerated, cybernetics are accepted, droids are welcomed.',
+		'Circuit City: Cybernetics, Droids, Electronics: Rarity -1',
+		'Circuit City: Drugs, Medical, Relics, Survival: Rarity +1',
+		'Circuit City: Null Hub (neutral ground for Droidian factions) connects via tubes to various faction territories.',
+		'Factions: Entities Front for Droids (EFfD), Droidian Entities Front (DEF), Front for Droidian Entitiness (FfDE), EntiDroids, others...',
+		'Circuit City: Organics beware. There are no bathrooms, showers, or food in Circuit City.',
 	],
 },
 {
@@ -5622,11 +5633,11 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'<li>Little Kashyyyk: Located not on the main station, but in a thick part of the nebula a short way away.</li>',
-		'<li>Little Kashyyyk: Nebula oxygen is thick enough to breathe normally.</li>',
-		'<li>Little Kashyyyk: NO GRAVITY. The Wookiees who live here have adapted to life without gravity. Jumping between trees is a common method of travel.</li>',
-		'<li>Little Kashyyyk: Headquarters of the Hnggarghhngh Onghghgh Wookiee Liberation League (HOWLL).</li>',
-		'<li>Little Kashyyyk: Wookiee gear is Rarity -1, but non-Wookiees pay a +1 Rarity surcharge on <i>all</i> items.</li>',
+		'Little Kashyyyk: Located not on the main station, but in a thick part of the nebula a short way away.',
+		'Little Kashyyyk: Nebula oxygen is thick enough to breathe normally.',
+		'Little Kashyyyk: NO GRAVITY. The Wookiees who live here have adapted to life without gravity. Jumping between trees is a common method of travel.',
+		'Little Kashyyyk: Headquarters of the Hnggarghhngh Onghghgh Wookiee Liberation League (HOWLL).',
+		'Little Kashyyyk: Wookiee gear is Rarity -1, but non-Wookiees pay a +1 Rarity surcharge on <i>all</i> items.',
 	],
 },
 {
@@ -5660,14 +5671,14 @@ const locations = [
 	"Bribery": 0,
 	"Rarity": -2, // you can get anything you want, at Tantalus Restaurant...
 	"events": [
-		'<li>Hutt District: Clean but not fancy. Mildly moist, high humidity. Perception, Skulduggery +' + htmlSetbackDie + '</li>',
-		'<li>Hutt District: Corrosive atmosphere. <span class="highlight">Wear a mask</span> to avoid lung damage.</li>',
-		'<li>Hutt District: Repellent odor. +1-3 ' + htmlSetbackDie + ' all relevant skills if not acclimated.</li>',
-		'<li>Hutt District: Gamorrean guards patrol everywhere. Stealth +' + htmlSetbackDie + '</li>',
-		'<li>Hutt District: Mild sedative/hallucinogen added to airflow system +' + htmlSetbackDie + ' all mental skill checks</li>',
-		'<li>Hutt District: All species are welcome to gamble on the races and Sabacc tables.</li>',
-		'<li>Hutt District: Creatures for sale at Rarity -2.</li>',
-		'<li>Hutt District: Neutral turf for all feuds and bounty contracts.</li>',
+		'Hutt District: Clean but not fancy. Mildly moist, high humidity. Perception, Skulduggery +' + htmlSetbackDie + '',
+		'Hutt District: Corrosive atmosphere. <span class="highlight">Wear a mask</span> to avoid lung damage.',
+		'Hutt District: Repellent odor. +1-3 ' + htmlSetbackDie + ' all relevant skills if not acclimated.',
+		'Hutt District: Gamorrean guards patrol everywhere. Stealth +' + htmlSetbackDie + '',
+		'Hutt District: Mild sedative/hallucinogen added to airflow system +' + htmlSetbackDie + ' all mental skill checks',
+		'Hutt District: All species are welcome to gamble on the races and Sabacc tables.',
+		'Hutt District: Creatures for sale at Rarity -2.',
+		'Hutt District: Neutral turf for all feuds and bounty contracts.',
 	],
 },
 {
@@ -5701,11 +5712,11 @@ const locations = [
 	"Bribery": 2,
 	"Rarity": 1,
 	"events": [
-		'<li>New Coruscant: Busy streets, high rise buildings, crowds, artificial rain. All <i>civilized</i> sentients welcome.</li>',
-		'<li>New Coruscant: Drugs & poisons, medical care Rarity -2</li>',
-		'<li>New Coruscant: If you\'re wealthy (or can pretend to be), Rarity -1.</li>',
-		'<li>New Coruscant: Strong police presence. Skulduggery, Streetwise +' + htmlSetbackDie + '</li>',
-		'<li>New Coruscant: The finest shipwrights exiled from Corellia landed here, if you have the credits to hire them.</li>',
+		'New Coruscant: Busy streets, high rise buildings, crowds, artificial rain. All <i>civilized</i> sentients welcome.',
+		'New Coruscant: Drugs & poisons, medical care Rarity -2',
+		'New Coruscant: If you\'re wealthy (or can pretend to be), Rarity -1.',
+		'New Coruscant: Strong police presence. Skulduggery, Streetwise +' + htmlSetbackDie + '',
+		'New Coruscant: The finest shipwrights exiled from Corellia landed here, if you have the credits to hire them.',
 	],
 },
 {
@@ -5739,11 +5750,11 @@ const locations = [
 	"Bribery": -1,
 	"Rarity": -5,
 	"events": [
-		'<li>The Hive: Obi-wan was wrong. There <b><i>is</i></b> a more wretched hive of scum and villiany. It\'s picking your pocket right now.</li>',
-		'<li>The Hive: Dimly lit. Chaotic infrastructure. Crowds. Comlinks don\'t always work.</li>',
-		'<li>The Hive: All species, all occupations, all genders, all sizes, are welcome to be the next victim.</li>',
-		'<li>The Hive: If you can\'t find it anywhere else, you can find it here. Lowest Rarity in the known \'verse.</li>',
-		'<li>The Hive: Hand-to-hand weapons and explosives are -1 Rarity here.</li>',
+		'The Hive: Obi-wan was wrong. There <b><i>is</i></b> a more wretched hive of scum and villiany. It\'s picking your pocket right now.',
+		'The Hive: Dimly lit. Chaotic infrastructure. Crowds. Comlinks don\'t always work.',
+		'The Hive: All species, all occupations, all genders, all sizes, are welcome to be the next victim.',
+		'The Hive: If you can\'t find it anywhere else, you can find it here. Lowest Rarity in the known \'verse.',
+		'The Hive: Hand-to-hand weapons and explosives are -1 Rarity here.',
 	],
 },
 {
@@ -6436,7 +6447,7 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'<li><span class="local-event-free">ATTENTION, NAVIGATOR</span>: The Smuggler\'s Run asteroid field provides some cover and concealment, if you desire.</li>',
+		'<span class="local-event-free" id="local1" checked>ATTENTION, NAVIGATOR</span>: The Smuggler\'s Run asteroid field provides some cover and concealment, if you desire.',
 	],
 },
 {
