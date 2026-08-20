@@ -596,6 +596,9 @@ function populateArrivalEvent()
 //	$("#localWeather").text(localWeather + ", " + localTerrain);
 }
 
+// higher = more events chosen
+const EVENTS_FACTOR = 0.5; // @TODO make this user-customizable
+
 // Arrival in system events
 function populateLocalEvents(eventCount)
 {
@@ -607,7 +610,7 @@ function populateLocalEvents(eventCount)
 		{
 			$("#local-events").append(currentLoc.events[ii] + '<br/>');
 		}
-		else if ((Math.random() * 10) < eventCount)
+		else if ((Math.random() * 10) < eventCount * EVENTS_FACTOR)
 		{
 			$("#local-events").append('<input type="checkbox" id="local' + ii + '"/> (' + currentLoc.Name + ') ' + currentLoc.events[ii] + '<br/>');
 		}
@@ -616,12 +619,11 @@ function populateLocalEvents(eventCount)
 }
 
 // Local events
-
 function populateEmpireEvents(eventCount)
 {
 	for (ii = 0; ii < localEmpireEvents.length; ii++)
 	{
-		if ((Math.random() * 100) < eventCount)
+		if ((Math.random() * 100) < eventCount * EVENTS_FACTOR)
 		{
 			$("#local-events").append('<input type="checkbox" id="empire' + ii + '"/> ' + localEmpireEvents[ii] + '<br/>');
 		}
@@ -632,7 +634,7 @@ function populateOldWestEvents(eventCount)
 {
 	for (ii = 0; ii < localOldWestEvents.length; ii++)
 	{
-		if ((Math.random() * 100) < eventCount)
+		if ((Math.random() * 100) < eventCount * EVENTS_FACTOR)
 		{
 			$("#local-events").append('<input type="checkbox" id="oldwest' + ii + '"/> ' + localOldWestEvents[ii] + '<br/>');
 		}
