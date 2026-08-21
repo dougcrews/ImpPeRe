@@ -94,7 +94,7 @@ const locations = [
 		'Aleen: The 3m+ tall can-cell insects look fearsome, but mostly they are used as flying couriers for Aleen riders.',
 		'Aleen: Do not harm the local arbozoic trees. They are considered holy by both the surface dwelling Aleen and the subterranean Kindalo.',
 		'<span class="local-event-free" id="local1">ATTENTION, PILOT</span>: The local podracing circuit is always looking for new blood. Sometimes literally. (+100-1000cr if you win a race)',
-		'<span class="local-event-free" id="local2">The local sportsball tournament looks fun, and may help you make local friends.',
+		'<span class="local-event-free" id="local2">ATTENTION, ATHLETE</span>: The local sportsball tournament looks fun, and may help you make local friends.',
 	],
 },
 {
@@ -2644,13 +2644,29 @@ const locations = [
 	"Megafauna": 5, // layered deathtrap
 	"Rarity": 0,
 	"Criticism": 0,
-	"Slavery": 1, // enslaved by the Empire
+	"Slavery": 5, // enslaved by the Empire
 	"Spice": 0,
 	"Trespassing": 0,
-	"Military": 0,
-	"Slicing": 0,
-	"Theft": 0,
+	"Military": -3, // enslaved Wookiees
+	"Slicing": -1, // Wookiees are rarely criminal
+	"Theft": -1, // Wookiees are rarely criminal
 	"Bribery": 0,
+	"events": [
+		'Kashyyk: The majestic wroshyr trees soar high in the sky, branches merging into leafy Wookiee communities.',
+		'Kashyyk: Of the seven levels leading to the Shadowlands, it is not recommended to venture below the fourth.',
+		'Kashyyk: Be careful harvesting plants. Some of them are sentient. Others are carnivorous.',
+		'Kashyyk: Three moons light the night sky. One of them has a large farming industry and breathable air.',
+		'Kashyyk: Trandoshans are considered unwelcome in many Wookiee establishments.',
+		'Kashyyk: Wookiees are currently enslaved by the Empire.',
+		'<span class="local-event-free" id="local">IMPERIAL OPPRESSION:</span> <i>"You there, Wookiee! Stop and present your identicard."</i>',
+		'<span class="local-event-free" id="local">IMPERIAL SLAVERY:</span> A manacled, sorrowful group of Wookies is led to a skyhook to be slaves for the Empire.',
+		'<span class="local-event-destiny-optional" id="local">SURPLUS:</span> If you know the right people to ask (Streetwise/Underworld), Bowcasters are readily (-2 Rarity) available.',
+		'<span class="local-event-destiny-optional" id="local">SURPLUS:</span> If you know the right people to ask (Streetwise/Underworld), Ryyk Blades are readily (-2 Rarity) available',
+		'<span class="local-event-free" id="local">IMPERIAL OPPRESSION:</span> A squad of stormtroopers rushes past, looking to apprehend a rebellious Wookiee.',
+		'<span class="local-event-destiny-optional" id="local">IMPERIAL PRESENCE:</span> <i>"Kashyyk? I wouldn\'t say that so loud. The Imps get Impy if you don\'t call it Territory G5-623."</i>',
+		'<span class="local-event-destiny-optional" id="local">WOOKIEE CULTURE:</span> Do not ask about the Hnggarghhngh Onghghgh Wookiee Liberation League (HOWLL) if you value your arm sockets.',
+		'<span class="local-event-destiny-optional" id="local">LOCAL COLOR:</span> A trandoshan guide is sponsoring a Wookiee hunt. Are you interested, good sentient?',
+	]
 },
 {
 	"Name": "Kassido",
@@ -3815,16 +3831,16 @@ const locations = [
 	"Starport": 1, // population 20k
 	"Shadowport": false,
 	"BlackMarket": false,
-	"Precipitation": -5, // surface <span class='highlight'>lava</span> 35%, surface water 0%
+	"Precipitation": -5, // surface lava 35%, surface water 0%
 	"ImperialPresence": 1, // Darth Sidious secret Sith facility
 	"OldWestiness": 0,
-	"Megafauna": 3, // <span class='highlight'>lava</span> fleas, Sher Kars, Jawenko <span class='highlight'>lava</span> beasts, tanrays, kubaza beetles, jundaks, xandanks, and blistmoks
+	"Megafauna": 3, // lava fleas, Sher Kars, Jawenko lava beasts, tanrays, kubaza beetles, jundaks, xandanks, and blistmoks
 	"Rarity": 0,
 	"Criticism": 0,
 	"Slavery": 1, // slaves working to produce Mirkanite
 	"Spice": 0,
 	"Trespassing": 0,
-	"Military": 1, // <span class='highlight'>lava</span> world
+	"Military": 1, // lava world
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
@@ -4261,7 +4277,7 @@ const locations = [
 	"Map": "O-9",
 	"Atmosphere": "Type I",
 	"Climate": "temperate",
-	"Terrain": "plains,<span class='highlight'>mountains</span>,<span class='highlight'>jungles</span>",
+	"Terrain": "plains, <span class='highlight'>mountains</span>, <span class='highlight'>jungles</span>",
 	"Gravity": 1,
 	"Inhabitants": "Humans, (varied)",
 	"CapitalCity": "Iziz",
@@ -4725,7 +4741,7 @@ const locations = [
 	"Spice": 0,
 	"Trespassing": 1, // garbage pit of the galaxy
 	"Military": 0,
-	"Slicing": -2, // the Core <span class='highlight'>planetwide</span> intelligence supercomputer (evil sometimes)
+	"Slicing": -2, // the Core planetwide intelligence supercomputer (evil sometimes)
 	"Theft": 1, // garbage pit of the galaxy
 	"Bribery": 0,
 },
@@ -4777,7 +4793,7 @@ const locations = [
 	"BlackMarket": false,
 	"Precipitation": -3,
 	"ImperialPresence": 2, // controlled by 19th Sector Army; most Advozsec supported the Empire
-	"OldWestiness": 2, // <span class='highlight'>volcanic</span> activity and destroyed civilizations
+	"OldWestiness": 2, // volcanic activity and destroyed civilizations
 	"Megafauna": 0,
 	"Rarity": 0,
 	"Criticism": -1, // most Advozsec supported the Empire
@@ -5005,7 +5021,7 @@ const locations = [
 	"Precipitation": 0,
 	"ImperialPresence": 0,
 	"OldWestiness": 3, // rough-and-tumble; hardscrabble spaceports and cantinas which likewise had a reputation of being rough
-	"Megafauna": 2, // <span class='highlight'>barren</span>; Ocsin trade from Farana in Wild Space
+	"Megafauna": 2, // barren; Ocsin trade from Farana in Wild Space
 	"Rarity": 0,
 	"Criticism": 0,
 	"Slavery": 0,
@@ -5161,7 +5177,7 @@ const locations = [
 	"Megafauna": 1, // spice eels
 	"Rarity": 1, // scarcely populated
 	"Criticism": -2, // blockade; firm grip
-	"Slavery": 1, // common practice to have prisoners work the <span class='highlight'>mines</span>
+	"Slavery": 1, // common practice to have prisoners work the mines
 	"Spice": 1, // carsunum & andris exported
 	"Trespassing": 0,
 	"Military": 0,
@@ -5525,7 +5541,7 @@ const locations = [
 	"BlackMarket": false,
 	"Precipitation": 0,
 	"ImperialPresence": 1, // under the domain of Moff Kohl Seerdon
-	"OldWestiness": 1, // <span class='highlight'>primitive</span> tribal societies
+	"OldWestiness": 1, // primitive tribal societies
 	"Megafauna": 1, // fleft-waufs & sleft-chuffs & thafsalnus, oh my!
 	"Rarity": 0,
 	"Criticism": -1, // under the domain of Moff Kohl Seerdon
@@ -5887,6 +5903,8 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+	],
 },
 {
 	"Name": "Tei-Untis",
@@ -5996,7 +6014,7 @@ const locations = [
 	"BlackMarket": false,
 	"Precipitation": 0,
 	"ImperialPresence": 0,
-	"OldWestiness": -3, // <span class='highlight'>industrial</span> world
+	"OldWestiness": -3, // industrial world
 	"Megafauna": 0,
 	"Rarity": 0,
 	"Criticism": 0,
