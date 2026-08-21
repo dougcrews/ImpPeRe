@@ -374,31 +374,31 @@ const hyperspaceRoutes = [
 {
 	"Name": "Ovise Reach",
 	"SpeedFactor": 0.9,
-	"Route": "Ovise III,Trindello,Zorbia II,Endor (Gas Giant),Endor (Forest Moon)",
+	"Route": "Ovise III,Trindello,Zorbia II,Endor 9",
 	"Junctions": "Annaj-Houche Run,Bakura Trace,Trindello-Endor Route,Shiritoku Way",
 },
 {
 	"Name": "Bakura Trace",
 	"SpeedFactor": 0.9,
-	"Route": "Endor (Gas Giant),Endor (Forest Moon),Sanyassa IV,Ast Kikorie,Bakura",
+	"Route": "Endor 9,Sanyassa IV,Ast Kikorie,Bakura",
 	"Junctions": "Ovise Reach,Trindello-Endor Route,Shiritoku Way",
 },
 {
 	"Name": "Shiritoku Way",
 	"SpeedFactor": 0.9,
-	"Route": "Endor (Gas Giant),Endor (Forest Moon),Timora,Bakura",
+	"Route": "Endor 9,Timora,Bakura",
 	"Junctions": "Ovise Reach,Trindello-Endor Route,Bakura Trace",
 },
 {
 	"Name": "Trindello-Endor Route",
 	"SpeedFactor": 0.9,
-	"Route": "Endor (Gas Giant),Endor (Forest Moon),Trindello",
+	"Route": "Endor 9,Trindello",
 	"Junctions": "Ovise Reach,Bakura Trace,Sanctuary Pipeline",
 },
 {
 	"Name": "Sanctuary Pipeline",
 	"SpeedFactor": 0.9,
-	"Route": "Endor (Gas Giant),Endor (Forest Moon),Murk,Sullust",
+	"Route": "Endor 9,Murk,Sullust",
 	"Junctions": "Bakura Trace,Ovise Reach,Shiritoku Way,Rimma Trade Route,Silvestri Trace,Sanctuary Pipeline",
 },
 {

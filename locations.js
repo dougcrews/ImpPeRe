@@ -1549,6 +1549,7 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 },
+/* does not make much sense to include gas giants
 {
 	"Name": "Endor (Gas Giant)",
 	"Region": "Outer Rim",
@@ -1579,8 +1580,9 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 },
+*/
 {
-	"Name": "Endor (Forest Moon)",
+	"Name": "Endor 9",
 	"Region": "Outer Rim",
 	"Sector": "Moddell",
 	"System": "Endor",
@@ -1591,7 +1593,7 @@ const locations = [
 	"Gravity": 0.85,
 	"Inhabitants": "Duloks, Ewoks, Gorphs, Mimphs, Wisties, Yuzzums",
 	"CapitalCity": "Bright Tree Village, Hanging Moss Village, Terak's Keep, Happy Grove, Red Bush Grove",
-	"URL": "https://starwars.fandom.com/wiki/Endor_(location)/Legends",
+	"URL": "https://starwars.fandom.com/wiki/Endor/Legends",
 	"Starport": 2, // population 30 million
 	"Shadowport": false,
 	"BlackMarket": false,
@@ -1608,6 +1610,13 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+		'Sanctuary Moon: The gas giant Endor looms large in the sky, even in daylight.',
+		'Sanctuary Moon: Numerous starship wrecks over the millenia have contributed to a vast biosphere of flora and fauna, many of them dangerous.',
+		'Sanctuary Moon: Sentient species include Duloks, Ewoks, Gupins, Lizard Warriors, Teeks, and Yuzzums.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A shipwreck looks to be relatively untouched.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> An Ewok hunting party is going boar-wolf hunting. Are you interested?',
+	],
 },
 {
 	"Name": "Eriadu",

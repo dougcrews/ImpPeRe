@@ -1069,8 +1069,6 @@ function updateTravelEstimates()
 		}
 	});
 
-	$('#currentHyperlanes').html(currentRouteList);
-
 	if (!(destLoc && destLoc.Map))
 	{
 		console.error("No destLoc in updateTravelEstimates()");
@@ -1120,6 +1118,7 @@ function updateTravelEstimates()
 		}
 	}
 
+	$('#currentHyperlanes').html(currentRouteList);
 	$('#destHyperlanes').html(destRouteList);
 
 	// Fly Casual pg78
