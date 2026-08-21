@@ -2666,7 +2666,7 @@ const locations = [
 		'<span class="local-event-destiny-optional" id="local">IMPERIAL PRESENCE:</span> <i>"Kashyyk? I wouldn\'t say that so loud. The Imps get Impy if you don\'t call it Territory G5-623."</i>',
 		'<span class="local-event-destiny-optional" id="local">WOOKIEE CULTURE:</span> Do not ask about the Hnggarghhngh Onghghgh Wookiee Liberation League (HOWLL) if you value your arm sockets.',
 		'<span class="local-event-destiny-optional" id="local">LOCAL COLOR:</span> A trandoshan guide is sponsoring a Wookiee hunt. Are you interested, good sentient?',
-	]
+	],
 },
 {
 	"Name": "Kassido",
@@ -3720,6 +3720,41 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+},
+{
+	"Name": "Mikkia",
+	"Region": "Expansion Region",
+	"Sector": "Greater Plooriod",
+	"System": "Mikkia",
+	"Map": "M-7",
+	"Atmosphere": "Type I",
+	"Climate": "varies",
+	"Terrain": "equatorial <span class='highlight'>jungles</span>, polar <span class='highlight'>ice</span>",
+	"Gravity": 1,
+	"Inhabitants": "Mikkeans",
+	"CapitalCity": "Charbana",
+	"URL": "https://starwars.fandom.com/wiki/Mikkia",
+	"Starport": 2,
+	"Shadowport": false,
+	"BlackMarket": false,
+	"Precipitation": 0,
+	"ImperialPresence": -3, // secretive, mistrustful of the Empire
+	"OldWestiness": 0,
+	"Megafauna": 0,
+	"Rarity": 0,
+	"Criticism": 3, // high level of anti-Imperial sentiment
+	"Slavery": 0,
+	"Spice": 0,
+	"Trespassing": 0,
+	"Military": 0,
+	"Slicing": 0,
+	"Theft": 0,
+	"Bribery": 0,
+	"events": [
+		'Mikkia: It is easy to offend the Mikkian strong sense of honor and discipline.',
+		'Mikkia: Mikkean head tendrils allow them to see in low light. Private spaces are often dimly lit. (+' + htmlSetbackDie + ' Perception, Ranged attacks)',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> Visit one of the many temples. Very spiritual! (+' + htmlBoostDie + ' next Cool check)',
+	]
 },
 {
 	"Name": "Mon Cala (Dac)",
