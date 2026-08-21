@@ -44,6 +44,68 @@ const htmlUpgradeAbilityDie1x = '<span class="font-normal starwars-dice-text pro
 const htmlUpgradeAbility1x = '(' + htmlAbilityDie + htmlRightArrow + htmlProficiencyDie + ')';
 const htmlDowngradeAbility1x = '(' + htmlProficiencyDie + htmlRightArrow + htmlAbilityDie + ')';
 
+const htmlMildlyAddictive = 'mildly addictive: Resilience Easy or +1 Obligation [addiction]';
+const htmlHighlyAddictive = 'highly addictive: Resilience Avg or +1 Obligation [addiction]';
+const htmlExtremelyAddictive = 'extremely addictive: Resilience Hard or +1 Obligation [addiction]';
+const htmlImmediatelyAddictive = 'immediately addictive: Resilience Difficult or +1 Obligation [addiction]';
+
+const htmlStimtea= 'is very strong (-' + htmlSetbackDie + ' next Vigilance/Resilience check; withdrawal: +' +
+	htmlSetbackDie + ' Cool, 4 hours).';
+const htmlStimcafThick = 'is even thicker than normal. (-' + htmlSetbackDie +
+	' next Vigilance/Resilience check; withdrawal: +' + htmlSetbackDie + 'all skills, 4 hours';
+const htmlStimcafEnergizing = 'is energizing (+' + htmlBoostDie + ' Athletics) but exhausting (+' +
+	htmlSetbackDie + ' Vigilance).';
+const htmlStimbrew = 'makes you gregarious (+' + htmlBoostDie + ' Charm) but candid (+' +
+	htmlSetbackDie + ' Deception).';
+const htmlStimbucha = 'is relaxing (+' + htmlBoostDie + ' Cool) but may cause drowsiness (+' +
+	htmlSetbackDie + ' Perception).';
+const htmlStimcaine = 'makes you focused (+' + htmlBoostDie + ' Coordination) but reckless (+' + htmlSetbackDie +
+	' Discipline).';
+const htmlPanGalacticGargleBlaster= 'is inspirational (+' + htmlBoostDie + ' Leadership) but exhausting (+' +
+	htmlSetbackDie + ' Resilience).';
+
+const htmlDeathSticks = htmlUpgradeAbility1x + ' next Charm/Cool/Resilience; +' + htmlSetbackDie +
+	' all skills, one encounter); ' + htmlMildlyAddictive;
+const htmlBoosterBlue = htmlUpgradeAbility1x + ' next Agility/Intellect/Cunning; cannot recover Strain this session';
+const htmlMarcanHerb = 'mild euphoria: +' + htmlBoostDie + ' next Perception check; +' + htmlSetbackDie +
+	' Discipline/Vigilance, one encounter';
+const htmlAvabushSpice = 'recover 1 Strain; lethargy: limit 1 ' + htmlProficiencyDie +
+	' per skill check, one encounter; relaxed: ' + htmlUpgradeDiff1x + ' to conceal the truth, one encounter';
+const htmlCorellianWhiskey = '+' + htmlBoostDie + ' next Coercion/Brawl; +' + htmlSetbackDie + ' Willpower, one encounter';
+const htmlWhyrensReserve = 'as gift: +' + htmlBoostDie + ' next Negotiation; consumed: +' + htmlBoostDie + ' +' +
+	htmlSetbackDie + ' per drink, next opposed Negotation';
+const htmlJiRikknit = 'recover 1 Strain; ' + htmlMildlyAddictive;
+const htmlMuonGold = '+' + htmlBoostDie + ' Cunning/Presence, one encounter; cognitive impairment: Resilience Easy or +' +
+	htmlSetbackDie + ' Intellect/Cunning, one session or ' + htmlDespair + ' permanent';
+const htmlRyll = 'ignore Critical Injury, one encounter; withdrawal: suffer the Critical Injury, +' + htmlSetbackDie +
+	htmlSetbackDie + ' this session';
+const htmlGunjackSpice = '+1 Brawn, one encounter; ' + htmlUpgradeDiff1x + ' Agility/Intellect/Cunning, this session';
+const htmlKarrakSpice = '-' + htmlSetbackDie + htmlSetbackDie + htmlSetbackDie + ' from pain or illness, 12 hours; +' +
+	htmlThreat + ' all checks, 24 hours; Force users double duration, Force rating -1 while affected';
+const htmlGlitterstim = '+' + htmlBoostDie + htmlBoostDie + htmlBoostDie + ' all Perception/Vigilance, one encounter; ' +
+	htmlHighlyAddictive + ', ' + htmlDespair + ' paranoia: ' + htmlUpgradeDiff1x + ' vs. Fear, one encounter, ' + htmlTriumph +
+	' temporary telepathy';
+const htmlNeutronPixie = '+' + htmlAdvantage + htmlAdvantage + ' Agility/Willpower, one encounter; withdrawal: +' + htmlThreat +
+	' Brawn/Intellect/Cunning, this session';
+const htmlImpact = htmlUpgradeAbility1x + ' Agility, one encounter; withdrawal: +' + htmlSetbackDie +
+	' Agility/Cunning/Intellect, this session';
+const htmlVutalamine = htmlUpgradeAbility1x + ' to resist Fear or Stress; ' + htmlDowngradeDiff1x +
+	'Ranged attacks at Long or Extreme range; mildly addictive: Resilience Easy or permanent +' +
+	htmlSetbackDie + ' Intellect/Cunning';
+const htmlNannariumRoot = htmlUpgradeAbility1x + ' next Intelligence/Cunning check, 1 hour; +2 Strain';
+const htmlYarrock = 'immune to Fear, one encounter; +' + htmlSetbackDie + ' Willpower/Presence, this session';
+const htmlLesai = 'space methamphetamine: recover Strain (Discipline/Cool Simple) without sleep, once per 24 hours; ' +
+	'withdrawal: Resilience Easy or drowsy +' + htmlSetbackDie + ' all skills, ' + htmlDespair + ' may cause psychosis';
+const htmlLongsight = 'injected; +1 Willpower, +2 Strain at start of turn, 1 encounter'; // Aleen
+const htmlAshesOfMalachor = 'inhaled; Force-sensitive only; +5 Conflict, +' + htmlSuccess + ' +' + htmlThreat +
+	' all attacks, one encounter';
+const htmlYaladaiSpice = '+3 Soak for involuntary Strain taken, one encounter; Force users +' + htmlForceDie +
+	' all Force powers, but Strain and Conflict doubled for ' + htmlForceLight + '/' + htmlForceDark +
+	' used; ' + htmlExtremelyAddictive;
+const htmlFrangawlForcePowder = 'Force-sensitive only; +10 Conflict, +' + htmlForceDark + htmlForceDark +
+	' next Force power check';
+const htmlGlitteryll = htmlGlitterstim + '; ' + htmlRyll; // Ryloth
+const htmlMagicPowder = '+1 Force Rating, 1 encounter; ' + htmlImmediatelyAddictive;
 
 $(document).ready(function ()
 {
@@ -597,7 +659,7 @@ function populateArrivalEvent()
 }
 
 // higher = more events chosen
-const EVENTS_FACTOR = 0.5; // @TODO make this user-customizable
+const EVENTS_FACTOR = 0.7; // @TODO make this user-customizable
 
 // Arrival in system events
 function populateLocalEvents(eventCount)

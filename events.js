@@ -34,7 +34,8 @@ const localEmpireEvents = [
 	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity on ship components.',
 	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity on cybernetics.',
 	'<span class="local-event-free">LOCAL COLOR:</span> Maintenance crew at work in the area.',
-	'<span class="local-event-free">RUSH HOUR:</span> Vehicle/Foot traffic higher (+' + htmlSetbackDie + ') or lower (+' + htmlBoostDie + ') than normal.',
+	'<span class="local-event-free">RUSH HOUR:</span> Vehicle/Foot traffic higher (+' + htmlSetbackDie + ') or lower (+' +
+		htmlBoostDie + ') than normal.',
 	'<span class="local-event-free">LOCAL COLOR:</span> Law enforcement has locked down an important location.',
 	'<span class="local-event-destiny-optional">FAVORABLE CONTACTS:</span> +' + htmlBoostDie + ' to Charm check(s).',
 	'<span class="local-event-destiny-optional">FAVORABLE CONTACTS:</span> +' + htmlBoostDie + ' to Coercion check(s).',
@@ -76,7 +77,9 @@ const localEmpireEvents = [
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> Easy money (~10-100cr) to be made for a skilled Underworld expert.',
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> Easy money (~10-100cr) to be made for a skilled Warfare expert.',
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> Easy money (~10-100cr) to be made for a skilled Xenology expert.',
-	'<span class="local-event-free">LOCAL COLOR:</span> <i>"Psst! I got a <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Frangawl_Force_Powder" target="_blank">new kind of Spice</a> that will rock your world."</i> (+' + htmlForceDie + '' + htmlForceDie + ' next Force power; possible Conflict)',
+	'<span class="local-event-free">LOCAL COLOR:</span> <i>"Psst! I got a ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Frangawl_Force_Powder" target="_blank">new kind of Spice</a> ' +
+		'that will rock your world."</i> ' + htmlFrangawlForcePowder,
 	'<span class="local-event-destiny-optional">AN OLD FRIEND:</span> My juvenile delinquent buddy is working for law enforcement now???',
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> An antiquities dealer wishes to <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Gear#RELICS" target="_blank">speak to you</a>. Come to the back door of the shop.',
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> A "political prisoner" desperately needs to get off world. They can pay.',
@@ -103,40 +106,75 @@ const localEmpireEvents = [
 	'<span class="local-event-free">IT FLOWS THROUGH ALL:</span> Gain +' + htmlForceDie + ' on next Underworld check.',
 	'<span class="local-event-free">IT FLOWS THROUGH ALL:</span> Gain +' + htmlForceDie + ' on next Warfare check.',
 	'<span class="local-event-free">IT FLOWS THROUGH ALL:</span> Gain +' + htmlForceDie + ' on next Xenology check.',
-	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stim_tea" target="_blank">Stim tea</a> is very strong. (-' + htmlSetbackDie + ' next Vigilance/Resilience check; withdrawal +' + htmlSetbackDie + ' all checks, 4 hours).',
-	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" target="_blank">Stimcaf</a> is energizing (+' + htmlBoostDie + ' Athletics) but exhausting (+' + htmlSetbackDie + ' Vigilance).',
-	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" target="_blank">Stimbrew</a> makes you gregarious (+' + htmlBoostDie + ' Charm) but candid (+' + htmlSetbackDie + ' Deception).',
-	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" target="_blank">Stimbucha</a> is relaxing (+' + htmlBoostDie + ' Cool) but may cause drowsiness (+' + htmlSetbackDie + ' Perception).',
-	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" target="_blank">Stimcaine</a> makes you focused (+' + htmlBoostDie + ' Coordination) but reckless (+' + htmlSetbackDie + ' Discipline).',
-	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" target="_blank">Pan-Galactic Gargle Blaster</a> is inspirational (+' + htmlBoostDie + ' Leadership) but exhausting (+' + htmlSetbackDie + ' Resilience).',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Questioner-9_Interrogation_Serum" target="_blank">truth serum</a>." (Upgrade ' + htmlUpgradeDiff1x + ' all checks to withhold information, 24 hours).',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Vutalamine" target="_blank">Vutalamine</a>. (' + htmlUpgradeAbility1x + ' all checks to resist Stress or Fear; ' + htmlDowngradeDiff1x + ' of Ranged Light & Ranged Heavy at Extreme range, 24 hours; possible long term effects, +' + htmlSetbackDie + ' all Intellect/Cunning, permanent)',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Affide_Crystal" target="_blank">"last resort" pills</a>. (Restricted poison, Rarity 8)',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Skirtopanol" target="_blank">Skirtopanol</a>. (CorSec Restricted truth serum, Rarity 8)',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional has some surplus Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Synthetic_Neuroparalytic" target="_blank">Dontmovatall medicine</a>. (injected Restricted neuroparalytic, Rarity 6)',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional has some surplus Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Synthetic_Neurotoxin" target="_blank">Dontuzatome medicine</a>. (injected/ingested/airborne Restricted neurotoxin, Rarity 6)',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional in bloodstained scrubs can hook you up with Restricted <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Cybernetics target="_blank"" target="_blank">cybernetic gear</a>. <strong>For a price.</strong> (Restricted gear, Rarity 3-8)',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A civilian Imperial employee has a lead on an Empire warehouse containing Restricted <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Infiltration target="_blank"" target="_blank">infiltration gear</a>. (Restricted gear, Rarity 3-9)',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> An off-duty police officer has some surplus Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Security" target="_blank">prison gear</a>. (Restricted gear, Rarity 5-8)',
-	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A grease-stained civilian Imperial mechanic has some surplus Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Tools" target="_blank">tools</a>. (Restricted gear, Rarity 5-9)',
-	'<span class="local-event-free">LOCAL COLOR:</span> A holo-journalist and her technician want to broadcast a story about your heroic exploits.',
-	'<span class="local-event-destiny-required">SCRATCH THE PAINT:</span> Your ship is buffeted by some sort of impact and takes one Critical Hit.',
-	'<span class="local-event-free">YOUR MOM CALLED:</span> Would it kill you to holo-call once in a while? +' + htmlBoostDie + ' to next Coercion check.',
-	'<span class="local-event-destiny-optional">A BRUSH WITH GREATNESS:</span> You run into a local celebrity and hit it off. +' + htmlBoostDie + ' to all Leadership checks.',
+	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stim_tea" ' +
+		'target="_blank">Stim tea</a> ' + htmlStimtea,
+	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" ' +
+		'target="_blank">Stimcaf</a> ' + htmlStimcafEnergizing,
+	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" ' +
+		'target="_blank">Stimbrew</a>' + htmlStimbrew,
+	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" ' +
+		'target="_blank">Stimbucha</a> ' + htmlStimbucha,
+	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" ' +
+		'target="_blank">Stimcaine</a> ' + htmlStimcaine,
+	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" ' +
+		'target="_blank">Pan-Galactic Gargle Blaster</a> ' + htmlPanGalacticGargleBlaster,
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Questioner-9_Interrogation_Serum" target="_blank">truth serum</a>. ' +
+		'(' + htmlUpgradeDiff1x + ' all checks to withhold information, 24 hours).',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Vutalamine" target="_blank">Vutalamine</a>. (' + htmlVutalamine + ')',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Affide_Crystal" target="_blank">"last resort" pills</a>. (Restricted poison, Rarity 8)',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Skirtopanol" target="_blank">Skirtopanol</a>. (CorSec Restricted truth serum, Rarity 8)',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional has some surplus Empire-branded ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Synthetic_Neuroparalytic" target="_blank">Dontmovatall medicine</a>. (injected Restricted neuroparalytic, Rarity 6)',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional has some surplus Empire-branded ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Synthetic_Neurotoxin" target="_blank">Dontuzatome medicine</a>. (injected/ingested/airborne Restricted neurotoxin, Rarity 6)',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional in bloodstained scrubs can ' +
+		'hook you up with Restricted <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Cybernetics target="_blank"" ' +
+		'target="_blank">cybernetic gear</a>. <strong>For a price.</strong> (Restricted gear, Rarity 3-8)',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A civilian Imperial employee has a lead on an Empire ' +
+		'warehouse containing Restricted <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Infiltration target="_blank"" target="_blank">infiltration gear</a>. (Restricted gear, Rarity 3-9)',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> An off-duty police officer has some surplus ' +
+		'Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Security" target="_blank">prison gear</a>. ' +
+		'(Restricted gear, Rarity 5-8)',
+	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A grease-stained civilian Imperial mechanic has some ' +
+		'surplus Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Tools" target="_blank">tools</a>. ' +
+		'(Restricted gear, Rarity 5-9)',
+	'<span class="local-event-free">LOCAL COLOR:</span> A holo-journalist and her technician want to broadcast a story about your ' +
+		'heroic exploits.',
+	'<span class="local-event-destiny-required">SCRATCH THE PAINT:</span> Your ship is buffeted by some sort of impact and takes ' +
+		'one Critical Hit.',
+	'<span class="local-event-free">YOUR MOM CALLED:</span> Would it kill you to holo-call once in a while? +' + htmlBoostDie +
+		' to next Coercion check.',
+	'<span class="local-event-destiny-optional">A BRUSH WITH GREATNESS:</span> You run into a local celebrity and hit it off. +' +
+		htmlBoostDie + ' to all Leadership checks.',
 	'<span class="local-event-free">SURPLUS:</span> -1 Rarity, +' + htmlBoostDie + ' on weapon modifications.',
 	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity, +' + htmlSetbackDie + ' on weapon modifications.',
-	'<span class="local-event-destiny-optional">I KNOW A GUY:</span> Not a "fence". Not a "trafficker". They are an "antiquities dealer" who "specializes in hard to find collectibles". (+1 Rarity to sell <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Gear#RELICS" target="_blank">Relics</a>, and handles (R)estricted items under the table.)',
+	'<span class="local-event-destiny-optional">I KNOW A GUY:</span> Not a "fence". Not a "trafficker". They are an ' +
+		'"antiquities dealer" who "specializes in hard to find collectibles". (+1 Rarity to sell ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Gear#RELICS" target="_blank">Relics</a>, and handles ' +
+		'(R)estricted items under the table.)',
 	'<span class="local-event-free">PROBABLY NOT A TRAP:</span> You hear a muffled cry for help from a dark alley.',
 	'<span class="local-event-free">IMPERIAL PRESENCE:</span> <i>"Watch out, the Imps are running undercover operations. Trust no one."</i>',
-	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Real-space debris detected at your preferred destination. (automatic +' + htmlThreat + ' to Astrogation).',
-	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Minor traffic jam at destination. (automatic +' + htmlThreat + ' to Astrogation).',
-	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Major traffic jam at destination. (automatic +' + htmlThreat + '' + htmlThreat + ' to Astrogation).',
-	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> You recognize a familiar hyperspace route. (+' + htmlBoostDie + ' to Astrogation).',
+	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Real-space debris detected at your preferred destination. ' +
+		'(automatic +' + htmlThreat + ' to Astrogation).',
+	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Minor traffic jam at destination. (automatic +' + htmlThreat +
+		' to Astrogation).',
+	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Major traffic jam at destination. (automatic +' + htmlThreat +
+		htmlThreat + ' to Astrogation).',
+	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> You recognize a familiar hyperspace route. (+' + htmlBoostDie +
+		' to Astrogation).',
 	'<span class="local-event-destiny-required">ATTENTION, NAVIGATOR:</span> Hyperspace anomaly buffets the ship. (+1 System Strain)',
-	'<span class="local-event-destiny-required">ATTENTION, NAVIGATOR:</span> Undetected hyperspace debris impacted the ship. (+1 Hull Trauma)',
-	'<span class="local-event-destiny-required">ATTENTION, NAVIGATOR:</span> Hyperdrive failure in flight. Dead stop, position unknown.',
-	'<span class="local-event-free">LOCAL COLOR:</span> A protocol droid claims to be the local tourism ambassador. Would you like a tour?',
-	'<span class="local-event-destiny-optional">ATTENTION, SLICER:</span>An unknown entity is attempting to access your system. You are under attack.',
+	'<span class="local-event-destiny-required">ATTENTION, NAVIGATOR:</span> Undetected hyperspace debris impacted the ship. ' +
+		'(+1 Hull Trauma)',
+	'<span class="local-event-destiny-required">ATTENTION, NAVIGATOR:</span> Hyperdrive failure in flight. Dead stop, ' +
+		'position unknown.',
+	'<span class="local-event-free">LOCAL COLOR:</span> A protocol droid claims to be the local tourism ambassador. ' +
+		'Would you like a tour?',
+	'<span class="local-event-destiny-optional">ATTENTION, SLICER:</span>An unknown entity is attempting to access your ' +
+		'system. You are under attack.',
 ];
 
 const localOldWestEvents = [
@@ -188,7 +226,7 @@ const localOldWestEvents = [
 	'<span class="local-event-free">WRETCHED HIVE:</span> Local "militia" requests your assistance collecting "protection fees".',
 	'<span class="local-event-free">SCUM & VILLAINY:</span> <i>"My friend says he doesn\'t like you. <em>I</em> don\'t like you either."</i>',
 	'<span class="local-event-free">SCUM & VILLAINY:</span> <i>"Hey! You can\'t bring that thing in here!"</i>',
-	'<span class="local-event-free">SCUM & VILLAINY:</span> <i>"Check yer weapons at the door. We\'ve had trouble recently."</i>',
+	'<span class="local-event-free">SCUM & VILLAINY:</span> <i>"Hey, you! Check yer weapons at the door. We\'ve had trouble recently."</i>',
 	'<span class="local-event-free">SCUM & VILLAINY:</span> Scorch marks on (another ship, the starport, a local business, ...)',
 	'<span class="local-event-free">SCUM & VILLAINY:</span> <i>"My friend says you owe him 200 credits. He says I get half."</i>',
 	'<span class="local-event-free">WRETCHED HIVE:</span> Something is burning nearby. Something big.',
@@ -215,58 +253,108 @@ const localOldWestEvents = [
 	'<span class="local-event-free">LOCAL COLOR:</span> A regional politician requests your assistance delivering medicine to a remote village.',
 	'<span class="local-event-destiny-required">IMPERIAL BLOCKADE:</span> Nobody gets in or out until the situation is resolved.',
 	'<span class="local-event-destiny-required">PIRATES:</span> <i>"Prepared to be boarded. Your cargo or your life."</i> Roll initiative for space combat.',
-	'<span class="local-event-free">WRETCHED HIVE:</span> <i>"Wanna buy some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Sticks" target="_blank">Death Sticks</a>."</i> (' + htmlUpgradeAbility1x + ' Charm/Cool/Resilience once; +' + htmlSetbackDie + ' all tasks, one encounter); mildly addictive (Resilience Easy or +1 Obligation from addiction)?"</i>',
-	'<span class="local-event-free">LOCAL COLOR:</span> The locally brewed cocktail makes you smart (+' + htmlBoostDie + ' Cunning) but clumsy (+' + htmlSetbackDie + ' Agility).',
-	'<span class="local-event-destiny-required">WEATHER:</span> Extreme weather (violent storm, drought, frigid, broiling, quakes, volcanic eruption, ...).',
+	'<span class="local-event-free">WRETCHED HIVE:</span> <i>"Wanna buy some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Sticks" ' +
+		'target="_blank">Death Sticks</a>?"</i> (' + htmlDeathSticks + ')?"</i>',
+	'<span class="local-event-free">LOCAL COLOR:</span> The locally brewed cocktail makes you smart (+' + htmlBoostDie +
+		' Cunning) but clumsy (+' + htmlSetbackDie + ' Agility).',
+	'<span class="local-event-destiny-required">WEATHER:</span> Extreme weather (violent storm, drought, frigid, broiling, quakes, ' +
+		'volcanic eruption, ...).',
 	'<span class="local-event-free">SCUM & VILLAINY:</span> You bear a resemblance to a wanted fugitive.',
 	'<span class="local-event-destiny-required">WRETCHED HIVE:</span> Paranoia abounds (+' + htmlSetbackDie + ' to all social skills)',
 	'<span class="local-event-destiny-required">SHORTAGE:</span> No spare parts (+' + htmlSetbackDie + ' to Mechanics)',
 	'<span class="local-event-destiny-required">SCUM & VILLAINY:</span> Security lockdown (+' + htmlSetbackDie + ' to Slicing)',
 	'<span class="local-event-destiny-required">WRETCHED HIVE:</span> Police lockdown (+' + htmlSetbackDie + ' to Skulduggery)',
-	'<span class="local-event-destiny-required">WEATHER:</span> Low visibility (+' + htmlSetbackDie + ' to Perception & Piloting outdoors)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some fresh <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Avabush_Spice" target="_blank">Avabush</a>."</i> (recover 1 Strain; lethargy, limit 1 ' + htmlUpgradeAbility1x + ' per check, one encounter; Upgrade ' + htmlUpgradeDiff1x + ' to conceal the truth, one encounter).',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some nice <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Booster_Blue" target="_blank">Booster Blue</a> for you."</i> (' + htmlUpgradeAbility1x + ' Agility/Intellect/Cunning once; cannot recover Strain this session).',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some sweet <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Sticks" target="_blank">Death Sticks</a>."</i> (' + htmlUpgradeAbility1x + ' Charm/Cool/Resilience once; +' + htmlSetbackDie + ' all tasks, one encounter); mildly addictive (Resilience Easy or +1 Obligation from addiction)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some kickin\' <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Glitterstim" target="_blank">Glitterstim</a>."</i> (+' + htmlBoostDie + '' + htmlBoostDie + '' + htmlBoostDie + ' all Perception & Vigilance, one encounter; highly addictive (Resilience Avg or +1 Obligation from addiction); possible temporary telepathy)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some rockin\' <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Lesai" target="_blank">Lesai</a>."</i> (space methamphetamine; recover Strain without sleep; withdrawal after 24 hours nonuse; possible temporary psychosis)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some primo <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Yarrock" target="_blank">Yarrock</a>."</i> (immune to Fear, one encounter; +' + htmlSetbackDie + ' all Willpower & Presence, this session)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some fresh <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Gunjack_Spice" target="_blank">Gunjack</a>."</i> (Brawn +1, one encounter; ' + htmlUpgradeDiff1x + ' all Agility/Intellect/Cunning, this session)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some tight <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Impact" target="_blank">Impact</a> right here."</i> (' + htmlUpgradeAbility1x + ' all Agility, one encounter; withdrawal +' + htmlSetbackDie + ' all Agility/Cunning/Intellect, this session)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some pure <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ji_Rikknit" target="_blank">Ji Rikknit</a> right here."</i> (recover 1 Strain; Easy ' + htmlDifficultyDie + ' per dose Resilience or 1 Obligation [addiction])',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some fresh <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Karrak_Spice" target="_blank">Karrack</a>."</i> (-' + htmlSetbackDie + '' + htmlSetbackDie + '' + htmlSetbackDie + ' from pain or illness, 12 hours; +' + htmlThreat + ' all checks, 24 hours; Force users double duration, Force rating -1 while affected)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some nice <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Longsight" target="_blank">Longsight</a>."</i> (Willpower +1, one encounter; +2 Strain at start of turn, while affected)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some sweet <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Marcan_Herb" target="_blank">Marcan Herb</a>."</i> (mild euphoria; +' + htmlBoostDie + ' next Perception check; +' + htmlSetbackDie + ' Discipline & Vigilance, one encounter)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some kickin\' <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Muon_Gold" target="_blank">Muon Gold</a>."</i> (+' + htmlBoostDie + ' all Cunning & Presence checks, one encounter; possible +' + htmlSetbackDie + ' all Intellect & Cunning, one encounter)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some rockin\' <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Nannarium_Root" target="_blank">Nannarium Root</a>."</i> (' + htmlUpgradeAbility1x + ' one Intelligence/Cunning check; +2 Strain)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some primo <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Neutron_Pixie" target="_blank">Neutron Pixie</a>."</i> (+' + htmlAdvantage + htmlAdvantage + ' all Agility & Willpower checks, one encounter; withdrawal +' + htmlThreat + ' all Brawn & Intellect & Cunning checks, this session)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some tight <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ryll" target="_blank">Ryll</a> just for you."</i> (ignore Critical Injury temporarily, one encounter; withdrawal: suffer the Critical Injury, +' + htmlSetbackDie + htmlSetbackDie + ' this session)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some new <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Yaladai_Spice" target="_blank">Yaladai</a>."</i> (gain 3 Soak for involuntary Strain taken, one encounter; Force users +' + htmlForceDie + ' all Force powers, but Strain and Conflict doubled for ' + htmlForceLight + '/' + htmlForceDark + ' used; highly addictive)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some bespoke <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ashes_of_Malachor" target="_blank">Ashes of Malachor</a>."</i> (Force-sensitive only; +5 Conflict, +' + htmlSuccess + '' + htmlThreat + ' all attacks, one encounter)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some heady <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Frangawl_Force_Powder" target="_blank">Frangawl Force Powder</a>."</i> (Force-sensitive only; +5 Conflict, +' + htmlForceDie + htmlForceDie + ' next Force power check)',
-	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" target="_blank">Stimcaf</a> is even thicker than normal. (-' + htmlSetbackDie + ' next Vigilance/Resilience check; withdrawal +' + htmlSetbackDie + ', 4 hours)',
-	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some "<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Dendriton_Toxin" target="_blank">Vengeance Juice</a>". (cruel Restricted poison, Rarity 7)',
-	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some clearly stolen Empire-branded "<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Dioxis_Gas" target="_blank">Coward\'s Solution</a>". (airborne Restricted poison, Rarity 6)',
-	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some freshly harvested <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Raquor_Venom" target="_blank">Raquor\'s Kiss</a>. (injected/airborne Restricted poison, Rarity 7)',
-	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Bubse_Spice" target="_blank">Bubse</a>."</i> (Wound Threshold +4, one encounter; +20 Critical Injury result, one encounter)',
-	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Electronics" target="_blank">gadgets</a> you might be interested in. (Restricted electronics, Rarity 5-9)',
-	'<span class="local-event-destiny-optional">WRETCHED HIVE:</span> <i>"Hey, you looking for <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Recreation" target="_blank">an edge at cubes or cards</a>?"</i> (Restricted gear, Rarity 5-6)',
-	'<span class="local-event-free">LOCAL COLOR:</span> A ragtag group of children claim to have found a derelict spaceship. They want to trade for its location.',
-	'<span class="local-event-destiny-required">IMPERIAL PRESENCE:</span> An Imperial Star Destroyer lurks menacingly above the city. (+' + htmlSetbackDie + ' all Skulduggery/Streetwise checks)',
-	'<span class="local-event-free">LOCAL COLOR:</span> A confused-looking trio of humans in yellow, blue, and red uniform shirts ask if you can help them "beam up". Whatever that means.',
-	'<span class="local-event-destiny-required">WEATHER:</span> Heat wave/Cold front (+' + htmlSetbackDie + ' all Athletics/Coordination/Resilience/Survival/Brawl/Melee/Lightsaber checks).',
-	'<span class="local-event-destiny-required">A RUDE WELCOME:</span> Your ship is hit by something and takes one Critical Hit during final landing approach.',
+	'<span class="local-event-destiny-required">WEATHER:</span> Low visibility (+' + htmlSetbackDie + ' to outdoors Perception, Ranged attacks, Piloting)',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some fresh ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Avabush_Spice" target="_blank">Avabush</a>."</i> (' + htmlAvabushSpice + ').',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some nice ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Booster_Blue" target="_blank">Booster Blue</a> for you."</i> (' + htmlBoosterBlue + ').',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some sweet ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Sticks" target="_blank">Death Sticks</a>."</i> (' + htmlDeathSticks + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some kickin\' ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Glitterstim" target="_blank">Glitterstim</a>."</i> (' + htmlGlitterstim + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some rockin\' ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Lesai" target="_blank">Lesai</a>."</i> (' + htmlLesai + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some primo ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Yarrock" target="_blank">Yarrock</a>."</i> (' + htmlYarrock + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some fresh ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Gunjack_Spice" target="_blank">Gunjack</a>."</i> (' + htmlGunjackSpice + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some tight ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Impact" target="_blank">Impact</a> right here."</i> (' + htmlImpact + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some pure ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ji_Rikknit" target="_blank">Ji Rikknit</a> right here."</i> (' + htmlJiRikknit + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some fresh ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Karrak_Spice" target="_blank">Karrak Spice</a>."</i> (' + htmlKarrakSpice + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some nice ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Longsight" target="_blank">Longsight</a>."</i> (' + htmlLongsight + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some sweet ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Marcan_Herb" target="_blank">Marcan Herb</a>."</i> (' + htmlMarcanHerb + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some kickin\' ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Muon_Gold" target="_blank">Muon Gold</a>."</i> (' + htmlMuonGold + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some rockin\' ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Nannarium_Root" target="_blank">Nannarium Root</a>."</i> (' + htmlNannariumRoot + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some primo ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Neutron_Pixie" target="_blank">Neutron Pixie</a>."</i> (' + htmlNeutronPixie + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some tight ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ryll" target="_blank">Ryll</a> just for you."</i> (' + htmlRyll + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some new ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Yaladai_Spice" target="_blank">Yaladai Spice</a>."</i> (' + htmlYaladaiSpice + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some bespoke ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ashes_of_Malachor" target="_blank">Ashes of Malachor</a>."</i> (' + htmlAshesOfMalachor + ')',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some heady ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Frangawl_Force_Powder" target="_blank">Frangawl Force Powder</a>."</i>' +
+		' (' + htmlFrangawlForcePowder + ')',
+	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" ' +
+		'target="_blank">Stimcaf</a> ' + htmlStimcafThick,
+	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some ' +
+		'"<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Dendriton_Toxin" target="_blank">Vengeance Juice</a>". ' +
+		'(cruel Restricted poison, Rarity 7)',
+	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some clearly stolen Empire-branded ' +
+		'"<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Dioxis_Gas" target="_blank">Coward\'s Solution</a>". ' +
+		'(airborne Restricted poison, Rarity 6)',
+	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some freshly harvested ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Raquor_Venom" target="_blank">Raquor\'s Kiss</a>. ' +
+		'(injected/airborne Restricted poison, Rarity 7)',
+	'<span class="local-event-destiny-optional">YOUR DEALER CALLED:</span> <i>"Psst! I got some ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Bubse_Spice" target="_blank">Bubse</a>."</i> (Wound Threshold +4, one encounter; +20 Critical Injury result, one encounter)',
+	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Electronics" target="_blank">gadgets</a> you might be interested in. ' +
+		'(Restricted electronics, Rarity 5-9)',
+	'<span class="local-event-destiny-optional">WRETCHED HIVE:</span> <i>"Hey, you looking for ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Recreation" target="_blank">an edge at cubes or cards</a>?"</i> ' +
+		'(Restricted gear, Rarity 5-6)',
+	'<span class="local-event-free">LOCAL COLOR:</span> A ragtag group of children claim to have found a derelict spaceship. ' +
+		'They want to trade for its location.',
+	'<span class="local-event-destiny-required">IMPERIAL PRESENCE:</span> An Imperial Star Destroyer lurks menacingly above the city. (+' +
+		htmlSetbackDie + ' all Skulduggery/Streetwise checks)',
+	'<span class="local-event-free">LOCAL COLOR:</span> A confused-looking trio of humans in yellow, blue, and red uniform shirts ask ' +
+		'if you can help them "beam up". Whatever that means.',
+	'<span class="local-event-destiny-required">WEATHER:</span> Heat wave/Cold front (+' + htmlSetbackDie +
+		' all Athletics/Coordination/Resilience/Survival/Brawl/Melee/Lightsaber checks).',
+	'<span class="local-event-destiny-required">A RUDE WELCOME:</span> Your ship is hit by something and takes one Critical Hit ' +
+		'during final landing approach.',
 	'<span class="local-event-free">LOCAL EXPERTS:</span> -1 Rarity, +' + htmlBoostDie + ' on weapon modifications.',
 	'<span class="local-event-free">WE DON\'T DO THAT HERE:</span> +1 Rarity, +' + htmlSetbackDie + ' on weapon modifications.',
 	'<span class="local-event-free">WRETCHED HIVE:</span> An angry mob with torches and pitchforks awaits you as you return to the ship.',
 	'<span class="local-event-destiny-required">WHO SHOT FIRST?:</span> Roll Initiative.',
 	'<span class="local-event-free">ATTENTION, CAPTAIN:</span> Distress call received. We appear to be the closest vessel. Your orders?',
 	'<span class="local-event-free">SPACE-LEOPARDS!:</span> They want to eat your face. Roll initiative.',
-	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Real-space debris detected at your preferred destination. (automatic +' + htmlThreat + ' to Astrogation).',
-	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Minor celestial event since last hyperspace charting. (automatic +' + htmlThreat + ' to Astrogation).',
-	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Major celestial event since last hyperspace charting. (automatic +' + htmlThreat + '' + htmlThreat + ' to Astrogation).',
-	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> You recognize a familiar hyperspace route. (+' + htmlBoostDie + ' to Astrogation).',
+	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Real-space debris detected at your preferred destination. (automatic +' +
+		htmlThreat + ' to Astrogation).',
+	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Minor celestial event since last hyperspace charting. (automatic +' +
+		htmlThreat + ' to Astrogation).',
+	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> Major celestial event since last hyperspace charting. (automatic +' +
+		htmlThreat + '' + htmlThreat + ' to Astrogation).',
+	'<span class="local-event-free">ATTENTION, NAVIGATOR:</span> You recognize a familiar hyperspace route. (+' + htmlBoostDie +
+		' to Astrogation).',
 	'<span class="local-event-free">LOCAL COLOR:</span> A protocol droid claims to be the local tourism ambassador. Would you like a tour?',
-	'<span class="local-event-destiny-optional">WRETCHED HIVE:</span> A delivery driver has some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Corellian_Whiskey" target="_blank">Corellian Whiskey</a> that "fell off the delivery skiff".',
-	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A distillery worker has some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Corellian_Whiskey" target="_blank">Whyren\'s Reserve</a> that "fell off the delivery skiff".',
+	'<span class="local-event-destiny-optional">WRETCHED HIVE:</span> A delivery driver has some ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Corellian_Whiskey" target="_blank">Corellian Whiskey</a> that ' +
+		'"fell off the delivery skiff". (' + htmlCorellianWhiskey + ')',
+	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A distillery worker has some ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Corellian_Whiskey" target="_blank">Whyren\'s Reserve</a> that ' +
+		'"fell off the delivery skiff". (' + htmlWhyrensReserve + ')',
+	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A disgraced scientist has invented a new drug. ' +
+		'Will you try it and report back to them? (' + htmlMagicPowder + ')',
 ];
 

@@ -89,6 +89,13 @@ const locations = [
 	"Slicing": 0,
 	"Theft": 0,
 	"Bribery": 0,
+	"events": [
+		'Aleen: The yellow, rocky face of the moon Trohlu shines brightly in the night sky.',
+		'Aleen: The 3m+ tall can-cell insects look fearsome, but mostly they are used as flying couriers for Aleen riders.',
+		'Aleen: Do not harm the local arbozoic trees. They are considered holy by both the surface dwelling Aleen and the subterranean Kindalo.',
+		'<span class="local-event-free" id="local1">ATTENTION, PILOT</span>: The local podracing circuit is always looking for new blood. Sometimes literally. (+100-1000cr if you win a race)',
+		'<span class="local-event-free" id="local2">The local sportsball tournament looks fun, and may help you make local friends.',
+	],
 },
 {
 	"Name": "Aleen (Underworld)",
@@ -107,18 +114,23 @@ const locations = [
 	"Shadowport": false,
 	"BlackMarket": false,
 	"Precipitation": -5, // underground
-	"ImperialPresence": 1, // observation post on the moon of Trohlu
+	"ImperialPresence": 0,
 	"OldWestiness": 0,
 	"Megafauna": 0,
 	"Rarity": 0,
 	"Criticism": 0,
 	"Slavery": 0,
 	"Spice": 0,
-	"Trespassing": 0,
-	"Military": 0,
+	"Trespassing": -2,
+	"Military": -2,
 	"Slicing": 0,
-	"Theft": 0,
-	"Bribery": 0,
+	"Theft": -5,
+	"Bribery": -5,
+	"events": [
+		'Aleen: The treelike native Kindalo provide their own bioluminescent light. Bring a light source if you stray from their presence.',
+		'Aleen: The air in the caverns is <span class="highlight">toxic to most species</span>. A <b>breath mask</b> is highly recommended.',
+		'Aleen: Do not harm the local arbozoic trees. They are considered holy by both the surface dwelling Aleen and the subterranean Kindalo.',
+	],
 },
 {
 	"Name": "Allanteen VI",
@@ -453,16 +465,17 @@ const locations = [
 	"Theft": 2, // feuding factories
 	"Bribery": 0, // feuding factories
 	"events": [
-		'Balosar: Air pollution hurts your lungs (smog +' + htmlSetbackDie + ' all physical activities).',
-		'Balosar: The polluted air blocks out even the night sky (smog +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting).',
+		'Balosar: Air pollution hurts your lungs (choking smog +' + htmlSetbackDie + ' all physical activities).',
+		'Balosar: The polluted air blocks out even the night sky (poor visibility +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting)',
 		'<span class="local-event-free" id="local1" checked>YOUR DEALER CALLED</span>: <i>"Psst! Wanna buy some ' +
-			'<b>Rarity -1, not (R)estricted</b> <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Sticks" target="_blank">Death Sticks</a>?" ' +
-			'</i> (' + htmlUpgradeAbility1x + ' Charm/Cool/Resilience; +' + htmlSetbackDie +
-			' all tasks, one encounter; Resilience Easy or +1 Obligation from addiction)',
+			'<b>Rarity -1, not (R)estricted</b> <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Stick" ' +
+			'target="_blank">Death Sticks</a>, buddy?"</i> (' + htmlDeathSticks + ')',
 		'<span class="local-event-free" id="local2" checked>SHORTAGE</span>: Pollution has hit the mushroom caves, poisoning the spores. ' +
-			'(+1 Rarity <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Sticks" target="_blank">Death Sticks</a>" ' +
-			'(Rarity -1, not (R)estricted)</i> (' + htmlUpgradeAbility1x + ' Charm/Cool/Resilience; +' + htmlSetbackDie +
-			' all tasks, one encounter; Resilience Easy or +1 Obligation from addiction)',
+			'+1 Rarity <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Death_Stick" target="_blank">Death Sticks</a> (' +
+			htmlDeathSticks + ')',
+		'<span class="local-event-free" id="local5" checked>SCUM & VILLAINY</span>: A skilled doctor could use the local ' +
+			'<a href="https://starwars.fandom.com/wiki/Ixetal_cilona/Legends" target="_blank">Ixetal cilona</a> to enhance their skills. (+' +
+			htmlBoostDie + ' Medicine checks each dose used)',
 	],
 },
 {
@@ -4313,7 +4326,7 @@ const locations = [
 		'Ord Mantell: It is not recommended to go unarmed into the Scraplands. Take the armored train instead.',
 		'Ord Mantell: Pink clouds waft lazily through the sky.',
 		'Ord Mantell: Two large moons fill the sky, even in daylight, causing unusual tidal forces.',
-		'Ord Mantell: A persistent brown smog burns your eyes slightly. +' + htmlSetbackDie + ' Perception and ranged attacks.',
+		'Ord Mantell: A persistent brown smog burns your eyes slightly. (poor visibility +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting)',
 		'<span class="local-event-free" id="local1">ATTENTION, NAVIGATOR:</span> A thick, pinkish outer cometary cloud offers a place to hide, if you wish.',
 		'<span class="local-event-free" id="local2">ATTENTION, PILOT:</span> The annual Blockade Runners Derby is seeking intrepid pilots. Cash prizes and fame await you.',
 		'<span class="local-event-destiny-optional" id="local3">LOCAL COLOR:</span> Groundquakes are common, causing unstable footing and potential threats to safety.',
@@ -4956,22 +4969,21 @@ const locations = [
 	"Theft": 0,
 	"Bribery": 0,
 	"events": [
-		'Ryloth: Tidally locked, Bright Side (constant glare +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting); Nightlands (darkness +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting)',
-		'Ryloth: How do they stand it so hot here? (+' + htmlSetbackDie + ' all physical activities from high temperatures)',
-		'Ryloth: If you venture out the blast doors of the underground cities at the Bright Side/Nightlands terminator, be aware of vicious predators.',
-		'Ryloth: YOUR DEALER CALLED: <i>"Psst! Wanna buy some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ryll" target="_blank">Ryll</a>? Fresh from the factory."</i> ' +
-			'(ignore Critical Injury temporarily, one encounter; withdrawal: suffer the Critical Injury, +' + htmlSetbackDie + '' + htmlSetbackDie + ' this session)',
+		'Ryloth: Tidally locked; Bright Side (constant glare +' + htmlSetbackDie + ' Perception, Ranged attacks, Piloting); ' +
+			'Nightlands (dim light or darkness +' + htmlSetbackDie + ' or +' + htmlSetbackDie + htmlSetbackDie +
+			' Perception, Ranged attacks, Piloting)',
+		'Ryloth: How do they stand it so hot here? (hot +' + htmlSetbackDie + ' all physical activities)',
+		'Ryloth: If you venture out the blast doors of the underground cities at the Bright Side/Nightlands terminator, ' +
+			'be aware of vicious predators.',
+		'Ryloth: YOUR DEALER CALLED: <i>"Psst! Wanna buy some <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Ryll" target="_blank">' +
+			'Ryll</a>? Fresh from the factory."</i> (' + htmlRyll + ')',
 		'<span class="local-event-free" id="local1" checked>LOCAL WEATHER</span>: The atmosphere is particularly thin today. (Resilience Easy or +' +
 			htmlSetbackDie + ' all physical activites)',
 		'<span class="local-event-free" id="local2" checked>LOCAL WEATHER</span>: Heat Storm! Extremely high winds (500 km/h) and ' +
 			'temperatures (300°C) are possible.',
 		'<span class="local-event-free" id="local3" checked>LOCAL COLOR</span>: Visit the Floating Rock Gardens. Super relaxing! (+' + htmlBoostDie + ' next Charm, Cool, Deception, Leadership check)',
 		'<span class="local-event-destiny-optional" id="local4" checked>YOUR DEALER CALLED</span>: You haven\'t partied until you\'ve partied ' +
-			'with Glitteryll. Only on Ryloth! (ignore Critical Injury temporarily, one encounter; withdrawal, suffer Critical Injury effects, +' + htmlSetbackDie +
-			htmlSetbackDie + ', this session); hallucinogenic (+' + htmlBoostDie + htmlBoostDie + htmlBoostDie +
-			' all Perception & Vigilance, one encounter; highly addictive (Resilience Avg or +1 Obligation from addiction); possible temporary telepathy)',
-		'<span class="local-event-free" id="local5" checked>SCUM & VILLAINY</span>: A skilled doctor could use the local <a href="Ixetal cilona" target="_blank">' +
-			' to enhance their skills. (+' + htmlBoostDie + ' Medicine checks each dose used)',
+			'with Glitteryl. Only on Ryloth! (' + htmlGlitteryll +')',
 	],
 },
 {
