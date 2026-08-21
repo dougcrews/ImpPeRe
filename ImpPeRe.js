@@ -64,7 +64,7 @@ const htmlStimcaine = 'makes you focused (+' + htmlBoostDie + ' Coordination) bu
 const htmlPanGalacticGargleBlaster= 'is inspirational (+' + htmlBoostDie + ' Leadership) but exhausting (+' +
 	htmlSetbackDie + ' Resilience).';
 
-const htmlDeathSticks = htmlUpgradeAbility1x + ' next Charm/Cool/Resilience; +' + htmlSetbackDie +
+const htmlDeathSticks = htmlUpgradeAbility1x + ' next Charm/Cool; +' + htmlSetbackDie +
 	' all skills, one encounter); ' + htmlMildlyAddictive;
 const htmlBoosterBlue = htmlUpgradeAbility1x + ' next Agility/Intellect/Cunning; cannot recover Strain this session';
 const htmlMarcanHerb = 'mild euphoria: +' + htmlBoostDie + ' next Perception check; +' + htmlSetbackDie +

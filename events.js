@@ -79,7 +79,7 @@ const localEmpireEvents = [
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> Easy money (~10-100cr) to be made for a skilled Xenology expert.',
 	'<span class="local-event-free">LOCAL COLOR:</span> <i>"Psst! I got a ' +
 		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Frangawl_Force_Powder" target="_blank">new kind of Spice</a> ' +
-		'that will rock your world."</i> ' + htmlFrangawlForcePowder,
+		'that will rock your world."</i> (' + htmlFrangawlForcePowder + ')',
 	'<span class="local-event-destiny-optional">AN OLD FRIEND:</span> My juvenile delinquent buddy is working for law enforcement now???',
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> An antiquities dealer wishes to <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Gear#RELICS" target="_blank">speak to you</a>. Come to the back door of the shop.',
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> A "political prisoner" desperately needs to get off world. They can pay.',
