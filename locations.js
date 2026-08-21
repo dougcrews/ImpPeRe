@@ -764,7 +764,7 @@ const locations = [
 		'<span class="local-event-free" id="local">LOCAL COLOR:</span> The native Serranite mineral is useful for crafting. (+' + htmlBoostDie + ' gear modifications)',
 		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A seedy looking Bothan is trying to recruit you into their spy network. Can you trust them?',
 		'<span class="local-event-free" id="local">LOCAL COLOR:</span> <i>"Sorry, sentient. This location is off limits while the delegation is visiting."</i>',
-	]
+	],
 },
 {
 	"Name": "Brentaal IV",
@@ -2677,13 +2677,13 @@ const locations = [
 		'Kashyyk: Trandoshans are considered unwelcome in many Wookiee establishments.',
 		'Kashyyk: Wookiees are currently enslaved by the Empire.',
 		'<span class="local-event-free" id="local">IMPERIAL OPPRESSION:</span> <i>"You there, Wookiee! Stop and present your identicard."</i>',
-		'<span class="local-event-free" id="local">IMPERIAL SLAVERY:</span> A manacled, sorrowful group of Wookies is led to a skyhook to be slaves for the Empire.',
+		'<span class="local-event-free" id="local">IMPERIAL SLAVERY:</span> A manacled, sorrowful group of Wookiees is being led to a skyhook to be slaves for the Empire.',
 		'<span class="local-event-destiny-optional" id="local">SURPLUS:</span> If you know the right people to ask (Streetwise/Underworld), Bowcasters are readily (-2 Rarity) available.',
 		'<span class="local-event-destiny-optional" id="local">SURPLUS:</span> If you know the right people to ask (Streetwise/Underworld), Ryyk Blades are readily (-2 Rarity) available',
 		'<span class="local-event-free" id="local">IMPERIAL OPPRESSION:</span> A squad of stormtroopers rushes past, looking to apprehend a rebellious Wookiee.',
 		'<span class="local-event-destiny-optional" id="local">IMPERIAL PRESENCE:</span> <i>"Kashyyk? I wouldn\'t say that so loud. The Imps get Impy if you don\'t call it Territory G5-623."</i>',
 		'<span class="local-event-destiny-optional" id="local">WOOKIEE CULTURE:</span> Do not ask about the Hnggarghhngh Onghghgh Wookiee Liberation League (HOWLL) if you value your arm sockets.',
-		'<span class="local-event-destiny-optional" id="local">LOCAL COLOR:</span> A trandoshan guide is sponsoring a Wookiee hunt. Are you interested, good sentient?',
+		'<span class="local-event-destiny-optional" id="local">LOCAL COLOR:</span> A Trandoshan guide is sponsoring a Wookiee hunt. Are you interested, good sentient?',
 	],
 },
 {
@@ -3772,7 +3772,7 @@ const locations = [
 		'Mikkia: It is easy to offend the Mikkian strong sense of honor and discipline.',
 		'Mikkia: Mikkean head tendrils allow them to see in low light. Private spaces are often dimly lit. (+' + htmlSetbackDie + ' Perception, Ranged attacks)',
 		'<span class="local-event-free" id="local">LOCAL COLOR:</span> Visit one of the many temples. Very spiritual! (+' + htmlBoostDie + ' next Cool check)',
-	]
+	],
 },
 {
 	"Name": "Mon Cala (Dac)",
@@ -5378,7 +5378,7 @@ const locations = [
 	"URL": "https://starwars.fandom.com/wiki/Skor_II",
 	"Starport": 4, // major spaceport known as Metrobig Interplanetary Blastport
 	"Shadowport": false,
-	"BlackMarket": false,
+	"BlackMarket": true, // Solo family met several times
 	"Precipitation": 0,
 	"ImperialPresence": 0,
 	"OldWestiness": 0,
@@ -5392,6 +5392,26 @@ const locations = [
 	"Slicing": 0,
 	"Theft": -1, // traders
 	"Bribery": 2, // traders
+	"events": [
+		'Skor II: The diminutive, brightly furred Squibs are excellent hagglers. It\'s like they\'re <a href="https://starwars.fandom.com/wiki/Mystic_Martial_Arts_of_Squib_Combats_and_Transactions" target="_blank">reading your mind</a>. (+' + htmlSetbackDie + ' Negotiation)',
+		'Skor II: While in Metrobig Interplanetary Blastport, visit the bronzium statue of some war hero. Inspiring! (+' + htmlBoostDie + ' next Leadership check)',
+		'Skor II: If a Squib rubs your palm on their cheek fur, it means they like you.',
+		'Skor II: "Information is a good as a credstick to a Squib", they say.',
+		'Skor II: It is customary to rub your food on your body as the locals do before eating. That\'s how they smell.',
+		'Skor II: Ugors are considered unwelcome in most Squib establishments.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A nomadic Squib trading party wants to hire bodyguards. Are you interested?',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SQUIB</i>:</span> -1 Rarity on <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Salvage_Grade_Tractor_Beam" target="_blank">tractor beams</i>.',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SQUIB</i>:</span> -1 Rarity on moderately damaged (+' + htmlDowngradeAbility1x + ') weapons.',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SQUIB</i>:</span> -1 Rarity on moderately damaged (+' + htmlDowngradeAbility1x + ') armor.',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SQUIB</i>:</span> -1 Rarity on moderately damaged (+' + htmlDowngradeAbility1x + ') gear.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A representative of the Squib Merchanidising Consortium wishes to purchase your so-called "vehicle" for scrap. What is your price?',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A curious Squib takes an interest in you and is asking lots of questions.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A curious Squib tries to take something from you and rub it on their fur (Vigilance to notice). Sometimes they give it back.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> <i>"Make way! Make way! Make way for the Illustrious Chieftain of Junkyards! Make way!"</i>',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> It\'s <a href="https://starwars.fandom.com/wiki/Haggleday" target="_blank">Haggleday</a>! Huge crowds of celebrants fill the streets.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> Squib Reclaimation Fleet returns triumphantly! -1 Rarity all items, but everything has at least minor (+' + htmlSetbackDie + ') to moderate (' + htmlDowngradeAbility1x + ') damage.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A Squib technician has cobbled together a <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Gyrowheel_1.42.08-Series_Recycling_Droid" target="_blank">utility droid</a> out of spare parts and boundless confidence. <i>"Half price, today only!"</i>',
+	],
 },
 {
 	"Name": "Smuggler's Run",
