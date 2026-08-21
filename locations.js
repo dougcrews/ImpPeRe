@@ -743,10 +743,28 @@ const locations = [
 	"Slavery": 0,
 	"Spice": 0,
 	"Trespassing": 1, // Assassinations, espionage, and sabotage were as commonplace
-	"Military": 0,
+	"Military": -6, // strictly controlled by Ministry of Tourism
 	"Slicing": 1, // Assassinations, espionage, and sabotage were as commonplace
 	"Theft": 1, // Assassinations, espionage, and sabotage were as commonplace
 	"Bribery": 1, // Assassinations, espionage, and sabotage were as commonplace
+	"events": [
+		'Bothawui: The Bothan Spy Network is the premier information gathering operation in the galaxy. They serve all paying customers.',
+		'Bothawui: The powerful Ministry of Tourism can <b>register your nonlethal or personal protection weapon</b>, once you pass the extensive background check.',
+		'Bothawui: Many galactic corporations are headquartered here, drawn by the lax regulations and taxes.',
+		'Bothawui: Rare information is equivalent to credits for many Bothans. Negotiate wisely.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> An important delegation of diplomats is causing a traffic jam.',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SPY</i>:</span> +' + htmlBoostDie + ' to Core Worlds check(s).',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SPY</i>:</span> +' + htmlBoostDie + ' to Education check(s).',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SPY</i>:</span> +' + htmlBoostDie + ' to Lore check(s).',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SPY</i>:</span> +' + htmlBoostDie + ' to Outer Rim check(s).',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SPY</i>:</span> +' + htmlBoostDie + ' to Underworld check(s).',
+		'<span class="local-event-destiny-optional">I KNOW A <i>SPY</i>:</span> +' + htmlBoostDie + ' to Xenology check(s).',
+		'<span class="local-event-free" id="local">FAVORABLE CONTACTS:</span> +' + htmlBoostDie + ' to next Stealth check.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A Glitterstone pendant is often a sign of Bothan goodwill.',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> The native Serranite mineral is useful for crafting. (+' + htmlBoostDie + ' gear modifications)',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> A seedy looking Bothan is trying to recruit you into their spy network. Can you trust them?',
+		'<span class="local-event-free" id="local">LOCAL COLOR:</span> <i>"Sorry, sentient. This location is off limits while the delegation is visiting."</i>',
+	]
 },
 {
 	"Name": "Brentaal IV",

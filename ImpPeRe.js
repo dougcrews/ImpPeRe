@@ -825,7 +825,7 @@ function updateLocalCustoms() // and starport costs, permits, contraband,...
 	$('#textLocalRarity').html(textLocalRarity);
 
 	// Weapon Permits calculations
-	const baseWeapon = currentLoc.OldWestiness + currentRegion.OldWestiness;
+	const baseWeapon = currentLoc.OldWestiness + currentRegion.OldWestiness + currentLoc.Military;
 
 	const permitWeaponConcealed = baseWeapon;
 	const permitWeaponConcealedCost = (0 - permitWeaponConcealed) * 10;
