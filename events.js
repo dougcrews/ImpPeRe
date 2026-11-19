@@ -28,7 +28,7 @@ const localEmpireEvents = [
 	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity on weapons.',
 	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity on armor.',
 	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity on ship components.',
-	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity on <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Gear#CYBERNETICS" target="_blank">cybernetics.</a>',
+	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity on <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Gear#CYBERNETICS" target="_blank">cybernetics</a>.',
 	'<span class="local-event-free">SHORTAGE:</span> +1 Rarity on <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Medical" target="_blank">Medicines</a>.',
 	'<span class="local-event-free">LOCAL COLOR:</span> Maintenance crew at work in the area.',
 	'<span class="local-event-free">RUSH HOUR:</span> Vehicle/Foot traffic higher (+' + htmlSetbackDie + ') or lower (+' +
@@ -138,18 +138,23 @@ const localEmpireEvents = [
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
 		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Vutalamine" target="_blank">Vutalamine</a>. (' + htmlVutalamine + ')',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
-		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Affide_Crystal" target="_blank">"last resort" pills</a>. (Restricted poison, Rarity 8)',
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Affide_Crystal" target="_blank">"last resort" pills</a>. ' +
+		'(Restricted poison, Rarity 8)',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
-		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Skirtopanol" target="_blank">Skirtopanol</a>. (CorSec Restricted truth serum, Rarity 8)',
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Skirtopanol" target="_blank">Skirtopanol</a>. (CorSec Restricted ' +
+		'truth serum, Rarity 8)',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional has some surplus Empire-branded ' +
-		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Synthetic_Neuroparalytic" target="_blank">Dontmovatall medicine</a>. (injected Restricted neuroparalytic, Rarity 6)',
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Synthetic_Neuroparalytic" target="_blank">Dontmovatall medicine</a>. ' +
+		'(injected Restricted neuroparalytic, Rarity 6)',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional has some surplus Empire-branded ' +
-		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Synthetic_Neurotoxin" target="_blank">Dontuzatome medicine</a>. (injected/ingested/airborne Restricted neurotoxin, Rarity 6)',
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Synthetic_Neurotoxin" target="_blank">Dontuzatome medicine</a>' +
+		'(injected/ingested/airborne Restricted neurotoxin, Rarity 6)',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A medical professional in bloodstained scrubs can ' +
 		'hook you up with Restricted <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Cybernetics target="_blank"" ' +
 		'target="_blank">cybernetic gear</a>. <strong>For a price.</strong> (Restricted gear, Rarity 3-8)',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A civilian Imperial employee has a lead on an Empire ' +
-		'warehouse containing Restricted <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Infiltration target="_blank"" target="_blank">infiltration gear</a>. (Restricted gear, Rarity 3-9)',
+		'warehouse containing Restricted <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Infiltration target="_blank"" ' +
+		'target="_blank">infiltration gear</a>. (Restricted gear, Rarity 3-9)',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> An off-duty police officer has some surplus ' +
 		'Empire-branded <a href="https://star-wars-rpg-ffg.fandom.com/wiki/Category:Security" target="_blank">prison gear</a>. ' +
 		'(Restricted gear, Rarity 5-8)',
@@ -187,7 +192,7 @@ const localEmpireEvents = [
 		'position unknown.',
 	'<span class="local-event-free">LOCAL COLOR:</span> A protocol droid claims to be the local tourism ambassador. ' +
 		'Would you like a tour?',
-	'<span class="local-event-destiny-optional">ATTENTION, SLICER:</span>An unknown entity is attempting to access your ' +
+	'<span class="local-event-destiny-optional">ATTENTION, SLICER:</span> An unknown entity is attempting to access your ' +
 		'system. You are under attack.',
 ];
 
