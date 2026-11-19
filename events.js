@@ -138,7 +138,7 @@ const localEmpireEvents = [
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
 		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Vutalamine" target="_blank">Vutalamine</a>. (' + htmlVutalamine + ')',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
-		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Affide_Crystal" target="_blank">"last resort" pills</a>. ' +
+		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Affide_Crystal" target="_blank">"last resort" pills</a> (Affide Crystal). ' +
 		'(Restricted poison, Rarity 8)',
 	'<span class="local-event-destiny-optional">IMPERIAL CORRUPTION:</span> A uniformed officer has some surplus Empire-branded ' +
 		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Skirtopanol" target="_blank">Skirtopanol</a>. (CorSec Restricted ' +
@@ -326,10 +326,10 @@ const localOldWestEvents = [
 	'<span class="local-event-destiny-optional">LOCAL COLOR:</span> The local <a href="https://starwars.fandom.com/wiki/Stimcaf" ' +
 		'target="_blank">Stimcaf</a> ' + htmlStimcafThick,
 	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some ' +
-		'"<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Dendriton_Toxin" target="_blank">Vengeance Juice</a>". ' +
+		'"<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Dendriton_Toxin" target="_blank">Vengeance Juice</a>" (Dendriton Toxin). ' +
 		'(cruel Restricted poison, Rarity 7)',
 	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some clearly stolen Empire-branded ' +
-		'"<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Dioxis_Gas" target="_blank">Coward\'s Solution</a>". ' +
+		'"<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Dioxis_Gas" target="_blank">Coward\'s Solution</a>" (Dioxis Gas). ' +
 		'(airborne Restricted poison, Rarity 6)',
 	'<span class="local-event-destiny-optional">SCUM & VILLAINY:</span> A shady character has some freshly harvested ' +
 		'<a href="https://star-wars-rpg-ffg.fandom.com/wiki/Raquor_Venom" target="_blank">Raquor\'s Kiss</a>. ' +
